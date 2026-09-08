@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050707">
+    <meta name="description" content="DuckHawk — a bold, fast, community-first digital experience.">
+    <title>QuackHack-McBlindy.</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="static/css/styles.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="static/js/script.js" defer></script>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <!-- FRAME MASK -->
+    <div class="viewport-mask mask-top"></div>
+    <div class="viewport-mask mask-bottom"></div>
+    <div class="viewport-mask mask-left"></div>
+    <div class="viewport-mask mask-right"></div>
+
+    <!-- FRAME -->
+    <div class="duckhawk-frame">
+        <img class="frame-piece frame-header glitch hue-shift" src="static/img/frame/header.png" alt="">
+        <img class="frame-piece frame-left" src="static/img/frame/left.png" alt="">
+        <img class="frame-piece frame-right" src="static/img/frame/right.png" alt="">
+        <img class="frame-piece frame-bottom" src="static/img/frame/bottom.png" alt="">
+
+        <nav class="frame-navigation" aria-label="Main navigation">
+            <a class="frame-nav-link frame-nav-home" href="about.html">Me</a>
+            <a class="frame-nav-link frame-nav-showcase" href="work.html">Work</a>
+        </nav>
+    </div>
+
+    <div id="content-glitch" class="glitch hue-shift">
+
+        <header id="top">
+            <div class="hero-content">
+                <div class="hero-grid">
+                    <div class="hero-text"></div>
+                    <div class="hero-duck" aria-hidden="true">
+                        <svg viewBox="0 0 360 300" role="img" aria-label="Clockwork duck">
+                            <defs>
+                                <linearGradient id="goldBody" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#fff19a" />
+                                    <stop offset=".35" stop-color="#e7b632" />
+                                    <stop offset=".75" stop-color="#b36d13" />
+                                    <stop offset="1" stop-color="#63390a" />
+                                </linearGradient>
+                                <linearGradient id="darkGold" x1="0" y1="0" x2="1" y2="1">
+                                    <stop stop-color="#d89d22" />
+                                    <stop offset="1" stop-color="#6e3c09" />
+                                </linearGradient>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="4" result="blur" />
+                                    <feMerge>
+                                        <feMergeNode in="blur" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <ellipse cx="180" cy="264" rx="107" ry="15" fill="#00cabc" opacity=".35" />
+                            <path d="M255 122 Q328 75 315 170 Q292 195 247 170 Z" fill="url(#darkGold)" stroke="#f2cd59" stroke-width="5" />
+                            <ellipse cx="190" cy="166" rx="91" ry="76" fill="url(#goldBody)" stroke="#f2cd59" stroke-width="6" />
+                            <path d="M177 146 Q219 119 244 164 Q225 206 184 194 Q161 177 177 146 Z" fill="#b97616" stroke="#f5d25e" stroke-width="4" />
+                            <path d="M188 157 Q211 155 226 174" fill="none" stroke="#69400d" stroke-width="5" />
+                            <path d="M113 127 Q94 100 115 70 L159 91 L151 145 Z" fill="url(#goldBody)" stroke="#f2cd59" stroke-width="6" />
+                            <circle cx="109" cy="72" r="51" fill="url(#goldBody)" stroke="#f2cd59" stroke-width="6" />
+                            <path d="M73 43 Q98 10 130 31 L150 55 L115 47 Z" fill="#b87917" stroke="#f2cd59" stroke-width="4" />
+                            <path d="M66 73 L21 92 L68 111 L92 92 Z" fill="#e4a025" stroke="#f5d25e" stroke-width="5" />
+                            <circle cx="123" cy="63" r="17" fill="#061110" stroke="#00e5d1" stroke-width="7" filter="url(#glow)" />
+                            <circle cx="127" cy="58" r="4" fill="#fffbd0" />
+                            <path d="M157 222 L143 270 M215 221 L232 270" stroke="#c98a1c" stroke-width="13" stroke-linecap="round" />
+                            <path d="M132 271 L157 271 M220 271 L247 271" stroke="#f0bd39" stroke-width="7" stroke-linecap="round" />
+                            <circle cx="246" cy="113" r="24" fill="none" stroke="#00d9c4" stroke-width="5" />
+                            <circle cx="246" cy="113" r="8" fill="#d4a22b" stroke="#f6d466" stroke-width="3" />
+                            <path d="M246 82 V96 M246 130 V145 M215 113 H231 M261 113 H278" stroke="#00d9c4" stroke-width="4" />
+                            <g transform="translate(73 137)">
+                                <circle r="19" fill="#76500e" stroke="#f4cb55" stroke-width="4" />
+                                <circle r="7" fill="#071313" stroke="#00d7c0" stroke-width="3" />
+                                <path d="M0-28 V-19 M0 19 V28 M-28 0 H-19 M19 0 H28" stroke="#f4cb55" stroke-width="7" />
+                            </g>
+                            <path d="M53 161 Q21 177 42 199 Q59 214 72 194" fill="none" stroke="#f2c84e" stroke-width="7" stroke-linecap="round" />
+                            <path d="M67 190 L82 207 M68 190 L87 192" stroke="#f2c84e" stroke-width="6" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <main>
+        
+        
+            <!-- SECTION WHO AM I -->
+            <section class="logo2-bg-section" aria-label="About me section">
+                <div class="logo2-content anim">
+                    <svg class="logo2-duck-left anim" viewBox="0 0 360 300" role="img" aria-label="Orange red duck">
+                        <defs>
+                            <linearGradient id="orangeBody" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#ffd4a3" />
+                                <stop offset=".35" stop-color="#e8641c" />
+                                <stop offset=".75" stop-color="#a8320e" />
+                                <stop offset="1" stop-color="#5a1a08" />
+                            </linearGradient>
+                            <linearGradient id="orangeDark" x1="0" y1="0" x2="1" y2="1">
+                                <stop stop-color="#d4500e" />
+                                <stop offset="1" stop-color="#7a2a08" />
+                            </linearGradient>
+                            <filter id="orangeGlow">
+                                <feGaussianBlur stdDeviation="4" result="blur" />
+                                <feMerge>
+                                    <feMergeNode in="blur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <ellipse cx="180" cy="264" rx="107" ry="15" fill="#ff6b1a" opacity=".35" />
+                        <g transform="translate(360, 0) scale(-1, 1)">
+                            <path d="M255 122 Q328 75 315 170 Q292 195 247 170 Z" fill="url(#orangeDark)" stroke="#ff9a3c" stroke-width="5" />
+                            <ellipse cx="190" cy="166" rx="91" ry="76" fill="url(#orangeBody)" stroke="#ff9a3c" stroke-width="6" />
+                            <path d="M177 146 Q219 119 244 164 Q225 206 184 194 Q161 177 177 146 Z" fill="#c94f1a" stroke="#ffb347" stroke-width="4" />
+                            <path d="M188 157 Q211 155 226 174" fill="none" stroke="#6e2808" stroke-width="5" />
+                            <path d="M113 127 Q94 100 115 70 L159 91 L151 145 Z" fill="url(#orangeBody)" stroke="#ff9a3c" stroke-width="6" />
+                            <circle cx="109" cy="72" r="51" fill="url(#orangeBody)" stroke="#ff9a3c" stroke-width="6" />
+                            <path d="M73 43 Q98 10 130 31 L150 55 L115 47 Z" fill="#c94f1a" stroke="#ff9a3c" stroke-width="4" />
+                            <path d="M66 73 L21 92 L68 111 L92 92 Z" fill="#e8641c" stroke="#ffb347" stroke-width="5" />
+                            <circle cx="123" cy="63" r="17" fill="#1a0805" stroke="#ff6b1a" stroke-width="7" filter="url(#orangeGlow)" />
+                            <circle cx="127" cy="58" r="4" fill="#fff5d0" />
+                            <path d="M157 222 L143 270 M215 221 L232 270" stroke="#c94f1a" stroke-width="13" stroke-linecap="round" />
+                            <path d="M132 271 L157 271 M220 271 L247 271" stroke="#ff9a3c" stroke-width="7" stroke-linecap="round" />
+                            <circle cx="246" cy="113" r="24" fill="none" stroke="#ff7733" stroke-width="5" />
+                            <circle cx="246" cy="113" r="8" fill="#e8641c" stroke="#ffb347" stroke-width="3" />
+                            <path d="M246 82 V96 M246 130 V145 M215 113 H231 M261 113 H278" stroke="#ff7733" stroke-width="4" />
+                            <g transform="translate(73 137)">
+                                <circle r="19" fill="#8b2e0d" stroke="#ff9a3c" stroke-width="4" />
+                                <circle r="7" fill="#1a0805" stroke="#ff7733" stroke-width="3" />
+                                <path d="M0-28 V-19 M0 19 V28 M-28 0 H-19 M19 0 H28" stroke="#ff9a3c" stroke-width="7" />
+                            </g>
+                            <path d="M53 161 Q21 177 42 199 Q59 214 72 194" fill="none" stroke="#ff9a3c" stroke-width="7" stroke-linecap="round" />
+                            <path d="M67 190 L82 207 M68 190 L87 192" stroke="#ff9a3c" stroke-width="6" stroke-linecap="round" />
+                        </g>
+                    </svg>
+
+                    <div class="logo2-text">
+                        <h2>
+                            <span class="white">who</span><span class="gold">am</span><span class="white">i</span>
+                        </h2>
+                        <p>
+                            A quick introduction about me, my work, or my story.
+                            This is a brief hello — enough to spark curiosity and invite
+                            a deeper look.
+                        </p>
+                        <a href="about.html" class="btn btn-primary">Read More</a>
+
+                        <div class="social-buttons">
+                            <a href="https://github.com/QuackHack-McBlindy" class="social-btn anim" aria-label="GitHub">
+                                <img src="static/img/github_teal.png" alt="GitHub">
+                            </a>
+                            <a href="mailto:info@quackhack-mcblindy.com" class="social-btn anim" aria-label="Email">
+                                <img src="static/img/mail.png" alt="EMail">
+                            </a>
+                            <a href="https://matrix.to/#/@quackhack-mcblindy:matrix.org" class="social-btn anim" aria-label="Element">
+                                <img src="static/img/element.png" alt="Element">
+                            </a>
+                            <a href="https://discord.com/users/675530282849533952" class="social-btn anim" aria-label="Discord">
+                                <img src="static/img/discord_teal.png" alt="Discord">
+                            </a>
+                            <a href="https://discourse.nixos.org/u/quackhack-mcblindy/activity" class="social-btn anim" aria-label="Discourse">
+                                <img src="static/img/nixos.svg" alt="Discourse">
+                            </a>
+                            <a href="https://buymeacoffee.com/quackhackmcblindy" class="social-btn anim" aria-label="Sponsor">
+                                <img src="static/img/cup.png" alt="Sponsor Buy Me A Coffee">
+                            </a>
+                            <a href="pungkula.x" class="social-btn anim" aria-label="Sponsor BTC">
+                                <img src="static/img/btc.png" alt="Sponsor BTC">
+                            </a>
+                            <a href="pungkula.x" class="social-btn anim" aria-label="Sponsor XMR">
+                                <img src="static/img/xmr.png" alt="Sponsor XMR">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- SECTION NEW POSTS -->
+            <section id="experience">
+                <div class="wrap">
+                    <div class="section-head reveal anim">
+                        <div>
+                            <div class="eyebrow">Inside My Head</div>
+                            <h2>Recently <span class="gold">Posted</span></h2>
+                        </div>
+                        <div class="section-intro-text">
+                            <h1>Here I <span class="gold">share words.</span></h1>
+                            <button id="toggle-all-posts" class="btn btn-primary" aria-expanded="false">
+                                <span class="toggle-label"></span>
+                                <span class="toggle-icon">↓</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid showcase">
+                        <div class="showcase-visual reveal anim">
+                            <img src="static/img/duck_black.png" alt="DuckHawk artwork" class="showcase-img">
+                        </div>
+                        <div class="list" id="latest-posts"></div>
+                    </div>
+                    <div id="all-posts-section" class="all-posts-section" hidden>
+                        <div class="tag-filters" id="tag-filters" role="group" aria-label="Filter by tag">
+                            <button class="tag-chip active" data-tag="all">All</button>
+                        </div>
+                        <div class="all-posts-grid" id="all-posts-grid">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- SECTION GITHUB PUSHES -->
+            <section id="pushes">
+                <div class="wrap">
+                    <div class="section-head reveal anim">
+                        <div>
+                            <div class="eyebrow">GitHub Activity</div>
+                            <h2>Recently <span class="gold">Pushed</span></h2>
+                        </div>
+                        <div class="section-intro-text">
+                            <h1>Here I <span class="gold">share code.</span></h1>
+                        </div>
+                    </div>
+
+                    <div id="push-list" class="push-list" aria-live="polite">
+                    </div>
+                    
+                </div>
+            </section>
+
+
+
+            <!-- SECTION FAQ  -->
+            <section id="faq">
+                <div class="wrap">
+                    <div class="section-head reveal anim">
+                        <div>
+                            <div class="eyebrow">FAQ</div>
+                            <h2>Fast questions.<br><span class="gold">Quack answers.</span></h2>
+                        </div>
+                    </div>
+
+                    <div class="faq">
+                        <details class="reveal anim">
+                            <summary>Are you really blind?</summary>
+                            <p>Yes, mostly. I use 14-20 times magnifier when I have a screen plugged in.</p>
+                        </details>
+                        <details class="reveal anim">
+                            <summary>How long have you been developing?</summary>
+                            <p>I sold my first website over 22 years ago. Since then I have contributed to open source projects in different forms using various aliases.</p>
+                            <p>Not so much frontend lately.</p>
+                        </details>
+                        <details class="reveal anim">
+                          <summary>What computer/OS do you use?</summary>
+                          <p>View current hosts/unique builds I have done over the years in <a href="posts/hardware.html" class="gold-link" target="_blank" rel="noopener">this post</a>.</p>
+                          <p>Source code for all my machines: <a href="https://github.com/QuackHack-McBlindy/dotfiles" class="gold-link" target="_blank" rel="noopener">dotfiles</a></p>
+                        </details>
+                        <details class="reveal anim">
+                            <summary>How can I reach you?</summary>
+                            <p>Use any of the social links at the top of this page.</p>
+                        </details>
+                        <details class="reveal anim">
+                            <summary>Do you know what it sounds like getting slapped in Hertz?</summary>
+                            <p>It mega-hurtz.</p>
+                        </details>
+                        <details class="reveal anim">
+                            <summary>What's the fuzz with the ducks?</summary>
+                            <p>🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆.</p>
+                        </details>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <div class="wrap footer-row">
+                <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBlindy.com</span></strong></div>
+                <div class="footer-links">
+                    <a href="#top">Top</a>
+                </div>
+            </div>
+        </footer>
+
+        <svg height="0" width="0" style="position:absolute;">
+            <filter id="f1">
+                <feturbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp"></feturbulence>
+                <fedisplacementmap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp"></fedisplacementmap>
+                <fecolormatrix type="matrix" result="red_" values="4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"></fecolormatrix>
+                <feoffset in="red_" dx="2" dy="0" result="red"></feoffset>
+                <fecolormatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 1 0"></fecolormatrix>
+                <feoffset in="blue_" dx="-3" dy="0" result="blue"></feoffset>
+                <feblend mode="screen" in="red" in2="blue"></feblend>
+            </filter>
+        </svg>
+    </div>
+
+    <script>
+        async function fetchPushEvents() {
+            const listEl = document.getElementById('push-list');
+            if (!listEl) return;
+
+            listEl.innerHTML = '<div style="text-align:center;color:#8ea6a3;">Loading pushes…</div>';
+
+            try {
+                const response = await fetch('https://api.github.com/users/QuackHack-McBlindy/events?per_page=30');
+                if (!response.ok) throw new Error('GitHub API error');
+                const events = await response.json();
+
+                const pushEvents = events.filter(e => e.type === 'PushEvent').slice(0, 5);
+
+                if (pushEvents.length === 0) {
+                    listEl.innerHTML = '<div style="text-align:center;color:#8ea6a3;">No recent pushes found.</div>';
+                    return;
+                }
+
+                let html = '';
+                pushEvents.forEach(event => {
+                    const repo = event.repo.name;
+                    const branch = event.payload.ref.replace('refs/heads/', '');
+                    const commits = event.payload.commits || [];
+                    const commitCount = commits.length;
+                    const lastCommitMsg = commitCount > 0 ? commits[commits.length - 1].message : 'No commit message';
+                    const timeAgo = timeSince(new Date(event.created_at));
+
+                    html += `
+                        <div class="push-item">
+                            <div class="push-icon"><img src="static/img/profile.png" alt="Profile" class="push-avatar"></div>
+                            <div class="push-content">
+                                <div class="push-repo">${repo} <span style="font-weight:normal;color:#8ea6a3;">→ ${branch}</span></div>
+                                <div class="push-message">${commitCount} commit${commitCount !== 1 ? 's' : ''}: ${escapeHtml(lastCommitMsg)}</div>
+                            </div>
+                            <div class="push-time">${timeAgo}</div>
+                        </div>
+                    `;
+                });
+
+                listEl.innerHTML = html;
+            } catch (error) {
+                console.error('Error fetching push events:', error);
+                listEl.innerHTML = '<div style="text-align:center;color:#8ea6a3;">Failed to load pushes. Check console.</div>';
+            }
+        }
+
+        function timeSince(date) {
+            const seconds = Math.floor((new Date() - date) / 1000);
+            let interval = Math.floor(seconds / 31536000);
+            if (interval > 1) return interval + ' years ago';
+            interval = Math.floor(seconds / 2592000);
+            if (interval > 1) return interval + ' months ago';
+            interval = Math.floor(seconds / 86400);
+            if (interval > 1) return interval + ' days ago';
+            interval = Math.floor(seconds / 3600);
+            if (interval > 1) return interval + ' hours ago';
+            interval = Math.floor(seconds / 60);
+            if (interval > 1) return interval + ' minutes ago';
+            return 'just now';
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        fetchPushEvents();
+
+        function triggerSmile() {
+            const container = document.querySelector('.social-buttons');
+            if (!container) return;
+            container.classList.add('smile-mode');
+            setTimeout(() => {
+                container.classList.remove('smile-mode');
+            }, 3000);
+        }
+
+        setTimeout(() => {
+            triggerSmile();
+            setInterval(triggerSmile, 30000);
+        }, 4000);
+
+    </script>
+</body>
+</html>
