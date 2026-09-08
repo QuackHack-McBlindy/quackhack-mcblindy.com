@@ -1,0 +1,34 @@
+.viewport-mask {
+  position: fixed;
+  background: var(--bg);
+  z-index: 9998;
+  pointer-events: none;
+}
+
+.mask-top {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--mask-top-h);
+}
+
+.mask-bottom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--mask-bottom-h);
+}
+
+.mask-left {
+  top: var(--frame-header-h);
+  left: 0;
+  width: var(--mask-left-w);
+  height: calc(100% - var(--frame-header-h) - var(--frame-bottom-h));
+}
+
+.mask-right {
+  top: var(--frame-header-h);
+  right: 0;
+  width: var(--mask-right-w);
+  height: calc(100% - var(--frame-header-h) - var(--frame-bottom-h));
+}

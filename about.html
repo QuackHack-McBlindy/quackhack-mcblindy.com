@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="h0N8wN3LfuoAR-RnBsQbPLp23Eev2TIy5VVBfgFXiyc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuackHack-McBLindy.com</title>
+    <meta name="description" content="QuackHack-McBlindy.com | Portfolio">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quackhack-mcblindy.com/">
+    <meta property="og:title" content="QuackHack-McBLindy.com">
+    <meta property="og:description" content="QuackHack-McBlindy.com | Portfolio">
+    <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="uackHack-McBLindy.com">
+    <meta name="twitter:description" content="QuackHack-McBlindy.com | Portfolio">
+    <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+    
+    <link rel="canonical" href="https://quackhack-mcblindy.com/" />
+
+    <meta name="theme-color" content="#050707">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="static/css/styles.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="static/js/script.js" defer></script>
+
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="🦯🦆">
+    <link rel="apple-touch-icon" href="static/img/icon-192.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon-16x16.png">
+
+
+
+    <style>
+        :root {
+            --bg: #050707;
+            --panel: #0b1110;
+            --panel2: #0e1716;
+            --teal: #11e6d2;
+            --teal2: #05a99f;
+            --gold: #f4b52f;
+            --gold2: #ffdc72;
+            --text: #f3fffd;
+            --muted: #8ea6a3;
+            --line: rgba(17, 230, 210, .16);
+            --max: 1180px;
+            --radius: 24px;
+            --frame-header-h: 260px;
+            --frame-bottom-h: 64px;
+            --frame-left-w: 190px;
+            --frame-right-w: 196px;
+            --frame-z: 10000;
+            --mask-top-h: 140px;
+            --mask-bottom-h: 52px;
+            --mask-left-w: 214px;
+            --mask-right-w: 214px;
+            --content-max: calc(100vw - var(--frame-left-w) - var(--frame-right-w) - 40px);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 50% -10%, rgba(0, 221, 204, .10), transparent 34rem),
+                radial-gradient(circle at 90% 45%, rgba(244, 181, 47, .07), transparent 28rem),
+                var(--bg);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .wrap {
+            width: min(calc(100vw - var(--mask-left-w) - var(--mask-right-w) - 40px), var(--max));
+            margin: auto;
+        }
+
+        .eyebrow {
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--teal);
+        }
+        .gold {
+            color: var(--gold);
+        }
+        .white {
+            color: #fff;
+        }
+        .muted {
+            color: var(--muted);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 48px;
+            padding: 0 19px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .10);
+            font-weight: 850;
+            letter-spacing: .01em;
+            cursor: pointer;
+            transition: .22s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--teal), #55fff1);
+            color: #02100e;
+            box-shadow: 0 0 35px rgba(17, 230, 210, .18);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(17, 230, 210, .24);
+        }
+        .btn-ghost {
+            background: rgba(255, 255, 255, .03);
+            backdrop-filter: blur(10px);
+        }
+        .btn-ghost:hover {
+            border-color: rgba(17, 230, 210, .38);
+            transform: translateY(-2px);
+        }
+
+        .duckhawk-frame {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: var(--frame-z);
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .frame-piece {
+            position: fixed;
+            display: block;
+            pointer-events: none;
+            user-select: none;
+            max-width: none;
+        }
+        .frame-header {
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: var(--frame-header-h);
+            object-fit: fill;
+        }
+        .frame-left {
+            top: var(--frame-header-h);
+            left: 0;
+            width: var(--frame-left-w);
+            height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+            object-fit: fill;
+        }
+        .frame-right {
+            top: var(--frame-header-h);
+            right: 0;
+            width: var(--frame-right-w);
+            height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+            object-fit: fill;
+        }
+        .frame-bottom {
+            left: 0;
+            bottom: 0;
+            width: 100vw;
+            height: var(--frame-bottom-h);
+            object-fit: fill;
+        }
+        .frame-navigation {
+            position: fixed;
+            inset: 0 0 auto 0;
+            width: 100vw;
+            height: var(--frame-header-h);
+            z-index: calc(var(--frame-z) + 1);
+            pointer-events: none;
+        }
+        .frame-nav-link {
+            position: absolute;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            color: #f4df9a;
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, .95),
+                0 0 12px rgba(17, 230, 210, .35);
+            transition: color .25s ease, transform .25s ease, text-shadow .25s ease;
+        }
+        .frame-nav-home {
+            left: 25%;
+            top: 140px;
+            transform: translate(-50%, -50%);
+        }
+        .frame-nav-showcase {
+            left: 75%;
+            top: 140px;
+            transform: translate(-50%, -50%);
+        }
+        .frame-nav-link::after {
+            content: "";
+            position: absolute;
+            left: 15%;
+            right: 15%;
+            bottom: 3px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--teal), transparent);
+            opacity: .65;
+            transform: scaleX(.35);
+            transition: transform .25s ease, opacity .25s ease;
+        }
+        .frame-nav-link:hover {
+            color: #fff5cf;
+            transform: translate(-50%, -50%) translateY(-2px);
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 1),
+                0 0 18px rgba(17, 230, 210, .65);
+        }
+        .frame-nav-link:hover::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+
+        header {
+            position: relative;
+            min-height: 760px;
+            isolation: isolate;
+        }
+        header:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, 0) 30%, var(--bg) 100%),
+                url("static/img/logo.png") center top / min(1500px, 100vw) auto no-repeat;
+            filter: saturate(1.04);
+        }
+        header:after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 260px;
+            background: linear-gradient(180deg, transparent, var(--bg));
+            pointer-events: none;
+        }
+        .hero-content {
+            padding-top: 380px;
+            max-width: var(--max);
+            margin: auto;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 30px;
+            padding: 0 20px;
+        }
+        .hero-text {
+            text-align: left;
+        }
+        .hero-text .eyebrow {
+            text-align: left;
+        }
+        .hero-text h1 {
+            font-size: clamp(2.4rem, 6vw, 5.5rem);
+            line-height: .95;
+            margin: 13px 0 18px;
+            letter-spacing: -.055em;
+        }
+        .hero-text p {
+            max-width: 520px;
+            margin: 0 0 27px;
+            color: #a8bfbc;
+            font-size: 1.08rem;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .hero-duck {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: drop-shadow(0 0 18px rgba(17, 230, 210, 0.35));
+            animation: float 4s ease-in-out infinite;
+            margin-top: -30px;
+        }
+        .hero-duck svg {
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0) rotate(-2deg);
+            }
+            50% {
+                transform: translateY(-9px) rotate(2deg);
+            }
+        }
+        .scroll {
+            margin-top: 34px;
+            color: #647b78;
+            font-size: .72rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .scroll span {
+            display: block;
+            width: 1px;
+            height: 34px;
+            background: linear-gradient(var(--teal), transparent);
+            margin: 8px auto 0;
+        }
+
+        main {
+            padding-top: calc(var(--frame-header-h) + 20px);
+            padding-bottom: calc(var(--frame-bottom-h) + 40px);
+        }
+
+        .content-section {
+            padding: 30px 0 60px;
+        }
+        .content-section h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            letter-spacing: -.02em;
+            margin: 0 0 12px;
+        }
+        .content-section .section-intro {
+            max-width: 700px;
+            margin: 0 auto 35px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 24px;
+            max-width: 780px;
+            margin: 0 auto;
+            justify-items: center;
+            align-items: center;
+        }
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 72px;
+            height: 72px;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 16px;
+            transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+            cursor: default;
+        }
+        .skill-item:hover {
+            transform: translateY(-3px);
+            border-color: rgba(17, 230, 210, .35);
+            box-shadow: 0 8px 25px rgba(17, 230, 210, .12);
+        }
+        .skill-item img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+            transition: transform .2s ease, filter .2s ease;
+        }
+        .skill-item:hover img {
+            transform: scale(1.12);
+            filter: drop-shadow(0 0 8px rgba(17, 230, 210, 0.5));
+        }
+
+        .github-activity-list {
+            display: grid;
+            gap: 12px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .github-activity-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .github-activity-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(17, 230, 210, 0.3);
+        }
+        .github-activity-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(17, 230, 210, 0.1);
+            border: 1px solid rgba(17, 230, 210, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal);
+            font-weight: 900;
+        }
+        .github-activity-content {
+            flex: 1;
+        }
+        .github-activity-content .repo {
+            font-weight: 700;
+            color: var(--text);
+        }
+        .github-activity-content .type {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+        .github-activity-time {
+            color: var(--muted);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        footer {
+            padding: 40px 0 80px;
+            border-top: 1px solid var(--line);
+            color: #718783;
+        }
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: center;
+        }
+        .footer-links {
+            display: flex;
+            gap: 22px;
+            font-size: .86rem;
+        }
+        .footer-links a:hover {
+            color: var(--teal);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: .7s ease;
+        }
+        .reveal.in {
+            opacity: 1;
+            transform: none;
+        }
+        .anim {
+            opacity: 0;
+            transform: translateY(100px);
+            transition:
+                opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.5s ease;
+            filter: blur(3px);
+            will-change: opacity, transform, filter;
+        }
+        .anim.in-view {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+        .anim-left {
+            transform: translateX(-40px);
+        }
+        .anim-right {
+            transform: translateX(40px);
+        }
+        .anim-left.in-view,
+        .anim-right.in-view {
+            transform: translateX(0);
+        }
+
+        .glitch {
+            animation: glitch 3s linear infinite;
+        }
+        @keyframes glitch {
+            0%,
+            4%,
+            8%,
+            12%,
+            100% {
+                filter: none;
+            }
+            1%,
+            5%,
+            9% {
+                filter: url(#f1);
+            }
+        }
+        .hue-shift {
+            animation: hueshift 45s ease-in-out infinite;
+        }
+        @keyframes hueshift {
+            0%,
+            50% {
+                filter: hue-rotate(0deg);
+            }
+            60% {
+                filter: hue-rotate(360deg);
+            }
+            70% {
+                filter: hue-rotate(0deg);
+            }
+            80% {
+                filter: hue-rotate(360deg);
+            }
+            90% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(17, 230, 210, .08), transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(244, 181, 47, .08), transparent 40%);
+            animation: aurora 20s ease-in-out infinite alternate;
+        }
+        @keyframes aurora {
+            0% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.15);
+            }
+        }
+
+        @media(max-width: 1100px) {
+            .skills-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 18px;
+            }
+        }
+        @media(max-width: 850px) {
+            :root {
+                --frame-header-h: 190px;
+                --frame-bottom-h: 48px;
+                --frame-left-w: 105px;
+                --frame-right-w: 108px;
+            }
+            header {
+                min-height: 700px;
+            }
+            .hero-content {
+                padding-top: 320px;
+            }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-text {
+                text-align: center;
+            }
+            .hero-text .eyebrow {
+                text-align: center;
+            }
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-duck {
+                order: -1;
+                margin-bottom: 20px;
+            }
+            .hero-duck svg {
+                max-width: 280px;
+            }
+            .frame-nav-link {
+                font-size: 17px;
+                letter-spacing: .08em;
+                padding: 8px 10px;
+            }
+            .frame-nav-home {
+                left: 24%;
+                top: 78px;
+            }
+            .frame-nav-showcase {
+                left: 76%;
+                top: 78px;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .skill-item {
+                width: 62px;
+                height: 62px;
+            }
+            .skill-item img {
+                width: 32px;
+                height: 32px;
+            }
+            main {
+                padding-top: calc(var(--frame-header-h) + 12px);
+                padding-bottom: calc(var(--frame-bottom-h) + 24px);
+            }
+        }
+        @media(max-width: 560px) {
+            :root {
+                --frame-header-h: 145px;
+                --frame-bottom-h: 38px;
+                --frame-left-w: 72px;
+                --frame-right-w: 74px;
+            }
+            .wrap {
+                width: min(calc(100% - 28px), var(--max));
+            }
+            header {
+                min-height: 620px;
+            }
+            .hero-content {
+                padding-top: 280px;
+            }
+            .hero-content p {
+                font-size: .98rem;
+            }
+            .frame-nav-link {
+                font-size: 14px;
+                letter-spacing: .06em;
+                padding: 7px 6px;
+            }
+            .frame-nav-home {
+                left: 23%;
+                top: 61px;
+            }
+            .frame-nav-showcase {
+                left: 77%;
+                top: 61px;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 14px;
+            }
+            .skill-item {
+                width: 56px;
+                height: 56px;
+            }
+            .skill-item img {
+                width: 28px;
+                height: 28px;
+            }
+            .footer-row {
+                display: block;
+            }
+            .footer-links {
+                margin-top: 16px;
+                flex-wrap: wrap;
+            }
+            main {
+                padding-top: calc(var(--frame-header-h) + 8px);
+                padding-bottom: calc(var(--frame-bottom-h) + 16px);
+            }
+        }
+        
+
+      .duckhawk-frame,
+      .viewport-mask {
+          display: none;
+      }
+
+      @media (min-width: 1200px) and (min-height: 700px) {
+          .duckhawk-frame,
+          .viewport-mask {
+              display: block;
+          }
+      }
+
+      @media (min-width: 3440px) {
+          .duckhawk-frame,
+          .viewport-mask {
+              display: none;
+          }
+      }
+
+
+      @media (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+          .duckhawk-frame,
+          .viewport-mask {
+              display: none;
+          }
+      }
+    </style>
+</head>
+
+<body>
+
+    <div class="duckhawk-frame" aria-hidden="true">
+        <img class="frame-piece frame-header glitch hue-shift" src="static/img/frame/header.png" alt="">
+        <img class="frame-piece frame-left" src="static/img/frame/left.png" alt="">
+        <img class="frame-piece frame-right" src="static/img/frame/right.png" alt="">
+        <img class="frame-piece frame-bottom" src="static/img/frame/bottom.png" alt="">
+
+        <nav class="frame-navigation" aria-label="Main navigation">
+            <a class="frame-nav-link frame-nav-home" href="index.html">Me</a>
+            <a class="frame-nav-link frame-nav-showcase" href="work.html">Work</a>
+        </nav>
+    </div>
+
+    <div id="content-glitch" class="glitch hue-shift">
+
+        <header id="top"></header>
+
+        <main>
+
+            <section class="content-section" id="about">
+                <div class="wrap reveal">
+                    <div class="section-intro">
+                        <h2>
+                            <span class="white">About The </span><span class="gold">Real Me</span>
+                        </h2>
+                        <p>
+                          I could really use something long-term. <br>
+                          Something that would keep me busy for more than a couple of days.<br>
+
+                          I'm a developer who thrives on complex, long‑term projects — the kind that demand depth, ownership, and continuous innovation.<br><br>
+
+                          <strong>Why hire me?</strong><br>
+                          I'm blind, and that brings two unexpected advantages to your team:<br><br>
+                          
+                          <strong>1. Focus</strong> – I'm not distracted by visual noise; I live in the code.<br>
+
+                          <strong>2. Incentives</strong> – Many governments offer employment incentives for hiring people with disabilities, which can significantly reduce your costs.<br><br>
+
+                          But the real reason to hire me is my work:<br>
+                          I build from the hardware up to the cloud. In addition to all my open source projects, I have been known working with things like  NixOS‑based infrastructure, and complex bank certificates for Open Banking API, I did voice driven bank transfers over PHP.<br>
+                          I optimize workflows (CI/CD) and automate everything, and I've built AI agents (LangChain) and generative media (AMD ROCm).<br><br>
+                          
+                          I reverse engineer most platforms I encounter in daily life, for integration into my own voice interface.<br>
+                          I know about security, (or lack off) and always carry a secure mindset.<br>
+                          <br><br>
+                          
+               
+                        
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="skills">
+                <div class="wrap reveal">
+                    <div class="section-intro">
+                        <h2>
+                            <span class="white">Tools &amp; </span><span class="gold">Skills</span>
+                        </h2>
+                        <p>Some of the technologies and tools I work with to create innovative solutions and bring ideas to life.</p>
+                    </div>
+
+                    <div class="skills-grid">
+                        <div class="skill-item" title="Arduino">
+                            <img src="static/img/arduino-original.svg" alt="Arduino icon">
+                        </div>
+                        <div class="skill-item" title="Bash">
+                            <img src="static/img/bash-original.svg" alt="Bash shell icon">
+                        </div>
+                        <div class="skill-item" title="CMake">
+                            <img src="static/img/cmake-original.svg" alt="CMake build system icon">
+                        </div>
+                        <div class="skill-item" title="DiscordJS">
+                            <img src="static/img/discordjs-original.svg" alt="Discord.js library icon">
+                        </div>
+                        <div class="skill-item" title="Docker">
+                            <img src="static/img/docker.svg" alt="Docker container icon">
+                        </div>
+                        <div class="skill-item" title="Git">
+                            <img src="static/img/git-original.svg" alt="Git version control icon">
+                        </div>
+
+                        <div class="skill-item" title="HTML5">
+                            <img src="static/img/html5-original.svg" alt="HTML5 markup language icon">
+                        </div>
+                        <div class="skill-item" title="JavaScript">
+                            <img src="static/img/javascript-original.svg" alt="JavaScript programming language icon">
+                        </div>
+                        <div class="skill-item" title="Kubernetes">
+                            <img src="static/img/kubernetes-original.svg" alt="Kubernetes orchestration icon">
+                        </div>
+                        <div class="skill-item" title="NixOS">
+                            <img src="static/img/nixos-original.svg" alt="NixOS Linux distribution icon">
+                        </div>
+                        <div class="skill-item" title="Node.js">
+                            <img src="static/img/nodejs-original.svg" alt="Node.js runtime icon">
+                        </div>
+                        <div class="skill-item" title="NumPy">
+                            <img src="static/img/numpy-original.svg" alt="NumPy numerical library icon">
+                        </div>
+
+                        <div class="skill-item" title="OAuth">
+                            <img src="static/img/oauth-original.svg" alt="OAuth authentication icon">
+                        </div>
+                        <div class="skill-item" title="Postman">
+                            <img src="static/img/postman-original.svg" alt="Postman API testing tool icon">
+                        </div>
+                        <div class="skill-item" title="Python">
+                            <img src="static/img/python-original.svg" alt="Python programming language icon">
+                        </div>
+                        <div class="skill-item" title="PyTorch">
+                            <img src="static/img/pytorch-original.svg" alt="PyTorch deep learning framework icon">
+                        </div>
+                        <div class="skill-item" title="Tailwind CSS">
+                            <img src="static/img/tailwindcss-original.svg" alt="Tailwind CSS framework icon">
+                        </div>
+                        <div class="skill-item" title="TensorFlow">
+                            <img src="static/img/tensorflow-original.svg" alt="TensorFlow machine learning icon">
+                        </div>
+
+                        <div class="skill-item" title="VS Code">
+                            <img src="static/img/vscode-original.svg" alt="Visual Studio Code editor icon">
+                        </div>
+                        <div class="skill-item" title="Yarn">
+                            <img src="static/img/yarn-original.svg" alt="Yarn package manager icon">
+                        </div>
+                        <div class="skill-item" title="Rust">
+                            <img src="static/img/rust-original.svg" alt="Rust programming language icon">
+                        </div>
+                        <div class="skill-item" title="MQTT (Mosquitto)">
+                            <img src="static/img/mqtt-original.svg" alt="MQTT messaging protocol icon">
+                        </div>
+                        <div class="skill-item" title="Zigbee2MQTT">
+                            <img src="static/img/z2mqtt-original.svg" alt="Zigbee2MQTT bridge icon">
+                        </div>
+                        <div class="skill-item" title="Android Debug Bridge (ADB)">
+                            <img src="static/img/android-original.svg" alt="Android Debug Bridge icon">
+                        </div>
+
+                        <div class="skill-item" title="Linux">
+                            <img src="static/img/linux-original.svg" alt="Linux operating system icon">
+                        </div>
+
+
+                        <div class="skill-item" title="CI/CD">
+                            <img src="static/img/githubactions-original.svg" alt="GitHub Actions - CI/CD">
+                        </div>             
+                        
+                        <div class="skill-item" title="Grafana">
+                            <img src="static/img/grafana-original.svg" alt="Grafana">
+                        </div>   
+                        
+                        <div class="skill-item" title="Prometheus">
+                            <img src="static/img/prometheus-original.svg" alt="Prometheus">
+                        </div>
+
+                        <div class="skill-item" title="Pandas">
+                            <img src="static/img/pandas-original.svg" alt="Pandas">
+                        </div>   
+                        <div class="skill-item" title="AMD ROCm">
+                            <img src="static/img/rocm.png" alt="AMD ROCm">
+                        </div>                        
+                        
+                    </div>
+                </div>
+            </section>
+
+
+
+        </main>
+
+        <footer>
+            <div class="wrap footer-row">
+                <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBlindy.com</span></strong></div>
+                <div class="footer-links">
+                    <a href="#top">Top</a>
+                </div>
+            </div>
+        </footer>
+
+        <svg height="0" width="0" style="position:absolute;">
+            <filter id="f1">
+                <feturbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp"></feturbulence>
+                <fedisplacementmap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp"></fedisplacementmap>
+                <fecolormatrix type="matrix" result="red_" values="4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"></fecolormatrix>
+                <feoffset in="red_" dx="2" dy="0" result="red"></feoffset>
+                <fecolormatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 0 1 0"></fecolormatrix>
+                <feoffset in="blue_" dx="-3" dy="0" result="blue"></feoffset>
+                <feblend mode="screen" in="red" in2="blue"></feblend>
+            </filter>
+        </svg>
+    </div>
+
+    <script>
+        function timeSince(date) {
+            const seconds = Math.floor((new Date() - date) / 1000);
+            let interval = Math.floor(seconds / 31536000);
+            if (interval > 1) return interval + ' years ago';
+            interval = Math.floor(seconds / 2592000);
+            if (interval > 1) return interval + ' months ago';
+            interval = Math.floor(seconds / 86400);
+            if (interval > 1) return interval + ' days ago';
+            interval = Math.floor(seconds / 3600);
+            if (interval > 1) return interval + ' hours ago';
+            interval = Math.floor(seconds / 60);
+            if (interval > 1) return interval + ' minutes ago';
+            return 'just now';
+        }
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in', 'in-view');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal, .anim').forEach(el => observer.observe(el));
+
+    </script>
+</body>
+</html>

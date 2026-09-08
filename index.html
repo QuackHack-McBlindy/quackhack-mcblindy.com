@@ -1,11 +1,27 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="h0N8wN3LfuoAR-RnBsQbPLp23Eev2TIy5VVBfgFXiyc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuackHack-McBLindy.com</title>
+    <meta name="description" content="QuackHack-McBlindy.com | Portfolio">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quackhack-mcblindy.com/">
+    <meta property="og:title" content="QuackHack-McBLindy.com">
+    <meta property="og:description" content="QuackHack-McBlindy.com | Portfolio">
+    <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QuackHack-McBLindy.com">
+    <meta name="twitter:description" content="QuackHack-McBlindy.com | Portfolio">
+    <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+    
+    <link rel="canonical" href="https://quackhack-mcblindy.com/" />
+
+
     <meta name="theme-color" content="#050707">
-    <meta name="description" content="DuckHawk — a bold, fast, community-first digital experience.">
-    <title>QuackHack-McBlindy.</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,20 +30,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="static/js/script.js" defer></script>
 
-    <style>
 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="🦯🦆">
+    <link rel="apple-touch-icon" href="static/img/icon-192.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon-16x16.png">
+
+    <style>
+      .duckhawk-frame,
+      .viewport-mask {
+          display: none;
+      }
+
+      @media (min-width: 1200px) and (min-height: 700px) {
+          .duckhawk-frame,
+          .viewport-mask {
+              display: block;
+          }
+      }
+
+      @media (min-width: 3440px) {
+          .duckhawk-frame,
+          .viewport-mask {
+              display: none;
+          }
+      }
+
+
+      @media (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+          .duckhawk-frame,
+          .viewport-mask {
+              display: none;
+          }
+      }
     </style>
 </head>
 
 <body>
 
-    <!-- FRAME MASK -->
     <div class="viewport-mask mask-top"></div>
     <div class="viewport-mask mask-bottom"></div>
     <div class="viewport-mask mask-left"></div>
     <div class="viewport-mask mask-right"></div>
 
-    <!-- FRAME -->
     <div class="duckhawk-frame">
         <img class="frame-piece frame-header glitch hue-shift" src="static/img/frame/header.png" alt="">
         <img class="frame-piece frame-left" src="static/img/frame/left.png" alt="">
@@ -100,7 +149,6 @@
         <main>
         
         
-            <!-- SECTION WHO AM I -->
             <section class="logo2-bg-section" aria-label="About me section">
                 <div class="logo2-content anim">
                     <svg class="logo2-duck-left anim" viewBox="0 0 360 300" role="img" aria-label="Orange red duck">
@@ -155,7 +203,9 @@
                             <span class="white">who</span><span class="gold">am</span><span class="white">i</span>
                         </h2>
                         <p>
-                            I am just an kinda oldschool still anon nerd.
+                            A quick introduction about me, my work, or my story.
+                            This is a brief hello — enough to spark curiosity and invite
+                            a deeper look.
                         </p>
                         <a href="about.html" class="btn btn-primary">Read More</a>
 
@@ -175,13 +225,13 @@
                             <a href="https://discourse.nixos.org/u/quackhack-mcblindy/activity" class="social-btn anim" aria-label="Discourse">
                                 <img src="static/img/nixos.svg" alt="Discourse">
                             </a>
-                            <a href="https://buymeacoffee.com/quackhackmcblindy" class="social-btn anim" aria-label="Sponsor">
+                            <a href="https://buymeacoffee.com/quackhackmcblindy" class="social-btn anim" aria-label="Sponsor Buy Me A Coffee">
                                 <img src="static/img/cup.png" alt="Sponsor Buy Me A Coffee">
                             </a>
-                            <a href="pungkula.x" class="social-btn anim" aria-label="Sponsor BTC">
+                            <a href="bitcoin:pungkula.x" class="social-btn anim" aria-label="Sponsor BTC">
                                 <img src="static/img/btc.png" alt="Sponsor BTC">
                             </a>
-                            <a href="pungkula.x" class="social-btn anim" aria-label="Sponsor XMR">
+                            <a href="monero:pungkula.x" class="social-btn anim" aria-label="Sponsor XMR">
                                 <img src="static/img/xmr.png" alt="Sponsor XMR">
                             </a>
                         </div>
@@ -191,7 +241,6 @@
 
 
 
-            <!-- SECTION NEW POSTS -->
             <section id="experience">
                 <div class="wrap">
                     <div class="section-head reveal anim">
@@ -225,7 +274,6 @@
             </section>
 
 
-            <!-- SECTION GITHUB PUSHES -->
             <section id="pushes">
                 <div class="wrap">
                     <div class="section-head reveal anim">
@@ -246,7 +294,6 @@
 
 
 
-            <!-- SECTION FAQ  -->
             <section id="faq">
                 <div class="wrap">
                     <div class="section-head reveal anim">

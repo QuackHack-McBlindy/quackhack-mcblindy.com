@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Building a complete NLP with only Bash & Nix + jq",
+    "description": "Writing prototypes with as few dependencies as possible.",
+    "tags": ["bash", "nix", "nlp", "yo"],
+    "date": "2025-09-09",
+    "link": "https://quackhack-mcblindy.github.io/blog/"
+  },
+  {
+    "title": "NixOS",
+    "description": "Should I write smart stuff about NixOS here? Ok.",
+    "tags": ["nixos"],
+    "date": "2026-10-05",
+    "link": ""
+  },
+  {
+    "title": "QuackHack-McBlindy.com",
+    "description": "I moved.. again.. i think a website should tell a story. does this one tell it good?",
+    "tags": ["namecheap"],
+    "date": "2026-10-05",
+    "link": ""
+  },
+  {
+    "title": "Hardware",
+    "description": "pictures of my current servers and some unique builds I have done over the years.",
+    "tags": ["hardware", "builds", "images"],
+    "date": "2026-10-06",
+    "link": "posts/hardware.html"
+  }
+]

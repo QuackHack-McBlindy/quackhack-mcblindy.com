@@ -1,0 +1,53 @@
+[
+
+  {
+    "type": "image",
+    "src": "gpu-wall.jpg",
+    "caption": "gpu power - on a wall. clean build, can otherwise be a cable massacre. Got the temp down almost 20 C."
+  },
+  {  
+    "type": "image",
+    "src": "gpu-wall-back.jpg",
+    "caption": "backside, not as pretty"
+  },
+  {
+    "type": "image",
+    "src": "homie.jpg",
+    "caption": "homie: completely fanless build, 0dB - perect meedia/home server, runs zigduck network - home devices like lights."
+  },
+  {
+    "type": "image",
+    "src": "IMG_2452.jpeg",
+    "caption": "desktop: did for a competition - fun."
+  },
+  {
+    "type": "video",
+    "src": "pc_10mb.mp4",
+    "caption": "desktop: video."
+  },
+  {
+    "type": "image",
+    "src": "nasty.jpg",
+    "caption": "nasty: this heavy machine can hold up to 15(!) 3.5\" drives."
+  },
+  {
+    "type": "image",
+    "src": "watch.jpeg",
+    "caption": "my watch in rust"
+  },
+  {
+    "type": "image",
+    "src": "pinephone.jpg",
+    "caption": "pinephone - duckOS"
+  },  
+  {
+    "type": "image",
+    "src": "esp32s3box3.jpg",
+    "caption": "ESP32S3BOX3 voice assistant"
+  }
+  {
+    "type": "image",
+    "src": "voice.dev.jpg",
+    "caption": "prototypes"
+  }
+]
