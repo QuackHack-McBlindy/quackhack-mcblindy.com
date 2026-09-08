@@ -906,3 +906,7 @@ body::before {
 .social-buttons.smile-mode .social-btn {
     filter: brightness(1.25) drop-shadow(0 0 6px rgba(0, 230, 210, 0.35));
 }
+
+.bio {
+    font-family: cursive;
+}
