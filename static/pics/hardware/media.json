@@ -1,5 +1,4 @@
 [
-
   {
     "type": "image",
     "src": "gpu-wall.jpg",
@@ -27,6 +26,11 @@
   },
   {
     "type": "image",
+    "src": "desktop.jpeg",
+    "caption": "desktop: workstation"
+  },  
+  {
+    "type": "image",
     "src": "nasty.jpg",
     "caption": "nasty: this heavy machine can hold up to 15(!) 3.5\" drives."
   },
@@ -44,7 +48,7 @@
     "type": "image",
     "src": "esp32s3box3.jpg",
     "caption": "ESP32S3BOX3 voice assistant"
-  }
+  },
   {
     "type": "image",
     "src": "voice.dev.jpg",
