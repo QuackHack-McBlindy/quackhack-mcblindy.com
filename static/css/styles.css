@@ -910,3 +910,25 @@ body::before {
 .bio {
     font-family: cursive;
 }
+
+.duck-runner {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.duck-line {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ducks-right-to-left 15s linear infinite;
+}
+
+@keyframes ducks-right-to-left {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}

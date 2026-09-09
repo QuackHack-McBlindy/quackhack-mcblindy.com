@@ -327,7 +327,11 @@
                         </details>
                         <details class="reveal anim">
                             <summary>What's the fuzz with the ducks?</summary>
-                            <p>🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆.</p>
+                            <div class="duck-runner">
+                                <div class="duck-line">
+                                    🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆
+                                </div>
+                            </div>
                         </details>
                     </div>
                 </div>
@@ -357,92 +361,200 @@
         </svg>
     </div>
 
+    
     <script>
         async function fetchPushEvents() {
             const listEl = document.getElementById('push-list');
             if (!listEl) return;
-
-            listEl.innerHTML = '<div style="text-align:center;color:#8ea6a3;">Loading pushes…</div>';
-
+    
+            listEl.innerHTML =
+                '<div style="text-align:center;color:#8ea6a3;">Loading pushes…</div>';
+    
             try {
-                const response = await fetch('https://api.github.com/users/QuackHack-McBlindy/events?per_page=30');
-                if (!response.ok) throw new Error('GitHub API error');
+                const response = await fetch(
+                    'https://api.github.com/users/QuackHack-McBlindy/events?per_page=30',
+                    {
+                        headers: {
+                            'Accept': 'application/vnd.github+json'
+                        }
+                    }
+                );
+    
+                if (!response.ok) {
+                    throw new Error(`GitHub API error: ${response.status}`);
+                }
+    
                 const events = await response.json();
-
-                const pushEvents = events.filter(e => e.type === 'PushEvent').slice(0, 5);
-
+    
+                const pushEvents = events
+                    .filter(event => event.type === 'PushEvent')
+                    .slice(0, 5);
+    
                 if (pushEvents.length === 0) {
-                    listEl.innerHTML = '<div style="text-align:center;color:#8ea6a3;">No recent pushes found.</div>';
+                    listEl.innerHTML =
+                        '<div style="text-align:center;color:#8ea6a3;">No recent pushes found.</div>';
                     return;
                 }
-
-                let html = '';
-                pushEvents.forEach(event => {
+    
+                const htmlParts = [];
+    
+                for (const event of pushEvents) {
                     const repo = event.repo.name;
-                    const branch = event.payload.ref.replace('refs/heads/', '');
-                    const commits = event.payload.commits || [];
-                    const commitCount = commits.length;
-                    const lastCommitMsg = commitCount > 0 ? commits[commits.length - 1].message : 'No commit message';
-                    const timeAgo = timeSince(new Date(event.created_at));
-
-                    html += `
+    
+                    const branch = event.payload.ref
+                        ? event.payload.ref.replace('refs/heads/', '')
+                        : 'unknown';
+    
+                    const sha = event.payload.head;
+    
+                    let commitCount = 1;
+                    let commitMessage = 'Unable to load commit message';
+    
+                    if (sha) {
+                        try {
+                            const commitResponse = await fetch(
+                                `https://api.github.com/repos/${repo}/commits/${sha}`,
+                                {
+                                    headers: {
+                                        'Accept': 'application/vnd.github+json'
+                                    }
+                                }
+                            );
+    
+                            if (commitResponse.ok) {
+                                const commit = await commitResponse.json();
+    
+                                if (commit.commit && commit.commit.message) {
+                                    commitMessage = commit.commit.message;
+                                }
+                            } else {
+                                console.error(
+                                    `Failed to fetch commit ${sha}:`,
+                                    commitResponse.status
+                                );
+                            }
+                        } catch (error) {
+                            console.error(
+                                `Error fetching commit ${sha}:`,
+                                error
+                            );
+                        }
+                    }
+    
+                    const timeAgo = timeSince(
+                        new Date(event.created_at)
+                    );
+    
+                    htmlParts.push(`
                         <div class="push-item">
-                            <div class="push-icon"><img src="static/img/profile.png" alt="Profile" class="push-avatar"></div>
-                            <div class="push-content">
-                                <div class="push-repo">${repo} <span style="font-weight:normal;color:#8ea6a3;">→ ${branch}</span></div>
-                                <div class="push-message">${commitCount} commit${commitCount !== 1 ? 's' : ''}: ${escapeHtml(lastCommitMsg)}</div>
+                            <div class="push-icon">
+                                <img
+                                    src="static/img/profile.png"
+                                    alt="Profile"
+                                    class="push-avatar"
+                                >
                             </div>
-                            <div class="push-time">${timeAgo}</div>
+    
+                            <div class="push-content">
+                                <div class="push-repo">
+                                    ${escapeHtml(repo)}
+                                    <span
+                                        style="font-weight:normal;color:#8ea6a3;"
+                                    >
+                                        → ${escapeHtml(branch)}
+                                    </span>
+                                </div>
+    
+                                <div class="push-message">
+                                    ${commitCount} commit${commitCount !== 1 ? 's' : ''}:
+                                    ${escapeHtml(commitMessage)}
+                                </div>
+                            </div>
+    
+                            <div class="push-time">
+                                ${escapeHtml(timeAgo)}
+                            </div>
                         </div>
-                    `;
-                });
-
-                listEl.innerHTML = html;
+                    `);
+                }
+    
+                listEl.innerHTML = htmlParts.join('');
+    
             } catch (error) {
                 console.error('Error fetching push events:', error);
-                listEl.innerHTML = '<div style="text-align:center;color:#8ea6a3;">Failed to load pushes. Check console.</div>';
+    
+                listEl.innerHTML =
+                    '<div style="text-align:center;color:#8ea6a3;">Failed to load pushes. Check console.</div>';
             }
         }
-
+    
+    
         function timeSince(date) {
-            const seconds = Math.floor((new Date() - date) / 1000);
+            const seconds = Math.floor(
+                (new Date() - date) / 1000
+            );
+    
             let interval = Math.floor(seconds / 31536000);
-            if (interval > 1) return interval + ' years ago';
+            if (interval > 1) {
+                return interval + ' years ago';
+            }
+    
             interval = Math.floor(seconds / 2592000);
-            if (interval > 1) return interval + ' months ago';
+            if (interval > 1) {
+                return interval + ' months ago';
+            }
+    
             interval = Math.floor(seconds / 86400);
-            if (interval > 1) return interval + ' days ago';
+            if (interval > 1) {
+                return interval + ' days ago';
+            }
+    
             interval = Math.floor(seconds / 3600);
-            if (interval > 1) return interval + ' hours ago';
+            if (interval > 1) {
+                return interval + ' hours ago';
+            }
+    
             interval = Math.floor(seconds / 60);
-            if (interval > 1) return interval + ' minutes ago';
+            if (interval > 1) {
+                return interval + ' minutes ago';
+            }
+    
             return 'just now';
         }
-
+    
+    
         function escapeHtml(text) {
             const div = document.createElement('div');
-            div.textContent = text;
+            div.textContent = String(text);
             return div.innerHTML;
         }
-
-        document.getElementById('year').textContent = new Date().getFullYear();
-
+    
+        const yearEl = document.getElementById('year');
+    
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
+    
         fetchPushEvents();
-
+    
         function triggerSmile() {
             const container = document.querySelector('.social-buttons');
+    
             if (!container) return;
+    
             container.classList.add('smile-mode');
+    
             setTimeout(() => {
                 container.classList.remove('smile-mode');
             }, 3000);
         }
-
+    
         setTimeout(() => {
             triggerSmile();
             setInterval(triggerSmile, 30000);
         }, 4000);
-
     </script>
+    
+
 </body>
 </html>

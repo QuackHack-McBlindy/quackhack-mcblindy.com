@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification=nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuackHack-McBLindy.com</title>
+    <meta name="description" content="QuackHack-McBlindy.com | Portfolio | I share code & wisdom. | I write code related to anything. I write text related to tech.">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quackhack-mcblindy.com/">
+    <meta property="og:title" content="QuackHack-McBLindy.com">
+    <meta property="og:description" content="QuackHack-McBlindy.com | Portfolio | I share code & wisdom. | I write code related to anything. I write text related to tech.">
+    <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="uackHack-McBLindy.com">
+    <meta name="twitter:description" content="QuackHack-McBlindy.com | Portfolio | I share code & wisdom. | I write code related to anything. I write text related to tech.">
+    <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+    
+    <link rel="canonical" href="https://quackhack-mcblindy.com/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050707">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./../static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="./../static/js/script.js" defer></script>
+
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="🦯🦆">
+    <link rel="apple-touch-icon" href="static/img/icon-192.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon-16x16.png">
+
+    <style>
+      .duckhawk-frame,
+      .viewport-mask {
+          display: none;
+      }
+
+      @media (min-width: 1200px) and (min-height: 700px) {
+          .duckhawk-frame,
+          .viewport-mask {
+              display: block;
+          }
+      }
+
+      @media (min-width: 3440px) {
+          .duckhawk-frame,
+          .viewport-mask {
+              display: none;
+          }
+      }
+
+
+      @media (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+          .duckhawk-frame,
+          .viewport-mask {
+              display: none;
+          }
+      }
+
+   
+        :root {
+            --bg: #050707;
+            --panel: #0b1110;
+            --panel2: #0e1716;
+            --teal: #11e6d2;
+            --teal2: #05a99f;
+            --gold: #f4b52f;
+            --gold2: #ffdc72;
+            --text: #f3fffd;
+            --muted: #8ea6a3;
+            --line: rgba(17, 230, 210, .16);
+            --max: 1180px;
+            --radius: 24px;
+            --frame-header-h: 260px;
+            --frame-bottom-h: 64px;
+            --frame-left-w: 190px;
+            --frame-right-w: 196px;
+            --frame-z: 10000;
+            --mask-top-h: 140px;
+            --mask-bottom-h: 52px;
+            --mask-left-w: 214px;
+            --mask-right-w: 214px;
+            --content-max: calc(100vw - var(--frame-left-w) - var(--frame-right-w) - 40px);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 50% -10%, rgba(0, 221, 204, .10), transparent 34rem),
+                radial-gradient(circle at 90% 45%, rgba(244, 181, 47, .07), transparent 28rem),
+                var(--bg);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .wrap {
+            width: min(calc(100vw - var(--mask-left-w) - var(--mask-right-w) - 40px), var(--max));
+            margin: auto;
+        }
+
+        .eyebrow {
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--teal);
+        }
+        .gold {
+            color: var(--gold);
+        }
+        .white {
+            color: #fff;
+        }
+        .muted {
+            color: var(--muted);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 48px;
+            padding: 0 19px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .10);
+            font-weight: 850;
+            letter-spacing: .01em;
+            cursor: pointer;
+            transition: .22s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--teal), #55fff1);
+            color: #02100e;
+            box-shadow: 0 0 35px rgba(17, 230, 210, .18);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(17, 230, 210, .24);
+        }
+
+        .duckhawk-frame {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: var(--frame-z);
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .frame-piece {
+            position: fixed;
+            display: block;
+            pointer-events: none;
+            user-select: none;
+            max-width: none;
+        }
+        .frame-header {
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: var(--frame-header-h);
+            object-fit: fill;
+        }
+        .frame-left {
+            top: var(--frame-header-h);
+            left: 0;
+            width: var(--frame-left-w);
+            height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+            object-fit: fill;
+        }
+        .frame-right {
+            top: var(--frame-header-h);
+            right: 0;
+            width: var(--frame-right-w);
+            height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+            object-fit: fill;
+        }
+        .frame-bottom {
+            left: 0;
+            bottom: 0;
+            width: 100vw;
+            height: var(--frame-bottom-h);
+            object-fit: fill;
+        }
+        .frame-navigation {
+            position: fixed;
+            inset: 0 0 auto 0;
+            width: 100vw;
+            height: var(--frame-header-h);
+            z-index: calc(var(--frame-z) + 1);
+            pointer-events: none;
+        }
+        .frame-nav-link {
+            position: absolute;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            color: #f4df9a;
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, .95),
+                0 0 12px rgba(17, 230, 210, .35);
+            transition: color .25s ease, transform .25s ease, text-shadow .25s ease;
+        }
+        .frame-nav-home {
+            left: 25%;
+            top: 140px;
+            transform: translate(-50%, -50%);
+        }
+        .frame-nav-showcase {
+            left: 75%;
+            top: 140px;
+            transform: translate(-50%, -50%);
+        }
+        .frame-nav-link::after {
+            content: "";
+            position: absolute;
+            left: 15%;
+            right: 15%;
+            bottom: 3px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--teal), transparent);
+            opacity: .65;
+            transform: scaleX(.35);
+            transition: transform .25s ease, opacity .25s ease;
+        }
+        .frame-nav-link:hover {
+            color: #fff5cf;
+            transform: translate(-50%, -50%) translateY(-2px);
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 1),
+                0 0 18px rgba(17, 230, 210, .65);
+        }
+        .frame-nav-link:hover::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        header {
+            position: relative;
+            min-height: 200px;
+            isolation: isolate;
+        }
+        header:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, 0) 30%, var(--bg) 100%),
+                url("./../static/img/logo.png") center top / min(1500px, 100vw) auto no-repeat;
+            filter: saturate(1.04);
+        }
+        header:after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100px;
+            background: linear-gradient(180deg, transparent, var(--bg));
+            pointer-events: none;
+        }
+
+        main {
+            padding-top: calc(var(--frame-header-h) + 20px);
+            padding-bottom: calc(var(--frame-bottom-h) + 20px);
+        }
+
+        .content-section {
+            padding: 20px 0 40px;
+        }
+        .content-section h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            letter-spacing: -.02em;
+            margin: 0 0 12px;
+        }
+        .content-section .section-intro {
+            max-width: 700px;
+            margin: 0 auto 25px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .hardware-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .hw-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .hw-item:hover {
+            transform: translateY(-3px);
+            border-color: rgba(17, 230, 210, 0.4);
+        }
+
+        .hw-item img,
+        .hw-item video {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hw-item .hw-caption {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20000;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-content img,
+        .lightbox-content video {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-caption {
+            margin-top: 12px;
+            color: #ddd;
+            font-size: 1rem;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: .7s ease;
+        }
+        .reveal.in {
+            opacity: 1;
+            transform: none;
+        }
+        .anim {
+            opacity: 0;
+            transform: translateY(100px);
+            transition:
+                opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.5s ease;
+            filter: blur(3px);
+            will-change: opacity, transform, filter;
+        }
+        .anim.in-view {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        .glitch {
+            animation: glitch 3s linear infinite;
+        }
+        @keyframes glitch {
+            0%,
+            4%,
+            8%,
+            12%,
+            100% {
+                filter: none;
+            }
+            1%,
+            5%,
+            9% {
+                filter: url(#f1);
+            }
+        }
+        .hue-shift {
+            animation: hueshift 45s ease-in-out infinite;
+        }
+        @keyframes hueshift {
+            0%,
+            50% {
+                filter: hue-rotate(0deg);
+            }
+            60% {
+                filter: hue-rotate(360deg);
+            }
+            70% {
+                filter: hue-rotate(0deg);
+            }
+            80% {
+                filter: hue-rotate(360deg);
+            }
+            90% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(17, 230, 210, .08), transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(244, 181, 47, .08), transparent 40%);
+            animation: aurora 20s ease-in-out infinite alternate;
+        }
+        @keyframes aurora {
+            0% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.15);
+            }
+        }
+
+        @media(max-width: 850px) {
+            :root {
+                --frame-header-h: 190px;
+                --frame-bottom-h: 48px;
+                --frame-left-w: 105px;
+                --frame-right-w: 108px;
+            }
+            header {
+                min-height: 150px;
+            }
+            main {
+                padding-top: calc(var(--frame-header-h) + 10px);
+                padding-bottom: calc(var(--frame-bottom-h) + 10px);
+            }
+            .frame-nav-link {
+                font-size: 17px;
+                letter-spacing: .08em;
+                padding: 8px 10px;
+            }
+            .frame-nav-home {
+                left: 24%;
+                top: 78px;
+            }
+            .frame-nav-showcase {
+                left: 76%;
+                top: 78px;
+            }
+        }
+        @media(max-width: 560px) {
+            :root {
+                --frame-header-h: 145px;
+                --frame-bottom-h: 38px;
+                --frame-left-w: 72px;
+                --frame-right-w: 74px;
+            }
+            .wrap {
+                width: min(calc(100% - 28px), var(--max));
+            }
+            header {
+                min-height: 120px;
+            }
+            .frame-nav-link {
+                font-size: 14px;
+                letter-spacing: .06em;
+                padding: 7px 6px;
+            }
+            .frame-nav-home {
+                left: 23%;
+                top: 61px;
+            }
+            .frame-nav-showcase {
+                left: 77%;
+                top: 61px;
+            }
+            main {
+                padding-top: calc(var(--frame-header-h) + 8px);
+                padding-bottom: calc(var(--frame-bottom-h) + 10px);
+            }
+        }
+        
+      .duckhawk-frame,
+      .viewport-mask {
+          display: none;
+      }
+
+      @media (min-width: 1200px) and (min-height: 700px) {
+          .duckhawk-frame,
+          .viewport-mask {
+              display: block;
+          }
+      }
+
+      @media (min-width: 3440px) {
+          .duckhawk-frame,
+          .viewport-mask {
+              display: none;
+          }
+      }
+
+
+      @media (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+          .duckhawk-frame,
+          .viewport-mask {
+              display: none;
+          }
+      }
+    </style>
+</head>
+
+<body>
+
+    <div class="duckhawk-frame" aria-hidden="true">
+        <img class="frame-piece frame-header glitch hue-shift" src="./../static/img/frame/header.png" alt="">
+        <img class="frame-piece frame-left" src="./../static/img/frame/left.png" alt="">
+        <img class="frame-piece frame-right" src="./../static/img/frame/right.png" alt="">
+        <img class="frame-piece frame-bottom" src="./../static/img/frame/bottom.png" alt="">
+
+        <nav class="frame-navigation" aria-label="Main navigation">
+            <a class="frame-nav-link frame-nav-home" href="./../index.html">Me</a>
+            <a class="frame-nav-link frame-nav-showcase" href="./../work.html">Work</a>
+        </nav>
+    </div>
+
+    <div id="content-glitch" class="glitch hue-shift">
+
+        <header id="top"></header>
+
+        <main>
+            <section class="content-section" id="hardware">
+                <div class="wrap reveal">
+                    <div class="section-intro">
+                        <h1><span class="gold">Header </span><span class="white"> 1</span></h1>
+                    </div>
+                    <div id="hardware-gallery" class="hardware-gallery" aria-live="polite"></div>
+                </div>
+            </section>
+            
+            <section class="content-section" id="hardware">
+                <div class="wrap reveal">
+                    <div class="section-intro">
+                        <h2><span class="gold">Header </span><span class="white"> 2</span></h2>
+                    </div>
+                    <div id="hardware-gallery" class="hardware-gallery" aria-live="polite"></div>
+                </div>
+            </section>
+            
+        </main>
+
+        <footer>
+            <div class="wrap footer-row">
+                <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBlindy.com</span></strong></div>
+                <div class="footer-links">
+                    <a href="#top">Top</a>
+                </div>
+            </div>
+        </footer>
+
+        <svg height="0" width="0" style="position:absolute;">
+            <filter id="f1">
+                <feturbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp"></feturbulence>
+                <fedisplacementmap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp"></fedisplacementmap>
+                <fecolormatrix type="matrix" result="red_" values="4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"></fecolormatrix>
+                <feoffset in="red_" dx="2" dy="0" result="red"></feoffset>
+                <fecolormatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 1 0"></fecolormatrix>
+                <feoffset in="blue_" dx="-3" dy="0" result="blue"></feoffset>
+                <feblend mode="screen" in="red" in2="blue"></feblend>
+            </filter>
+        </svg>
+    </div>
+
+    <script>
+        function timeSince(date) {
+            const seconds = Math.floor((new Date() - date) / 1000);
+            let interval = Math.floor(seconds / 31536000);
+            if (interval > 1) return interval + ' years ago';
+            interval = Math.floor(seconds / 2592000);
+            if (interval > 1) return interval + ' months ago';
+            interval = Math.floor(seconds / 86400);
+            if (interval > 1) return interval + ' days ago';
+            interval = Math.floor(seconds / 3600);
+            if (interval > 1) return interval + ' hours ago';
+            interval = Math.floor(seconds / 60);
+            if (interval > 1) return interval + ' minutes ago';
+            return 'just now';
+        }
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in', 'in-view');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal, .anim').forEach(el => observer.observe(el));
+
+        async function loadHardwareGallery() {
+            const gallery = document.getElementById('hardware-gallery');
+            if (!gallery) return;
+
+            try {
+                const res = await fetch('../static/pics/hardware/media.json');
+                if (!res.ok) throw new Error('Failed to load media manifest');
+                const media = await res.json();
+
+                if (!media.length) {
+                    gallery.innerHTML = '<p style="text-align:center;color:var(--muted);">No hardware media yet.</p>';
+                    return;
+                }
+
+                let currentIndex = 0;
+                let lightbox = document.querySelector('.lightbox');
+                if (!lightbox) {
+                    lightbox = document.createElement('div');
+                    lightbox.className = 'lightbox';
+                    lightbox.innerHTML = `
+                        <button class="lightbox-close" aria-label="Close">×</button>
+                        <div class="lightbox-content">
+                            <div class="lightbox-media"></div>
+                            <div class="lightbox-caption"></div>
+                        </div>
+                    `;
+                    document.body.appendChild(lightbox);
+                }
+                const mediaContainer = lightbox.querySelector('.lightbox-media');
+                const captionEl = lightbox.querySelector('.lightbox-caption');
+
+                function showMedia(index) {
+                    const item = media[index];
+                    if (!item) return;
+                    currentIndex = index;
+                    mediaContainer.innerHTML = '';
+                    if (item.type === 'image') {
+                        const img = document.createElement('img');
+                        img.src = `../static/pics/hardware/${item.src}`;
+                        img.alt = item.caption || '';
+                        mediaContainer.appendChild(img);
+                    } else {
+                        const video = document.createElement('video');
+                        video.src = `../static/pics/hardware/${item.src}`;
+                        video.controls = true;
+                        video.autoplay = true;
+                        mediaContainer.appendChild(video);
+                    }
+                    captionEl.textContent = item.caption || '';
+                    lightbox.classList.add('active');
+                }
+
+                function closeLightbox() {
+                    lightbox.classList.remove('active');
+                    mediaContainer.innerHTML = '';
+                }
+
+                gallery.innerHTML = media.map((item, i) => `
+                    <div class="hw-item" data-index="${i}">
+                        ${item.type === 'image'
+                            ? `<img src="../static/pics/hardware/${item.thumb || item.src}" alt="${escapeAttr(item.caption || '')}" loading="lazy">`
+                            : `<video src="../static/pics/hardware/${item.src}" muted preload="metadata"></video>`
+                        }
+                        ${item.caption ? `<div class="hw-caption">${escapeHTML(item.caption)}</div>` : ''}
+                    </div>
+                `).join('');
+
+                gallery.querySelectorAll('.hw-item').forEach(el => {
+                    el.addEventListener('click', () => {
+                        const index = parseInt(el.dataset.index, 10);
+                        showMedia(index);
+                    });
+                });
+
+                lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        closeLightbox();
+                    }
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (!lightbox.classList.contains('active')) return;
+
+                    if (e.key === 'Escape') {
+                        closeLightbox();
+                    } else if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        currentIndex = (currentIndex - 1 + media.length) % media.length;
+                        showMedia(currentIndex);
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        currentIndex = (currentIndex + 1) % media.length;
+                        showMedia(currentIndex);
+                    }
+                });
+
+            } catch (err) {
+                console.error('Hardware gallery error:', err);
+                gallery.innerHTML = '<p style="text-align:center;color:var(--muted);">Could not load hardware media.</p>';
+            }
+        }
+
+        function escapeHTML(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function escapeAttr(str) {
+            return String(str).replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        loadHardwareGallery();
+    </script>
+</body>
+</html>
