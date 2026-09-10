@@ -167,6 +167,26 @@
     }
   }
 
+  function setupCopyButtons() {
+    document.querySelectorAll('.copy-btn').forEach(button => {
+      button.addEventListener('click', async () => {
+        const code = button
+          .closest('.code-block')
+          .querySelector('code')
+          .textContent;
+
+        await navigator.clipboard.writeText(code);
+
+        const original = button.textContent;
+        button.textContent = 'Copied!';
+
+        setTimeout(() => {
+          button.textContent = original;
+        }, 1500);
+      });
+    });
+  }
+
   async function init() {
     setYear();
 
@@ -177,6 +197,7 @@
     renderTagFilters(allPosts);
     renderAllPosts(allPosts);
     setupToggleButton();
+    setupCopyButtons();
   }
 
   onReady(init);

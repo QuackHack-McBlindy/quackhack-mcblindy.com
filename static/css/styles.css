@@ -932,3 +932,54 @@ body::before {
         transform: translateX(-100%);
     }
 }
+
+
+.code-block {
+    margin: 24px 0;
+    overflow: hidden;
+    border: 1px solid rgba(17, 230, 210, .16);
+    border-radius: 14px;
+    background: #080d0c;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .25);
+}
+
+.code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+    background: rgba(255, 255, 255, .025);
+    color: var(--muted);
+    font: 700 .72rem/1 Inter, sans-serif;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.code-header button {
+    padding: 5px 9px;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 7px;
+    background: rgba(255, 255, 255, .04);
+    color: var(--muted);
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.code-header button:hover {
+    color: var(--teal);
+    border-color: rgba(17, 230, 210, .3);
+    background: rgba(17, 230, 210, .06);
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 18px;
+    overflow-x: auto;
+    color: #dffaf6;
+    font: 500 .9rem/1.7 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+.code-block code {
+    font: inherit;
+}
