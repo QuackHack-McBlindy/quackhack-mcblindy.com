@@ -1,34 +1,219 @@
-.viewport-mask {
-  position: fixed;
-  background: var(--bg);
-  z-index: 9998;
-  pointer-events: none;
+:root {
+    --frame-header-h: 260px;
+    --frame-bottom-h: 64px;
+    --frame-left-w: 190px;
+    --frame-right-w: 196px;
+    --frame-z: 10000;
+    --mask-top-h: 140px;
+    --mask-bottom-h: 52px;
+    --mask-left-w: 214px;
+    --mask-right-w: 214px;
+    --content-max: calc(100vw - var(--frame-left-w) - var(--frame-right-w) - 40px);
 }
 
-.mask-top {
+.duckhawk-frame {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: var(--frame-z);
+    pointer-events: none;
+    overflow: hidden;
+}
+.frame-piece {
+    position: fixed;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    max-width: none;
+}
+.frame-header {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: var(--frame-header-h);
+    object-fit: fill;
+}
+.frame-left {
+    top: var(--frame-header-h);
+    left: 0;
+    width: var(--frame-left-w);
+    height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+    object-fit: fill;
+}
+.frame-right {
+    top: var(--frame-header-h);
+    right: 0;
+    width: var(--frame-right-w);
+    height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+    object-fit: fill;
+}
+.frame-bottom {
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: var(--frame-bottom-h);
+    object-fit: fill;
+}
+.frame-navigation {
+    position: fixed;
+    inset: 0 0 auto 0;
+    width: 100vw;
+    height: var(--frame-header-h);
+    z-index: calc(var(--frame-z) + 1);
+    pointer-events: none;
+}
+.frame-nav-link {
+    position: absolute;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--frame-header-h) * 0.038) calc(var(--frame-header-h) * 0.069);
+    font-size: clamp(14px, calc(var(--frame-header-h) * 0.22), 44px);
+    letter-spacing: calc(var(--frame-header-h) * 0.0005 + .05em);
+    color: #f4df9a;
+    font-family: "Cinzel Decorative", Georgia, serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, .95),
+        0 0 12px rgba(17, 230, 210, .35);
+    transition: color .25s ease, transform .25s ease, text-shadow .25s ease;
+}
+.frame-nav-home {
+    left: 25%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.frame-nav-showcase {
+    left: 75%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.frame-nav-link::after {
+    content: "";
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    bottom: 3px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    opacity: .65;
+    transform: scaleX(.35);
+    transition: transform .25s ease, opacity .25s ease;
+}
+.frame-nav-link:hover {
+    color: #fff5cf;
+    transform: translate(-50%, -50%) translateY(-2px);
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 1),
+        0 0 18px rgba(17, 230, 210, .65);
+}
+.frame-nav-link:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+/* QUACKHACK FRAME */
+
+/* DEFAULT: STANDALONE HEADER */
+.frame-header-standalone {
+  display: block;
   top: 0;
   left: 0;
-  width: 100%;
-  height: var(--mask-top-h);
+  width: 100vw;
+  height: var(--frame-header-h);
+  object-fit: fill;
 }
 
-.mask-bottom {
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: var(--mask-bottom-h);
+.frame-header,
+.frame-left,
+.frame-right,
+.frame-bottom {
+  display: none;
 }
 
-.mask-left {
-  top: var(--frame-header-h);
-  left: 0;
-  width: var(--mask-left-w);
-  height: calc(100% - var(--frame-header-h) - var(--frame-bottom-h));
+/* DESKTOP: SHOW FULL FRAME */
+@media (min-width: 1200px) and (min-height: 700px) {
+  .frame-header,
+  .frame-left,
+  .frame-right,
+  .frame-bottom {
+    display: block;
+  }
+  .frame-header-standalone {
+    display: none;
+  }
 }
 
-.mask-right {
-  top: var(--frame-header-h);
-  right: 0;
-  width: var(--mask-right-w);
-  height: calc(100% - var(--frame-header-h) - var(--frame-bottom-h));
+/* ULTRA-WIDE: STANDALONE HEADER ONLY */
+@media (min-width: 3440px) {
+  .frame-header,
+  .frame-left,
+  .frame-right,
+  .frame-bottom {
+    display: none;
+  }
+  .frame-header-standalone {
+    display: block;
+  }
+}
+
+/* TALL & NARROW: ONLY SHOW HEADER */
+@media (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+  .frame-header,
+  .frame-left,
+  .frame-right,
+  .frame-bottom {
+    display: none;
+  }
+  .frame-header-standalone {
+    display: block;
+  }
+}
+
+/* MOBILE: SHOW ONLY HEADER */
+
+
+/* NO FRAME - NO SQUEEZED VIEWPORT */
+@media (max-width: 1199px),
+       (max-height: 699px),
+       (min-width: 3440px),
+       (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+  :root {
+    --frame-bottom-h: 0px;
+    --frame-left-w:   0px;
+    --frame-right-w:  0px;
+    --mask-left-w:    0px;
+    --mask-right-w:   0px;
+  }
+}
+
+@media (max-width: 1199px),
+       (max-height: 699px),
+       (min-width: 3440px),
+       (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+  :root { /* ≈ 21.38vw */
+    --frame-header-h: calc(100vw * 464 / 2170);
+  }
+}
+
+@media(max-width: 850px) {
+    :root {
+        --frame-header-h: 190px;
+        --frame-bottom-h: 48px;
+        --frame-left-w: 105px;
+        --frame-right-w: 108px;
+    }
+}
+
+@media(max-width: 560px) {
+    :root {
+        --frame-header-h: 145px;
+        --frame-bottom-h: 38px;
+        --frame-left-w: 72px;
+        --frame-right-w: 74px;
+    }
 }

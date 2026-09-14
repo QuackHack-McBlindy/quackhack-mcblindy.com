@@ -26,7 +26,7 @@
       color: var(--muted);
       line-height: 1.4;
     }
-    
+
 
 
     :root{
@@ -316,7 +316,7 @@
       background-position: center top;
       background-repeat: no-repeat;
     }
-    
+
     .rust-banner {
       width: 100%;
       height: 130vh;
@@ -487,7 +487,7 @@
       .frame-nav-home{left:23%;top:61px}
       .frame-nav-showcase{left:77%;top:61px}
     }
-    
+
     body::before {
       content: "";
       position: fixed;
@@ -502,7 +502,7 @@
       0% { opacity: 0.5; transform: scale(1); }
       100% { opacity: 1; transform: scale(1.15); }
     }
-    
+
     .reveal {
       transition: opacity .7s ease, transform .7s ease, filter .7s ease;
       filter: blur(4px);
@@ -512,7 +512,7 @@
       opacity: 1;
       transform: none;
     }
-    
+
     .anim {
       opacity: 0;
       transform: translateY(100px);
@@ -529,7 +529,7 @@
       transform: translateY(0);
       filter: blur(0);
     }
-    
+
     .anim-left {
       transform: translateX(-40px);
     }

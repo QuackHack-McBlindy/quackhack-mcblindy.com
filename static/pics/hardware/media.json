@@ -4,7 +4,7 @@
     "src": "gpu-wall.jpg",
     "caption": "gpu power - on a wall. clean build, can otherwise be a cable massacre. Got the temp down almost 20 C."
   },
-  {  
+  {
     "type": "image",
     "src": "gpu-wall-back.jpg",
     "caption": "backside, not as pretty"
@@ -28,7 +28,7 @@
     "type": "image",
     "src": "desktop.jpg",
     "caption": "desktop: workstation"
-  },  
+  },
   {
     "type": "image",
     "src": "nasty.jpg",
@@ -43,7 +43,7 @@
     "type": "image",
     "src": "pinephone.jpg",
     "caption": "pinephone - duckOS"
-  },  
+  },
   {
     "type": "image",
     "src": "esp32s3box3.jpg",
