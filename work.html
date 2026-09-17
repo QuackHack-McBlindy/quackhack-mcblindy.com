@@ -222,24 +222,17 @@
     }
 
 
-    .project-banner {
+    .project-banner,
+    .rust-banner {
+      display: block;
       width: 100%;
-      height: 80vh;
-      min-height: 300px;
-      background-size: 85% auto;
-      background-position: center top;
-      background-repeat: no-repeat;
-      background-color: var(--bg);
+      height: auto;
+      object-fit: cover;
+      object-position: center top;
     }
 
-    .rust-banner {
-      width: 100%;
-      height: 130vh;
-      min-height: 300px;
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
-    }
+    .project-banner { max-height: 80vh; }
+    .rust-banner    { max-height: 130vh; }
 
     .project-description {
       max-width: 800px;
@@ -502,8 +495,8 @@
       </div>
     </section>
 
-    <!-- ===== yo (was after zigduck, now first) ===== -->
-    <div class="project-banner" style="background-image: url('static/img/yo.png');"></div>
+
+    <img class="project-banner" src="static/img/yo.png" alt="" width="1600" height="900" loading="lazy" decoding="async">
     <section class="project-description">
 
       <div class="project-head">
@@ -563,8 +556,8 @@
       <a href="https://github.com/quackhack-mcblindy/yo" class="btn btn-primary btn-gold" target="_blank">View on GitHub</a>
     </section>
 
-    <!-- ===== Zigduck (was first, now second) ===== -->
-    <div class="project-banner" style="background-image: url('static/img/zigduck.png');"></div>
+
+    <img class="project-banner" src="static/img/zigduck.png" alt="" width="1600" height="900" loading="lazy" decoding="async">
     <section class="project-description">
 
       <div class="project-head">
@@ -628,7 +621,7 @@
       <a href="https://github.com/quackhack-mcblindy/zigduck" class="btn btn-primary btn-gold" target="_blank">View on GitHub</a>
     </section>
 
-    <div class="rust-banner" style="background-image: url('static/img/esp-rs.png');"></div>
+    <img class="rust-banner" src="static/img/esp-rs.png" alt="" width="1600" height="900" loading="lazy" decoding="async">
     <section class="project-description">
       <p>Bare metal Rust.</p>
 
@@ -688,7 +681,7 @@
         </div>
       </div>
 
-      <a href="https://github.com/quackhack-mcblindy/ESP32-S3-BOX-3-rs" class="btn btn-primary btn-gold" target="_blank">View on GitHub</a>
+      <a href="https://github.com/quackhack-mcblindy/ESP32-S3-WATCH-rs" class="btn btn-primary btn-gold" target="_blank">View on GitHub</a>
 
       <br><br><br><br><br><br>
 
@@ -764,14 +757,14 @@
         <span>Rust</span>
       </h2>
 
-      <p>Driver for the Everest Semi ES8311 low-power audio codec.<p>
+      <p>Driver for the Everest Semi ES8311 low-power audio codec.</p>
       <a href="https://crates.io/crates/es8311" class="btn btn-primary btn-gold" target="_blank">View on Crates.io</a>  <a href="https://github.com/quackhack-mcblindy/es8311" class="btn btn-primary btn-gold" target="_blank">View on GitHub</a>
 
       <br><br><br>
 
 
       <div class="project-head">
-        <h2><span class="gold">es7210</span></h2>
+        <h2><span class="gold">es7211</span></h2>
         <span class="version-badge" data-version="es7211" title="Latest release">
           <span class="dot" aria-hidden="true"></span>
           <span class="version-text">v0.2.0</span>
@@ -783,7 +776,7 @@
         <span>Rust</span>
       </h2>
 
-      <p>Driver for the Everest Semi ES7210 quad-channel audio ADC.<p>
+      <p>Driver for the Everest Semi ES7210 quad-channel audio ADC.</p>
       <a href="https://crates.io/crates/es7210" class="btn btn-primary btn-gold" target="_blank">View on Crates.io</a>  <a href="https://github.com/quackhack-mcblindy/es7210" class="btn btn-primary btn-gold" target="_blank">View on GitHub</a>
 
       <br><br><br>

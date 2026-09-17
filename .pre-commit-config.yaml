@@ -15,11 +15,18 @@ repos:
       #  args: [--maxkb=500]
       - id: check-merge-conflict
 
-#  - repo: local
-#    hooks:
-#      - id: update-versions
-#        name: Update versions.json
-#        entry: bash hooks/fetch-versions.sh
-#        language: system
-#        pass_filenames: false
-#        always_run: false
+  - repo: local
+    hooks:
+      - id: update-versions
+        name: Update versions.json
+        entry: bash hooks/fetch-versions.sh
+        language: system
+        pass_filenames: false
+        always_run: false
+
+      - id: build-similar
+        name: Build similar.json
+        entry: bash hooks/build-similar.sh
+        language: system
+        pass_filenames: false
+        always_run: false

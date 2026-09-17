@@ -374,6 +374,46 @@
                 padding-bottom: calc(var(--frame-bottom-h) + 10px);
             }
         }
+
+        #similar-posts {
+          margin-top: 70px;
+          padding-top: 40px;
+          border-top: 1px solid var(--line);
+        }
+        #similar-posts h2 {
+          font-size: clamp(1.5rem, 3vw, 2.2rem);
+          margin: 0 0 22px;
+          color: var(--text);
+          letter-spacing: -.02em;
+        }
+        #similar-posts-list {
+          display: grid;
+          gap: 14px;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+        .similar-post {
+          display: block;
+          padding: 18px 20px;
+          background: rgba(255, 255, 255, .03);
+          border: 1px solid rgba(255, 255, 255, .08);
+          border-radius: 16px;
+          transition: transform .2s ease, border-color .2s ease;
+        }
+        .similar-post:hover {
+          transform: translateY(-2px);
+          border-color: rgba(17, 230, 210, .3);
+        }
+        .similar-post h4 {
+          margin: 0 0 6px;
+          color: var(--text);
+          font-size: 1rem;
+        }
+        .similar-post p {
+          margin: 0;
+          color: var(--muted);
+          font-size: .88rem;
+          line-height: 1.5;
+        }
     </style>
 
     <!-- SCRIPTS -->
@@ -387,6 +427,10 @@
 </head>
 
 <body>
+    <!-- DON'T FORGET TO CHANGE THIS  -->
+    <body data-post-link="https://quackhack-mcblindy.com/posts/hardware.html">
+    <!-- DON'T FORGET TO CHANGE THIS  -->
+
 
     <div class="duckhawk-frame" aria-hidden="true">
         <img class="frame-piece frame-header glitch hue-shift" src="/static/img/frame/header.png" alt="">
@@ -413,6 +457,13 @@
                     <div id="hardware-gallery" class="hardware-gallery" aria-live="polite"></div>
                 </div>
             </section>
+
+            <section id="similar-posts" hidden>
+              <h2>Similar <span class="gold">Posts</span></h2>
+              <div id="similar-posts-list"></div>
+            </section>
+
+
         </main>
 
         <footer>
@@ -579,6 +630,52 @@
         function escapeAttr(str) {
             return String(str).replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
+
+        (async function () {
+          const section = document.getElementById('similar-posts');
+          const list    = document.getElementById('similar-posts-list');
+          const myLink  = document.body.dataset.postLink;
+          if (!section || !list || !myLink) return;
+
+          try {
+            const [simRes, postsRes] = await Promise.all([
+              fetch('/similar.json', { cache: 'no-cache' }),
+              fetch('/posts.json',   { cache: 'no-cache' })
+            ]);
+            if (!simRes.ok || !postsRes.ok) return;
+
+            const similar = await simRes.json();
+            const posts   = await postsRes.json();
+            const links   = similar[myLink] || [];
+            if (!links.length) return;
+
+            const byLink = new Map(posts.map(p => [p.link, p]));
+
+            list.innerHTML = links.map(link => {
+              const p = byLink.get(link);
+              if (!p) return '';
+              return `
+                <a class="similar-post" href="${escAttr(link)}">
+                  <h4>${esc(p.title)}</h4>
+                  <p>${esc(p.description)}</p>
+                </a>
+              `;
+            }).join('');
+
+            section.hidden = false;
+          } catch (e) {
+            console.warn('[similar-posts]', e);
+          }
+
+          function esc(s) {
+            const d = document.createElement('div');
+            d.textContent = String(s);
+            return d.innerHTML;
+          }
+          function escAttr(s) {
+            return String(s).replace(/"/g, '&quot;');
+          }
+        })();
 
         loadHardwareGallery();
     </script>
