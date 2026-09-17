@@ -11,18 +11,19 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://quackhack-mcblindy.com/work.html">
     <meta property="og:title" content="QuackHack-McBLindy.com">
-    <meta property="og:description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes. » I write code related to anything. » I write texts related to tech. » Think Different. Build Bold. Quack Load.">
-    <meta name="description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes. » I write code related to anything. » I write texts related to tech. » Think Different. Build Bold. Quack Load.">
+    <meta property="og:description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes. » I write code related to anything. » I write texts related to tech. » Think Different. Build Bold. Quack Loud.">
+    <meta name="description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes. » I write code related to anything. » I write texts related to tech. » Think Different. Build Bold. Quack Loud.">
     <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="QuackHack-McBLindy.com">
-    <meta name="twitter:description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes. » I write code related to anything. » I write texts related to tech. » Think Different. Build Bold. Quack Load.">
+    <meta name="twitter:description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes. » I write code related to anything. » I write texts related to tech. » Think Different. Build Bold. Quack Loud.">
     <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -55,6 +56,60 @@
         width: 100%;
         height: auto;
       }
+
+      .list,
+      #latest-posts,
+      .push-list,
+      #push-list {
+        max-width: 100%;
+        min-width: 0;
+      }
+
+      .list-item,
+      .push-item,
+      .push-content,
+      .push-repo,
+      .push-message {
+        min-width: 0;
+      }
+
+      .push-message {
+        max-width: 100%;
+      }
+
+      @media (max-width: 700px) {
+        .list-item,
+        .push-item {
+          background: none;
+          border: none;
+          border-radius: 0;
+          padding: 14px 0;
+          border-bottom: 1px solid rgba(255,255,255,.06);
+        }
+        .list-item:last-child,
+        .push-item:last-child {
+          border-bottom: none;
+        }
+
+        .push-item {
+          display: grid;
+          grid-template-columns: 40px 1fr;
+          grid-template-areas:
+            "icon content"
+            "icon time";
+          column-gap: 14px;
+          row-gap: 6px;
+        }
+        .push-icon    { grid-area: icon; align-self: start; }
+        .push-content { grid-area: content; }
+        .push-time    { grid-area: time; margin: 0; }
+
+        .list-item {
+          grid-template-columns: 34px 1fr;
+          gap: 12px;
+        }
+      }
+
     </style>
 
     <!-- MUST COME LAST -->
@@ -541,6 +596,8 @@
         fetchPushEvents();
 
         function triggerSmile() {
+            if (window.matchMedia('(max-width: 550px)').matches) return;
+
             const container = document.querySelector('.social-buttons');
 
             if (!container) return;

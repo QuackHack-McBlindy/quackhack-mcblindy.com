@@ -70,27 +70,40 @@
     align-items: center;
     justify-content: center;
     padding: calc(var(--frame-header-h) * 0.038) calc(var(--frame-header-h) * 0.069);
-    font-size: clamp(14px, calc(var(--frame-header-h) * 0.22), 44px);
+    font-size: clamp(14px, calc(var(--frame-header-h) * 0.19), 44px);
+    /*
     letter-spacing: calc(var(--frame-header-h) * 0.0005 + .05em);
-    color: #f4df9a;
     font-family: "Cinzel Decorative", Georgia, serif;
     font-weight: 800;
+    */
+    font-family: "Orbitron", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: .18em;
+    color: #f4df9a;
     text-transform: uppercase;
     white-space: nowrap;
     text-shadow:
-        0 2px 4px rgba(0, 0, 0, .95),
-        0 0 12px rgba(17, 230, 210, .35);
+        0 2px 0 rgba(0, 0, 0, 1),
+        0 0 6px rgba(0, 0, 0, 1),
+        0 0 18px rgba(17, 230, 210, .55);
     transition: color .25s ease, transform .25s ease, text-shadow .25s ease;
+    -webkit-text-stroke: 1.2px rgba(0, 0, 0, .85);
+    paint-order: stroke fill;
+    text-shadow:
+        0 3px 6px rgba(0, 0, 0, 1),
+        0 0 20px rgba(17, 230, 210, .45);
+
 }
 .frame-nav-home {
     left: 25%;
-    top: 50%;
+    top: 52%;
     transform: translate(-50%, -50%);
 }
 .frame-nav-showcase {
-    left: 75%;
-    top: 50%;
+    left: 77%;
+    top: 52%;
     transform: translate(-50%, -50%);
+    font-size: clamp(12px, calc(var(--frame-header-h) * 0.12), 36px);
 }
 .frame-nav-link::after {
     content: "";
