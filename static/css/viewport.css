@@ -213,12 +213,16 @@
   }
 }
 
+/*
+   Removed the side-width overrides for max-width 850px and 560px.
+   The 0px values from the 1199px query now apply all the way down,
+   allowing content to use the full viewport width on mobile.
+*/
 @media(max-width: 850px) {
     :root {
         --frame-header-h: 190px;
         --frame-bottom-h: 48px;
-        --frame-left-w: 105px;
-        --frame-right-w: 108px;
+        /* --frame-left-w and --frame-right-w intentionally omitted */
     }
 }
 
@@ -226,7 +230,6 @@
     :root {
         --frame-header-h: 145px;
         --frame-bottom-h: 38px;
-        --frame-left-w: 72px;
-        --frame-right-w: 74px;
+        /* --frame-left-w and --frame-right-w intentionally omitted */
     }
 }

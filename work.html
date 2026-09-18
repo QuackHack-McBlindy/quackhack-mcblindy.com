@@ -55,6 +55,16 @@
       border-radius: 16px;
       padding: 20px;
       text-align: left;
+      /* GLOW ADDED */
+      box-shadow: 0 0 18px rgba(17, 230, 210, 0.07),
+                  0 0 36px rgba(17, 230, 210, 0.03);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    /* GLOW ADDED — hover state */
+    .feature-item:hover {
+      border-color: rgba(17, 230, 210, 0.28);
+      box-shadow: 0 0 28px rgba(17, 230, 210, 0.16),
+                  0 0 60px rgba(17, 230, 210, 0.06);
     }
     .feature-icon {
       font-size: 1.8rem;
@@ -347,6 +357,9 @@
       .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
       .banner-inner{padding:32px;display:block}
       .banner .btn{margin-top:22px}
+      header:before{
+        background-position: 0 0, center 100px;
+      }
     }
 
     @media(max-width:560px){
@@ -365,6 +378,10 @@
         width: min(var(--content-max), 1200px);
         margin-left: auto;
         margin-right: auto;
+      }
+      /* BUTTON SPACING ADDED — prevents overlap on small screens */
+      .project-description .btn {
+        margin: 6px 6px 6px 0;
       }
     }
 
@@ -819,7 +836,7 @@
         <fedisplacementmap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp"></fedisplacementmap>
         <fecolormatrix type="matrix" result="red_" values="4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"></fecolormatrix>
         <feoffset in="red_" dx="2" dy="0" result="red"></feoffset>
-        <fecolormatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 1 0"></fecolormatrix>
+        <fecolormatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 0 1 0"></fecolormatrix>
         <feoffset in="blue_" dx="-3" dy="0" result="blue"></feoffset>
         <feblend mode="screen" in="red" in2="blue"></feblend>
     </filter>
