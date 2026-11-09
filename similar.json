@@ -1,6 +1,7 @@
 {
-  "https://quackhack-mcblindy.github.io/blog/": [],
+  "https://quackhack-mcblindy.github.io/blog/": ["https://quackhack-mcblindy.com/posts/project_workflow.html"],
+  "": ["https://quackhack-mcblindy.com/posts/project_workflow.html"],
   "": [],
-  "": [],
-  "https://quackhack-mcblindy.com/posts/hardware.html": []
+  "https://quackhack-mcblindy.com/posts/hardware.html": [],
+  "https://quackhack-mcblindy.com/posts/project_workflow.html": ["", "https://quackhack-mcblindy.github.io/blog/"]
 }

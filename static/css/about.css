@@ -535,3 +535,48 @@
                 padding-bottom: calc(var(--frame-bottom-h) + 16px);
             }
         }
+
+.skill-tip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+
+    max-width: min(70vw, 240px);
+    padding: .35rem .6rem;
+
+    background: rgba(5, 7, 7, .94);
+    border: 1px solid rgba(212, 175, 55, .55);
+    border-radius: 6px;
+    box-shadow: 0 0 14px rgba(212, 175, 55, .15);
+
+    color: #d7e8e5;
+    font-size: .72rem;
+    line-height: 1.25;
+    letter-spacing: .04em;
+    text-align: center;
+
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 2px)) scale(.94);
+    transition: opacity .16s ease, transform .16s ease;
+    will-change: opacity, transform;
+}
+
+.skill-tip.below {
+    transform: translate(-50%, 2px) scale(.94);
+}
+
+.skill-tip.show {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+}
+
+.skill-tip.below.show {
+    transform: translate(-50%, 0) scale(1);
+}
+
+
+@media (hover: none) {
+    .skill-item { -webkit-tap-highlight-color: transparent; }
+}

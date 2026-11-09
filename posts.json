@@ -26,5 +26,13 @@
     "tags": ["hardware", "builds", "images"],
     "date": "2026-10-06",
     "link": "https://quackhack-mcblindy.com/posts/hardware.html"
+  },
+  {
+    "title": "From Commit to Release",
+    "description": "My typical workflow working with various flake projects.",
+    "tags": ["nixos", "nix", "workflow"],
+    "date": "2026-11-11",
+    "link": "https://quackhack-mcblindy.com/posts/project_workflow.html"
   }
+
 ]
