@@ -1,0 +1,1843 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dotfiles Workflow — QuackHack-McBlindy.com</title>
+    <meta name="description" content="Two commands, one tag, four sounds. How yo switch and yo deploy rebuild a NixOS system locally or remotely, then tag the generation via yo push — and how yo rollback brings it back.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quackhack-mcblindy.com/work.html">
+    <meta property="og:title" content="The Dotfiles Workflow — QuackHack-McBlindy.com">
+    <meta property="og:description" content="Two commands, one tag, four sounds. yo switch, yo deploy, yo push, yo rollback.">
+    <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Dotfiles Workflow — QuackHack-McBlindy.com">
+    <meta name="twitter:description" content="Two commands, one tag, four sounds.">
+    <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+
+    <link rel="canonical" href="https://quackhack-mcblindy.com/work.html" />
+    <meta name="theme-color" content="#050707">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script src="static/js/script.js" defer></script>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="🦯🦆">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon-16x16.png">
+
+    <style>
+        :root {
+            --bg: #050707;
+            --panel: #0b1110;
+            --panel2: #0e1716;
+            --teal: #11e6d2;
+            --teal2: #05a99f;
+            --gold: #f4b52f;
+            --gold2: #ffdc72;
+            --green: #5eea8f;
+            --red: #ff5470;
+            --pink: #ff7ab8;
+            --purple: #b392ff;
+            --text: #f3fffd;
+            --muted: #8ea6a3;
+            --line: rgba(17, 230, 210, .16);
+            --max: 1180px;
+            --frame-header-h: 260px;
+            --frame-bottom-h: 64px;
+            --frame-left-w: 190px;
+            --frame-right-w: 196px;
+            --frame-z: 10000;
+            --mask-left-w: 214px;
+            --mask-right-w: 214px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 50% -10%, rgba(0, 221, 204, .10), transparent 34rem),
+                radial-gradient(circle at 90% 45%, rgba(244, 181, 47, .07), transparent 28rem),
+                var(--bg);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(17, 230, 210, .08), transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(244, 181, 47, .08), transparent 40%);
+            animation: aurora 20s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes aurora {
+            0%   { opacity: .5; transform: scale(1); }
+            100% { opacity: 1;  transform: scale(1.15); }
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .wrap {
+            width: min(calc(100vw - var(--mask-left-w) - var(--mask-right-w) - 40px), var(--max));
+            margin: auto;
+        }
+
+        .gold   { color: var(--gold); }
+        .white  { color: #fff; }
+        .muted  { color: var(--muted); }
+        .teal   { color: var(--teal); }
+        .green  { color: var(--green); }
+        .pink   { color: var(--pink); }
+        .purple { color: var(--purple); }
+        .red    { color: var(--red); }
+
+        .duckhawk-frame {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: var(--frame-z);
+            pointer-events: none;
+            overflow: hidden;
+            display: none;
+        }
+        .frame-piece {
+            position: fixed;
+            display: block;
+            pointer-events: none;
+            user-select: none;
+            max-width: none;
+        }
+        .frame-header {
+            top: 0; left: 0;
+            width: 100vw;
+            height: var(--frame-header-h);
+            object-fit: fill;
+        }
+        .frame-left {
+            top: var(--frame-header-h); left: 0;
+            width: var(--frame-left-w);
+            height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+            object-fit: fill;
+        }
+        .frame-right {
+            top: var(--frame-header-h); right: 0;
+            width: var(--frame-right-w);
+            height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+            object-fit: fill;
+        }
+        .frame-bottom {
+            left: 0; bottom: 0;
+            width: 100vw;
+            height: var(--frame-bottom-h);
+            object-fit: fill;
+        }
+        .frame-navigation {
+            position: fixed;
+            inset: 0 0 auto 0;
+            width: 100vw;
+            height: var(--frame-header-h);
+            z-index: calc(var(--frame-z) + 1);
+            pointer-events: none;
+            display: none;
+        }
+        .frame-nav-link {
+            position: absolute;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            color: #f4df9a;
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, .95),
+                0 0 12px rgba(17, 230, 210, .35);
+            transition: color .25s ease, transform .25s ease, text-shadow .25s ease;
+        }
+        .frame-nav-home     { left: 25%; top: 140px; transform: translate(-50%, -50%); }
+        .frame-nav-showcase { left: 75%; top: 140px; transform: translate(-50%, -50%); }
+        .frame-nav-link::after {
+            content: "";
+            position: absolute;
+            left: 15%; right: 15%; bottom: 3px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--teal), transparent);
+            opacity: .65;
+            transform: scaleX(.35);
+            transition: transform .25s ease, opacity .25s ease;
+        }
+        .frame-nav-link:hover {
+            color: #fff5cf;
+            transform: translate(-50%, -50%) translateY(-2px);
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 1),
+                0 0 18px rgba(17, 230, 210, .65);
+        }
+        .frame-nav-link:hover::after { opacity: 1; transform: scaleX(1); }
+
+        .mobile-nav {
+            display: none;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: linear-gradient(180deg, #0b1110, #050707);
+            border-bottom: 1px solid var(--line);
+        }
+        .mobile-nav a {
+            padding: 8px 16px;
+            border-radius: 10px;
+            color: var(--gold);
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-weight: 700;
+            letter-spacing: .06em;
+        }
+        .mobile-nav a:hover { background: rgba(17, 230, 210, .1); color: var(--gold2); }
+
+        @media (min-width: 1200px) and (min-height: 700px) {
+            .duckhawk-frame,
+            .frame-navigation { display: block; }
+        }
+        @media (max-width: 1199px),
+               (max-height: 699px),
+               (min-width: 3440px),
+               (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+            .duckhawk-frame,
+            .frame-navigation { display: none; }
+            .mobile-nav { display: flex; }
+            .wrap { width: min(calc(100vw - 40px), var(--max)); }
+            main { padding-top: 20px !important; padding-bottom: 24px !important; }
+        }
+
+        header {
+            position: relative;
+            min-height: 200px;
+            isolation: isolate;
+        }
+        header:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, 0) 30%, var(--bg) 100%),
+                url("static/img/logo.png") center top / min(1500px, 100vw) auto no-repeat;
+            filter: saturate(1.04);
+        }
+        header:after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 0; right: 0; bottom: 0;
+            height: 100px;
+            background: linear-gradient(180deg, transparent, var(--bg));
+            pointer-events: none;
+        }
+
+        main {
+            padding-top: calc(var(--frame-header-h) + 20px);
+            padding-bottom: calc(var(--frame-bottom-h) + 20px);
+        }
+
+        .content-section { padding: 20px 0 50px; }
+
+        .page-title {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(2rem, 6vw, 3.4rem);
+            line-height: 1.15;
+            letter-spacing: -.01em;
+            text-align: center;
+            margin: 0 0 8px;
+        }
+        .page-subtitle {
+            text-align: center;
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin: 0 auto 28px;
+            max-width: 760px;
+        }
+        .page-subtitle code {
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: .9em;
+        }
+
+        .flow-glance {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 12px;
+            margin: 0 auto 34px;
+            max-width: 1000px;
+        }
+        .flow-glance .glance-item {
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 14px 16px;
+            text-align: center;
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .82rem;
+            line-height: 1.5;
+        }
+        .flow-glance .glance-item strong {
+            display: block;
+            color: var(--gold);
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 1rem;
+            letter-spacing: .04em;
+            margin-bottom: 4px;
+        }
+        .flow-glance .glance-item span { color: var(--muted); }
+        .flow-glance .glance-item.danger { border-color: rgba(255, 84, 112, .28); }
+        .flow-glance .glance-item.danger strong { color: var(--red); }
+        @media (max-width: 700px) {
+            .flow-glance { grid-template-columns: 1fr; gap: 8px; }
+        }
+
+        .path-heading {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 0 0 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .path-heading .step-num {
+            width: 44px; height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            border: 1px solid var(--teal);
+            color: var(--teal);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            box-shadow: 0 0 22px rgba(17, 230, 210, .25);
+        }
+        .path-heading .step-num.danger {
+            border-color: var(--red);
+            color: var(--red);
+            box-shadow: 0 0 22px rgba(255, 84, 112, .3);
+        }
+        .path-heading h2 {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(1.4rem, 3vw, 1.9rem);
+            margin: 0;
+            letter-spacing: -.01em;
+        }
+        .path-heading .subtitle {
+            color: var(--muted);
+            font-size: .92rem;
+            margin-left: 4px;
+        }
+
+        .terminal {
+            position: relative;
+            background: linear-gradient(180deg, #0c1312, #080d0c);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow:
+                0 22px 70px rgba(0, 0, 0, .55),
+                0 0 60px rgba(17, 230, 210, .06);
+            margin-bottom: 22px;
+        }
+        .terminal.help-terminal {
+            border-color: rgba(244, 181, 47, .28);
+            box-shadow:
+                0 22px 70px rgba(0, 0, 0, .55),
+                0 0 60px rgba(244, 181, 47, .08);
+        }
+        .terminal.help-terminal .terminal-bar {
+            background: linear-gradient(180deg, #1a1408, #0b1110);
+        }
+        .terminal.danger {
+            border-color: rgba(255, 84, 112, .3);
+            box-shadow:
+                0 22px 70px rgba(0, 0, 0, .55),
+                0 0 60px rgba(255, 84, 112, .1);
+        }
+        .terminal.danger .terminal-bar {
+            background: linear-gradient(180deg, #1a0a0d, #0b1110);
+        }
+        .terminal.danger.help-terminal {
+            border-color: rgba(255, 84, 112, .35);
+        }
+        .terminal-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 16px;
+            background: linear-gradient(180deg, #101a18, #0b1110);
+            border-bottom: 1px solid var(--line);
+        }
+        .terminal-bar .dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            flex: 0 0 auto;
+        }
+        .dot.red    { background: #ff5f57; }
+        .dot.yellow { background: #febc2e; }
+        .dot.green  { background: #28c840; }
+        .terminal-title {
+            margin-left: 10px;
+            color: var(--muted);
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .82rem;
+            letter-spacing: .02em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .terminal-bar .copy-btn {
+            margin-left: auto;
+            appearance: none;
+            border: 1px solid var(--line);
+            background: rgba(17, 230, 210, .07);
+            color: var(--teal);
+            font: inherit;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background .2s ease, color .2s ease, border-color .2s ease;
+        }
+        .terminal-bar .copy-btn:hover {
+            background: rgba(17, 230, 210, .15);
+            border-color: rgba(17, 230, 210, .4);
+        }
+        .terminal-bar .copy-btn.copied {
+            color: var(--green);
+            border-color: rgba(94, 234, 143, .4);
+            background: rgba(94, 234, 143, .08);
+        }
+
+        .terminal pre {
+            position: relative;
+            margin: 0;
+            padding: 22px 24px;
+            overflow-x: auto;
+            font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+            font-size: 13px;
+            line-height: 1.55;
+            color: #d9ece9;
+            tab-size: 2;
+            -webkit-font-smoothing: antialiased;
+        }
+        .terminal pre::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                180deg,
+                transparent,
+                transparent 3px,
+                rgba(17, 230, 210, .02) 3px,
+                rgba(17, 230, 210, .02) 4px
+            );
+        }
+        .terminal pre code { font: inherit; color: inherit; }
+
+        .t-line    { color: #2a4a47; }
+        .t-flow    { color: var(--gold); font-weight: 700; }
+        .t-arrow   { color: var(--teal); font-weight: 600; }
+        .t-stage   { color: var(--gold); font-weight: 800; letter-spacing: .04em; }
+        .t-heading { color: var(--gold); font-weight: 800; }
+        .t-success { color: var(--green); font-weight: 800; letter-spacing: .04em; }
+        .t-failure { color: var(--red);   font-weight: 800; letter-spacing: .04em; }
+        .t-hook    { color: #c8e6e3; }
+        .t-cmd     { color: var(--gold2); font-weight: 700; }
+        .t-sound   { color: var(--pink); font-weight: 700; }
+        .t-flag    { color: var(--teal); font-weight: 600; }
+        .t-meta    { color: var(--muted); font-style: italic; }
+        .t-star    { color: var(--gold); text-shadow: 0 0 8px rgba(244, 181, 47, .5); }
+        .t-duck    { color: var(--gold2); }
+        .t-tag     { color: var(--pink); font-weight: 700; }
+
+        .callout {
+            background: rgba(17, 230, 210, .04);
+            border: 1px solid rgba(17, 230, 210, .2);
+            border-left: 3px solid var(--teal);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: .92rem;
+            line-height: 1.6;
+        }
+        .callout strong { color: var(--teal); }
+        .callout.danger {
+            background: rgba(255, 84, 112, .04);
+            border-color: rgba(255, 84, 112, .2);
+            border-left-color: var(--red);
+        }
+        .callout.danger strong { color: var(--red); }
+        .callout code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+
+        .power-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
+        }
+        .power-card {
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 24px 22px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color .25s ease, transform .25s ease;
+        }
+        .power-card:hover {
+            border-color: rgba(17, 230, 210, .35);
+            transform: translateY(-2px);
+        }
+        .power-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--teal), transparent);
+            opacity: .5;
+        }
+        .power-card.bootstrap::before { background: linear-gradient(90deg, transparent, var(--purple), transparent); }
+        .power-card.readme::before    { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+        .power-card.tagging::before   { background: linear-gradient(90deg, transparent, var(--pink), transparent); }
+        .power-card .icon {
+            font-size: 2rem;
+            line-height: 1;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .power-card h3 {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 1.25rem;
+            letter-spacing: .02em;
+            margin: 0 0 6px;
+            color: var(--gold2);
+        }
+        .power-card.bootstrap h3 { color: var(--purple); }
+        .power-card.readme h3    { color: var(--gold); }
+        .power-card.tagging h3   { color: var(--pink); }
+        .power-card .lede {
+            color: var(--muted);
+            font-size: .9rem;
+            margin: 0 0 14px;
+            line-height: 1.55;
+        }
+        .power-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: .88rem;
+            line-height: 1.6;
+        }
+        .power-card li {
+            position: relative;
+            padding-left: 18px;
+            color: #c9dbd8;
+            margin-bottom: 6px;
+        }
+        .power-card li::before {
+            content: "›";
+            position: absolute;
+            left: 4px;
+            color: var(--teal);
+            font-weight: 700;
+        }
+        .power-card code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+
+        .soundboard-intro {
+            text-align: center;
+            color: var(--muted);
+            max-width: 680px;
+            margin: 0 auto 26px;
+            font-size: 1.02rem;
+            line-height: 1.65;
+        }
+        .soundboard-intro kbd {
+            display: inline-block;
+            padding: 2px 7px;
+            border: 1px solid var(--line);
+            border-bottom-width: 2px;
+            border-radius: 6px;
+            background: var(--panel);
+            color: var(--gold2);
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .82em;
+            line-height: 1;
+        }
+        .soundboard-intro code {
+            color: var(--teal2);
+            background: rgba(17, 230, 210, .08);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+
+        .sound-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+        }
+        .sound-card {
+            position: relative;
+            appearance: none;
+            text-align: left;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            color: var(--text);
+            border-radius: 18px;
+            padding: 20px 18px 18px;
+            cursor: pointer;
+            font: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            overflow: hidden;
+            transition:
+                transform .18s ease,
+                border-color .25s ease,
+                box-shadow .25s ease,
+                background .25s ease;
+        }
+        .sound-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: radial-gradient(
+                circle at var(--mx, 50%) var(--my, 50%),
+                rgba(17, 230, 210, .12),
+                transparent 55%
+            );
+            opacity: 0;
+            transition: opacity .25s ease;
+        }
+        .sound-card:hover,
+        .sound-card:focus-visible {
+            transform: translateY(-3px);
+            border-color: rgba(17, 230, 210, .45);
+            box-shadow: 0 12px 40px rgba(17, 230, 210, .12);
+            outline: none;
+        }
+        .sound-card:hover::after,
+        .sound-card:focus-visible::after { opacity: 1; }
+        .sound-card.playing {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 2px rgba(17, 230, 210, .25), 0 12px 40px rgba(17, 230, 210, .22);
+        }
+        .sound-card.playing .sound-emoji { animation: bounce .45s ease infinite alternate; }
+        @keyframes bounce {
+            from { transform: translateY(0)    rotate(-4deg); }
+            to   { transform: translateY(-6px) rotate(4deg);  }
+        }
+
+        .sound-key {
+            position: absolute;
+            top: 12px; right: 14px;
+            width: 26px; height: 26px;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: rgba(0, 0, 0, .3);
+            color: var(--muted);
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+        .sound-emoji {
+            font-size: 2rem;
+            line-height: 1;
+            transition: transform .2s ease;
+        }
+        .sound-name {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: .04em;
+            color: var(--gold2);
+            margin-top: 4px;
+        }
+        .sound-desc {
+            color: var(--muted);
+            font-size: .88rem;
+            line-height: 1.45;
+        }
+        .sound-file {
+            color: var(--teal2);
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .76rem;
+            margin-top: 4px;
+            word-break: break-all;
+        }
+        .sound-card[data-tone="success"] .sound-name { color: var(--green); }
+        .sound-card[data-tone="success"] .sound-file { color: rgba(94, 234, 143, .8); }
+        .sound-card[data-tone="fail1"]   .sound-name { color: #ffb86b; }
+        .sound-card[data-tone="fail2"]   .sound-name { color: #ff9950; }
+        .sound-card[data-tone="fail3"]   .sound-name { color: var(--red); }
+        .sound-card[data-tone="relax"]   .sound-name { color: var(--pink); }
+        .sound-card[data-tone="relax"]   .sound-file { color: rgba(255, 122, 184, .8); }
+
+        .sound-hint {
+            margin-top: 22px;
+            text-align: center;
+            color: var(--muted);
+            font-size: .82rem;
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+        }
+        .sound-hint code {
+            color: var(--teal2);
+            background: rgba(17, 230, 210, .07);
+            padding: 2px 7px;
+            border-radius: 5px;
+            font-size: .95em;
+        }
+
+        .duck-burst {
+            position: fixed;
+            bottom: 15vh;
+            font-size: 2.6rem;
+            pointer-events: none;
+            z-index: 30000;
+            animation: duckFloat 1.3s cubic-bezier(.22, 1, .36, 1) forwards;
+            will-change: transform, opacity;
+        }
+        @keyframes duckFloat {
+            0%   { transform: translateY(0)     scale(.5) rotate(-10deg); opacity: 0; }
+            20%  { opacity: 1; transform: translateY(-20px) scale(1.05) rotate(6deg); }
+            100% { transform: translateY(-55vh) scale(1.4) rotate(25deg); opacity: 0; }
+        }
+        .duck-burst.burst-fail {
+            bottom: 30vh;
+            animation: burstShake 1.1s ease-out forwards;
+        }
+        @keyframes burstShake {
+            0%, 100% { transform: translate(0, 0) scale(.4); opacity: 0; }
+            10%      { opacity: 1; transform: translate(0, 0) scale(1.6); }
+            30%      { transform: translate(-14px, 8px) scale(1.6) rotate(-14deg); }
+            50%      { transform: translate(14px, -8px) scale(1.8) rotate(14deg); }
+            70%      { transform: translate(-8px, 4px) scale(1.4) rotate(-8deg); }
+        }
+        body.shake { animation: pageShake .4s ease; }
+        @keyframes pageShake {
+            0%, 100% { transform: translate(0, 0); }
+            20%      { transform: translate(-5px, 3px); }
+            40%      { transform: translate(5px, -3px); }
+            60%      { transform: translate(-3px, -2px); }
+            80%      { transform: translate(3px, 2px); }
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--panel2);
+            color: var(--text);
+            border: 1px solid var(--line);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: .9rem;
+            z-index: 40000;
+            opacity: 0;
+            transition: opacity .3s ease, transform .3s ease;
+            pointer-events: none;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .5);
+            max-width: 90vw;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        #duck-stage {
+            display: grid;
+            place-items: center;
+            min-height: 0;
+            margin-top: 26px;
+        }
+        #duck-stage pre {
+            margin: 0;
+            padding: 20px 26px;
+            border-radius: 14px;
+            border: 1px dashed rgba(94, 234, 143, .35);
+            background: rgba(94, 234, 143, .04);
+            color: var(--green);
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .95rem;
+            line-height: 1.5;
+            white-space: pre;
+            opacity: 0;
+            transform: translateY(10px) scale(.96);
+            transition: opacity .4s ease, transform .4s ease;
+        }
+        #duck-stage pre.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            animation: duckGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes duckGlow {
+            from { box-shadow: 0 0 0 rgba(94, 234, 143, 0); }
+            to   { box-shadow: 0 0 40px rgba(94, 234, 143, .25); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: .7s ease;
+        }
+        .reveal.in { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+            body::before { animation: none; opacity: .6; }
+            .glitch, .hue-shift { animation: none !important; }
+            .terminal pre::before { display: none; }
+        }
+
+        .glitch { animation: glitch 3s linear infinite; }
+        @keyframes glitch {
+            0%, 4%, 8%, 12%, 100% { filter: none; }
+            1%, 5%, 9% { filter: url(#f1); }
+        }
+        .hue-shift { animation: hueshift 45s ease-in-out infinite; }
+        @keyframes hueshift {
+            0%, 50%  { filter: hue-rotate(0deg); }
+            60%      { filter: hue-rotate(360deg); }
+            70%      { filter: hue-rotate(0deg); }
+            80%      { filter: hue-rotate(360deg); }
+            90%      { filter: hue-rotate(0deg); }
+            100%     { filter: hue-rotate(360deg); }
+        }
+
+        footer {
+            padding: 26px 0 34px;
+            border-top: 1px solid var(--line);
+        }
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+        .footer-links a {
+            color: var(--teal);
+            transition: color .2s ease;
+        }
+        .footer-links a:hover { color: var(--gold); }
+
+        @media (max-width: 850px) {
+            :root {
+                --frame-header-h: 190px;
+                --frame-bottom-h: 48px;
+                --frame-left-w: 105px;
+                --frame-right-w: 108px;
+            }
+            header { min-height: 150px; }
+            .frame-nav-link {
+                font-size: 17px;
+                letter-spacing: .08em;
+                padding: 8px 10px;
+            }
+            .frame-nav-home     { left: 24%; top: 78px; }
+            .frame-nav-showcase { left: 76%; top: 78px; }
+        }
+        @media (max-width: 560px) {
+            :root {
+                --frame-header-h: 145px;
+                --frame-bottom-h: 38px;
+                --frame-left-w: 72px;
+                --frame-right-w: 74px;
+            }
+            .wrap { width: min(calc(100% - 28px), var(--max)); }
+            header { min-height: 120px; }
+            .frame-nav-link {
+                font-size: 14px;
+                letter-spacing: .06em;
+                padding: 7px 6px;
+            }
+            .frame-nav-home     { left: 23%; top: 61px; }
+            .frame-nav-showcase { left: 77%; top: 61px; }
+            .terminal pre { padding: 18px 16px; font-size: 12px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="mobile-nav" aria-label="Main navigation">
+        <a href="index.html">Me</a>
+        <a href="work.html">Work</a>
+    </nav>
+
+    <div class="duckhawk-frame" aria-hidden="true">
+        <img class="frame-piece frame-header glitch hue-shift" src="static/img/frame/header.png" alt="">
+        <img class="frame-piece frame-left"  src="static/img/frame/left.png"  alt="">
+        <img class="frame-piece frame-right" src="static/img/frame/right.png" alt="">
+        <img class="frame-piece frame-bottom" src="static/img/frame/bottom.png" alt="">
+    </div>
+
+    <nav class="frame-navigation" aria-label="Main navigation">
+        <a class="frame-nav-link frame-nav-home"     href="index.html">Me</a>
+        <a class="frame-nav-link frame-nav-showcase" href="work.html">Work</a>
+    </nav>
+
+    <div id="content-glitch">
+        <header id="top"></header>
+
+        <main>
+
+            <section class="content-section" style="padding-bottom: 20px;">
+                <div class="wrap reveal">
+                    <h1 class="page-title">
+                        <span class="gold">The</span> <span class="white">Dotfiles Workflow</span>
+                    </h1>
+                    <p class="page-subtitle">
+                        Two commands, one tag, four sounds. Every change starts with
+                        <code>yo switch</code> on my own machine, or <code>yo deploy</code>
+                        to another host. Both end in <code>yo push</code> — which auto-generates
+                        the README, commits, tags the NixOS generation, and force-pushes to
+                        GitHub, where CI runs <code>nix flake check</code>. And if it all goes
+                        sideways, <code>yo rollback</code> brings the host back to any past tag.
+                    </p>
+
+                    <div class="flow-glance">
+                        <div class="glance-item">
+                            <strong>yo switch</strong>
+                            <span>local rebuild<br>test or save</span>
+                        </div>
+                        <div class="glance-item">
+                            <strong>yo deploy</strong>
+                            <span>remote rebuild<br>bootstrap + watchdog</span>
+                        </div>
+                        <div class="glance-item">
+                            <strong>yo push</strong>
+                            <span>commit + tag + push<br>then CI verifies</span>
+                        </div>
+                        <div class="glance-item danger">
+                            <strong>yo rollback</strong>
+                            <span>when it goes wrong<br>back to gen N</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="local">
+                <div class="wrap reveal">
+                    <div class="path-heading">
+                        <div class="step-num">1</div>
+                        <h2><span class="gold">yo</span> <span class="white">switch</span></h2>
+                        <span class="subtitle">— local rebuild</span>
+                    </div>
+
+                    <div class="terminal help-terminal">
+                        <div class="terminal-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="terminal-title">~/dotfiles $ yo switch -h</span>
+                            <button class="copy-btn" type="button" data-copy="#help-switch">Copy</button>
+                        </div>
+<pre id="help-switch"><code>   yo switch
+
+  Rebuild and switch with dry runs as default ('!' to save new system
+  generation)
+  Usage:  yo switch [OPTIONS]
+
+   ▶ Parameters
+
+   --flake
+  Path to the directory containing your flake.nix
+  (default: /home/pungkula/dotfiles)
+
+   --!
+  Save a new system generation
+  (optional)
+
+  ## Voice Commands
+
+  Patterns: 1
+  Phrases: 1
+  Ratio: 1</code></pre>
+                    </div>
+
+                    <div class="terminal">
+                        <div class="terminal-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="terminal-title">~/dotfiles $ yo rb</span>
+                            <button class="copy-btn" type="button" data-copy="#flow-switch">Copy</button>
+                        </div>
+<pre id="flow-switch"><code> yo rb            test rebuild  (revert on reboot)
+ yo rb !          save rebuild  (new generation)
+ (alias: rb = switch; yo ps = push)
+
+ ── COMMAND ──
+ sudo nixos-rebuild { test | switch }
+      --flake $flake
+      --show-trace
+      --log-format internal-json
+      -v
+
+ ── PIPELINE ──
+ set -o pipefail
+ cmd 2&gt;&amp;1 | tee $BUILD_LOG | nom --json
+          │
+          └──► raw log kept for error extraction
+
+ ── ON SUCCESS ──
+ fail_count ≥ 11  ──►  ⭐  play_relax   "noob fails!"
+ fail_count ≥ 6   ──►  ⭐  play_relax
+ fail_count ≥ 4   ──►  ⭐  play_win     "phew!"
+ else             ──►  ✅  play_win
+ reset fail_count = 0
+
+ ── ON FAILURE ──
+ fail_count += 1
+ fetch_nix_error_log  (nix log $drv | tail -100)
+ fail_count ≥ 5   ──►  ❌  play_fail2
+ else             ──►  ❌  play_fail
+ exit 1</code></pre>
+                    </div>
+
+                    <div class="callout">
+                        <strong>Why this is nice:</strong>
+                        <code>yo rb</code> never touches the saved system generation — if
+                        the new config breaks the desktop you're still logged into, just reboot
+                        and you're back on the old one. <code>yo rb !</code> does the same build
+                        but commits it, which is exactly what you want when the test passed
+                        and you're ready for it to persist.
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="remote">
+                <div class="wrap reveal">
+                    <div class="path-heading">
+                        <div class="step-num">2</div>
+                        <h2><span class="gold">yo</span> <span class="white">deploy</span></h2>
+                        <span class="subtitle">— remote rebuild</span>
+                    </div>
+
+                    <div class="terminal help-terminal">
+                        <div class="terminal-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="terminal-title">~/dotfiles $ yo deploy -h</span>
+                            <button class="copy-btn" type="button" data-copy="#help-deploy">Copy</button>
+                        </div>
+<pre id="help-deploy"><code>   yo deploy
+
+  Build and deploy a NixOS configuration to a remote host. Bootstraps, builds
+  locally, activates remotely, and auto-tags the generation.
+  Usage:  yo deploy [OPTIONS]
+
+   ▶ Parameters
+
+   --host
+  Host machine to build and activate
+
+   --flake
+  Path to the directory containing your flake.nix
+  (optional) (default: /home/pungkula/dotfiles)
+
+   --user
+  SSH username
+  (optional) (default: pungkula)
+
+   --repo
+  Repository containing containing your NixOS configuration files
+  (optional) (default: git@github.com:QuackHack-McBlindy/dotfiles.git)
+
+   --port
+  SSH port
+  (optional) (default: 2222)
+
+   --test
+  Test deployment, does NOT save system generation, no git push, reboot to
+  revert
+  (optional) (default: false)
+
+   --watchdog
+  Wether to activate watchdog timer on target
+  (optional) (default: false)
+
+   --watchdog-timer
+  Minutes on watchdog-timer.
+  (optional) (default: 5)
+
+   --all
+  Build all - deploy all
+  (optional) (default: false)
+
+  ## Voice Commands
+
+  Patterns: 54
+  Phrases: 792
+  Ratio: 14</code></pre>
+                    </div>
+
+                    <div class="terminal">
+                        <div class="terminal-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="terminal-title">~/dotfiles $ yo deploy homie</span>
+                            <button class="copy-btn" type="button" data-copy="#flow-deploy">Copy</button>
+                        </div>
+<pre id="flow-deploy"><code> yo deploy &lt;host&gt;          real deploy  (auto yo push)
+ yo deploy &lt;host&gt; !        test deploy  (watchdog + no push)
+
+ ── PRE-FLIGHT ──
+ host ∈ nixosConfigurations
+ ssh reachable  (5 s timeout)
+ [test + --watchdog]  arm rollback timer:
+        systemd-run --on-active=5min
+        --unit=nixos-test-watchdog-$$
+
+ ── BOOTSTRAP (only if $flake/.git missing) ──
+ convert_git_to_https  git@host:x.git → https://host/x.git
+ git clone $https_repo $flake      (on remote)
+ yo yubi decrypt secrets/hosts/&lt;host&gt;/age.key
+      ──► ssh cat &gt; $key_path.tmp
+      ──► chmod 600 · chown root
+ add --build-host $user@$host      (remote build next)
+
+ ── BUILD + SWITCH ──
+ nixos-rebuild { test | switch }
+      --flake $flake#&lt;host&gt;
+      --target-host $user@$host
+      --ask-sudo-password
+      --option builders ""
+      --show-trace
+
+ ── VERIFY (test only) ──
+ sleep 6
+ ssh ok?   ──►  cancel watchdog  ──►  ✅ play_win
+ lost?     ──►  let watchdog reboot  ──►  ❌ play_fail
+
+ ── POST (real only) ──
+ GEN_NUM = ssh "sudo -n nix-env --list-generations"
+             | awk '/current/'
+ yo push --host $host --generation $GEN_NUM</code></pre>
+                    </div>
+
+                    <div class="callout">
+                        <strong>The important bit:</strong>
+                        <code>yo deploy &lt;host&gt; !</code> arms a one-shot
+                        <code>systemd-run</code> timer on the remote that reboots it in
+                        <code>--watchdog-timer</code> minutes. If the reboot works, the SSH
+                        check at the end cancels the timer. If the deploy bricks networking
+                        or the login shell, the host reboots itself back to the previous
+                        generation — no rescue shell, no trip to the machine.
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="push">
+                <div class="wrap reveal">
+                    <div class="path-heading">
+                        <div class="step-num">3</div>
+                        <h2><span class="gold">yo</span> <span class="white">push</span></h2>
+                        <span class="subtitle">— commit, tag, push, CI</span>
+                    </div>
+
+                    <div class="terminal">
+                        <div class="terminal-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="terminal-title">~/dotfiles $ yo push</span>
+                            <button class="copy-btn" type="button" data-copy="#flow-push">Copy</button>
+                        </div>
+<pre id="flow-push"><code> yo push          commit + tag + push  (alias: yo ps)
+
+ 1  detect generation
+      passed --generation N
+      else  sudo nix-env --list-generations | tail
+      else  exit 1  (invalid / missing)
+
+ 2  yo update-readme                ──►  9 sections + 9 badges
+
+ 3  ensure git repo, remote origin, main branch
+      git init / add origin / initial commit as needed
+
+ 4  git add .
+      git commit -m "Autocommit: Generation N"
+
+ 5  git tag -fa &lt;host&gt;-generation-&lt;N&gt;
+      ──►  tag is force-moved if gen rebuilt
+
+ 6  git push --force --follow-tags -u origin &lt;branch&gt;
+
+ 7  play_relax  🎉   "SUCCESSFULLY PUSHED DOTFILES!"
+
+ ── WHAT CI SEES ──
+ push to main ──► nix flake check --keep-going</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="ci">
+                <div class="wrap reveal">
+                    <div class="path-heading">
+                        <div class="step-num">4</div>
+                        <h2><span class="gold">CI</span></h2>
+                        <span class="subtitle">— after the push lands</span>
+                    </div>
+
+                    <div class="terminal">
+                        <div class="terminal-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="terminal-title">.github/workflows/nix-build.yml</span>
+                            <button class="copy-btn" type="button" data-copy="#flow-ci">Copy</button>
+                        </div>
+<pre id="flow-ci"><code>name: Nix build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/determinate-nix-action@v3
+
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+                      /opt/hostedtoolcache/CodeQL || true
+          df -h /
+
+      - uses: DeterminateSystems/flake-checker-action@v9
+
+      - name: nix flake check
+        run: nix flake check --system x86_64-linux --keep-going --accept-flake-config</code></pre>
+                    </div>
+
+                    <div class="callout">
+                        <strong>What's happening:</strong>
+                        <code>yo push</code> lands on <code>main</code> — no PR gate for
+                        a personal dotfiles repo. CI then runs <code>nix flake check</code>
+                        on the pushed commit with <code>--keep-going</code>, so a broken
+                        one-liner in <code>module.nix</code> fails the run instead of
+                        failing the next <code>yo rb</code> on your machine.
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="rollback">
+                <div class="wrap reveal">
+                    <div class="path-heading">
+                        <div class="step-num danger">↻</div>
+                        <h2><span class="red">yo</span> <span class="white">rollback</span></h2>
+                        <span class="subtitle">— the escape hatch</span>
+                    </div>
+
+                    <p class="page-subtitle">
+                        When the new generation is broken, when CI fails, or when you just
+                        need yesterday's config back: <code>yo rollback</code> lists every
+                        tagged generation for a host, lets you pick one, checks out the
+                        matching commit on the remote, and activates that NixOS generation.
+                        One prompt, one command, back to a known-good system.
+                    </p>
+
+                    <div class="terminal danger help-terminal">
+                        <div class="terminal-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="terminal-title">~/dotfiles $ yo rollback -h</span>
+                            <button class="copy-btn" type="button" data-copy="#help-rollback">Copy</button>
+                        </div>
+<pre id="help-rollback"><code>   yo rollback
+
+  Rollback a host to a previous NixOS generation. Fetches Git tags and reverts
+  system+config to a synced, tagged state.
+  Usage:  yo rollback [OPTIONS]
+
+   ▶ Parameters
+
+   --host
+  Host to rollback
+
+   --flake
+  Path to the directory containing your flake.nix
+  (default: /home/pungkula/dotfiles)
+
+   --user
+  SSH user
+  (optional) (default: pungkula)</code></pre>
+                    </div>
+
+                    <div class="terminal danger">
+                        <div class="terminal-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="terminal-title">~/dotfiles $ yo rollback homie</span>
+                            <button class="copy-btn" type="button" data-copy="#flow-rollback">Copy</button>
+                        </div>
+<pre id="flow-rollback"><code> yo rollback &lt;host&gt;          pick a generation, restore it
+
+ ── LOCAL ──
+ git fetch --tags --force
+ git tag -l "&lt;host&gt;-generation-*" --sort=-v:refname
+      │
+      └──►  Generation 47:  (Tue Nov  9 22:15:12 2026) Autocommit: Generation 47
+            Generation 46:  (Mon Nov  8 19:04:33 2026) Autocommit: Generation 46
+            Generation 45:  (Sun Nov  7 11:22:50 2026) Autocommit: Generation 45
+            ...
+
+ read -p "Enter generation number: " GEN_NUM
+ TAG_NAME="&lt;host&gt;-generation-$GEN_NUM"
+
+ ── REMOTE ──  (ssh bash -s -- $flake $TAG_NAME $GEN_NUM)
+ git fetch --tags --force
+ git rev-parse "$TAG_NAME"       ← verify tag exists on remote
+ git checkout "$TAG_NAME"        ← detach HEAD at the tagged commit
+ sudo /etc/profiles/per-user/$user/bin/rollback "$GEN_NUM"
+      │
+      └──►  system profile switches to generation $GEN_NUM
+            and that generation is activated
+
+ echo "Remote rollback to generation $GEN_NUM complete!"</code></pre>
+                    </div>
+
+                    <div class="callout danger">
+                        <strong>Why tagging is worth the effort:</strong>
+                        Without <code>yo push</code>'s tags, this would be manual:
+                        SSH in, run <code>nix-env --list-generations</code>, cross-reference
+                        with <code>git log</code> to find the matching commit, <code>git checkout</code>
+                        that commit by hand, then <code>nix-env --switch-generation</code> and
+                        <code>activate</code>. With the tags, it's one prompt. The tag
+                        <code>&lt;host&gt;-generation-&lt;N&gt;</code> is the contract
+                        between the running system and a specific commit — and
+                        <code>yo rollback</code> is what honors it.
+                    </div>
+
+                    <div class="callout danger">
+                        <strong>⚠️ Heads-up:</strong>
+                        after the remote <code>git checkout $TAG_NAME</code>, HEAD is detached
+                        at the tagged commit. That's fine for reproducibility — the host is
+                        now running exactly the config from that tag. But a subsequent
+                        <code>yo deploy</code> on that host should be done from your local
+                        machine (which is still on <code>main</code>), not from inside the
+                        remote checkout. Otherwise you'd be deploying from a stale snapshot.
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="power">
+                <div class="wrap reveal">
+                    <h2 style="font-family:'Cinzel Decorative',Georgia,serif; text-align:center; font-size:clamp(1.5rem,4vw,2.2rem); margin:0 0 8px;">
+                        <span class="gold">Three</span> <span class="white">things that make it worth using</span>
+                    </h2>
+                    <p class="page-subtitle" style="margin-bottom:30px;">
+                        These are the parts I'd miss if I switched to another framework.
+                    </p>
+
+                    <div class="power-grid">
+
+                        <div class="power-card bootstrap">
+                            <span class="icon" aria-hidden="true">🚀</span>
+                            <h3>Bootstrap</h3>
+                            <p class="lede">
+                                Bare metal to a running system, one command. No manual
+                                <code>git clone</code>, no copying keys over by hand.
+                            </p>
+                            <ul>
+                                <li>Detects if <code>$flake/.git</code> exists on the target — safe to run every time.</li>
+                                <li>Auto-converts the SSH repo URL to HTTPS for the initial clone (no key yet on the remote).</li>
+                                <li>Decrypts the host's <code>age.key</code> locally — Yubikey tap required.</li>
+                                <li>Streams the key to the remote via <code>ssh cat &gt;</code>, chmod 600, chown root — never touches disk unencrypted.</li>
+                                <li>Switches to <code>--build-host</code> on first deploy, because the signing key only lives on the target.</li>
+                                <li>On the second deploy, the key is already there — falls back to building locally and only pushing the closure.</li>
+                            </ul>
+                        </div>
+
+                        <div class="power-card readme">
+                            <span class="icon" aria-hidden="true">📚</span>
+                            <h3>update-readme</h3>
+                            <p class="lede">
+                                The README isn't hand-maintained. It's generated from
+                                <code>config</code> at build time, then refreshed on every
+                                <code>yo push</code>.
+                            </p>
+                            <ul>
+                                <li><code>YO_DOCS</code> — full CLI reference from <code>config.yo.scripts</code>, voice-ready ✅ / not 📛, one row per script.</li>
+                                <li><code>USER</code> · <code>HOST</code> · <code>THEME</code> — three config blocks rendered to Nix via <code>jq</code>.</li>
+                                <li><code>DEVICES_SCENES</code> — Zigbee devices, scenes, TVs, channels from <code>config.house.*</code>.</li>
+                                <li><code>SMARTHOME</code> — the full <code>modules/myHouse.nix</code> file embedded.</li>
+                                <li><code>TREE</code> — <code>nix flake show</code> with ANSI codes stripped.</li>
+                                <li><code>FLAKE</code> — the full <code>flake.nix</code> inline.</li>
+                                <li><code>CONTACT</code> — Matrix / Discord / Email badges, only shown if the config has them.</li>
+                                <li>Plus version badges: NixOS · Linux · Nix · bash · GNOME · Python · Rust · Mosquitto · <strong class="gold">Pokémon total</strong>.</li>
+                                <li>Zero network, zero CI — runs <code>sed</code> + <code>awk</code> against markers in an already-checked-out README.</li>
+                            </ul>
+                        </div>
+
+                        <div class="power-card tagging">
+                            <span class="icon" aria-hidden="true">🏷️</span>
+                            <h3>Generation tagging</h3>
+                            <p class="lede">
+                                Every working system has a git tag. You can check out
+                                the exact commit that produced generation <em>N</em> on
+                                host <em>X</em> — months later.
+                            </p>
+                            <ul>
+                                <li>Reads the current generation number from <code>sudo nix-env --list-generations</code> after the switch.</li>
+                                <li>Tags it <code>&lt;host&gt;-generation-&lt;N&gt;</code> — e.g. <code>homie-generation-47</code>.</li>
+                                <li>Force-moves the tag if you rebuild the same generation (idempotent — the tag always points at the current commit for that gen).</li>
+                                <li>Force-pushes branch + tags, so CI always sees the exact state that produced the running system.</li>
+                                <li>Reproduce a running system: <code>git checkout &lt;host&gt;-generation-&lt;N&gt; &amp;&amp; nixos-rebuild switch --flake .#&lt;host&gt;</code>.</li>
+                                <li>Consumed by <code>yo rollback</code> — one prompt to go back to any past tagged generation. See the recovery section above.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="soundboard">
+                <div class="wrap reveal">
+                    <h1 class="page-title">
+                        <span class="gold">Duck</span> <span class="white">Soundboard</span>
+                    </h1>
+                    <p class="soundboard-intro">
+                        Four files, five functions. Mapped 1:1 to the <code>play_*</code>
+                        helpers in <code>helpers.nix</code> — <code>play_win</code> and
+                        <code>play_relax</code> share the same celebration track. Hit a card,
+                        or press <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> <kbd>5</kbd>.
+                    </p>
+
+                    <div class="sound-grid" role="group" aria-label="Duck sound effects">
+
+                        <button class="sound-card" type="button"
+                                data-tone="success" data-key="1"
+                                data-sound="static/sound/duck_celebration.mp3"
+                                data-burst="success"
+                                aria-label="Play win (play_win)">
+                            <span class="sound-key" aria-hidden="true">1</span>
+                            <span class="sound-emoji" aria-hidden="true">🦆</span>
+                            <span class="sound-name">play_win</span>
+                            <span class="sound-desc">success · rebuild OK · test deploy verified</span>
+                            <span class="sound-file">duck_celebration.mp3</span>
+                        </button>
+
+                        <button class="sound-card" type="button"
+                                data-tone="fail1" data-key="2"
+                                data-sound="static/sound/duck_say_fuck.wav"
+                                data-burst="fail"
+                                aria-label="Play fail (play_fail)">
+                            <span class="sound-key" aria-hidden="true">2</span>
+                            <span class="sound-emoji" aria-hidden="true">🤬</span>
+                            <span class="sound-name">play_fail</span>
+                            <span class="sound-desc">fail 1–4 · rebuild broke · lost contact</span>
+                            <span class="sound-file">duck_say_fuck.wav</span>
+                        </button>
+
+                        <button class="sound-card" type="button"
+                                data-tone="fail2" data-key="3"
+                                data-sound="static/sound/duck_more_mad.mp3"
+                                data-burst="fail"
+                                aria-label="Play fail2 (play_fail2)">
+                            <span class="sound-key" aria-hidden="true">3</span>
+                            <span class="sound-emoji" aria-hidden="true">😤</span>
+                            <span class="sound-name">play_fail2</span>
+                            <span class="sound-desc">fail 5+ · the duck has had enough</span>
+                            <span class="sound-file">duck_more_mad.mp3</span>
+                        </button>
+
+                        <button class="sound-card" type="button"
+                                data-tone="fail3" data-key="4"
+                                data-sound="static/sound/DUCK_GO_CRAZY.mp3"
+                                data-burst="fail"
+                                aria-label="Play fail3 (play_fail3)">
+                            <span class="sound-key" aria-hidden="true">4</span>
+                            <span class="sound-emoji" aria-hidden="true">💀</span>
+                            <span class="sound-name">play_fail3</span>
+                            <span class="sound-desc">deep failure · defined, rarely called</span>
+                            <span class="sound-file">DUCK_GO_CRAZY.mp3</span>
+                        </button>
+
+                        <button class="sound-card" type="button"
+                                data-tone="relax" data-key="5"
+                                data-sound="static/sound/duck_celebration.mp3"
+                                data-burst="success"
+                                aria-label="Play relax (play_relax)">
+                            <span class="sound-key" aria-hidden="true">5</span>
+                            <span class="sound-emoji" aria-hidden="true">🎉</span>
+                            <span class="sound-name">play_relax</span>
+                            <span class="sound-desc">success after 6+ fails · or after yo push</span>
+                            <span class="sound-file">duck_celebration.mp3</span>
+                        </button>
+                    </div>
+
+                    <p class="sound-hint">
+                        Audio files live in <code>static/sound/</code>.
+                        Missing files show a toast + visual fallback.
+                    </p>
+
+                    <div id="duck-stage" aria-live="polite"></div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <div class="wrap footer-row">
+                <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBlindy.com</span></strong></div>
+                <div class="footer-links">
+                    <a href="#top">Top</a>
+                </div>
+            </div>
+        </footer>
+
+        <svg height="0" width="0" style="position:absolute" aria-hidden="true">
+            <filter id="f1">
+                <feTurbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp"/>
+                <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp"/>
+                <feColorMatrix type="matrix" result="red_" values="4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/>
+                <feOffset in="red_" dx="2" dy="0" result="red"/>
+                <feColorMatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 1 0"/>
+                <feOffset in="blue_" dx="-3" dy="0" result="blue"/>
+                <feBlend mode="screen" in="red" in2="blue"/>
+            </filter>
+        </svg>
+    </div>
+
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; }
+            .terminal pre::before { display: none; }
+        </style>
+    </noscript>
+
+    <script>
+    (function () {
+        'use strict';
+
+        function escapeHTML(str) {
+            return String(str ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        function toast(msg) {
+            let el = document.querySelector('.toast');
+            if (!el) {
+                el = document.createElement('div');
+                el.className = 'toast';
+                document.body.appendChild(el);
+            }
+            el.textContent = msg;
+            el.classList.add('show');
+            clearTimeout(el._t);
+            el._t = setTimeout(() => el.classList.remove('show'), 2600);
+        }
+
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+        } else {
+            document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+        }
+
+        function highlight(text) {
+            const tokens = [];
+            let s = String(text);
+
+            function stash(m, cls) {
+                const i = tokens.length;
+                tokens.push(`<span class="${cls}">${escapeHTML(m)}</span>`);
+                return `\u0001${i}\u0001`;
+            }
+            function wrap(re, cls) {
+                s = s.replace(re, (m) => stash(m, cls));
+            }
+
+            wrap(/\b(play_win|play_fail2|play_fail3|play_fail|play_relax)\b/g, 't-sound');
+            wrap(/\byo\s+(rb|ps|deploy|push|rollback|update-readme|yubi|switch)\b/g, 't-cmd');
+            wrap(/\b(nixos-rebuild|nix-env|nix flake check|nix flake show|nix log|nix eval|systemd-run|systemctl)\b/g, 't-cmd');
+            wrap(/(?<!\w)--[a-z][a-z0-9-]*/g, 't-flag');
+            wrap(/\((?:optional|default|alias):?\s*[^)]*\)/g, 't-meta');
+            wrap(/&lt;host&gt;-generation-&lt;N&gt;/g, 't-tag');
+            wrap(/▶\s*Parameters/g, 't-stage');
+            wrap(/##\s*Voice\s*Commands/g, 't-stage');
+            wrap(/\b(PRE-FLIGHT|BOOTSTRAP|BUILD\s*\+\s*SWITCH|VERIFY|POST|ON SUCCESS|ON FAILURE|PIPELINE|COMMAND|WHAT CI SEES|LOCAL|REMOTE)\b/g, 't-stage');
+            wrap(/\byo\s+(switch|deploy|rollback|push)\b/g, 't-heading');
+            wrap(/─+>/g, 't-arrow');
+            wrap(/(→|←|≤|≥|──►|↻)/g, 't-arrow');
+            wrap(/\bSUCCESS\b/g, 't-success');
+            wrap(/\bFAILURE\b/g, 't-failure');
+            wrap(/⭐/g, 't-star');
+            wrap(/▼/g, 't-flow');
+            wrap(/([│─┌┐└┘├┤]+)/g, 't-line');
+            wrap(/(🎵|🦆)/g, 't-duck');
+
+            s = escapeHTML(s);
+            s = s.replace(/\u0001(\d+)\u0001/g, (_, i) => tokens[i]);
+            return s;
+        }
+
+        document.querySelectorAll('.terminal pre[id]').forEach((el) => {
+            try {
+                const raw = el.textContent;
+                el.dataset.raw = raw;
+                el.innerHTML = highlight(raw);
+            } catch (err) {
+                console.warn('Highlight failed for', el.id, err);
+            }
+        });
+
+        async function copyText(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                return;
+            }
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        }
+
+        document.querySelectorAll('.copy-btn').forEach((btn) => {
+            btn.addEventListener('click', async () => {
+                const sel = btn.getAttribute('data-copy');
+                const target = sel ? document.querySelector(sel) : null;
+                const text = target ? (target.dataset.raw || target.textContent) : '';
+                const original = btn.textContent;
+                try {
+                    await copyText(text);
+                    btn.textContent = 'Copied ✓';
+                    btn.classList.add('copied');
+                } catch (err) {
+                    btn.textContent = 'Failed';
+                } finally {
+                    setTimeout(() => {
+                        btn.textContent = original;
+                        btn.classList.remove('copied');
+                    }, 1600);
+                }
+            });
+        });
+
+        const cards = Array.from(document.querySelectorAll('.sound-card'));
+        let currentAudio = null;
+        let currentCard = null;
+
+        function stopCurrent() {
+            if (currentAudio) {
+                try { currentAudio.pause(); currentAudio.currentTime = 0; } catch (_) {}
+                currentAudio = null;
+            }
+            if (currentCard) {
+                currentCard.classList.remove('playing');
+                currentCard = null;
+            }
+        }
+
+        function burst(kind) {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            if (kind === 'success') {
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => spawnBurst('🦆', 'success'), i * 90);
+                }
+                showDuckASCII();
+            } else {
+                spawnBurst(['💥', '🤬', '😤', '💀'][Math.floor(Math.random() * 4)], 'fail');
+                document.body.classList.remove('shake');
+                void document.body.offsetWidth;
+                document.body.classList.add('shake');
+                setTimeout(() => document.body.classList.remove('shake'), 450);
+            }
+        }
+
+        function spawnBurst(char, kind) {
+            const el = document.createElement('div');
+            el.className = 'duck-burst' + (kind === 'fail' ? ' burst-fail' : '');
+            el.textContent = char;
+            el.style.left = (15 + Math.random() * 70) + 'vw';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 1500);
+        }
+
+        const DUCK_ASCII = [
+            '',
+            '     __',
+            '   <(o )___',
+            '    ( ._> /',
+            "     `---'   QUACK QUACK — exit 0",
+            ''
+        ].join('\n');
+
+        function showDuckASCII() {
+            const stage = document.getElementById('duck-stage');
+            if (!stage) return;
+            stage.innerHTML = '';
+            const pre = document.createElement('pre');
+            pre.textContent = DUCK_ASCII;
+            stage.appendChild(pre);
+            requestAnimationFrame(() => pre.classList.add('show'));
+            clearTimeout(stage._t);
+            stage._t = setTimeout(() => {
+                pre.classList.remove('show');
+                setTimeout(() => { if (pre.parentNode) pre.remove(); }, 500);
+            }, 3200);
+        }
+
+        function playSound(card) {
+            const src = card.getAttribute('data-sound');
+            const kind = card.getAttribute('data-burst') || 'fail';
+            if (!src) return;
+
+            stopCurrent();
+
+            const audio = new Audio();
+            audio.preload = 'auto';
+            audio.volume = 0.85;
+
+            audio.addEventListener('play', () => {
+                card.classList.add('playing');
+                currentCard = card;
+                currentAudio = audio;
+            });
+            audio.addEventListener('ended', () => {
+                card.classList.remove('playing');
+                if (currentAudio === audio) { currentAudio = null; currentCard = null; }
+            });
+            audio.addEventListener('error', () => {
+                card.classList.remove('playing');
+                if (currentAudio === audio) { currentAudio = null; currentCard = null; }
+                toast('Missing sound: ' + src.split('/').pop());
+                burst(kind);
+            });
+
+            audio.src = src;
+            burst(kind);
+
+            const playPromise = audio.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch((err) => {
+                    console.warn('Playback blocked or missing:', err);
+                });
+            }
+        }
+
+        cards.forEach((card) => {
+            card.addEventListener('pointermove', (e) => {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+                card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+            });
+            card.addEventListener('click', () => playSound(card));
+        });
+
+        document.addEventListener('keydown', (e) => {
+            const t = e.target;
+            if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+            if (/^[1-5]$/.test(e.key)) {
+                const card = cards.find((c) => c.getAttribute('data-key') === e.key);
+                if (card) {
+                    e.preventDefault();
+                    playSound(card);
+                }
+            }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) stopCurrent();
+        });
+    })();
+    </script>
+</body>
+</html>
