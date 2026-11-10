@@ -21,13 +21,6 @@
     "link": "https://quackhack-mcblindy.com/posts/project-workflow.html"
   },
   {
-    "title": "Dotfiles workflow",
-    "description": "Two commands, one tag, five sounds. yo switch, yo deploy, yo push, yo rollback — with bootstrap, update-readme, and generation tagging.",
-    "tags": ["nixos", "nix", "workflow"],
-    "date": "2026-11-08",
-    "link": "https://quackhack-mcblindy.com/posts/dotfiles-workflow.html"
-  },
-  {
     "title": "Hardware",
     "description": "pictures of my current servers and some unique builds I have done over the years.",
     "tags": ["hardware", "builds", "images"],

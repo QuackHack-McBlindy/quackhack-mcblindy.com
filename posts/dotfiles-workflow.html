@@ -637,6 +637,16 @@
         @media (prefers-reduced-motion: reduce) {
             .terminal pre::before { display: none; }
         }
+        #top {
+            min-height: 0 !important;
+            height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow: hidden;
+        }
+        #top::before {
+            display: none !important;
+        }
     </style>
 
     <link rel="stylesheet" href="./../static/css/viewport.css">
