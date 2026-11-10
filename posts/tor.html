@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tor in a Shell — QuackHack-McBlindy.com</title>
-  <meta name="description" content="" />
+  <meta name="description" content="Every other Tor setup asks you to point something at something. This one asks you to type &lt;code&gt;hide&lt;/code&gt;." />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://quackhack-mcblindy.com/tor-in-a-shell.html" />
   <meta property="og:title" content="Tor in a Shell — QuackHack-McBlindy.com" />
-  <meta property="og:description" content="" />
+  <meta property="og:description" content="Every other Tor setup asks you to point something at something. This one asks you to type &lt;code&gt;hide&lt;/code&gt;." />
   <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tor in a Shell — QuackHack-McBlindy.com" />
-  <meta name="twitter:description" content="" />
+  <meta name="twitter:description" content="Every other Tor setup asks you to point something at something. This one asks you to type &lt;code&gt;hide&lt;/code&gt;." />
   <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png" />
 
   <link rel="canonical" href="https://quackhack-mcblindy.com/tor-in-a-shell.html" />
@@ -433,11 +433,35 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     <main>
       <section class="content-section hero">
         <div class="wrap reveal">
+          <div class="hero-eyebrow">Firejail · nftables · NetworkManager</div>
 
           <h1 class="hero-title">
             <span class="gold">Tor</span> <span class="white">in a Shell</span>
           </h1>
+          <p class="hero-sub">Every other Tor setup asks you to point something at something. This one asks you to type <code>hide</code>.</p>
 
+          <div class="stat-strip">
+  <div class="stat-tile accent-teal">
+  <strong>1</strong>
+  <span>bridge</span>
+</div>
+
+<div class="stat-tile accent-gold">
+  <strong>1</strong>
+  <span>nftables rule</span>
+</div>
+
+<div class="stat-tile accent-green">
+  <strong>1</strong>
+  <span>shell alias</span>
+</div>
+
+<div class="stat-tile accent-pink">
+  <strong>0</strong>
+  <span>daemons</span>
+</div>
+
+</div>
 
         </div>
       </section>
@@ -454,9 +478,60 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 </section>
 
 
+      <section class="content-section">
+  <div class="wrap reveal">
+    <div class="config-block">
+  <div class="config-bar">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+    <span class="config-title">networking/default.nix · the bridge</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code class="language-nix">ensureProfiles.profiles.tornet = {
+  connection = { id = &quot;tornet&quot;; type = &quot;bridge&quot;; };
+  ipv4.method = &quot;manual&quot;;
+  ipv4.address1 = &quot;10.100.100.1/24&quot;;
+};
+</code></pre>
+</div>
 
+  </div>
+</section>
 
+      <section class="content-section">
+  <div class="wrap reveal">
+    <div class="caveat">
+      <strong>Heads up.</strong>
+      Tor still won't protect you from logging into the same account you
+logged into yesterday without it. It's the same three hops, the same
+exit nodes, the same limits.
 
+    </div>
+  </div>
+</section>
+
+      <section class="content-section">
+  <div class="wrap reveal">
+    <p class="big-quote">The network is unchanged. <strong>What changed is the ceremony.</strong></p>
+  </div>
+</section>
+
+      <section class="content-section">
+  <div class="wrap reveal">
+    <div class="cross-links">
+      <a class="cross-link" href="/house.html">
+  <span class="cl-icon" aria-hidden="true">🏠</span>
+  <div class="cl-body">
+    <h3 class="cl-title">One house, one file</h3>
+    <p class="cl-desc">The other place where Nix replaces a config file with something you can actually read.</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
+    </div>
+  </div>
+</section>
 
     </main>
 

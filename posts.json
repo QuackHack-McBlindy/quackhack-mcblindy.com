@@ -4,14 +4,14 @@
     "description": "Every other Tor setup asks you to point something at something. This one asks you to type hide — Firejail, nftables, and a NetworkManager bridge.",
     "tags": ["tor", "privacy", "nixos", "networking"],
     "date": "2026-11-09",
-    "link": "https://quackhack-mcblindy.com/tor.html"
+    "link": "https://quackhack-mcblindy.com/tor-in-a-shell.html"
   },
   {
-    "title": "One file, one house",
+    "title": "Home Automation in Swedish",
     "description": "Possibly a first — a whole home automation config entirely in plaintext Swedish sentences. Nineteen scenes, twenty automations, zero lines of YAML.",
     "tags": ["home-automation", "nixos", "nix", "zigbee", "yo"],
     "date": "2026-11-09",
-    "link": "https://quackhack-mcblindy.com/house.html"
+    "link": "https://quackhack-mcblindy.com/home-automation-in-swedish.html"
   },
   {
     "title": "PokéNix",
@@ -32,7 +32,7 @@
     "description": "yo do crossed one billion generated phrases. 8,043 patterns, 97 ms average across 1,467 runs, and a caveat about the wildcards that aren't counted.",
     "tags": ["yo", "nlp", "bash", "milestone"],
     "date": "2026-11-09",
-    "link": "https://quackhack-mcblindy.com/milestone.html"
+    "link": "https://quackhack-mcblindy.com/billion.html"
   },
   {
     "title": "From Commit to Release",

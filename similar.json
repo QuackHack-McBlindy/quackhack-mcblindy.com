@@ -1,13 +1,13 @@
 {
-  "https://quackhack-mcblindy.com/tor.html": ["", "https://quackhack-mcblindy.com/posts/project_workflow.html", "https://quackhack-mcblindy.com/house.html"],
-  "https://quackhack-mcblindy.com/house.html": ["", "https://quackhack-mcblindy.com/work.html", "https://quackhack-mcblindy.com/posts/project_workflow.html"],
+  "https://quackhack-mcblindy.com/tor-in-a-shell.html": ["", "https://quackhack-mcblindy.com/posts/project_workflow.html", "https://quackhack-mcblindy.com/work.html"],
+  "https://quackhack-mcblindy.com/home-automation-in-swedish.html": ["", "https://quackhack-mcblindy.com/posts/project_workflow.html", "https://quackhack-mcblindy.com/work.html"],
   "https://quackhack-mcblindy.com/pokenix.html": ["https://quackhack-mcblindy.com/pokemon.html", "https://quackhack-mcblindy.github.io/blog/", "https://quackhack-mcblindy.com/posts/project_workflow.html"],
-  "https://quackhack-mcblindy.com/pokemon.html": ["https://quackhack-mcblindy.com/pokenix.html", "https://quackhack-mcblindy.github.io/blog/", "https://quackhack-mcblindy.com/milestone.html"],
-  "https://quackhack-mcblindy.com/milestone.html": ["https://quackhack-mcblindy.github.io/blog/", "https://quackhack-mcblindy.com/pokemon.html", "https://quackhack-mcblindy.com/house.html"],
-  "https://quackhack-mcblindy.com/posts/project_workflow.html": ["https://quackhack-mcblindy.com/work.html", "", "https://quackhack-mcblindy.com/house.html"],
-  "https://quackhack-mcblindy.com/work.html": ["https://quackhack-mcblindy.com/posts/project_workflow.html", "", "https://quackhack-mcblindy.com/house.html"],
+  "https://quackhack-mcblindy.com/pokemon.html": ["https://quackhack-mcblindy.com/pokenix.html", "https://quackhack-mcblindy.github.io/blog/", "https://quackhack-mcblindy.com/billion.html"],
+  "https://quackhack-mcblindy.com/billion.html": ["https://quackhack-mcblindy.github.io/blog/", "https://quackhack-mcblindy.com/pokemon.html", ""],
+  "https://quackhack-mcblindy.com/posts/project_workflow.html": ["https://quackhack-mcblindy.com/work.html", "", "https://quackhack-mcblindy.com/home-automation-in-swedish.html"],
+  "https://quackhack-mcblindy.com/work.html": ["https://quackhack-mcblindy.com/posts/project_workflow.html", "", "https://quackhack-mcblindy.com/home-automation-in-swedish.html"],
   "https://quackhack-mcblindy.com/posts/hardware.html": [],
-  "": ["https://quackhack-mcblindy.com/house.html", "https://quackhack-mcblindy.com/work.html", "https://quackhack-mcblindy.com/milestone.html"],
-  "": ["https://quackhack-mcblindy.com/posts/project_workflow.html", "https://quackhack-mcblindy.com/work.html", "https://quackhack-mcblindy.com/house.html"],
-  "https://quackhack-mcblindy.github.io/blog/": ["https://quackhack-mcblindy.com/milestone.html", "https://quackhack-mcblindy.com/pokemon.html", "https://quackhack-mcblindy.com/pokenix.html"]
+  "": ["https://quackhack-mcblindy.com/work.html", "https://quackhack-mcblindy.com/billion.html", "https://quackhack-mcblindy.com/tor-in-a-shell.html"],
+  "": ["https://quackhack-mcblindy.com/posts/project_workflow.html", "https://quackhack-mcblindy.com/work.html", "https://quackhack-mcblindy.com/home-automation-in-swedish.html"],
+  "https://quackhack-mcblindy.github.io/blog/": ["https://quackhack-mcblindy.com/billion.html", "https://quackhack-mcblindy.com/pokemon.html", "https://quackhack-mcblindy.com/pokenix.html"]
 }
