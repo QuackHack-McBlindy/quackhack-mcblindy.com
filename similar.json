@@ -1,5 +1,9 @@
 {
-  "https://quackhack-mcblindy.com/template-example.html": ["https://quackhack-mcblindy.com/tor-in-a-shell.html", "https://quackhack-mcblindy.com/one-billion-understandable-phrases.html"],
-  "https://quackhack-mcblindy.com/one-billion-understandable-phrases.html": ["https://quackhack-mcblindy.com/template-example.html", "https://quackhack-mcblindy.com/tor-in-a-shell.html"],
-  "https://quackhack-mcblindy.com/tor-in-a-shell.html": ["https://quackhack-mcblindy.com/template-example.html", "https://quackhack-mcblindy.com/one-billion-understandable-phrases.html"]
+  "https://quackhack-mcblindy.com/posts/tor-in-a-shell.html": ["", "https://quackhack-mcblindy.com/posts/project-workflow.html", ""],
+  "https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html": ["https://quackhack-mcblindy.github.io/blog/", "https://quackhack-mcblindy.com/posts/project-workflow.html", "https://quackhack-mcblindy.com/posts/hardware.html"],
+  "https://quackhack-mcblindy.com/posts/project-workflow.html": ["", "https://quackhack-mcblindy.github.io/blog/", "https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html"],
+  "https://quackhack-mcblindy.com/posts/hardware.html": ["https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html"],
+  "": ["https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html", "https://quackhack-mcblindy.com/posts/tor-in-a-shell.html"],
+  "": ["https://quackhack-mcblindy.com/posts/project-workflow.html", "https://quackhack-mcblindy.com/posts/tor-in-a-shell.html"],
+  "https://quackhack-mcblindy.github.io/blog/": ["https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html", "https://quackhack-mcblindy.com/posts/project-workflow.html"]
 }
