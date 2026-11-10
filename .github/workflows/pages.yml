@@ -33,9 +33,6 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Regenerate similar.json
-        run: bash hooks/build-similar.sh
-
       - name: Refresh versions.json
         run: bash hooks/fetch-versions.sh
 
@@ -50,8 +47,8 @@ jobs:
             exit 0
           fi
 
-          git add similar.json static/versions.json
-          git commit -m "chore: regenerate similar.json and versions.json [skip ci]"
+          git add static/versions.json
+          git commit -m "chore: regenerate versions.json [skip ci]"
 
           for i in 1 2 3; do
             if git push origin HEAD:main; then
