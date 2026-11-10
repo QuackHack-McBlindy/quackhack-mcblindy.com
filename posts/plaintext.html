@@ -1,0 +1,1322 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Possibly a first — a whole house in plaintext — QuackHack-McBlindy.com</title>
+    <meta name="description" content="One file. Nineteen scenes. Twenty automations. Seventeen TV channels. Zero lines of YAML. A complete home automation configuration entirely in plaintext, written in Swedish.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quackhack-mcblindy.com/house.html">
+    <meta property="og:title" content="Possibly a first — a whole house in plaintext">
+    <meta property="og:description" content="One file. Nineteen scenes. Twenty automations. Zero lines of YAML.">
+    <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Possibly a first — QuackHack-McBlindy.com">
+    <meta name="twitter:description" content="One file. Nineteen scenes. Twenty automations. Zero lines of YAML.">
+    <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+
+    <link rel="canonical" href="https://quackhack-mcblindy.com/house.html" />
+    <meta name="theme-color" content="#050707">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script src="static/js/script.js" defer></script>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="🦯🦆">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon-16x16.png">
+
+    <style>
+        :root {
+            --bg: #050707;
+            --panel: #0b1110;
+            --panel2: #0e1716;
+            --teal: #11e6d2;
+            --teal2: #05a99f;
+            --gold: #f4b52f;
+            --gold2: #ffdc72;
+            --green: #5eea8f;
+            --red: #ff5470;
+            --pink: #ff7ab8;
+            --purple: #b392ff;
+            --blue: #6cb4ff;
+            --text: #f3fffd;
+            --muted: #8ea6a3;
+            --line: rgba(17, 230, 210, .16);
+            --max: 1180px;
+            --frame-header-h: 260px;
+            --frame-bottom-h: 64px;
+            --frame-left-w: 190px;
+            --frame-right-w: 196px;
+            --frame-z: 10000;
+            --mask-left-w: 214px;
+            --mask-right-w: 214px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 50% -10%, rgba(17, 230, 210, .10), transparent 34rem),
+                radial-gradient(circle at 90% 45%, rgba(244, 181, 47, .07), transparent 28rem),
+                var(--bg);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(17, 230, 210, .08), transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(244, 181, 47, .08), transparent 40%);
+            animation: aurora 20s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes aurora {
+            0%   { opacity: .5; transform: scale(1); }
+            100% { opacity: 1;  transform: scale(1.15); }
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .wrap {
+            width: min(calc(100vw - var(--mask-left-w) - var(--mask-right-w) - 40px), var(--max));
+            margin: auto;
+        }
+
+        .gold   { color: var(--gold); }
+        .white  { color: #fff; }
+        .muted  { color: var(--muted); }
+        .teal   { color: var(--teal); }
+        .green  { color: var(--green); }
+        .pink   { color: var(--pink); }
+        .purple { color: var(--purple); }
+        .red    { color: var(--red); }
+        .blue   { color: var(--blue); }
+
+        .duckhawk-frame {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: var(--frame-z);
+            pointer-events: none;
+            overflow: hidden;
+            display: none;
+        }
+        .frame-piece {
+            position: fixed;
+            display: block;
+            pointer-events: none;
+            user-select: none;
+            max-width: none;
+        }
+        .frame-header {
+            top: 0; left: 0;
+            width: 100vw;
+            height: var(--frame-header-h);
+            object-fit: fill;
+        }
+        .frame-left {
+            top: var(--frame-header-h); left: 0;
+            width: var(--frame-left-w);
+            height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+            object-fit: fill;
+        }
+        .frame-right {
+            top: var(--frame-header-h); right: 0;
+            width: var(--frame-right-w);
+            height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+            object-fit: fill;
+        }
+        .frame-bottom {
+            left: 0; bottom: 0;
+            width: 100vw;
+            height: var(--frame-bottom-h);
+            object-fit: fill;
+        }
+        .frame-navigation {
+            position: fixed;
+            inset: 0 0 auto 0;
+            width: 100vw;
+            height: var(--frame-header-h);
+            z-index: calc(var(--frame-z) + 1);
+            pointer-events: none;
+            display: none;
+        }
+        .frame-nav-link {
+            position: absolute;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            color: #f4df9a;
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, .95),
+                0 0 12px rgba(17, 230, 210, .35);
+            transition: color .25s ease, transform .25s ease, text-shadow .25s ease;
+        }
+        .frame-nav-home     { left: 25%; top: 140px; transform: translate(-50%, -50%); }
+        .frame-nav-showcase { left: 75%; top: 140px; transform: translate(-50%, -50%); }
+        .frame-nav-link::after {
+            content: "";
+            position: absolute;
+            left: 15%; right: 15%; bottom: 3px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--teal), transparent);
+            opacity: .65;
+            transform: scaleX(.35);
+            transition: transform .25s ease, opacity .25s ease;
+        }
+        .frame-nav-link:hover {
+            color: #fff5cf;
+            transform: translate(-50%, -50%) translateY(-2px);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 1), 0 0 18px rgba(17, 230, 210, .65);
+        }
+        .frame-nav-link:hover::after { opacity: 1; transform: scaleX(1); }
+
+        .mobile-nav {
+            display: none;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: linear-gradient(180deg, #0b1110, #050707);
+            border-bottom: 1px solid var(--line);
+        }
+        .mobile-nav a {
+            padding: 8px 16px;
+            border-radius: 10px;
+            color: var(--gold);
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-weight: 700;
+            letter-spacing: .06em;
+        }
+        .mobile-nav a:hover { background: rgba(17, 230, 210, .1); color: var(--gold2); }
+
+        @media (min-width: 1200px) and (min-height: 700px) {
+            .duckhawk-frame,
+            .frame-navigation { display: block; }
+        }
+        @media (max-width: 1199px),
+               (max-height: 699px),
+               (min-width: 3440px),
+               (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+            .duckhawk-frame,
+            .frame-navigation { display: none; }
+            .mobile-nav { display: flex; }
+            .wrap { width: min(calc(100vw - 40px), var(--max)); }
+            main { padding-top: 20px !important; padding-bottom: 24px !important; }
+        }
+
+        header {
+            position: relative;
+            min-height: 200px;
+            isolation: isolate;
+        }
+        header:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, 0) 30%, var(--bg) 100%),
+                url("static/img/logo.png") center top / min(1500px, 100vw) auto no-repeat;
+            filter: saturate(1.04);
+        }
+        header:after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 0; right: 0; bottom: 0;
+            height: 100px;
+            background: linear-gradient(180deg, transparent, var(--bg));
+            pointer-events: none;
+        }
+
+        main {
+            padding-top: calc(var(--frame-header-h) + 20px);
+            padding-bottom: calc(var(--frame-bottom-h) + 20px);
+        }
+
+        .content-section { padding: 20px 0 50px; }
+
+        .hero {
+            text-align: center;
+            padding: 30px 0 50px;
+        }
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 16px;
+            background: rgba(244, 181, 47, .06);
+            border: 1px solid rgba(244, 181, 47, .3);
+            border-radius: 999px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .76rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+        .hero-eyebrow::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 10px var(--gold);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50%      { opacity: .3; }
+        }
+
+        .hero-title {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            line-height: 1.1;
+            letter-spacing: -.01em;
+            margin: 0 0 24px;
+        }
+        .hero-title .gold { display: inline; }
+
+        .hero-number {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(3rem, 14vw, 8.5rem);
+            line-height: .95;
+            letter-spacing: -.03em;
+            margin: 0 0 8px;
+            background: linear-gradient(135deg, var(--gold2) 0%, var(--gold) 40%, var(--teal) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 40px rgba(244, 181, 47, .3));
+        }
+        .hero-unit {
+            font-family: "JetBrains Mono", monospace;
+            font-size: clamp(.85rem, 1.6vw, 1rem);
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 0 0 32px;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+            color: var(--muted);
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+        .hero-sub strong { color: var(--gold2); font-weight: 700; }
+
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 14px;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+        }
+        .stat-tile {
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 22px 16px;
+            text-align: center;
+            transition: border-color .25s ease, transform .25s ease;
+        }
+        .stat-tile:hover {
+            border-color: rgba(17, 230, 210, .35);
+            transform: translateY(-2px);
+        }
+        .stat-tile strong {
+            display: block;
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(1.4rem, 3vw, 1.9rem);
+            color: var(--gold2);
+            letter-spacing: -.01em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .stat-tile span {
+            color: var(--muted);
+            font-size: .74rem;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            font-family: "JetBrains Mono", monospace;
+        }
+        .stat-tile.accent-teal strong   { color: var(--teal); }
+        .stat-tile.accent-green strong  { color: var(--green); }
+        .stat-tile.accent-pink strong   { color: var(--pink); }
+        .stat-tile.accent-blue strong   { color: var(--blue); }
+        .stat-tile.accent-gold strong   { color: var(--gold); }
+        .stat-tile.accent-purple strong { color: var(--purple); }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 0 0 26px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .section-head h2 {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(1.4rem, 3.2vw, 1.9rem);
+            margin: 0;
+            letter-spacing: -.01em;
+            text-align: center;
+        }
+
+        .prose-section {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .prose-section p {
+            color: #c9dbd8;
+            font-size: 1rem;
+            line-height: 1.75;
+            margin: 0 0 18px;
+        }
+        .prose-section p:last-child { margin-bottom: 0; }
+        .prose-section strong { color: var(--gold2); font-weight: 700; }
+        .prose-section code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+        .prose-section em { color: var(--gold2); font-style: italic; }
+
+        .sub-heading {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+            color: var(--teal);
+            margin: 32px 0 14px;
+            letter-spacing: .01em;
+        }
+        .sub-heading strong { color: var(--gold2); }
+
+        .prose-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .prose-list li {
+            padding: 16px 20px 16px 24px;
+            border-left: 2px solid var(--teal);
+            background: rgba(17, 230, 210, .03);
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 12px;
+            color: #c9dbd8;
+            font-size: .95rem;
+            line-height: 1.65;
+        }
+        .prose-list li strong {
+            color: var(--gold2);
+            font-weight: 700;
+        }
+        .prose-list li code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+
+        .compare-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .compare-card {
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px 18px;
+            position: relative;
+        }
+        .compare-card.mine {
+            border-color: rgba(17, 230, 210, .4);
+            box-shadow: 0 0 40px rgba(17, 230, 210, .08);
+        }
+        .compare-card.mine::before {
+            content: "★ this";
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .66rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--teal);
+            padding: 2px 8px;
+            background: rgba(17, 230, 210, .1);
+            border-radius: 999px;
+            border: 1px solid rgba(17, 230, 210, .3);
+        }
+        .compare-card .cc-system {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 1rem;
+            color: var(--gold2);
+            margin: 0 0 6px;
+            letter-spacing: .02em;
+        }
+        .compare-card.mine .cc-system { color: var(--teal); }
+        .compare-card .cc-format {
+            display: inline-block;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .72rem;
+            letter-spacing: .06em;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, .04);
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+        .compare-card.mine .cc-format {
+            background: rgba(17, 230, 210, .1);
+            color: var(--teal);
+        }
+        .compare-card pre {
+            margin: 0;
+            padding: 12px 14px;
+            background: rgba(0, 0, 0, .35);
+            border-radius: 8px;
+            font-family: "JetBrains Mono", "Fira Code", monospace;
+            font-size: .72rem;
+            line-height: 1.55;
+            color: #c9dbd8;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        .compare-card.mine pre {
+            background: rgba(17, 230, 210, .04);
+            border: 1px solid rgba(17, 230, 210, .15);
+            color: var(--gold2);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .category-card {
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 22px 20px;
+            position: relative;
+        }
+        .category-card .cc-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid var(--teal);
+            color: var(--teal);
+            font-family: "JetBrains Mono", monospace;
+            font-size: .82rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .category-card h4 {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 1.05rem;
+            color: var(--gold2);
+            margin: 0 0 8px;
+            letter-spacing: .02em;
+        }
+        .category-card .cc-desc {
+            color: var(--muted);
+            font-size: .85rem;
+            line-height: 1.55;
+            margin: 0 0 12px;
+        }
+        .category-card .cc-example {
+            padding: 10px 12px;
+            background: rgba(17, 230, 210, .04);
+            border-left: 2px solid var(--teal);
+            border-radius: 0 6px 6px 0;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .78rem;
+            line-height: 1.5;
+            color: var(--gold2);
+            word-break: break-word;
+        }
+
+        .voice-quotes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            max-width: 900px;
+            margin: 24px auto;
+        }
+        .voice-quote {
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 22px 22px 20px;
+            position: relative;
+        }
+        .voice-quote::before {
+            content: "❝";
+            position: absolute;
+            top: 8px;
+            left: 14px;
+            font-family: Georgia, serif;
+            font-size: 2.4rem;
+            color: var(--teal);
+            opacity: .35;
+            line-height: 1;
+        }
+        .voice-quote .vq-text {
+            color: var(--gold2);
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9rem;
+            line-height: 1.6;
+            padding-left: 20px;
+            margin: 0 0 10px;
+            font-style: italic;
+            word-break: break-word;
+        }
+        .voice-quote .vq-translation {
+            color: var(--muted);
+            font-size: .82rem;
+            line-height: 1.55;
+            padding-left: 20px;
+            margin: 0 0 10px;
+        }
+        .voice-quote .vq-context {
+            font-family: "JetBrains Mono", monospace;
+            font-size: .72rem;
+            color: var(--teal2);
+            padding-left: 20px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        .caveat {
+            max-width: 760px;
+            margin: 24px auto 0;
+            padding: 18px 22px;
+            background: rgba(179, 146, 255, .04);
+            border: 1px solid rgba(179, 146, 255, .25);
+            border-left: 3px solid var(--purple);
+            border-radius: 10px;
+            color: #c9dbd8;
+            font-size: .94rem;
+            line-height: 1.7;
+        }
+        .caveat strong {
+            color: var(--purple);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .caveat strong::before {
+            content: "⚠";
+            font-size: 1.05em;
+        }
+        .caveat code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+        .caveat em { color: var(--gold2); font-style: italic; }
+
+        .big-quote {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+            line-height: 1.5;
+            text-align: center;
+            color: var(--gold2);
+            margin: 40px auto 20px;
+            max-width: 700px;
+            padding: 0 20px;
+            position: relative;
+        }
+        .big-quote::before,
+        .big-quote::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--teal), transparent);
+            margin: 0 auto;
+        }
+        .big-quote::before { margin-bottom: 20px; }
+        .big-quote::after { margin-top: 20px; }
+        .big-quote strong { color: var(--teal); font-style: italic; }
+
+        .cross-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .cross-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 22px;
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            transition: border-color .25s ease, transform .25s ease;
+        }
+        .cross-link:hover {
+            border-color: rgba(17, 230, 210, .4);
+            transform: translateY(-2px);
+        }
+        .cross-link .cl-icon {
+            font-size: 1.8rem;
+            flex: 0 0 auto;
+        }
+        .cross-link .cl-body { flex: 1; min-width: 0; }
+        .cross-link .cl-title {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 1rem;
+            color: var(--gold2);
+            margin: 0 0 3px;
+            letter-spacing: .02em;
+        }
+        .cross-link .cl-desc {
+            color: var(--muted);
+            font-size: .85rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .cross-link .cl-desc code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+        .cross-link .cl-arrow {
+            color: var(--teal);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 1.2rem;
+            flex: 0 0 auto;
+            transition: transform .2s ease;
+        }
+        .cross-link:hover .cl-arrow { transform: translateX(4px); }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: .7s ease;
+        }
+        .reveal.in { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+            body::before { animation: none; opacity: .6; }
+            .glitch, .hue-shift { animation: none !important; }
+            .hero-eyebrow::before { animation: none; }
+        }
+
+        .glitch { animation: glitch 3s linear infinite; }
+        @keyframes glitch {
+            0%, 4%, 8%, 12%, 100% { filter: none; }
+            1%, 5%, 9% { filter: url(#f1); }
+        }
+        .hue-shift { animation: hueshift 45s ease-in-out infinite; }
+        @keyframes hueshift {
+            0%, 50%  { filter: hue-rotate(0deg); }
+            60%      { filter: hue-rotate(360deg); }
+            70%      { filter: hue-rotate(0deg); }
+            80%      { filter: hue-rotate(360deg); }
+            90%      { filter: hue-rotate(0deg); }
+            100%     { filter: hue-rotate(360deg); }
+        }
+
+        footer {
+            padding: 26px 0 34px;
+            border-top: 1px solid var(--line);
+        }
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+        .footer-links a {
+            color: var(--teal);
+            transition: color .2s ease;
+        }
+        .footer-links a:hover { color: var(--gold); }
+
+        @media (max-width: 850px) {
+            :root {
+                --frame-header-h: 190px;
+                --frame-bottom-h: 48px;
+                --frame-left-w: 105px;
+                --frame-right-w: 108px;
+            }
+            header { min-height: 150px; }
+            .frame-nav-link {
+                font-size: 17px;
+                letter-spacing: .08em;
+                padding: 8px 10px;
+            }
+            .frame-nav-home     { left: 24%; top: 78px; }
+            .frame-nav-showcase { left: 76%; top: 78px; }
+        }
+        @media (max-width: 560px) {
+            :root {
+                --frame-header-h: 145px;
+                --frame-bottom-h: 38px;
+                --frame-left-w: 72px;
+                --frame-right-w: 74px;
+            }
+            .wrap { width: min(calc(100% - 28px), var(--max)); }
+            header { min-height: 120px; }
+            .frame-nav-link {
+                font-size: 14px;
+                letter-spacing: .06em;
+                padding: 7px 6px;
+            }
+            .frame-nav-home     { left: 23%; top: 61px; }
+            .frame-nav-showcase { left: 77%; top: 61px; }
+            .hero-number { font-size: clamp(3rem, 16vw, 5rem); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="mobile-nav" aria-label="Main navigation">
+        <a href="index.html">Me</a>
+        <a href="work.html">Work</a>
+    </nav>
+
+    <div class="duckhawk-frame" aria-hidden="true">
+        <img class="frame-piece frame-header glitch hue-shift" src="static/img/frame/header.png" alt="">
+        <img class="frame-piece frame-left"  src="static/img/frame/left.png"  alt="">
+        <img class="frame-piece frame-right" src="static/img/frame/right.png" alt="">
+        <img class="frame-piece frame-bottom" src="static/img/frame/bottom.png" alt="">
+    </div>
+
+    <nav class="frame-navigation" aria-label="Main navigation">
+        <a class="frame-nav-link frame-nav-home"     href="index.html">Me</a>
+        <a class="frame-nav-link frame-nav-showcase" href="work.html">Work</a>
+    </nav>
+
+    <div id="content-glitch">
+        <header id="top"></header>
+
+        <main>
+
+            <section class="content-section hero">
+                <div class="wrap reveal">
+                    <div class="hero-eyebrow">Possibly a first · if not, please tell me</div>
+
+                    <h1 class="hero-title">
+                        <span class="white">One file,</span> <span class="gold">one house</span>
+                    </h1>
+
+                    <p class="hero-number">1</p>
+                    <p class="hero-unit">file for the entire house</p>
+
+                    <p class="hero-sub">
+                        Nineteen scenes. Twenty automations. Seventeen TV channels.
+                        Six trigger categories. <strong>Zero lines of YAML.</strong>
+                        Every action in the file is a Swedish sentence, and every
+                        sentence runs through <code>yo do</code> to become a shell
+                        script. As far as I can tell, nobody has done a whole
+                        home automation config this way before.
+                    </p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="wrap reveal">
+                    <div class="stat-strip">
+                        <div class="stat-tile accent-teal">
+                            <strong>19</strong>
+                            <span>scenes</span>
+                        </div>
+                        <div class="stat-tile accent-gold">
+                            <strong>20</strong>
+                            <span>automations</span>
+                        </div>
+                        <div class="stat-tile accent-green">
+                            <strong>6</strong>
+                            <span>trigger types</span>
+                        </div>
+                        <div class="stat-tile accent-purple">
+                            <strong>17</strong>
+                            <span>TV channels</span>
+                        </div>
+                        <div class="stat-tile accent-pink">
+                            <strong>100%</strong>
+                            <span>natural language</span>
+                        </div>
+                        <div class="stat-tile accent-blue">
+                            <strong>0</strong>
+                            <span>lines of YAML</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="why">
+                <div class="wrap reveal">
+                    <div class="section-head">
+                        <h2><span class="gold">Why</span> <span class="white">this might be a first</span></h2>
+                    </div>
+
+                    <div class="prose-section">
+                        <p>
+                            Every home automation system I know of picks between
+                            two formats: <strong>structured data</strong> (YAML,
+                            JSON) or <strong>visual flows</strong> (Node-RED's
+                            drag-and-drop). Both work. Both are how almost
+                            everyone does it. Neither is what a house actually
+                            speaks.
+                        </p>
+                        <p>
+                            This file is neither. It's plaintext Nix — typed,
+                            version-controlled, and readable end-to-end — with
+                            the automation actions written as sentences in
+                            Swedish. Not as comments above the code. As the
+                            actual code.
+                        </p>
+                    </div>
+
+                    <div class="compare-grid">
+                        <div class="compare-card">
+                            <h4 class="cc-system">Home Assistant</h4>
+                            <span class="cc-format">YAML</span>
+<pre>- alias: Kitchen fan on motion
+  trigger:
+    - platform: state
+      entity_id: sensor.kitchen_motion
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.kitchen_fan</pre>
+                        </div>
+
+                        <div class="compare-card">
+                            <h4 class="cc-system">Node-RED</h4>
+                            <span class="cc-format">JSON flow file</span>
+<pre>{
+  "id": "a3b8...",
+  "type": "mqtt in",
+  "topic": "zigduck/kitchen/motion",
+  "wires": [["c7d1..."]]
+}</pre>
+                        </div>
+
+                        <div class="compare-card mine">
+                            <h4 class="cc-system">This house</h4>
+                            <span class="cc-format">Swedish sentence</span>
+<pre>"om fläkten drar mer än tjugo watt
+så stäng fläkten om etthundraåttio
+sekunder sedan släck köket långsamt"</pre>
+                        </div>
+                    </div>
+
+                    <div class="prose-section">
+                        <p>
+                            The first two are <em>configuration</em>. The third is
+                            a <em>wish</em>. The system reads it, resolves every
+                            parameter, and does exactly what you asked. If the
+                            fan draws more than 20 W, turn it off in 180 s and
+                            fade the kitchen down. Not because the YAML said so —
+                            because you said so.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="inside">
+                <div class="wrap reveal">
+                    <div class="section-head">
+                        <h2><span class="gold">What's</span> <span class="white">actually in one file</span></h2>
+                    </div>
+
+                    <div class="prose-section">
+                        <p>
+                            Six automation categories, each with its own trigger
+                            shape. Every action under every category is a plain
+                            Swedish sentence. Here's the map, with a real quote
+                            from the file under each.
+                        </p>
+                    </div>
+
+                    <div class="categories-grid">
+
+                        <div class="category-card">
+                            <span class="cc-num">1</span>
+                            <h4>MQTT-triggered</h4>
+                            <p class="cc-desc">
+                                Fires when a device publishes to a Zigbee topic.
+                                The alarm, the timer, the leak detector, the
+                                crypto ticker — all live here.
+                            </p>
+                            <div class="cc-example">
+                                "skicka en notis om ⏰ ALARM: Wake up! samt flasha ljuset"
+                            </div>
+                        </div>
+
+                        <div class="category-card">
+                            <span class="cc-num">2</span>
+                            <h4>Room actions</h4>
+                            <p class="cc-desc">
+                                Fires on door open/close or motion detected/not
+                                detected. Per-room.
+                            </p>
+                            <div class="cc-example">
+                                "om fläkten drar mer än tjugo watt så stäng fläkten om etthundraåttio sekunder sedan släck köket långsamt"
+                            </div>
+                        </div>
+
+                        <div class="category-card">
+                            <span class="cc-num">3</span>
+                            <h4>Global actions</h4>
+                            <p class="cc-desc">
+                                Fires on any device that demands attention —
+                                water leak, smoke detector. Runs across every
+                                room at once.
+                            </p>
+                            <div class="cc-example">
+                                "säg ELD ELD ELD ELD samt vänta femton sekunder sedan säg ELD ELD ELD ELD!"
+                            </div>
+                        </div>
+
+                        <div class="category-card">
+                            <span class="cc-num">4</span>
+                            <h4>Dimmer actions</h4>
+                            <p class="cc-desc">
+                                Fires on button press, button hold, and release
+                                from the zigbee dimmers in each room.
+                            </p>
+                            <div class="cc-example">
+                                "släck alla lampor sedan stäng av fläkten"
+                            </div>
+                        </div>
+
+                        <div class="category-card">
+                            <span class="cc-num">5</span>
+                            <h4>Time-based</h4>
+                            <p class="cc-desc">
+                                Fires on a cron-style schedule. Wake-up alarm,
+                                weekend cancellation, TV guide scrape,
+                                battery check.
+                            </p>
+                            <div class="cc-example">
+                                "väck mig klockan elva och trettio"
+                            </div>
+                        </div>
+
+                        <div class="category-card">
+                            <span class="cc-num">6</span>
+                            <h4>Presence-based</h4>
+                            <p class="cc-desc">
+                                Fires on home/away transitions detected by
+                                phone probes. Arrival and departure routines.
+                            </p>
+                            <div class="cc-example">
+                                "skicka en notis om 🏠 ❌ LEFT HOME! samt släck alla lampor"
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="voice">
+                <div class="wrap reveal">
+                    <div class="section-head">
+                        <h2><span class="gold">The</span> <span class="white">voice</span></h2>
+                    </div>
+
+                    <div class="prose-section">
+                        <p>
+                            This is the part I keep coming back to. A home
+                            automation config is usually written for a generic
+                            user. This one is written for <strong>me</strong> —
+                            with my humour, my team, my language, my sarcasm. The
+                            alarm doesn't say <em>"Good morning, please wake up"</em>.
+                            It says what I'd actually say to myself.
+                        </p>
+                    </div>
+
+                    <div class="voice-quotes">
+
+                        <div class="voice-quote">
+                            <p class="vq-text">"säg UPP MED DIG LATMASK!!!"</p>
+                            <p class="vq-translation">
+                                "Say GET UP YOU LAZY ASS!!!"
+                            </p>
+                            <p class="vq-context">alarm · wakeup</p>
+                        </div>
+
+                        <div class="voice-quote">
+                            <p class="vq-text">"säg välkommen hem idiot"</p>
+                            <p class="vq-translation">
+                                "Say welcome home, idiot."
+                            </p>
+                            <p class="vq-context">greeting · door sensor</p>
+                        </div>
+
+                        <div class="voice-quote">
+                            <p class="vq-text">"släck allt igen fort utav helvete samt vänta tre sekunder"</p>
+                            <p class="vq-translation">
+                                "Turn everything off again, fast as hell, and wait
+                                three seconds."
+                            </p>
+                            <p class="vq-context">flash_lights · step 5</p>
+                        </div>
+
+                        <div class="voice-quote">
+                            <p class="vq-text">"om björklöven spelar just nu så aktivera scenen löven och om tvn är av så släng igång lajv björklöven för fan plus säg nu börjar match klant"</p>
+                            <p class="vq-translation">
+                                "If Björklöven is playing right now, activate the
+                                Löven scene, and if the TV is off, launch the
+                                live Björklöven broadcast for fuck's sake, plus
+                                say 'the match is starting, idiot.'"
+                            </p>
+                            <p class="vq-context">kitchen · motion detected</p>
+                        </div>
+
+                        <div class="voice-quote">
+                            <p class="vq-text">"skicka en notis om 🚪 DÖRR ÖPPEN! sedan medans dörren är öppen så säg tittut! tittut!"</p>
+                            <p class="vq-translation">
+                                "Send a notification: 🚪 DOOR OPEN! Then, while the
+                                door is open, say peekaboo! peekaboo!"
+                            </p>
+                            <p class="vq-context">hallway · door opened</p>
+                        </div>
+
+                        <div class="voice-quote">
+                            <p class="vq-text">"säg VATTEN VATTEN VATTEN VATTEN samt vänta femton sekunder sedan säg VATTEN VATTEN VATTEN!"</p>
+                            <p class="vq-translation">
+                                "Say WATER WATER WATER WATER, and wait fifteen
+                                seconds then say WATER WATER WATER!"
+                            </p>
+                            <p class="vq-context">global · leak detected</p>
+                        </div>
+
+                    </div>
+
+                    <div class="prose-section">
+                        <p>
+                            <em>Björklöven</em> is a specific hockey team in a
+                            specific Swedish city. The config isn't a framework
+                            for anyone — it's a framework for one household,
+                            built by one person, and it happens to have a laugh
+                            at itself. That's why the phrase <em>"config in
+                            plaintext"</em> matters: when the config is plain
+                            enough to read, the personality shows through. YAML
+                            flattens it. Swedish keeps it.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="caveat">
+                <div class="wrap reveal">
+                    <div class="section-head">
+                        <h2><span class="gold">The</span> <span class="white">honest caveat</span></h2>
+                    </div>
+
+                    <div class="prose-section">
+                        <p>
+                            I don't <em>know</em> this is a first. I looked.
+                            I searched for other Nix-based home automation
+                            modules, other natural-language configs, other
+                            single-file complete-house automations. I found
+                            plenty of Nix <em>packaging</em> of Home Assistant
+                            and Node-RED — but those are YAML-based systems
+                            wrapped in Nix, not Nix-native configurations.
+                            I found OpenHAB's DSL and Home Assistant's templating
+                            engine — both closer, neither natural language. I
+                            couldn't find anyone doing the specific combination
+                            that this file does.
+                        </p>
+                        <p>
+                            "Couldn't find" isn't "doesn't exist." If you know of
+                            prior art, please tell me. I'll be happy to be
+                            second. But until then, I'll keep the "possibly"
+                            in the claim, and let the file speak for itself.
+                        </p>
+                    </div>
+
+                    <div class="caveat">
+                        <strong>One honest asterisk.</strong>
+                        "One file" is the behaviour — rooms, automations, scenes,
+                        TV, dashboard. The device list lives in
+                        <code>devices.nix</code> and the dashboard pages in
+                        <code>dashboard.nix</code>, both imported at the top
+                        of <code>myHouse.nix</code>. Every large Nix module
+                        imports small modules. What's unusual is that the
+                        <em>entire logic of the house</em> fits in one file you
+                        can actually read front to back.
+                    </div>
+
+                    <p class="big-quote">
+                        Not a first by right. A first by<br>
+                        <strong>best guess and an honest search.</strong>
+                    </p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="wrap reveal">
+                    <div class="section-head">
+                        <h2><span class="gold">Where</span> <span class="white">it runs</span></h2>
+                    </div>
+
+                    <div class="cross-links">
+
+                        <a class="cross-link" href="milestone.html">
+                            <span class="cl-icon" aria-hidden="true">🦆</span>
+                            <div class="cl-body">
+                                <h3 class="cl-title">The translator</h3>
+                                <p class="cl-desc">
+                                    <code>yo do</code> — how one billion phrases
+                                    become shell scripts. The engine under
+                                    every automation on this page.
+                                </p>
+                            </div>
+                            <span class="cl-arrow" aria-hidden="true">→</span>
+                        </a>
+
+                        <a class="cross-link" href="work.html">
+                            <span class="cl-icon" aria-hidden="true">❄️</span>
+                            <div class="cl-body">
+                                <h3 class="cl-title">The workflow</h3>
+                                <p class="cl-desc">
+                                    <code>yo rb</code>, <code>yo deploy</code>,
+                                    <code>yo rollback</code> — how
+                                    <code>myHouse.nix</code> gets to the machine
+                                    that runs it.
+                                </p>
+                            </div>
+                            <span class="cl-arrow" aria-hidden="true">→</span>
+                        </a>
+
+                        <a class="cross-link" href="pokemon.html">
+                            <span class="cl-icon" aria-hidden="true">🥚</span>
+                            <div class="cl-body">
+                                <h3 class="cl-title">The other consumer</h3>
+                                <p class="cl-desc">
+                                    <code>yo pokemon</code> — another
+                                    <code>yo do</code> script, same translator,
+                                    different vocabulary.
+                                </p>
+                            </div>
+                            <span class="cl-arrow" aria-hidden="true">→</span>
+                        </a>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <div class="wrap footer-row">
+                <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBlindy.com</span></strong></div>
+                <div class="footer-links">
+                    <a href="#top">Top</a>
+                </div>
+            </div>
+        </footer>
+
+        <svg height="0" width="0" style="position:absolute" aria-hidden="true">
+            <filter id="f1">
+                <feTurbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp"/>
+                <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp"/>
+                <feColorMatrix type="matrix" result="red_" values="4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/>
+                <feOffset in="red_" dx="2" dy="0" result="red"/>
+                <feColorMatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 1 0"/>
+                <feOffset in="blue_" dx="-3" dy="0" result="blue"/>
+                <feBlend mode="screen" in="red" in2="blue"/>
+            </filter>
+        </svg>
+    </div>
+
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; }
+        </style>
+    </noscript>
+
+    <script>
+    (function () {
+        'use strict';
+
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+        } else {
+            document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+        }
+    })();
+    </script>
+</body>
+</html>

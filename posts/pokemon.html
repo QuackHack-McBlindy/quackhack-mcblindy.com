@@ -1,0 +1,2029 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Voice-Integrated Pokédex — QuackHack-McBlindy.com</title>
+    <meta name="description" content="912 voice patterns, 134.5 million phrases, 10,000 Pokémon in Home. A voice-integrated Pokédex that merges official data with my full collection.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quackhack-mcblindy.com/pokemon.html">
+    <meta property="og:title" content="The Voice-Integrated Pokédex — QuackHack-McBlindy.com">
+    <meta property="og:description" content="912 voice patterns. 134.5 million phrases. 10,000 Pokémon. One question.">
+    <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Voice-Integrated Pokédex — QuackHack-McBlindy.com">
+    <meta name="twitter:description" content="912 voice patterns. 134.5 million phrases. 10,000 Pokémon.">
+    <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+
+    <link rel="canonical" href="https://quackhack-mcblindy.com/pokemon.html" />
+    <meta name="theme-color" content="#050707">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script src="static/js/script.js" defer></script>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="🦯🦆">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon-16x16.png">
+
+    <style>
+        :root {
+            --bg: #050707;
+            --panel: #0b1110;
+            --panel2: #0e1716;
+            --teal: #11e6d2;
+            --teal2: #05a99f;
+            --gold: #f4b52f;
+            --gold2: #ffdc72;
+            --green: #5eea8f;
+            --red: #ff5470;
+            --pink: #ff7ab8;
+            --purple: #b392ff;
+            --blue: #6cb4ff;
+            --text: #f3fffd;
+            --muted: #8ea6a3;
+            --line: rgba(17, 230, 210, .16);
+            --max: 1180px;
+            --frame-header-h: 260px;
+            --frame-bottom-h: 64px;
+            --frame-left-w: 190px;
+            --frame-right-w: 196px;
+            --frame-z: 10000;
+            --mask-left-w: 214px;
+            --mask-right-w: 214px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 50% -10%, rgba(0, 221, 204, .10), transparent 34rem),
+                radial-gradient(circle at 90% 45%, rgba(244, 181, 47, .07), transparent 28rem),
+                var(--bg);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(17, 230, 210, .08), transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(244, 181, 47, .08), transparent 40%);
+            animation: aurora 20s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes aurora {
+            0%   { opacity: .5; transform: scale(1); }
+            100% { opacity: 1;  transform: scale(1.15); }
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .wrap {
+            width: min(calc(100vw - var(--mask-left-w) - var(--mask-right-w) - 40px), var(--max));
+            margin: auto;
+        }
+
+        .gold   { color: var(--gold); }
+        .white  { color: #fff; }
+        .muted  { color: var(--muted); }
+        .teal   { color: var(--teal); }
+        .green  { color: var(--green); }
+        .pink   { color: var(--pink); }
+        .purple { color: var(--purple); }
+        .red    { color: var(--red); }
+        .blue   { color: var(--blue); }
+
+        .duckhawk-frame {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: var(--frame-z);
+            pointer-events: none;
+            overflow: hidden;
+            display: none;
+        }
+        .frame-piece {
+            position: fixed;
+            display: block;
+            pointer-events: none;
+            user-select: none;
+            max-width: none;
+        }
+        .frame-header {
+            top: 0; left: 0;
+            width: 100vw;
+            height: var(--frame-header-h);
+            object-fit: fill;
+        }
+        .frame-left {
+            top: var(--frame-header-h); left: 0;
+            width: var(--frame-left-w);
+            height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+            object-fit: fill;
+        }
+        .frame-right {
+            top: var(--frame-header-h); right: 0;
+            width: var(--frame-right-w);
+            height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+            object-fit: fill;
+        }
+        .frame-bottom {
+            left: 0; bottom: 0;
+            width: 100vw;
+            height: var(--frame-bottom-h);
+            object-fit: fill;
+        }
+        .frame-navigation {
+            position: fixed;
+            inset: 0 0 auto 0;
+            width: 100vw;
+            height: var(--frame-header-h);
+            z-index: calc(var(--frame-z) + 1);
+            pointer-events: none;
+            display: none;
+        }
+        .frame-nav-link {
+            position: absolute;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            color: #f4df9a;
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, .95),
+                0 0 12px rgba(17, 230, 210, .35);
+            transition: color .25s ease, transform .25s ease, text-shadow .25s ease;
+        }
+        .frame-nav-home     { left: 25%; top: 140px; transform: translate(-50%, -50%); }
+        .frame-nav-showcase { left: 75%; top: 140px; transform: translate(-50%, -50%); }
+        .frame-nav-link::after {
+            content: "";
+            position: absolute;
+            left: 15%; right: 15%; bottom: 3px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--teal), transparent);
+            opacity: .65;
+            transform: scaleX(.35);
+            transition: transform .25s ease, opacity .25s ease;
+        }
+        .frame-nav-link:hover {
+            color: #fff5cf;
+            transform: translate(-50%, -50%) translateY(-2px);
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 1),
+                0 0 18px rgba(17, 230, 210, .65);
+        }
+        .frame-nav-link:hover::after { opacity: 1; transform: scaleX(1); }
+
+        .mobile-nav {
+            display: none;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: linear-gradient(180deg, #0b1110, #050707);
+            border-bottom: 1px solid var(--line);
+        }
+        .mobile-nav a {
+            padding: 8px 16px;
+            border-radius: 10px;
+            color: var(--gold);
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-weight: 700;
+            letter-spacing: .06em;
+        }
+        .mobile-nav a:hover { background: rgba(17, 230, 210, .1); color: var(--gold2); }
+
+        @media (min-width: 1200px) and (min-height: 700px) {
+            .duckhawk-frame,
+            .frame-navigation { display: block; }
+        }
+        @media (max-width: 1199px),
+               (max-height: 699px),
+               (min-width: 3440px),
+               (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+            .duckhawk-frame,
+            .frame-navigation { display: none; }
+            .mobile-nav { display: flex; }
+            .wrap { width: min(calc(100vw - 40px), var(--max)); }
+            main { padding-top: 20px !important; padding-bottom: 24px !important; }
+        }
+
+        header {
+            position: relative;
+            min-height: 200px;
+            isolation: isolate;
+        }
+        header:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, 0) 30%, var(--bg) 100%),
+                url("static/img/logo.png") center top / min(1500px, 100vw) auto no-repeat;
+            filter: saturate(1.04);
+        }
+        header:after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 0; right: 0; bottom: 0;
+            height: 100px;
+            background: linear-gradient(180deg, transparent, var(--bg));
+            pointer-events: none;
+        }
+
+        main {
+            padding-top: calc(var(--frame-header-h) + 20px);
+            padding-bottom: calc(var(--frame-bottom-h) + 20px);
+        }
+
+        .content-section { padding: 20px 0 50px; }
+
+        .page-title {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(2rem, 6vw, 3.4rem);
+            line-height: 1.15;
+            letter-spacing: -.01em;
+            text-align: center;
+            margin: 0 0 8px;
+        }
+        .page-subtitle {
+            text-align: center;
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin: 0 auto 28px;
+            max-width: 780px;
+        }
+        .page-subtitle code {
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: .9em;
+        }
+
+        .flow-glance {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 12px;
+            margin: 0 auto 34px;
+            max-width: 1000px;
+        }
+        .flow-glance .glance-item {
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 14px 16px;
+            text-align: center;
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .82rem;
+            line-height: 1.5;
+        }
+        .flow-glance .glance-item strong {
+            display: block;
+            color: var(--gold);
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 1rem;
+            letter-spacing: .04em;
+            margin-bottom: 4px;
+        }
+        .flow-glance .glance-item span { color: var(--muted); }
+        .flow-glance .glance-item.accent-red    { border-color: rgba(255, 84, 112, .28); }
+        .flow-glance .glance-item.accent-red    strong { color: var(--red); }
+        .flow-glance .glance-item.accent-blue   { border-color: rgba(108, 180, 255, .28); }
+        .flow-glance .glance-item.accent-blue   strong { color: var(--blue); }
+        .flow-glance .glance-item.accent-purple { border-color: rgba(179, 146, 255, .28); }
+        .flow-glance .glance-item.accent-purple strong { color: var(--purple); }
+        .flow-glance .glance-item.accent-gold   { border-color: rgba(244, 181, 47, .3); }
+        .flow-glance .glance-item.accent-gold   strong { color: var(--gold); }
+        @media (max-width: 700px) {
+            .flow-glance { grid-template-columns: 1fr; gap: 8px; }
+        }
+
+        .path-heading {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 0 0 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .path-heading .step-num {
+            width: 44px; height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            border: 1px solid var(--teal);
+            color: var(--teal);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            box-shadow: 0 0 22px rgba(17, 230, 210, .25);
+        }
+        .path-heading h2 {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(1.4rem, 3vw, 1.9rem);
+            margin: 0;
+            letter-spacing: -.01em;
+        }
+        .path-heading .subtitle {
+            color: var(--muted);
+            font-size: .92rem;
+            margin-left: 4px;
+        }
+
+        .terminal {
+            position: relative;
+            background: linear-gradient(180deg, #0c1312, #080d0c);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow:
+                0 22px 70px rgba(0, 0, 0, .55),
+                0 0 60px rgba(17, 230, 210, .06);
+            margin-bottom: 22px;
+        }
+        .terminal.help-terminal {
+            border-color: rgba(244, 181, 47, .28);
+            box-shadow:
+                0 22px 70px rgba(0, 0, 0, .55),
+                0 0 60px rgba(244, 181, 47, .08);
+        }
+        .terminal.help-terminal .terminal-bar {
+            background: linear-gradient(180deg, #1a1408, #0b1110);
+        }
+        .terminal-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 16px;
+            background: linear-gradient(180deg, #101a18, #0b1110);
+            border-bottom: 1px solid var(--line);
+        }
+        .terminal-bar .dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            flex: 0 0 auto;
+        }
+        .dot.red    { background: #ff5f57; }
+        .dot.yellow { background: #febc2e; }
+        .dot.green  { background: #28c840; }
+        .terminal-title {
+            margin-left: 10px;
+            color: var(--muted);
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .82rem;
+            letter-spacing: .02em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .terminal-bar .copy-btn {
+            margin-left: auto;
+            appearance: none;
+            border: 1px solid var(--line);
+            background: rgba(17, 230, 210, .07);
+            color: var(--teal);
+            font: inherit;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background .2s ease, color .2s ease, border-color .2s ease;
+        }
+        .terminal-bar .copy-btn:hover {
+            background: rgba(17, 230, 210, .15);
+            border-color: rgba(17, 230, 210, .4);
+        }
+        .terminal-bar .copy-btn.copied {
+            color: var(--green);
+            border-color: rgba(94, 234, 143, .4);
+            background: rgba(94, 234, 143, .08);
+        }
+
+        .terminal pre {
+            position: relative;
+            margin: 0;
+            padding: 22px 24px;
+            overflow-x: auto;
+            font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+            font-size: 13px;
+            line-height: 1.55;
+            color: #d9ece9;
+            tab-size: 2;
+            -webkit-font-smoothing: antialiased;
+        }
+        .terminal pre::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                180deg,
+                transparent,
+                transparent 3px,
+                rgba(17, 230, 210, .02) 3px,
+                rgba(17, 230, 210, .02) 4px
+            );
+        }
+        .terminal pre code { font: inherit; color: inherit; }
+
+        .t-line    { color: #2a4a47; }
+        .t-flow    { color: var(--gold); font-weight: 700; }
+        .t-arrow   { color: var(--teal); font-weight: 600; }
+        .t-stage   { color: var(--gold); font-weight: 800; letter-spacing: .04em; }
+        .t-heading { color: var(--gold); font-weight: 800; }
+        .t-success { color: var(--green); font-weight: 800; }
+        .t-failure { color: var(--red);   font-weight: 800; }
+        .t-cmd     { color: var(--gold2); font-weight: 700; }
+        .t-sound   { color: var(--pink); font-weight: 700; }
+        .t-flag    { color: var(--teal); font-weight: 600; }
+        .t-meta    { color: var(--muted); font-style: italic; }
+        .t-star    { color: var(--gold); text-shadow: 0 0 8px rgba(244, 181, 47, .5); }
+        .t-duck    { color: var(--gold2); }
+        .t-poke    { color: var(--red); font-weight: 700; }
+        .t-num     { color: var(--purple); font-weight: 700; }
+        .t-omitted { color: #4a6b68; font-style: italic; }
+
+        .callout {
+            background: rgba(17, 230, 210, .04);
+            border: 1px solid rgba(17, 230, 210, .2);
+            border-left: 3px solid var(--teal);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: .92rem;
+            line-height: 1.6;
+        }
+        .callout strong { color: var(--teal); }
+        .callout code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+
+        .layer-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            align-items: start;
+            margin-bottom: 22px;
+        }
+        .layer-split .layer-col {
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 24px 22px;
+            position: relative;
+            overflow: hidden;
+        }
+        .layer-split .layer-col.pokedex-col::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--blue), transparent);
+            opacity: .55;
+        }
+        .layer-split .layer-col.collection-col::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--pink), transparent);
+            opacity: .55;
+        }
+        .layer-split h3 {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 1.35rem;
+            letter-spacing: .02em;
+            margin: 0 0 4px;
+        }
+        .layer-split .pokedex-col h3 { color: var(--blue); }
+        .layer-split .collection-col h3 { color: var(--pink); }
+        .layer-split .layer-sub {
+            color: var(--muted);
+            font-size: .85rem;
+            margin: 0 0 14px;
+        }
+        .layer-split ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: .88rem;
+            line-height: 1.6;
+        }
+        .layer-split li {
+            position: relative;
+            padding-left: 20px;
+            color: #c9dbd8;
+            margin-bottom: 8px;
+        }
+        .layer-split li::before {
+            content: "›";
+            position: absolute;
+            left: 4px;
+            color: var(--teal);
+            font-weight: 700;
+        }
+        .layer-split code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .88em;
+        }
+        @media (max-width: 820px) {
+            .layer-split { grid-template-columns: 1fr; gap: 14px; }
+        }
+
+        .voice-demo {
+            display: grid;
+            gap: 16px;
+            margin: 0 0 22px;
+        }
+        .voice-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .voice-chip {
+            appearance: none;
+            border: 1px solid var(--line);
+            background: rgba(17, 230, 210, .04);
+            color: var(--text);
+            font-family: "JetBrains Mono", monospace;
+            font-size: .82rem;
+            padding: 8px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background .2s ease, border-color .2s ease, color .2s ease, transform .15s ease;
+        }
+        .voice-chip:hover {
+            background: rgba(17, 230, 210, .12);
+            border-color: rgba(17, 230, 210, .4);
+            transform: translateY(-1px);
+        }
+        .voice-chip.active {
+            background: rgba(244, 181, 47, .14);
+            border-color: var(--gold);
+            color: var(--gold2);
+        }
+        .voice-terminal {
+            background: linear-gradient(180deg, #0c1312, #080d0c);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px 22px;
+            font-family: "JetBrains Mono", "Fira Code", monospace;
+            font-size: .95rem;
+            min-height: 160px;
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, .45),
+                0 0 40px rgba(17, 230, 210, .05);
+        }
+        .voice-line {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            color: var(--gold2);
+            min-height: 1.5em;
+        }
+        .voice-prompt {
+            color: var(--teal);
+            user-select: none;
+            font-weight: 700;
+        }
+        .voice-query {
+            color: var(--gold2);
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .voice-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.05em;
+            background: var(--teal);
+            animation: blink 1s steps(2) infinite;
+            vertical-align: text-bottom;
+        }
+        @keyframes blink {
+            0%, 50%  { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .voice-response {
+            margin-top: 14px;
+            padding: 12px 16px;
+            border-left: 2px solid var(--teal);
+            background: rgba(17, 230, 210, .03);
+            border-radius: 0 8px 8px 0;
+            color: #b8cfcc;
+            line-height: 1.65;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity .35s ease, transform .35s ease;
+            font-size: .92rem;
+        }
+        .voice-response.show {
+            opacity: 1;
+            transform: none;
+        }
+        .voice-response strong {
+            color: var(--gold2);
+        }
+        .voice-tag {
+            display: inline-block;
+            font-size: .72rem;
+            font-family: "JetBrains Mono", monospace;
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .voice-tag.speak {
+            background: rgba(255, 122, 184, .12);
+            color: var(--pink);
+            border: 1px solid rgba(255, 122, 184, .3);
+        }
+        .voice-tag.cry {
+            background: rgba(108, 180, 255, .12);
+            color: var(--blue);
+            border: 1px solid rgba(108, 180, 255, .3);
+        }
+
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 10px;
+            margin: 0 0 22px;
+        }
+        .q-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, .02);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .82rem;
+            color: #c9dbd8;
+            transition: border-color .2s ease, background .2s ease;
+        }
+        .q-card:hover {
+            border-color: rgba(17, 230, 210, .3);
+            background: rgba(17, 230, 210, .04);
+        }
+        .q-card .q-icon {
+            font-size: 1.15rem;
+            line-height: 1;
+            flex: 0 0 auto;
+        }
+        .q-card .q-text { color: var(--gold2); }
+        .q-card .q-desc {
+            display: block;
+            color: var(--muted);
+            font-size: .72rem;
+            margin-top: 2px;
+        }
+
+        .power-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+        .power-card {
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 24px 22px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color .25s ease, transform .25s ease;
+        }
+        .power-card:hover {
+            border-color: rgba(17, 230, 210, .35);
+            transform: translateY(-2px);
+        }
+        .power-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--teal), transparent);
+            opacity: .5;
+        }
+        .power-card.evo::before    { background: linear-gradient(90deg, transparent, var(--green), transparent); }
+        .power-card.cache::before  { background: linear-gradient(90deg, transparent, var(--purple), transparent); }
+        .power-card.fuzzy::before  { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+        .power-card.cry::before    { background: linear-gradient(90deg, transparent, var(--blue), transparent); }
+        .power-card .icon {
+            font-size: 2rem;
+            line-height: 1;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .power-card h3 {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 1.2rem;
+            letter-spacing: .02em;
+            margin: 0 0 6px;
+            color: var(--gold2);
+        }
+        .power-card.evo h3   { color: var(--green); }
+        .power-card.cache h3 { color: var(--purple); }
+        .power-card.fuzzy h3 { color: var(--gold); }
+        .power-card.cry h3   { color: var(--blue); }
+        .power-card .lede {
+            color: var(--muted);
+            font-size: .9rem;
+            margin: 0 0 12px;
+            line-height: 1.55;
+        }
+        .power-card p { margin: 0 0 10px; font-size: .88rem; line-height: 1.6; color: #c9dbd8; }
+        .power-card code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+
+        .soundboard-intro {
+            text-align: center;
+            color: var(--muted);
+            max-width: 680px;
+            margin: 0 auto 26px;
+            font-size: 1.02rem;
+            line-height: 1.65;
+        }
+        .soundboard-intro kbd {
+            display: inline-block;
+            padding: 2px 7px;
+            border: 1px solid var(--line);
+            border-bottom-width: 2px;
+            border-radius: 6px;
+            background: var(--panel);
+            color: var(--gold2);
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .82em;
+            line-height: 1;
+        }
+        .soundboard-intro code {
+            color: var(--teal2);
+            background: rgba(17, 230, 210, .08);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+
+        .sound-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+        }
+        .sound-card {
+            position: relative;
+            appearance: none;
+            text-align: left;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            color: var(--text);
+            border-radius: 18px;
+            padding: 20px 18px 18px;
+            cursor: pointer;
+            font: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            overflow: hidden;
+            transition:
+                transform .18s ease,
+                border-color .25s ease,
+                box-shadow .25s ease,
+                background .25s ease;
+        }
+        .sound-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: radial-gradient(
+                circle at var(--mx, 50%) var(--my, 50%),
+                rgba(17, 230, 210, .12),
+                transparent 55%
+            );
+            opacity: 0;
+            transition: opacity .25s ease;
+        }
+        .sound-card:hover,
+        .sound-card:focus-visible {
+            transform: translateY(-3px);
+            border-color: rgba(17, 230, 210, .45);
+            box-shadow: 0 12px 40px rgba(17, 230, 210, .12);
+            outline: none;
+        }
+        .sound-card:hover::after,
+        .sound-card:focus-visible::after { opacity: 1; }
+        .sound-card.playing {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 2px rgba(17, 230, 210, .25), 0 12px 40px rgba(17, 230, 210, .22);
+        }
+        .sound-card.playing .sound-emoji { animation: bounce .45s ease infinite alternate; }
+        @keyframes bounce {
+            from { transform: translateY(0)    rotate(-4deg); }
+            to   { transform: translateY(-6px) rotate(4deg);  }
+        }
+
+        .sound-key {
+            position: absolute;
+            top: 12px; right: 14px;
+            width: 26px; height: 26px;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: rgba(0, 0, 0, .3);
+            color: var(--muted);
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+        .sound-emoji {
+            font-size: 2rem;
+            line-height: 1;
+            transition: transform .2s ease;
+        }
+        .sound-name {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: .04em;
+            color: var(--gold2);
+            margin-top: 4px;
+        }
+        .sound-desc {
+            color: var(--muted);
+            font-size: .88rem;
+            line-height: 1.45;
+        }
+        .sound-file {
+            color: var(--teal2);
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .76rem;
+            margin-top: 4px;
+            word-break: break-all;
+        }
+        .sound-card[data-tone="success"] .sound-name { color: var(--green); }
+        .sound-card[data-tone="success"] .sound-file { color: rgba(94, 234, 143, .8); }
+        .sound-card[data-tone="fail1"]   .sound-name { color: #ffb86b; }
+        .sound-card[data-tone="fail2"]   .sound-name { color: #ff9950; }
+        .sound-card[data-tone="fail3"]   .sound-name { color: var(--red); }
+        .sound-card[data-tone="relax"]   .sound-name { color: var(--pink); }
+        .sound-card[data-tone="relax"]   .sound-file { color: rgba(255, 122, 184, .8); }
+
+        .sound-hint {
+            margin-top: 22px;
+            text-align: center;
+            color: var(--muted);
+            font-size: .82rem;
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+        }
+        .sound-hint code {
+            color: var(--teal2);
+            background: rgba(17, 230, 210, .07);
+            padding: 2px 7px;
+            border-radius: 5px;
+            font-size: .95em;
+        }
+
+        .duck-burst {
+            position: fixed;
+            bottom: 15vh;
+            font-size: 2.6rem;
+            pointer-events: none;
+            z-index: 30000;
+            animation: duckFloat 1.3s cubic-bezier(.22, 1, .36, 1) forwards;
+            will-change: transform, opacity;
+        }
+        @keyframes duckFloat {
+            0%   { transform: translateY(0)     scale(.5) rotate(-10deg); opacity: 0; }
+            20%  { opacity: 1; transform: translateY(-20px) scale(1.05) rotate(6deg); }
+            100% { transform: translateY(-55vh) scale(1.4) rotate(25deg); opacity: 0; }
+        }
+        .duck-burst.burst-fail {
+            bottom: 30vh;
+            animation: burstShake 1.1s ease-out forwards;
+        }
+        @keyframes burstShake {
+            0%, 100% { transform: translate(0, 0) scale(.4); opacity: 0; }
+            10%      { opacity: 1; transform: translate(0, 0) scale(1.6); }
+            30%      { transform: translate(-14px, 8px) scale(1.6) rotate(-14deg); }
+            50%      { transform: translate(14px, -8px) scale(1.8) rotate(14deg); }
+            70%      { transform: translate(-8px, 4px) scale(1.4) rotate(-8deg); }
+        }
+        body.shake { animation: pageShake .4s ease; }
+        @keyframes pageShake {
+            0%, 100% { transform: translate(0, 0); }
+            20%      { transform: translate(-5px, 3px); }
+            40%      { transform: translate(5px, -3px); }
+            60%      { transform: translate(-3px, -2px); }
+            80%      { transform: translate(3px, 2px); }
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--panel2);
+            color: var(--text);
+            border: 1px solid var(--line);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: .9rem;
+            z-index: 40000;
+            opacity: 0;
+            transition: opacity .3s ease, transform .3s ease;
+            pointer-events: none;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .5);
+            max-width: 90vw;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        #duck-stage {
+            display: grid;
+            place-items: center;
+            min-height: 0;
+            margin-top: 26px;
+        }
+        #duck-stage pre {
+            margin: 0;
+            padding: 20px 26px;
+            border-radius: 14px;
+            border: 1px dashed rgba(94, 234, 143, .35);
+            background: rgba(94, 234, 143, .04);
+            color: var(--green);
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .95rem;
+            line-height: 1.5;
+            white-space: pre;
+            opacity: 0;
+            transform: translateY(10px) scale(.96);
+            transition: opacity .4s ease, transform .4s ease;
+        }
+        #duck-stage pre.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            animation: duckGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes duckGlow {
+            from { box-shadow: 0 0 0 rgba(94, 234, 143, 0); }
+            to   { box-shadow: 0 0 40px rgba(94, 234, 143, .25); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: .7s ease;
+        }
+        .reveal.in { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+            body::before { animation: none; opacity: .6; }
+            .glitch, .hue-shift, .voice-cursor { animation: none !important; }
+            .terminal pre::before { display: none; }
+        }
+
+        .glitch { animation: glitch 3s linear infinite; }
+        @keyframes glitch {
+            0%, 4%, 8%, 12%, 100% { filter: none; }
+            1%, 5%, 9% { filter: url(#f1); }
+        }
+        .hue-shift { animation: hueshift 45s ease-in-out infinite; }
+        @keyframes hueshift {
+            0%, 50%  { filter: hue-rotate(0deg); }
+            60%      { filter: hue-rotate(360deg); }
+            70%      { filter: hue-rotate(0deg); }
+            80%      { filter: hue-rotate(360deg); }
+            90%      { filter: hue-rotate(0deg); }
+            100%     { filter: hue-rotate(360deg); }
+        }
+
+        footer {
+            padding: 26px 0 34px;
+            border-top: 1px solid var(--line);
+        }
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+        .footer-links a {
+            color: var(--teal);
+            transition: color .2s ease;
+        }
+        .footer-links a:hover { color: var(--gold); }
+
+        @media (max-width: 850px) {
+            :root {
+                --frame-header-h: 190px;
+                --frame-bottom-h: 48px;
+                --frame-left-w: 105px;
+                --frame-right-w: 108px;
+            }
+            header { min-height: 150px; }
+            .frame-nav-link {
+                font-size: 17px;
+                letter-spacing: .08em;
+                padding: 8px 10px;
+            }
+            .frame-nav-home     { left: 24%; top: 78px; }
+            .frame-nav-showcase { left: 76%; top: 78px; }
+        }
+        @media (max-width: 560px) {
+            :root {
+                --frame-header-h: 145px;
+                --frame-bottom-h: 38px;
+                --frame-left-w: 72px;
+                --frame-right-w: 74px;
+            }
+            .wrap { width: min(calc(100% - 28px), var(--max)); }
+            header { min-height: 120px; }
+            .frame-nav-link {
+                font-size: 14px;
+                letter-spacing: .06em;
+                padding: 7px 6px;
+            }
+            .frame-nav-home     { left: 23%; top: 61px; }
+            .frame-nav-showcase { left: 77%; top: 61px; }
+            .terminal pre { padding: 18px 16px; font-size: 12px; }
+            .voice-terminal { padding: 16px 16px; font-size: .88rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="mobile-nav" aria-label="Main navigation">
+        <a href="index.html">Me</a>
+        <a href="work.html">Work</a>
+    </nav>
+
+    <div class="duckhawk-frame" aria-hidden="true">
+        <img class="frame-piece frame-header glitch hue-shift" src="static/img/frame/header.png" alt="">
+        <img class="frame-piece frame-left"  src="static/img/frame/left.png"  alt="">
+        <img class="frame-piece frame-right" src="static/img/frame/right.png" alt="">
+        <img class="frame-piece frame-bottom" src="static/img/frame/bottom.png" alt="">
+    </div>
+
+    <nav class="frame-navigation" aria-label="Main navigation">
+        <a class="frame-nav-link frame-nav-home"     href="index.html">Me</a>
+        <a class="frame-nav-link frame-nav-showcase" href="work.html">Work</a>
+    </nav>
+
+    <div id="content-glitch">
+        <header id="top"></header>
+
+        <main>
+
+            <section class="content-section" style="padding-bottom: 20px;">
+                <div class="wrap reveal">
+                    <h1 class="page-title">
+                        <span class="gold">The</span> <span class="white">Voice-Integrated</span> <span class="red">Pokédex</span>
+                    </h1>
+                    <p class="page-subtitle">
+                        <strong class="gold">912 patterns × 147,478 combinations = 134,502,402 possible sentences.</strong>
+                        A single <code>yo pokemon</code> command that merges the official Pokédex
+                        with my entire Pokémon Home collection (~10,000 mons) — and answers
+                        in English, Swedish, or both.
+                    </p>
+
+                    <div class="flow-glance">
+                        <div class="glance-item accent-blue">
+                            <strong>Pokédex</strong>
+                            <span>1025 species<br>types · IVs · cries</span>
+                        </div>
+                        <div class="glance-item accent-purple">
+                            <strong>Collection</strong>
+                            <span>~10,000 in Home<br>shiny · events · breedables</span>
+                        </div>
+                        <div class="glance-item accent-gold">
+                            <strong>Voice</strong>
+                            <span>134.5M phrases<br>Swedish + English</span>
+                        </div>
+                        <div class="glance-item accent-red">
+                            <strong>Cache</strong>
+                            <span>5-min TTL<br><code>nix eval</code> per query</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="help">
+                <div class="wrap reveal">
+                    <div class="path-heading">
+                        <div class="step-num">1</div>
+                        <h2><span class="gold">yo</span> <span class="white">pokemon -h</span></h2>
+                        <span class="subtitle">— one command, 20+ parameters</span>
+                    </div>
+
+                    <div class="terminal help-terminal">
+                        <div class="terminal-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="terminal-title">~/dotfiles $ yo pokemon -h</span>
+                            <button class="copy-btn" type="button" data-copy="#help-output">Copy</button>
+                        </div>
+<pre id="help-output"><code>   yo pokemon
+
+  Search user defined Pokémon using PokéNix.
+  Usage:  yo pokemon [OPTIONS]
+
+   ▶ Parameters
+
+   --pokemon
+  Subject Pokémon
+  (optional)
+  (allowed: abomasnow, abra, absol, accelgor, aegislash-shield, aerodactyl,
+  aggron, aipom, alakazam, alcremie, alomomola, altaria, amaura, ambipom,
+  amoonguss, ampharos, annihilape, anorith, appletun, applin, araquanid,
+  arbok, arboliva, arcanine, arceus, archaludon, archen, archeops, arctibax,
+  arctovish, arctozolt, ariados, armaldo, armarouge, aromatisse, aron,
+  arrokuda, articuno, audino, aurorus, avalugg, axew, azelf, azumarill,
+  azurill, ...)
+
+  [...]  [942 entries omitted]
+
+   --ball
+  Specific ball
+  (optional)
+  (allowed: safari, sport, fast, friend, heavy, level, lure, dream, moon,
+  beast, love)
+
+   --dex
+  Pokédex number
+  (optional)
+  (allowed: 0, 1, 2, 3, ... 1025)
+
+   --iv
+  IV value 0–31
+  (optional)
+  (allowed: 0, 1, 2, ... 31)
+
+   --ev
+  EV value 0–252
+  (optional)
+  (allowed: 0, 1, 2, ... 252)
+
+   --stats
+  Stat name
+  (optional)
+  (allowed: atk, spa, hp, def, spd, spe)
+
+   --level
+  Level
+  (optional)
+  (allowed: 1, 2, 3, ... 100)
+
+   --many
+  Count target
+  (optional)
+  (allowed: shiny, events, aprimons, ribbons, legendary, mythical)
+
+   --question
+  Info query
+  (optional)
+  (allowed: cry, type, egggroup, learnset, ribbons, legendary, mythical,
+  hidden, info, event, special, bollar, weight, height, color, happiness,
+  catchrate, locations, generation, hatch, flavor, evolve, evolvesfrom,
+  genera)
+
+   --ribbon
+  Specific ribbon
+  (optional)
+
+   --eggMoves
+  Egg moves flag
+  (optional)
+
+   --move
+  Move name
+  (optional)
+  (allowed: 10-000-000-volt-thunderbolt, absorb, accelerock, acid, ...)
+
+  [...]  [937 entries omitted]
+
+   --ability
+  Ability name
+  (optional)
+  (allowed: snow-warning, soundproof, synchronize, inner-focus, ...)
+
+  [...]  [310 entries omitted]
+
+   --shiny
+  Shiny search
+  (optional)
+
+   --ha
+  Hidden ability search
+  (optional)
+
+   --em
+  Egg-move-complete search
+  (optional)
+
+   --ribbons
+  List mons with ribbons
+  (optional)
+
+   --listMissing
+  List missing shinies
+  (optional)
+
+   --shinyLeft
+  Remaining shiny count
+  (optional)
+
+   --speak
+  Speak the response via text-to-speechy
+  (optional) (default: false)
+
+  ## Voice Commands
+
+  Patterns: 912
+  Phrases: 134,500,402
+  Ratio: 147,478</code></pre>
+                    </div>
+
+                    <div class="callout">
+                        <strong>The scale:</strong>
+                        the parameter list looks short. What's hidden is that
+                        <code>--pokemon</code> accepts <strong>1,024 species</strong>,
+                        <code>--move</code> accepts <strong>938 moves</strong>,
+                        <code>--ability</code> accepts <strong>311 abilities</strong>,
+                        and <code>--question</code> accepts <strong>24 different kinds of
+                        question</strong>. Pick one from each and the interpreter generates
+                        <em>134.5 million</em> possible English or Swedish sentences.
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="layers">
+                <div class="wrap reveal">
+                    <div class="path-heading">
+                        <div class="step-num">2</div>
+                        <h2><span class="gold">Two</span> <span class="white">data layers</span></h2>
+                        <span class="subtitle">— merged into one answer</span>
+                    </div>
+
+                    <p class="page-subtitle" style="margin-bottom:24px;">
+                        Every query hits <em>two</em> sources. The first is the same
+                        for everyone — official Pokédex data. The second is mine — a decade
+                        of collection data spread across four stores.
+                    </p>
+
+                    <div class="layer-split">
+
+                        <div class="layer-col pokedex-col">
+                            <h3>🌐 Pokédex</h3>
+                            <p class="layer-sub">Static · external · shared · cached 5 min</p>
+                            <ul>
+                                <li><code>pokedex.json</code> — 1025 species, current gen</li>
+                                <li>Types, weight, height, color, flavor text</li>
+                                <li>Base happiness, catch rate, hatch cycles</li>
+                                <li>Evolution chains — full graph, not just next stage</li>
+                                <li>Learnsets per level, egg groups, hidden abilities</li>
+                                <li>Cry URLs — <code>latest</code> and <code>legacy</code></li>
+                                <li>Locations, generation, species category</li>
+                                <li>Move data — type, power, accuracy, PP, damage class</li>
+                                <li>Legendary / mythical species flags</li>
+                            </ul>
+                        </div>
+
+                        <div class="layer-col collection-col">
+                            <h3>🎒 Collection</h3>
+                            <p class="layer-sub">Mine · ~10,000 in Home · four sub-stores</p>
+                            <ul>
+                                <li><code>shiny</code> — IVs, ball, nature, style, ribbons per mon</li>
+                                <li><code>specials</code> — event-locked specimens, level-locked</li>
+                                <li><code>events</code> — event gifts with year and origin</li>
+                                <li><code>breedables</code> — per ball: possible, owned, HA, egg moves</li>
+                                <li>10,000 mons across a decade of play</li>
+                                <li>Complete living shiny dex is the goal, not the status</li>
+                                <li>Aprimon tracking — 1024 species × 11 ball types</li>
+                                <li>Ribbon tracking on every shiny and special</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="callout">
+                        <strong>The merge:</strong>
+                        when you ask <code>"do I have bulbasaur with zero attack"</code>,
+                        the script checks <code>shiny</code>, <code>specials</code>,
+                        <code>events</code>, and <code>breedables</code>. If nothing matches
+                        the exact species, it walks <code>evo_relatives</code> — every
+                        evolution of bulbasaur — and reports the closest match instead of
+                        a plain "no". That fallback is why the answer sometimes surprises
+                        you.
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="voice">
+                <div class="wrap reveal">
+                    <div class="path-heading">
+                        <div class="step-num">3</div>
+                        <h2><span class="gold">Ask</span> <span class="white">it something</span></h2>
+                        <span class="subtitle">— 8 real queries, click one</span>
+                    </div>
+
+                    <p class="page-subtitle" style="margin-bottom:22px;">
+                        These are real queries from <code>voice.sentences</code> — click one
+                        and watch it type itself in. The response is what the CLI would print
+                        back, including the tags for TTS and cry playback.
+                    </p>
+
+                    <div class="voice-demo">
+                        <div class="voice-chips" id="voice-chips">
+                            <button class="voice-chip" type="button"
+                                    data-query="do i have bulbasaur shiny"
+                                    data-response="Yes, you have shiny bulbasaur (friend ball).">do i have bulbasaur shiny</button>
+
+                            <button class="voice-chip" type="button"
+                                    data-query="how much does ducklett weigh"
+                                    data-response="ducklett weighs 5.5 kg.">how much does ducklett weigh</button>
+
+                            <button class="voice-chip" type="button"
+                                    data-query="do i have bulbasaur in beast ball with egg moves"
+                                    data-response="No, you don't have bulbasaur in a beast ball.">do i have bulbasaur in beast ball with egg moves</button>
+
+                            <button class="voice-chip" type="button"
+                                    data-query="how many shinies do i have left"
+                                    data-response="You have 247 of 1025 shinies — 778 left.">how many shinies do i have left</button>
+
+                            <button class="voice-chip" type="button"
+                                    data-query="do i have charmeleon with 31 attack"
+                                    data-response="Yes, your charizard has 31 Attack IV — it's an evolution of charmeleon.">do i have charmeleon with 31 attack</button>
+
+                            <button class="voice-chip" type="button"
+                                    data-query="what does bulbasaur evolve into"
+                                    data-response="bulbasaur evolves into ivysaur and venusaur.">what does bulbasaur evolve into</button>
+
+                            <button class="voice-chip" type="button"
+                                    data-query="how many events do i have"
+                                    data-response="You have 164 events.">how many events do i have</button>
+
+                            <button class="voice-chip" type="button"
+                                    data-query="vilken låter bulbasaur"
+                                    data-response="♪ bulbasaur"
+                                    data-tag="cry">vilken låter bulbasaur</button>
+                        </div>
+
+                        <div class="voice-terminal" aria-live="polite">
+                            <div class="voice-line">
+                                <span class="voice-prompt">🦆 →</span>
+                                <span class="voice-query" id="voice-query"></span>
+                                <span class="voice-cursor" id="voice-cursor"></span>
+                            </div>
+                            <div class="voice-response" id="voice-response"></div>
+                        </div>
+                    </div>
+
+                    <div class="callout">
+                        <strong>Add <code>--speak true</code></strong> and the response is read
+                        aloud via <code>yo say</code>. For a cry query
+                        (<code>--question cry</code>) it tries <code>mpv</code> → <code>ffplay</code>
+                        → <code>vlc</code> in that order — whichever is installed wins.
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="questions">
+                <div class="wrap reveal">
+                    <div class="path-heading">
+                        <div class="step-num">4</div>
+                        <h2><span class="gold">24</span> <span class="white">kinds of question</span></h2>
+                        <span class="subtitle">— each one is a voice pattern</span>
+                    </div>
+
+                    <p class="page-subtitle" style="margin-bottom:24px;">
+                        Every box below is a real value of <code>--question</code>. Say any of
+                        them in English or Swedish, with or without a Pokémon name, and the
+                        interpreter figures out the rest.
+                    </p>
+
+                    <div class="question-grid">
+
+                        <div class="q-card"><span class="q-icon">🔊</span><div><span class="q-text">cry</span><span class="q-desc">plays the cry</span></div></div>
+                        <div class="q-card"><span class="q-icon">🌿</span><div><span class="q-text">type</span><span class="q-desc">grass and poison</span></div></div>
+                        <div class="q-card"><span class="q-icon">🥚</span><div><span class="q-text">egggroup</span><span class="q-desc">monster · grass</span></div></div>
+                        <div class="q-card"><span class="q-icon">📖</span><div><span class="q-text">learnset</span><span class="q-desc">by level</span></div></div>
+                        <div class="q-card"><span class="q-icon">🎀</span><div><span class="q-text">ribbons</span><span class="q-desc">who has them</span></div></div>
+                        <div class="q-card"><span class="q-icon">⚡</span><div><span class="q-text">legendary</span><span class="q-desc">species count</span></div></div>
+                        <div class="q-card"><span class="q-icon">🔮</span><div><span class="q-text">mythical</span><span class="q-desc">species count</span></div></div>
+                        <div class="q-card"><span class="q-icon">🙈</span><div><span class="q-text">hidden</span><span class="q-desc">hidden ability</span></div></div>
+                        <div class="q-card"><span class="q-icon">📋</span><div><span class="q-text">info</span><span class="q-desc">ball · style · nature</span></div></div>
+                        <div class="q-card"><span class="q-icon">🎁</span><div><span class="q-text">event</span><span class="q-desc">event variants</span></div></div>
+                        <div class="q-card"><span class="q-icon">🌟</span><div><span class="q-text">special</span><span class="q-desc">special specimens</span></div></div>
+                        <div class="q-card"><span class="q-icon">⚪</span><div><span class="q-text">bollar</span><span class="q-desc">what balls owned</span></div></div>
+                        <div class="q-card"><span class="q-icon">⚖️</span><div><span class="q-text">weight</span><span class="q-desc">in kg</span></div></div>
+                        <div class="q-card"><span class="q-icon">📏</span><div><span class="q-text">height</span><span class="q-desc">in cm</span></div></div>
+                        <div class="q-card"><span class="q-icon">🎨</span><div><span class="q-text">color</span><span class="q-desc">dex color</span></div></div>
+                        <div class="q-card"><span class="q-icon">😊</span><div><span class="q-text">happiness</span><span class="q-desc">base happiness</span></div></div>
+                        <div class="q-card"><span class="q-icon">🎯</span><div><span class="q-text">catchrate</span><span class="q-desc">0–255</span></div></div>
+                        <div class="q-card"><span class="q-icon">📍</span><div><span class="q-text">locations</span><span class="q-desc">where to find</span></div></div>
+                        <div class="q-card"><span class="q-icon">🧬</span><div><span class="q-text">generation</span><span class="q-desc">introduced in</span></div></div>
+                        <div class="q-card"><span class="q-icon">🥚</span><div><span class="q-text">hatch</span><span class="q-desc">cycles to hatch</span></div></div>
+                        <div class="q-card"><span class="q-icon">📜</span><div><span class="q-text">flavor</span><span class="q-desc">dex flavor text</span></div></div>
+                        <div class="q-card"><span class="q-icon">🧬</span><div><span class="q-text">evolve</span><span class="q-desc">what it becomes</span></div></div>
+                        <div class="q-card"><span class="q-icon">🧬</span><div><span class="q-text">evolvesfrom</span><span class="q-desc">what it came from</span></div></div>
+                        <div class="q-card"><span class="q-icon">🏷️</span><div><span class="q-text">genera</span><span class="q-desc">species category</span></div></div>
+
+                    </div>
+
+                    <div class="callout">
+                        <strong>Combine them:</strong>
+                        <code>--pokemon bulbasaur --question weight</code> → "bulbasaur weighs 6.9 kg".
+                        <code>--move flamethrower --question type</code> → "flamethrower is fire type".
+                        <code>--pokemon charizard --question cry</code> → plays charizard's cry.
+                        Twenty-four categories × 1,024 species × 938 moves × … is where the
+                        134.5 million number comes from.
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="power">
+                <div class="wrap reveal">
+                    <div class="path-heading">
+                        <div class="step-num">5</div>
+                        <h2><span class="gold">Four</span> <span class="white">things that make it work</span></h2>
+                        <span class="subtitle">— beyond the pattern matching</span>
+                    </div>
+
+                    <div class="power-grid">
+
+                        <div class="power-card evo">
+                            <span class="icon" aria-hidden="true">🧬</span>
+                            <h3>Evolution fallback</h3>
+                            <p class="lede">
+                                Ask about one species, get an answer about its whole line.
+                            </p>
+                            <p>
+                                When no direct match exists for "charmeleon with 31 attack",
+                                the script walks <code>evo_relatives</code> — every ancestor
+                                and descendant — and reports the closest match. That's why
+                                the answer says <em>"yes, your charizard"</em> instead of a
+                                flat no.
+                            </p>
+                            <p>
+                                Uses the full evolution graph from
+                                <code>pokedex.evolutionSteps</code> — not just the next stage.
+                            </p>
+                        </div>
+
+                        <div class="power-card cache">
+                            <span class="icon" aria-hidden="true">⚡</span>
+                            <h3>Five-minute cache</h3>
+                            <p class="lede">
+                                <code>nix eval</code> is slow. The cache makes queries feel instant.
+                            </p>
+                            <p>
+                                Every lookup runs
+                                <code>nix eval $FLAKE.pokenix.$path</code>
+                                and dumps the JSON into
+                                <code>~/.cache/pokenix/</code>. A second query within
+                                5 minutes reuses the file instead of re-evaluating the
+                                flake.
+                            </p>
+                            <p>
+                                <code>find "$f" -mmin +5</code> is the whole TTL. Simpler
+                                than it sounds.
+                            </p>
+                        </div>
+
+                        <div class="power-card fuzzy">
+                            <span class="icon" aria-hidden="true">🎙️</span>
+                            <h3>134.5M-phrase fuzzy match</h3>
+                            <p class="lede">
+                                912 patterns. 147,478 combinations. One typo-tolerant matcher.
+                            </p>
+                            <p>
+                                Voice input goes through
+                                <code>trigram_similarity</code> and
+                                <code>levenshtein_similarity</code>, then
+                                <code>find_best_fuzzy_match</code> picks the winner above
+                                <code>threshold = 0.5</code>.
+                            </p>
+                            <p>
+                                Swedish and English live side-by-side in the
+                                <code>sentences</code> array — the matcher doesn't care which
+                                one you used.
+                            </p>
+                        </div>
+
+                        <div class="power-card cry">
+                            <span class="icon" aria-hidden="true">🔊</span>
+                            <h3>Cry playback</h3>
+                            <p class="lede">
+                                <code>--question cry</code> isn't a text response. It plays audio.
+                            </p>
+                            <p>
+                                <code>play_cry</code> checks <code>mpv</code>, then
+                                <code>ffplay</code>, then <code>vlc</code>, and runs whichever
+                                one exists in the background. PokeAPI serves both
+                                <code>latest</code> and <code>legacy</code> cry URLs.
+                            </p>
+                            <p>
+                                If nothing's installed, it returns non-zero with the URL in
+                                the error, so you can still hear it manually.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="callout">
+                        <strong>One small detail worth knowing:</strong>
+                        <code>join_words</code> is a tiny <code>jq</code> filter that turns
+                        <code>["a"]</code> into <em>a</em>, <code>["a","b"]</code> into
+                        <em>a and b</em>, and <code>["a","b","c"]</code> into
+                        <em>a, b and c</em>. Every response that lists multiple items uses
+                        it — so the output reads like a sentence, not a comma dump.
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="soundboard">
+                <div class="wrap reveal">
+                    <h1 class="page-title">
+                        <span class="gold">Duck</span> <span class="white">Soundboard</span>
+                    </h1>
+                    <p class="soundboard-intro">
+                        Because every page ends in a quack. Four files, five functions
+                        from <code>helpers.nix</code> — <code>play_win</code> and
+                        <code>play_relax</code> share the celebration track.
+                        Hit a card, or press <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> <kbd>5</kbd>.
+                    </p>
+
+                    <div class="sound-grid" role="group" aria-label="Duck sound effects">
+
+                        <button class="sound-card" type="button"
+                                data-tone="success" data-key="1"
+                                data-sound="static/sound/duck_celebration.mp3"
+                                data-burst="success"
+                                aria-label="Play win (play_win)">
+                            <span class="sound-key" aria-hidden="true">1</span>
+                            <span class="sound-emoji" aria-hidden="true">🦆</span>
+                            <span class="sound-name">play_win</span>
+                            <span class="sound-desc">success · rebuild OK · test deploy verified</span>
+                            <span class="sound-file">duck_celebration.mp3</span>
+                        </button>
+
+                        <button class="sound-card" type="button"
+                                data-tone="fail1" data-key="2"
+                                data-sound="static/sound/duck_say_fuck.wav"
+                                data-burst="fail"
+                                aria-label="Play fail (play_fail)">
+                            <span class="sound-key" aria-hidden="true">2</span>
+                            <span class="sound-emoji" aria-hidden="true">🤬</span>
+                            <span class="sound-name">play_fail</span>
+                            <span class="sound-desc">fail 1–4 · rebuild broke · lost contact</span>
+                            <span class="sound-file">duck_say_fuck.wav</span>
+                        </button>
+
+                        <button class="sound-card" type="button"
+                                data-tone="fail2" data-key="3"
+                                data-sound="static/sound/duck_more_mad.mp3"
+                                data-burst="fail"
+                                aria-label="Play fail2 (play_fail2)">
+                            <span class="sound-key" aria-hidden="true">3</span>
+                            <span class="sound-emoji" aria-hidden="true">😤</span>
+                            <span class="sound-name">play_fail2</span>
+                            <span class="sound-desc">fail 5+ · the duck has had enough</span>
+                            <span class="sound-file">duck_more_mad.mp3</span>
+                        </button>
+
+                        <button class="sound-card" type="button"
+                                data-tone="fail3" data-key="4"
+                                data-sound="static/sound/DUCK_GO_CRAZY.mp3"
+                                data-burst="fail"
+                                aria-label="Play fail3 (play_fail3)">
+                            <span class="sound-key" aria-hidden="true">4</span>
+                            <span class="sound-emoji" aria-hidden="true">💀</span>
+                            <span class="sound-name">play_fail3</span>
+                            <span class="sound-desc">deep failure · defined, rarely called</span>
+                            <span class="sound-file">DUCK_GO_CRAZY.mp3</span>
+                        </button>
+
+                        <button class="sound-card" type="button"
+                                data-tone="relax" data-key="5"
+                                data-sound="static/sound/duck_celebration.mp3"
+                                data-burst="success"
+                                aria-label="Play relax (play_relax)">
+                            <span class="sound-key" aria-hidden="true">5</span>
+                            <span class="sound-emoji" aria-hidden="true">🎉</span>
+                            <span class="sound-name">play_relax</span>
+                            <span class="sound-desc">success after 6+ fails · or after yo push</span>
+                            <span class="sound-file">duck_celebration.mp3</span>
+                        </button>
+                    </div>
+
+                    <p class="sound-hint">
+                        Audio files live in <code>static/sound/</code>.
+                        Missing files show a toast + visual fallback.
+                    </p>
+
+                    <div id="duck-stage" aria-live="polite"></div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <div class="wrap footer-row">
+                <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBlindy.com</span></strong></div>
+                <div class="footer-links">
+                    <a href="#top">Top</a>
+                </div>
+            </div>
+        </footer>
+
+        <svg height="0" width="0" style="position:absolute" aria-hidden="true">
+            <filter id="f1">
+                <feTurbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp"/>
+                <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp"/>
+                <feColorMatrix type="matrix" result="red_" values="4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/>
+                <feOffset in="red_" dx="2" dy="0" result="red"/>
+                <feColorMatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 1 0"/>
+                <feOffset in="blue_" dx="-3" dy="0" result="blue"/>
+                <feBlend mode="screen" in="red" in2="blue"/>
+            </filter>
+        </svg>
+    </div>
+
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; }
+            .terminal pre::before { display: none; }
+            .voice-response { opacity: 1 !important; transform: none !important; }
+        </style>
+    </noscript>
+
+    <script>
+    (function () {
+        'use strict';
+
+        function escapeHTML(str) {
+            return String(str ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        function toast(msg) {
+            let el = document.querySelector('.toast');
+            if (!el) {
+                el = document.createElement('div');
+                el.className = 'toast';
+                document.body.appendChild(el);
+            }
+            el.textContent = msg;
+            el.classList.add('show');
+            clearTimeout(el._t);
+            el._t = setTimeout(() => el.classList.remove('show'), 2600);
+        }
+
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+        } else {
+            document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+        }
+
+        function highlight(text) {
+            const tokens = [];
+            let s = String(text);
+
+            function stash(m, cls) {
+                const i = tokens.length;
+                tokens.push(`<span class="${cls}">${escapeHTML(m)}</span>`);
+                return `\u0001${i}\u0001`;
+            }
+            function wrap(re, cls) {
+                s = s.replace(re, (m) => stash(m, cls));
+            }
+
+            wrap(/\b(play_win|play_fail2|play_fail3|play_fail|play_relax)\b/g, 't-sound');
+            wrap(/\byo\s+(pokemon|say|rb|ps|deploy|push|rollback|update-readme|yubi|switch)\b/g, 't-cmd');
+            wrap(/\b(nix eval|nixos-rebuild|nix-env|nix flake check)\b/g, 't-cmd');
+            wrap(/(?<!\w)--[a-z][a-z0-9-]*/g, 't-flag');
+            wrap(/\((?:optional|default|alias):?\s*[^)]*\)/g, 't-meta');
+            wrap(/▶\s*Parameters/g, 't-stage');
+            wrap(/##\s*Voice\s*Commands/g, 't-stage');
+            wrap(/\[\.\.\.\]/g, 't-omitted');
+            wrap(/\b(pokemon|bulbasaur|charmeleon|charizard|ivysaur|venusaur|ducklett|shuckle)\b/g, 't-poke');
+            wrap(/\b(1025|1024|938|311|247|778|164|912|147,478|134,502,402|10,000)\b/g, 't-num');
+
+            s = escapeHTML(s);
+            s = s.replace(/\u0001(\d+)\u0001/g, (_, i) => tokens[i]);
+            return s;
+        }
+
+        document.querySelectorAll('.terminal pre[id]').forEach((el) => {
+            try {
+                const raw = el.textContent;
+                el.dataset.raw = raw;
+                el.innerHTML = highlight(raw);
+            } catch (err) {
+                console.warn('Highlight failed for', el.id, err);
+            }
+        });
+
+        async function copyText(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                return;
+            }
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        }
+
+        document.querySelectorAll('.copy-btn').forEach((btn) => {
+            btn.addEventListener('click', async () => {
+                const sel = btn.getAttribute('data-copy');
+                const target = sel ? document.querySelector(sel) : null;
+                const text = target ? (target.dataset.raw || target.textContent) : '';
+                const original = btn.textContent;
+                try {
+                    await copyText(text);
+                    btn.textContent = 'Copied ✓';
+                    btn.classList.add('copied');
+                } catch (err) {
+                    btn.textContent = 'Failed';
+                } finally {
+                    setTimeout(() => {
+                        btn.textContent = original;
+                        btn.classList.remove('copied');
+                    }, 1600);
+                }
+            });
+        });
+
+        const voiceChips = Array.from(document.querySelectorAll('.voice-chip'));
+        const voiceQueryEl = document.getElementById('voice-query');
+        const voiceResponseEl = document.getElementById('voice-response');
+        const voiceCursorEl = document.getElementById('voice-cursor');
+        let voiceGeneration = 0;
+
+        function sleep(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms));
+        }
+
+        async function runVoiceQuery(chip) {
+            const gen = ++voiceGeneration;
+            const query = chip.dataset.query || '';
+            const response = chip.dataset.response || '';
+            const tag = chip.dataset.tag;
+
+            voiceChips.forEach((c) => c.classList.remove('active'));
+            chip.classList.add('active');
+
+            voiceQueryEl.textContent = '';
+            voiceResponseEl.classList.remove('show');
+            voiceResponseEl.innerHTML = '';
+            voiceCursorEl.style.display = 'inline-block';
+
+            for (let i = 0; i < query.length; i++) {
+                if (gen !== voiceGeneration) return;
+                voiceQueryEl.textContent = query.slice(0, i + 1);
+                const ch = query[i];
+                const delay = ch === ' ' ? 40 : 22 + Math.random() * 24;
+                await sleep(delay);
+            }
+
+            if (gen !== voiceGeneration) return;
+            voiceCursorEl.style.display = 'none';
+
+            await sleep(320);
+            if (gen !== voiceGeneration) return;
+
+            let html = '';
+            if (tag === 'cry') {
+                html += '<span class="voice-tag cry">🔊 cry</span>';
+            } else if (/[åäöÅÄÖ]/.test(query)) {
+                html += '<span class="voice-tag speak">🎙️ sv</span>';
+            }
+            html += response;
+            voiceResponseEl.innerHTML = html;
+            requestAnimationFrame(() => voiceResponseEl.classList.add('show'));
+        }
+
+        voiceChips.forEach((chip) => {
+            chip.addEventListener('click', () => runVoiceQuery(chip));
+        });
+
+        if (voiceQueryEl && voiceChips.length) {
+            voiceCursorEl.style.display = 'none';
+        }
+
+        const cards = Array.from(document.querySelectorAll('.sound-card'));
+        let currentAudio = null;
+        let currentCard = null;
+
+        function stopCurrent() {
+            if (currentAudio) {
+                try { currentAudio.pause(); currentAudio.currentTime = 0; } catch (_) {}
+                currentAudio = null;
+            }
+            if (currentCard) {
+                currentCard.classList.remove('playing');
+                currentCard = null;
+            }
+        }
+
+        function burst(kind) {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            if (kind === 'success') {
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => spawnBurst('🦆', 'success'), i * 90);
+                }
+                showDuckASCII();
+            } else {
+                spawnBurst(['💥', '🤬', '😤', '💀'][Math.floor(Math.random() * 4)], 'fail');
+                document.body.classList.remove('shake');
+                void document.body.offsetWidth;
+                document.body.classList.add('shake');
+                setTimeout(() => document.body.classList.remove('shake'), 450);
+            }
+        }
+
+        function spawnBurst(char, kind) {
+            const el = document.createElement('div');
+            el.className = 'duck-burst' + (kind === 'fail' ? ' burst-fail' : '');
+            el.textContent = char;
+            el.style.left = (15 + Math.random() * 70) + 'vw';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 1500);
+        }
+
+        const DUCK_ASCII = [
+            '',
+            '     __',
+            '   <(o )___',
+            '    ( ._> /',
+            "     `---'   QUACK QUACK — exit 0",
+            ''
+        ].join('\n');
+
+        function showDuckASCII() {
+            const stage = document.getElementById('duck-stage');
+            if (!stage) return;
+            stage.innerHTML = '';
+            const pre = document.createElement('pre');
+            pre.textContent = DUCK_ASCII;
+            stage.appendChild(pre);
+            requestAnimationFrame(() => pre.classList.add('show'));
+            clearTimeout(stage._t);
+            stage._t = setTimeout(() => {
+                pre.classList.remove('show');
+                setTimeout(() => { if (pre.parentNode) pre.remove(); }, 500);
+            }, 3200);
+        }
+
+        function playSound(card) {
+            const src = card.getAttribute('data-sound');
+            const kind = card.getAttribute('data-burst') || 'fail';
+            if (!src) return;
+
+            stopCurrent();
+
+            const audio = new Audio();
+            audio.preload = 'auto';
+            audio.volume = 0.85;
+
+            audio.addEventListener('play', () => {
+                card.classList.add('playing');
+                currentCard = card;
+                currentAudio = audio;
+            });
+            audio.addEventListener('ended', () => {
+                card.classList.remove('playing');
+                if (currentAudio === audio) { currentAudio = null; currentCard = null; }
+            });
+            audio.addEventListener('error', () => {
+                card.classList.remove('playing');
+                if (currentAudio === audio) { currentAudio = null; currentCard = null; }
+                toast('Missing sound: ' + src.split('/').pop());
+                burst(kind);
+            });
+
+            audio.src = src;
+            burst(kind);
+
+            const playPromise = audio.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch((err) => {
+                    console.warn('Playback blocked or missing:', err);
+                });
+            }
+        }
+
+        cards.forEach((card) => {
+            card.addEventListener('pointermove', (e) => {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+                card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+            });
+            card.addEventListener('click', () => playSound(card));
+        });
+
+        document.addEventListener('keydown', (e) => {
+            const t = e.target;
+            if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+            if (/^[1-5]$/.test(e.key)) {
+                const card = cards.find((c) => c.getAttribute('data-key') === e.key);
+                if (card) {
+                    e.preventDefault();
+                    playSound(card);
+                }
+            }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) stopCurrent();
+        });
+    })();
+    </script>
+</body>
+</html>

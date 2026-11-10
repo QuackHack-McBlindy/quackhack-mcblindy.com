@@ -1,0 +1,1182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Different Milestone Reached — QuackHack-McBlindy.com</title>
+    <meta name="description" content="yo do crossed one billion generated phrases. 8,043 patterns. 1,070,236,143 phrases. 100 scripts, 70 voice-ready. 97 ms average over 1,467 runs.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quackhack-mcblindy.com/milestone.html">
+    <meta property="og:title" content="A Different Milestone Reached — QuackHack-McBlindy.com">
+    <meta property="og:description" content="yo do crossed one billion generated phrases.">
+    <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="A Different Milestone Reached — QuackHack-McBlindy.com">
+    <meta name="twitter:description" content="yo do crossed one billion generated phrases.">
+    <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+
+    <link rel="canonical" href="https://quackhack-mcblindy.com/milestone.html" />
+    <meta name="theme-color" content="#050707">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script src="static/js/script.js" defer></script>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="🦯🦆">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon-16x16.png">
+
+    <style>
+        :root {
+            --bg: #050707;
+            --panel: #0b1110;
+            --panel2: #0e1716;
+            --teal: #11e6d2;
+            --teal2: #05a99f;
+            --gold: #f4b52f;
+            --gold2: #ffdc72;
+            --green: #5eea8f;
+            --red: #ff5470;
+            --pink: #ff7ab8;
+            --purple: #b392ff;
+            --blue: #6cb4ff;
+            --text: #f3fffd;
+            --muted: #8ea6a3;
+            --line: rgba(17, 230, 210, .16);
+            --max: 1180px;
+            --frame-header-h: 260px;
+            --frame-bottom-h: 64px;
+            --frame-left-w: 190px;
+            --frame-right-w: 196px;
+            --frame-z: 10000;
+            --mask-left-w: 214px;
+            --mask-right-w: 214px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 50% -10%, rgba(17, 230, 210, .10), transparent 34rem),
+                radial-gradient(circle at 90% 45%, rgba(244, 181, 47, .07), transparent 28rem),
+                var(--bg);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(17, 230, 210, .08), transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(244, 181, 47, .08), transparent 40%);
+            animation: aurora 20s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes aurora {
+            0%   { opacity: .5; transform: scale(1); }
+            100% { opacity: 1;  transform: scale(1.15); }
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .wrap {
+            width: min(calc(100vw - var(--mask-left-w) - var(--mask-right-w) - 40px), var(--max));
+            margin: auto;
+        }
+
+        .gold   { color: var(--gold); }
+        .white  { color: #fff; }
+        .muted  { color: var(--muted); }
+        .teal   { color: var(--teal); }
+        .green  { color: var(--green); }
+        .pink   { color: var(--pink); }
+        .purple { color: var(--purple); }
+        .red    { color: var(--red); }
+        .blue   { color: var(--blue); }
+
+        .duckhawk-frame {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: var(--frame-z);
+            pointer-events: none;
+            overflow: hidden;
+            display: none;
+        }
+        .frame-piece {
+            position: fixed;
+            display: block;
+            pointer-events: none;
+            user-select: none;
+            max-width: none;
+        }
+        .frame-header {
+            top: 0; left: 0;
+            width: 100vw;
+            height: var(--frame-header-h);
+            object-fit: fill;
+        }
+        .frame-left {
+            top: var(--frame-header-h); left: 0;
+            width: var(--frame-left-w);
+            height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+            object-fit: fill;
+        }
+        .frame-right {
+            top: var(--frame-header-h); right: 0;
+            width: var(--frame-right-w);
+            height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h));
+            object-fit: fill;
+        }
+        .frame-bottom {
+            left: 0; bottom: 0;
+            width: 100vw;
+            height: var(--frame-bottom-h);
+            object-fit: fill;
+        }
+        .frame-navigation {
+            position: fixed;
+            inset: 0 0 auto 0;
+            width: 100vw;
+            height: var(--frame-header-h);
+            z-index: calc(var(--frame-z) + 1);
+            pointer-events: none;
+            display: none;
+        }
+        .frame-nav-link {
+            position: absolute;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            color: #f4df9a;
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, .95),
+                0 0 12px rgba(17, 230, 210, .35);
+            transition: color .25s ease, transform .25s ease, text-shadow .25s ease;
+        }
+        .frame-nav-home     { left: 25%; top: 140px; transform: translate(-50%, -50%); }
+        .frame-nav-showcase { left: 75%; top: 140px; transform: translate(-50%, -50%); }
+        .frame-nav-link::after {
+            content: "";
+            position: absolute;
+            left: 15%; right: 15%; bottom: 3px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--teal), transparent);
+            opacity: .65;
+            transform: scaleX(.35);
+            transition: transform .25s ease, opacity .25s ease;
+        }
+        .frame-nav-link:hover {
+            color: #fff5cf;
+            transform: translate(-50%, -50%) translateY(-2px);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 1), 0 0 18px rgba(17, 230, 210, .65);
+        }
+        .frame-nav-link:hover::after { opacity: 1; transform: scaleX(1); }
+
+        .mobile-nav {
+            display: none;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: linear-gradient(180deg, #0b1110, #050707);
+            border-bottom: 1px solid var(--line);
+        }
+        .mobile-nav a {
+            padding: 8px 16px;
+            border-radius: 10px;
+            color: var(--gold);
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-weight: 700;
+            letter-spacing: .06em;
+        }
+        .mobile-nav a:hover { background: rgba(17, 230, 210, .1); color: var(--gold2); }
+
+        @media (min-width: 1200px) and (min-height: 700px) {
+            .duckhawk-frame,
+            .frame-navigation { display: block; }
+        }
+        @media (max-width: 1199px),
+               (max-height: 699px),
+               (min-width: 3440px),
+               (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+            .duckhawk-frame,
+            .frame-navigation { display: none; }
+            .mobile-nav { display: flex; }
+            .wrap { width: min(calc(100vw - 40px), var(--max)); }
+            main { padding-top: 20px !important; padding-bottom: 24px !important; }
+        }
+
+        header {
+            position: relative;
+            min-height: 200px;
+            isolation: isolate;
+        }
+        header:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, 0) 30%, var(--bg) 100%),
+                url("static/img/logo.png") center top / min(1500px, 100vw) auto no-repeat;
+            filter: saturate(1.04);
+        }
+        header:after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 0; right: 0; bottom: 0;
+            height: 100px;
+            background: linear-gradient(180deg, transparent, var(--bg));
+            pointer-events: none;
+        }
+
+        main {
+            padding-top: calc(var(--frame-header-h) + 20px);
+            padding-bottom: calc(var(--frame-bottom-h) + 20px);
+        }
+
+        .content-section { padding: 20px 0 50px; }
+
+        .milestone-hero {
+            text-align: center;
+            padding: 30px 0 50px;
+        }
+        .milestone-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 16px;
+            background: rgba(17, 230, 210, .06);
+            border: 1px solid rgba(17, 230, 210, .3);
+            border-radius: 999px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .76rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 24px;
+        }
+        .milestone-eyebrow::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--teal);
+            box-shadow: 0 0 10px var(--teal);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50%      { opacity: .3; }
+        }
+
+        .milestone-title {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            line-height: 1.1;
+            letter-spacing: -.01em;
+            margin: 0 0 24px;
+        }
+        .milestone-title .gold { display: inline; }
+
+        .milestone-number {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(3rem, 14vw, 8.5rem);
+            line-height: .95;
+            letter-spacing: -.03em;
+            margin: 0 0 8px;
+            background: linear-gradient(135deg, var(--gold2) 0%, var(--gold) 40%, var(--teal) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 40px rgba(244, 181, 47, .3));
+        }
+        .milestone-unit {
+            font-family: "JetBrains Mono", monospace;
+            font-size: clamp(.85rem, 1.6vw, 1rem);
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 0 0 32px;
+        }
+
+        .milestone-sub {
+            font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+            color: var(--muted);
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+        .milestone-sub strong { color: var(--gold2); font-weight: 700; }
+
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 14px;
+            max-width: 1000px;
+            margin: 0 auto 26px;
+        }
+        .stat-tile {
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 22px 16px;
+            text-align: center;
+            transition: border-color .25s ease, transform .25s ease;
+        }
+        .stat-tile:hover {
+            border-color: rgba(17, 230, 210, .35);
+            transform: translateY(-2px);
+        }
+        .stat-tile strong {
+            display: block;
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(1.4rem, 3vw, 1.9rem);
+            color: var(--gold2);
+            letter-spacing: -.01em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .stat-tile span {
+            color: var(--muted);
+            font-size: .74rem;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            font-family: "JetBrains Mono", monospace;
+        }
+        .stat-tile.accent-teal strong   { color: var(--teal); }
+        .stat-tile.accent-green strong  { color: var(--green); }
+        .stat-tile.accent-pink strong   { color: var(--pink); }
+        .stat-tile.accent-blue strong   { color: var(--blue); }
+        .stat-tile.accent-gold strong   { color: var(--gold); }
+        .stat-tile.accent-gold2 strong  { color: var(--gold2); }
+
+        .voice-coverage {
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            padding: 22px 26px;
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        .voice-coverage::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: .6;
+        }
+        .voice-coverage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .82rem;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .voice-coverage-header .vc-label {
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+        .voice-coverage-header .vc-value {
+            color: var(--gold2);
+            font-weight: 700;
+        }
+        .voice-coverage-header .vc-value .vc-pct {
+            color: var(--teal);
+        }
+        .voice-coverage-track {
+            height: 10px;
+            background: rgba(0, 0, 0, .4);
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .06);
+        }
+        .voice-coverage-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teal), var(--gold2));
+            border-radius: 999px;
+            box-shadow: 0 0 20px rgba(244, 181, 47, .35);
+            position: relative;
+        }
+        .voice-coverage-fill::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 255, 255, .8);
+            box-shadow: 0 0 10px rgba(255, 255, 255, .8);
+        }
+        .voice-coverage-meta {
+            margin-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            font-size: .78rem;
+            color: var(--muted);
+            font-family: "JetBrains Mono", monospace;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .voice-coverage-meta code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+        .voice-coverage-meta .vc-hint {
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 0 0 26px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .section-head h2 {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(1.4rem, 3.2vw, 1.9rem);
+            margin: 0;
+            letter-spacing: -.01em;
+            text-align: center;
+        }
+
+        .prose-section {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .prose-section p {
+            color: #c9dbd8;
+            font-size: 1rem;
+            line-height: 1.75;
+            margin: 0 0 18px;
+        }
+        .prose-section p:last-child { margin-bottom: 0; }
+        .prose-section strong { color: var(--gold2); font-weight: 700; }
+        .prose-section code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+        .prose-section em { color: var(--gold2); font-style: italic; }
+
+        .sub-heading {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+            color: var(--teal);
+            margin: 32px 0 14px;
+            letter-spacing: .01em;
+        }
+        .sub-heading strong { color: var(--gold2); }
+
+        .prose-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .prose-list li {
+            padding: 16px 20px 16px 24px;
+            border-left: 2px solid var(--teal);
+            background: rgba(17, 230, 210, .03);
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 12px;
+            color: #c9dbd8;
+            font-size: .95rem;
+            line-height: 1.65;
+        }
+        .prose-list li strong {
+            color: var(--gold2);
+            font-weight: 700;
+        }
+        .prose-list li code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+
+        .wildcard-note {
+            max-width: 760px;
+            margin: 24px auto 0;
+            padding: 18px 22px;
+            background: rgba(179, 146, 255, .04);
+            border: 1px solid rgba(179, 146, 255, .25);
+            border-left: 3px solid var(--purple);
+            border-radius: 10px;
+            color: #c9dbd8;
+            font-size: .94rem;
+            line-height: 1.7;
+        }
+        .wildcard-note strong {
+            color: var(--purple);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .wildcard-note strong::before {
+            content: "⚠";
+            font-size: 1.05em;
+        }
+        .wildcard-note code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+        .wildcard-note em { color: var(--gold2); font-style: italic; }
+
+        .tests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .test-card {
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 22px 20px;
+            position: relative;
+        }
+        .test-card .test-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid var(--teal);
+            color: var(--teal);
+            font-family: "JetBrains Mono", monospace;
+            font-size: .82rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .test-card h4 {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 1rem;
+            color: var(--gold2);
+            margin: 0 0 8px;
+            letter-spacing: .02em;
+        }
+        .test-card p {
+            color: #c9dbd8;
+            font-size: .88rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .test-card code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .88em;
+        }
+
+        .big-quote {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+            line-height: 1.5;
+            text-align: center;
+            color: var(--gold2);
+            margin: 40px auto 20px;
+            max-width: 700px;
+            padding: 0 20px;
+            position: relative;
+        }
+        .big-quote::before,
+        .big-quote::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--teal), transparent);
+            margin: 0 auto;
+        }
+        .big-quote::before { margin-bottom: 20px; }
+        .big-quote::after { margin-top: 20px; }
+        .big-quote strong { color: var(--teal); font-style: italic; }
+
+        .cross-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .cross-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 22px;
+            background: linear-gradient(180deg, var(--panel2), var(--panel));
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            transition: border-color .25s ease, transform .25s ease;
+        }
+        .cross-link:hover {
+            border-color: rgba(17, 230, 210, .4);
+            transform: translateY(-2px);
+        }
+        .cross-link .cl-icon {
+            font-size: 1.8rem;
+            flex: 0 0 auto;
+        }
+        .cross-link .cl-body { flex: 1; min-width: 0; }
+        .cross-link .cl-title {
+            font-family: "Cinzel Decorative", Georgia, serif;
+            font-size: 1rem;
+            color: var(--gold2);
+            margin: 0 0 3px;
+            letter-spacing: .02em;
+        }
+        .cross-link .cl-desc {
+            color: var(--muted);
+            font-size: .85rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .cross-link .cl-desc code {
+            color: var(--gold2);
+            background: rgba(244, 181, 47, .08);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .9em;
+        }
+        .cross-link .cl-arrow {
+            color: var(--teal);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 1.2rem;
+            flex: 0 0 auto;
+            transition: transform .2s ease;
+        }
+        .cross-link:hover .cl-arrow { transform: translateX(4px); }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: .7s ease;
+        }
+        .reveal.in { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+            body::before { animation: none; opacity: .6; }
+            .glitch, .hue-shift { animation: none !important; }
+            .milestone-eyebrow::before { animation: none; }
+        }
+
+        .glitch { animation: glitch 3s linear infinite; }
+        @keyframes glitch {
+            0%, 4%, 8%, 12%, 100% { filter: none; }
+            1%, 5%, 9% { filter: url(#f1); }
+        }
+        .hue-shift { animation: hueshift 45s ease-in-out infinite; }
+        @keyframes hueshift {
+            0%, 50%  { filter: hue-rotate(0deg); }
+            60%      { filter: hue-rotate(360deg); }
+            70%      { filter: hue-rotate(0deg); }
+            80%      { filter: hue-rotate(360deg); }
+            90%      { filter: hue-rotate(0deg); }
+            100%     { filter: hue-rotate(360deg); }
+        }
+
+        footer {
+            padding: 26px 0 34px;
+            border-top: 1px solid var(--line);
+        }
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+        .footer-links a {
+            color: var(--teal);
+            transition: color .2s ease;
+        }
+        .footer-links a:hover { color: var(--gold); }
+
+        @media (max-width: 850px) {
+            :root {
+                --frame-header-h: 190px;
+                --frame-bottom-h: 48px;
+                --frame-left-w: 105px;
+                --frame-right-w: 108px;
+            }
+            header { min-height: 150px; }
+            .frame-nav-link {
+                font-size: 17px;
+                letter-spacing: .08em;
+                padding: 8px 10px;
+            }
+            .frame-nav-home     { left: 24%; top: 78px; }
+            .frame-nav-showcase { left: 76%; top: 78px; }
+            .voice-coverage { padding: 18px 20px; }
+        }
+        @media (max-width: 560px) {
+            :root {
+                --frame-header-h: 145px;
+                --frame-bottom-h: 38px;
+                --frame-left-w: 72px;
+                --frame-right-w: 74px;
+            }
+            .wrap { width: min(calc(100% - 28px), var(--max)); }
+            header { min-height: 120px; }
+            .frame-nav-link {
+                font-size: 14px;
+                letter-spacing: .06em;
+                padding: 7px 6px;
+            }
+            .frame-nav-home     { left: 23%; top: 61px; }
+            .frame-nav-showcase { left: 77%; top: 61px; }
+            .milestone-number { font-size: clamp(2.4rem, 16vw, 4rem); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="mobile-nav" aria-label="Main navigation">
+        <a href="index.html">Me</a>
+        <a href="work.html">Work</a>
+    </nav>
+
+    <div class="duckhawk-frame" aria-hidden="true">
+        <img class="frame-piece frame-header glitch hue-shift" src="static/img/frame/header.png" alt="">
+        <img class="frame-piece frame-left"  src="static/img/frame/left.png"  alt="">
+        <img class="frame-piece frame-right" src="static/img/frame/right.png" alt="">
+        <img class="frame-piece frame-bottom" src="static/img/frame/bottom.png" alt="">
+    </div>
+
+    <nav class="frame-navigation" aria-label="Main navigation">
+        <a class="frame-nav-link frame-nav-home"     href="index.html">Me</a>
+        <a class="frame-nav-link frame-nav-showcase" href="work.html">Work</a>
+    </nav>
+
+    <div id="content-glitch">
+        <header id="top"></header>
+
+        <main>
+
+            <section class="content-section milestone-hero">
+                <div class="wrap reveal">
+                    <div class="milestone-eyebrow">A different milestone reached</div>
+
+                    <h1 class="milestone-title">
+                        <span class="white">yo do</span> <span class="gold">crossed</span>
+                    </h1>
+
+                    <p class="milestone-number">1,070,236,143</p>
+                    <p class="milestone-unit">generated phrases</p>
+
+                    <p class="milestone-sub">
+                        From <strong>8,043 patterns</strong>, at a ratio of
+                        <strong>133,064</strong> phrases per pattern.
+                        All matched at runtime, with <strong>97 ms</strong>
+                        average execution across <strong>1,467 runs</strong>.
+                    </p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="wrap reveal">
+                    <div class="stat-strip">
+                        <div class="stat-tile accent-teal">
+                            <strong>8,043</strong>
+                            <span>patterns</span>
+                        </div>
+                        <div class="stat-tile accent-green">
+                            <strong>1.07B</strong>
+                            <span>phrases</span>
+                        </div>
+                        <div class="stat-tile accent-pink">
+                            <strong>133k</strong>
+                            <span>phrases / pattern</span>
+                        </div>
+                        <div class="stat-tile accent-blue">
+                            <strong>97 ms</strong>
+                            <span>avg · 1,467 runs</span>
+                        </div>
+                        <div class="stat-tile accent-gold">
+                            <strong>100</strong>
+                            <span>scripts total</span>
+                        </div>
+                        <div class="stat-tile accent-gold2">
+                            <strong>70</strong>
+                            <span>voice-ready</span>
+                        </div>
+                    </div>
+
+                    <div class="voice-coverage">
+                        <div class="voice-coverage-header">
+                            <span class="vc-label">Voice-enabled coverage</span>
+                            <span class="vc-value">
+                                70 / 100 · <span class="vc-pct">70%</span>
+                            </span>
+                        </div>
+                        <div class="voice-coverage-track">
+                            <div class="voice-coverage-fill" style="width: 70%;"></div>
+                        </div>
+                        <div class="voice-coverage-meta">
+                            <span>70 scripts respond to natural language</span>
+                            <span class="vc-hint">
+                                <code>voice.enabled = true</code> in their <code>.nix</code>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="meaning">
+                <div class="wrap reveal">
+                    <div class="section-head">
+                        <h2><span class="gold">What</span> <span class="white">a billion actually means</span></h2>
+                    </div>
+
+                    <div class="prose-section">
+                        <p>
+                            <code>yo do</code> is a natural language to shell script
+                            translator. You speak or type a sentence. It runs exact
+                            and fuzzy pattern matching against a set of templates,
+                            resolves the parameters, and executes the corresponding
+                            script. No command list to memorize. No aliases to look
+                            up. Just a sentence.
+                        </p>
+                        <p>
+                            A billion is easy to say and hard to picture. So let's
+                            make it concrete.
+                        </p>
+
+                        <h3 class="sub-heading">The math</h3>
+                        <p>
+                            <code>yo do</code> doesn't have a billion sentences
+                            written into it. It has <strong>8,043 patterns</strong> —
+                            human-written templates with slots. What turns those
+                            8,043 patterns into <strong>1,070,236,143 phrases</strong>
+                            is the parameter space.
+                        </p>
+                        <p>
+                            Every slot in a pattern can be filled by every value that
+                            slot accepts. When a pattern says
+                            <em>"deploy {host}"</em> and <code>{host}</code> can be
+                            any of your machines, that's one pattern generating many
+                            sentences. When a pattern says
+                            <em>"what {question} is {pokemon}"</em> and
+                            <code>{question}</code> has 24 values and
+                            <code>{pokemon}</code> has 1,024, that's one pattern
+                            generating 24,576 sentences.
+                        </p>
+                        <p>
+                            Stack enough slots across enough scripts, and the
+                            multiplication does what multiplication does.
+                            <strong>8,043 patterns × ~133,064 variations per
+                            pattern = over a billion distinct sentences</strong>
+                            the runtime matcher recognizes.
+                        </p>
+                    </div>
+
+                    <div class="wildcard-note">
+                        <strong>Wildcards aren't counted.</strong>
+                        A slot like <code>{eggMoves.wildcard = true}</code> accepts
+                        any value, not a fixed list — so it can't be enumerated.
+                        The 1.07 billion is therefore a <em>lower bound</em> on what
+                        <code>yo do</code> understands, not an upper one. Wildcard
+                        slots push the real reach further past a billion than the
+                        counted number does.
+                    </div>
+
+                    <div class="prose-section">
+                        <h3 class="sub-heading">The number isn't the interesting part</h3>
+                        <p>
+                            Plenty of tools can generate a billion strings. A billion
+                            is trivial to fake — <em>"repeat the word quack one
+                            billion times"</em> is a one-line script and also
+                            meaningless. What makes this milestone different is what
+                            the number represents.
+                        </p>
+
+                        <ul class="prose-list">
+                            <li>
+                                <strong>Every phrase is a real, resolvable command.</strong>
+                                If you say it (or type it), <code>yo do</code> finds
+                                the script that matches, resolves the parameters, and
+                                executes it. Nothing in that billion is theoretical.
+                                The phrase count is a lower bound on the set of
+                                actually understandable inputs — not the set of
+                                parseable ones.
+                            </li>
+                            <li>
+                                <strong>It's parameter variations, not sentence
+                                variations.</strong>
+                                A billion ChatGPT prompts would be a billion
+                                sentences. A billion <code>yo do</code> phrases is a
+                                much smaller set of sentence shapes with every
+                                meaningful combination of slots filled in. That's why
+                                it works: the system doesn't need to have seen your
+                                exact sentence. It needs to recognize your sentence
+                                as belonging to a pattern it does understand, then
+                                read the parameters out of it.
+                            </li>
+                            <li>
+                                <strong>Natural language, not command syntax.</strong>
+                                These are the phrases you'd actually say out loud.
+                                <em>"Do I have bulbasaur shiny."</em>
+                                <em>"Deploy homie."</em>
+                                <em>"Which move is flamethrower."</em>
+                                <em>"How many shinies do I have left."</em>
+                                The billion is the count of those — not of
+                                <code>yo pokemon --pokemon bulbasaur --shiny true</code>.
+                            </li>
+                        </ul>
+
+                        <h3 class="sub-heading">What <strong>understandable</strong> means here</h3>
+                        <p>
+                            The phrase count only includes sentences that pass three
+                            tests:
+                        </p>
+                    </div>
+
+                    <div class="tests-grid">
+                        <div class="test-card">
+                            <span class="test-num">1</span>
+                            <h4>Pattern match</h4>
+                            <p>
+                                Exact or fuzzy — the sentence has to resolve to one
+                                of the 8,043 templates. Fuzzy matching handles typos
+                                and slight rephrasing, but it does not invent
+                                understanding where none exists.
+                            </p>
+                        </div>
+                        <div class="test-card">
+                            <span class="test-num">2</span>
+                            <h4>Parameter resolution</h4>
+                            <p>
+                                Every slot in the matched pattern has to resolve to a
+                                valid value from that slot's allowed set.
+                                <code>"Deploy ducklett"</code> fails at this step
+                                because ducklett isn't a host.
+                                <code>"Deploy homie"</code> succeeds because homie is.
+                            </p>
+                        </div>
+                        <div class="test-card">
+                            <span class="test-num">3</span>
+                            <h4>Script execution</h4>
+                            <p>
+                                The resolved parameters have to actually run. A
+                                pattern that matches but produces a script that
+                                errors is not a phrase that "works" — it's a phrase
+                                that fires the wrong thing, which is worse than not
+                                matching at all.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="prose-section">
+                        <p>
+                            So the billion is not <em>"sentences the system will
+                            attempt."</em> It's <em>"sentences the system will
+                            correctly recognize, resolve, and run."</em> That's a
+                            much smaller, much more honest number.
+                        </p>
+
+                        <h3 class="sub-heading">Why it took a while</h3>
+                        <p>
+                            Eight thousand patterns is a lot to hand-write. A
+                            hundred thousand phrases per pattern is a lot of grammar
+                            to get right — genders, plural forms, word order,
+                            Swedish and English, synonyms, optional words,
+                            abbreviations. Every new pattern multiplies against
+                            every existing parameter list, and every new parameter
+                            value multiplies against every existing pattern. The
+                            phrase count grows quadratically, but the work to keep
+                            it accurate grows with both sides.
+                        </p>
+                        <p>
+                            That's what hitting one billion really means: not that
+                            the matcher is fast — <strong>97 ms average across
+                            1,467 runs</strong> is nice but cheap — but that the
+                            vocabulary underneath it is dense enough.
+                            <strong>1,024 Pokémon. 938 moves. 311 abilities.</strong>
+                            Every host, every ball, every stat, every question kind.
+                            The multiplication naturally clears a billion.
+                        </p>
+                        <p>
+                            And it helps that <strong>70 of the 100 scripts</strong>
+                            expose their vocabulary to the voice layer. Those 70
+                            are the scripts that can be spoken to, and they're
+                            what feeds the phrase count. The other 30 are
+                            infrastructure — hooks, generators, helpers — that
+                            nobody needs to say out loud.
+                        </p>
+                    </div>
+
+                    <p class="big-quote">
+                        The system is not smart. It's thorough.<br>
+                        And thorough, at this scale, is <strong>its own kind of milestone.</strong>
+                    </p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="wrap reveal">
+                    <div class="section-head">
+                        <h2><span class="gold">Where</span> <span class="white">it lives</span></h2>
+                    </div>
+
+                    <div class="cross-links">
+
+                        <a class="cross-link" href="pokemon.html">
+                            <span class="cl-icon" aria-hidden="true">🦆</span>
+                            <div class="cl-body">
+                                <h3 class="cl-title">The Pokémon CLI</h3>
+                                <p class="cl-desc">
+                                    <code>yo pokemon</code> — 134.5M sentences across
+                                    912 patterns, Swedish and English, merged Pokédex
+                                    and collection.
+                                </p>
+                            </div>
+                            <span class="cl-arrow" aria-hidden="true">→</span>
+                        </a>
+
+                        <a class="cross-link" href="work.html">
+                            <span class="cl-icon" aria-hidden="true">❄️</span>
+                            <div class="cl-body">
+                                <h3 class="cl-title">The dotfiles workflow</h3>
+                                <p class="cl-desc">
+                                    <code>yo rb</code>, <code>yo deploy</code>,
+                                    <code>yo push</code>, <code>yo rollback</code> —
+                                    the scripts <code>yo do</code> translates into.
+                                </p>
+                            </div>
+                            <span class="cl-arrow" aria-hidden="true">→</span>
+                        </a>
+
+                        <a class="cross-link" href="pokenix.html">
+                            <span class="cl-icon" aria-hidden="true">🥚</span>
+                            <div class="cl-body">
+                                <h3 class="cl-title">PokéNix</h3>
+                                <p class="cl-desc">
+                                    Typed Nix in. Self-contained 5-page site out.
+                                    Edit live, export back to <code>.nix</code>.
+                                </p>
+                            </div>
+                            <span class="cl-arrow" aria-hidden="true">→</span>
+                        </a>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <div class="wrap footer-row">
+                <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBlindy.com</span></strong></div>
+                <div class="footer-links">
+                    <a href="#top">Top</a>
+                </div>
+            </div>
+        </footer>
+
+        <svg height="0" width="0" style="position:absolute" aria-hidden="true">
+            <filter id="f1">
+                <feTurbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp"/>
+                <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp"/>
+                <feColorMatrix type="matrix" result="red_" values="4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/>
+                <feOffset in="red_" dx="2" dy="0" result="red"/>
+                <feColorMatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 1 0"/>
+                <feOffset in="blue_" dx="-3" dy="0" result="blue"/>
+                <feBlend mode="screen" in="red" in2="blue"/>
+            </filter>
+        </svg>
+    </div>
+
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; }
+        </style>
+    </noscript>
+
+    <script>
+    (function () {
+        'use strict';
+
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+        } else {
+            document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+        }
+    })();
+    </script>
+</body>
+</html>
