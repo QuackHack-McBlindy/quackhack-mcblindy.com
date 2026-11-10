@@ -384,17 +384,18 @@
 
         .duck-burst {
             position: fixed;
-            bottom: 15vh;
-            font-size: 2.6rem;
+            bottom: 12vh;
+            font-size: 3.4rem;
             pointer-events: none;
             z-index: 30000;
-            animation: duckFloat 1.3s cubic-bezier(.22, 1, .36, 1) forwards;
+            animation: duckFloat 1.7s cubic-bezier(.22, 1, .36, 1) forwards;
             will-change: transform, opacity;
+            filter: drop-shadow(0 0 10px rgba(17, 230, 210, .35));
         }
         @keyframes duckFloat {
-            0%   { transform: translateY(0)     scale(.5) rotate(-10deg); opacity: 0; }
-            20%  { opacity: 1; transform: translateY(-20px) scale(1.05) rotate(6deg); }
-            100% { transform: translateY(-55vh) scale(1.4) rotate(25deg); opacity: 0; }
+            0%   { transform: translateY(0)     scale(.3) rotate(-15deg); opacity: 0; }
+            12%  { opacity: 1; transform: translateY(-30px) scale(1.4) rotate(12deg); }
+            100% { transform: translateY(-75vh) scale(2.0) rotate(50deg); opacity: 0; }
         }
 
         .duck-burst.burst-fail {
@@ -521,9 +522,15 @@
         }
         .reveal.in { opacity: 1; transform: none; }
 
-        @media (max-width: 1199px),
-               (max-height: 699px),
-               (min-width: 3440px),
+
+        @media (max-width: 1199px), (max-height: 699px) {
+            main {
+                padding-top: calc(var(--frame-header-h, 260px) + 20px) !important;
+                padding-bottom: calc(var(--frame-bottom-h, 64px) + 20px) !important;
+            }
+        }
+
+        @media (min-width: 3440px),
                (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
             main {
                 padding-top: 20px !important;
@@ -922,22 +929,60 @@ SUCCESS: --&gt; exit 0             FAILURE: --&gt; exit 1
             }
         }
 
-        function burst(kind) {
+
+
+
+        const toneConfig = {
+            success: { kind: 'success', interval: 130, perCycle: 2, initial: 6,  glyphs: ['🦆', '🥳', '🎉', '⭐', '✨', '🦆'] },
+            fail1:   { kind: 'fail',    interval: 180, perCycle: 1, initial: 8,  glyphs: ['🤬', '💥', '⚡'] },
+            fail2:   { kind: 'fail',    interval: 120, perCycle: 2, initial: 10, glyphs: ['😤', '🔥', '💥', '⚡'] },
+            fail3:   { kind: 'fail',    interval: 80,  perCycle: 3, initial: 14, glyphs: ['💀', '🔥', '⚡', '💥', '🤬'], shakeChaos: true }
+        };
+
+        function startRain(audio, tone) {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-            if (kind === 'success') {
-                for (let i = 0; i < 5; i++) {
-                    setTimeout(() => spawnBurst('🦆', 'success'), i * 90);
-                }
+            const cfg = toneConfig[tone] || toneConfig.fail1;
 
-                showDuckASCII();
-            } else {
-                spawnBurst(['💥', '🤬', '😤', '💀'][Math.floor(Math.random() * 4)], 'fail');
+            if (cfg.kind === 'success') showDuckASCII();
+
+            let active = true;
+            const stop = () => { active = false; };
+            audio.addEventListener('ended', stop);
+            audio.addEventListener('pause', stop);
+
+            const pickGlyph = () => cfg.glyphs[Math.floor(Math.random() * cfg.glyphs.length)];
+
+            for (let i = 0; i < cfg.initial; i++) {
+                setTimeout(() => {
+                    if (!active) return;
+                    spawnBurst(pickGlyph(), cfg.kind);
+                }, i * 65);
+            }
+
+            if (cfg.kind === 'fail') {
                 document.body.classList.remove('shake');
                 void document.body.offsetWidth;
                 document.body.classList.add('shake');
-                setTimeout(() => document.body.classList.remove('shake'), 450);
+                setTimeout(() => document.body.classList.remove('shake'), 500);
             }
+
+            function cycle() {
+                if (!active) return;
+                for (let i = 0; i < cfg.perCycle; i++) {
+                    spawnBurst(pickGlyph(), cfg.kind);
+                }
+
+                if (cfg.shakeChaos && Math.random() > 0.55) {
+                    document.body.classList.remove('shake');
+                    void document.body.offsetWidth;
+                    document.body.classList.add('shake');
+                    setTimeout(() => document.body.classList.remove('shake'), 380);
+                }
+
+                setTimeout(cycle, cfg.interval);
+            }
+            setTimeout(cycle, cfg.initial * 65);
         }
 
         function spawnBurst(char, kind) {
@@ -973,21 +1018,23 @@ SUCCESS: --&gt; exit 0             FAILURE: --&gt; exit 1
             }, 3200);
         }
 
+
         function playSound(card) {
-            const src = card.getAttribute('data-sound');
-            const kind = card.getAttribute('data-burst') || 'fail';
+            const src  = card.getAttribute('data-sound');
+            const tone = card.getAttribute('data-tone') || 'fail1';
             if (!src) return;
 
             stopCurrent();
 
             const audio = new Audio();
             audio.preload = 'auto';
-            audio.volume = 0.85;
+            audio.volume  = 0.85;
 
             audio.addEventListener('play', () => {
                 card.classList.add('playing');
-                currentCard = card;
+                currentCard  = card;
                 currentAudio = audio;
+                startRain(audio, tone);
             });
             audio.addEventListener('ended', () => {
                 card.classList.remove('playing');
@@ -997,17 +1044,16 @@ SUCCESS: --&gt; exit 0             FAILURE: --&gt; exit 1
                 card.classList.remove('playing');
                 if (currentAudio === audio) { currentAudio = null; currentCard = null; }
                 toast('Missing sound: ' + src.split('/').pop());
-                burst(kind);
+                startRain(audio, tone);
             });
 
             audio.src = src;
-
-            burst(kind);
 
             const playPromise = audio.play();
             if (playPromise && typeof playPromise.catch === 'function') {
                 playPromise.catch((err) => {
                     console.warn('Autoplay / playback blocked:', err);
+                    startRain(audio, tone);
                 });
             }
         }
