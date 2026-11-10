@@ -7,30 +7,9 @@
     "link": "https://quackhack-mcblindy.com/posts/tor-in-a-shell.html"
   },
   {
-    "title": "Home Automation in Swedish",
-    "description": "Possibly a first — a whole home automation config entirely in plaintext Swedish sentences. Nineteen scenes, twenty automations, zero lines of YAML.",
-    "tags": ["home-automation", "nixos", "nix", "zigbee", "yo"],
-    "date": "2026-11-09",
-    "link": "https://quackhack-mcblindy.com/home-automation-in-swedish.html"
-  },
-  {
-    "title": "PokéNix",
-    "description": "Typed Nix in. Self-contained 5-page site out. Edit live in the browser, export back to .nix — the site is a UI for the source file.",
-    "tags": ["pokemon", "nix", "web", "generator"],
-    "date": "2026-11-09",
-    "link": "https://quackhack-mcblindy.com/posts/pokenix.html"
-  },
-  {
-    "title": "The Voice-Integrated Pokédex",
-    "description": "134.5 million sentences across 912 patterns. Merged Pokédex and collection, English and Swedish, queried by voice or by sentence.",
-    "tags": ["pokemon", "nix", "nlp", "yo"],
-    "date": "2026-11-09",
-    "link": "https://quackhack-mcblindy.com/posts/the-voice-integrated-pokedex.html"
-  },
-  {
-    "title": "A Different Milestone Reached",
-    "description": "yo do crossed one billion generated phrases. 8,043 patterns, 97 ms average across 1,467 runs, and a caveat about the wildcards that aren't counted.",
-    "tags": ["yo", "nlp", "bash", "milestone"],
+    "title": "A Unique Milestone Reached",
+    "description": "yo crossed one billion generated phrases. 8,043 patterns, 97 ms average across 1,467 runs, it's just another day typing grammar.",
+    "tags": ["yo", "nlp", "nix", "milestone"],
     "date": "2026-11-09",
     "link": "https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html"
   },

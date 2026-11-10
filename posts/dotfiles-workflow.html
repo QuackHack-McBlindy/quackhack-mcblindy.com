@@ -610,18 +610,10 @@
             font-size: .82em;
             line-height: 1;
         }
-        .soundboard-intro code {
-            color: var(--teal2);
-            background: rgba(17, 230, 210, .08);
-            padding: 1px 6px;
-            border-radius: 4px;
-            font-family: "JetBrains Mono", monospace;
-            font-size: .9em;
-        }
 
         .sound-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 16px;
         }
         .sound-card {
@@ -722,8 +714,6 @@
         .sound-card[data-tone="fail1"]   .sound-name { color: #ffb86b; }
         .sound-card[data-tone="fail2"]   .sound-name { color: #ff9950; }
         .sound-card[data-tone="fail3"]   .sound-name { color: var(--red); }
-        .sound-card[data-tone="relax"]   .sound-name { color: var(--pink); }
-        .sound-card[data-tone="relax"]   .sound-file { color: rgba(255, 122, 184, .8); }
 
         .sound-hint {
             margin-top: 22px;
@@ -927,10 +917,10 @@
     </nav>
 
     <div class="duckhawk-frame" aria-hidden="true">
-        <img class="frame-piece frame-header glitch hue-shift" src="static/img/frame/header.png" alt="">
-        <img class="frame-piece frame-left"  src="static/img/frame/left.png"  alt="">
-        <img class="frame-piece frame-right" src="static/img/frame/right.png" alt="">
-        <img class="frame-piece frame-bottom" src="static/img/frame/bottom.png" alt="">
+        <img class="frame-piece frame-header glitch hue-shift" src="/static/img/frame/header.png" alt="" />
+        <img class="frame-piece frame-left"  src="/static/img/frame/left.png"  alt="" />
+        <img class="frame-piece frame-right" src="/static/img/frame/right.png" alt="" />
+        <img class="frame-piece frame-bottom" src="/static/img/frame/bottom.png" alt="" />
     </div>
 
     <nav class="frame-navigation" aria-label="Main navigation">
@@ -1043,10 +1033,7 @@
           └──► raw log kept for error extraction
 
  ── ON SUCCESS ──
- fail_count ≥ 11  ──►  ⭐  play_relax   "noob fails!"
- fail_count ≥ 6   ──►  ⭐  play_relax
- fail_count ≥ 4   ──►  ⭐  play_win     "phew!"
- else             ──►  ✅  play_win
+ ✅  play_win
  reset fail_count = 0
 
  ── ON FAILURE ──
@@ -1228,7 +1215,7 @@
 
  6  git push --force --follow-tags -u origin &lt;branch&gt;
 
- 7  play_relax  🎉   "SUCCESSFULLY PUSHED DOTFILES!"
+ 7  play_win  🎉   "SUCCESSFULLY PUSHED DOTFILES!"
 
  ── WHAT CI SEES ──
  push to main ──► nix flake check --keep-going</code></pre>
@@ -1477,78 +1464,63 @@ jobs:
                         <span class="gold">Duck</span> <span class="white">Soundboard</span>
                     </h1>
                     <p class="soundboard-intro">
-                        Four files, five functions. Mapped 1:1 to the <code>play_*</code>
-                        helpers in <code>helpers.nix</code> — <code>play_win</code> and
-                        <code>play_relax</code> share the same celebration track. Hit a card,
-                        or press <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> <kbd>5</kbd>.
+                        Every pipeline ends in a quack. Hit a button, or press
+                        <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd>
+                        while the page is focused.
                     </p>
 
                     <div class="sound-grid" role="group" aria-label="Duck sound effects">
-
                         <button class="sound-card" type="button"
                                 data-tone="success" data-key="1"
-                                data-sound="static/sound/duck_celebration.mp3"
+                                data-sound="../static/sounds/duck_celebration.mp3"
                                 data-burst="success"
-                                aria-label="Play win (play_win)">
+                                aria-label="Play duck celebration sound (Success, exit 0)">
                             <span class="sound-key" aria-hidden="true">1</span>
                             <span class="sound-emoji" aria-hidden="true">🦆</span>
-                            <span class="sound-name">play_win</span>
-                            <span class="sound-desc">success · rebuild OK · test deploy verified</span>
+                            <span class="sound-name">Success</span>
+                            <span class="sound-desc">exit 0 · ASCII celebration</span>
                             <span class="sound-file">duck_celebration.mp3</span>
                         </button>
 
                         <button class="sound-card" type="button"
                                 data-tone="fail1" data-key="2"
-                                data-sound="static/sound/duck_say_fuck.wav"
+                                data-sound="../static/sounds/duck_say_fuck.mp3"
                                 data-burst="fail"
-                                aria-label="Play fail (play_fail)">
+                                aria-label="Play duck says fuck sound (Fail 1 to 4)">
                             <span class="sound-key" aria-hidden="true">2</span>
                             <span class="sound-emoji" aria-hidden="true">🤬</span>
-                            <span class="sound-name">play_fail</span>
-                            <span class="sound-desc">fail 1–4 · rebuild broke · lost contact</span>
-                            <span class="sound-file">duck_say_fuck.wav</span>
+                            <span class="sound-name">Fail 1–4</span>
+                            <span class="sound-desc">mild setback · duck has opinions</span>
+                            <span class="sound-file">duck_say_fuck.mp3</span>
                         </button>
 
                         <button class="sound-card" type="button"
                                 data-tone="fail2" data-key="3"
-                                data-sound="static/sound/duck_more_mad.mp3"
+                                data-sound="../static/sounds/duck_more_nad.mp3"
                                 data-burst="fail"
-                                aria-label="Play fail2 (play_fail2)">
+                                aria-label="Play duck more nad sound (Fail 4 to 7)">
                             <span class="sound-key" aria-hidden="true">3</span>
                             <span class="sound-emoji" aria-hidden="true">😤</span>
-                            <span class="sound-name">play_fail2</span>
-                            <span class="sound-desc">fail 5+ · the duck has had enough</span>
-                            <span class="sound-file">duck_more_mad.mp3</span>
+                            <span class="sound-name">Fail 4–7</span>
+                            <span class="sound-desc">deeper trouble · beg for nåd</span>
+                            <span class="sound-file">duck_more_nad.mp3</span>
                         </button>
 
                         <button class="sound-card" type="button"
                                 data-tone="fail3" data-key="4"
-                                data-sound="static/sound/DUCK_GO_CRAZY.mp3"
+                                data-sound="../static/sounds/DUCK_GO_CRAZY.mp3"
                                 data-burst="fail"
-                                aria-label="Play fail3 (play_fail3)">
+                                aria-label="Play duck go crazy sound (Fail 8 or more)">
                             <span class="sound-key" aria-hidden="true">4</span>
                             <span class="sound-emoji" aria-hidden="true">💀</span>
-                            <span class="sound-name">play_fail3</span>
-                            <span class="sound-desc">deep failure · defined, rarely called</span>
+                            <span class="sound-name">Fail 8+</span>
+                            <span class="sound-desc">abandon ship · duck_go_crazy.mp3</span>
                             <span class="sound-file">DUCK_GO_CRAZY.mp3</span>
-                        </button>
-
-                        <button class="sound-card" type="button"
-                                data-tone="relax" data-key="5"
-                                data-sound="static/sound/duck_celebration.mp3"
-                                data-burst="success"
-                                aria-label="Play relax (play_relax)">
-                            <span class="sound-key" aria-hidden="true">5</span>
-                            <span class="sound-emoji" aria-hidden="true">🎉</span>
-                            <span class="sound-name">play_relax</span>
-                            <span class="sound-desc">success after 6+ fails · or after yo push</span>
-                            <span class="sound-file">duck_celebration.mp3</span>
                         </button>
                     </div>
 
                     <p class="sound-hint">
-                        Audio files live in <code>static/sound/</code>.
-                        Missing files show a toast + visual fallback.
+                        Audio files live in <code>static/sounds/</code>.
                     </p>
 
                     <div id="duck-stage" aria-live="polite"></div>
@@ -1640,7 +1612,7 @@ jobs:
                 s = s.replace(re, (m) => stash(m, cls));
             }
 
-            wrap(/\b(play_win|play_fail2|play_fail3|play_fail|play_relax)\b/g, 't-sound');
+            wrap(/\b(play_win|play_fail2|play_fail3|play_fail)\b/g, 't-sound');
             wrap(/\byo\s+(rb|ps|deploy|push|rollback|update-readme|yubi|switch)\b/g, 't-cmd');
             wrap(/\b(nixos-rebuild|nix-env|nix flake check|nix flake show|nix log|nix eval|systemd-run|systemctl)\b/g, 't-cmd');
             wrap(/(?<!\w)--[a-z][a-z0-9-]*/g, 't-flag');
@@ -1825,7 +1797,7 @@ jobs:
         document.addEventListener('keydown', (e) => {
             const t = e.target;
             if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
-            if (/^[1-5]$/.test(e.key)) {
+            if (/^[1-4]$/.test(e.key)) {
                 const card = cards.find((c) => c.getAttribute('data-key') === e.key);
                 if (card) {
                     e.preventDefault();
