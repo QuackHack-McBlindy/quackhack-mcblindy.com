@@ -117,15 +117,20 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   100% { filter: hue-rotate(360deg); }
 }
 
-@media (max-width: 1199px),
-       (max-height: 699px),
-       (min-width: 3440px),
+
+@media (max-width: 1199px), (max-height: 699px) {
+    main {
+        padding-top: calc(var(--frame-header-h, 260px) + 20px) !important;
+        padding-bottom: calc(var(--frame-bottom-h, 64px) + 20px) !important;
+    }
+}
+
+@media (min-width: 3440px),
        (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
-  .wrap { width: min(calc(100vw - 40px), var(--max)); }
-  main {
-    padding-top: 20px !important;
-    padding-bottom: 24px !important;
-  }
+    main {
+        padding-top: 20px !important;
+        padding-bottom: 24px !important;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -586,35 +591,11 @@ main > .content-section + .content-section { padding-top: 0; }
 <p>A billion is easy to say and hard to picture. So let's make it concrete.</p>
 <h3 class="sub-heading">The math</h3>
 <p><code>yo</code> doesn't have a billion sentences written into it. It has <strong>8,043 patterns</strong> — human-written templates with slots. What turns those 8,043 patterns into <strong>1,070,236,143 phrases</strong> is the parameter space.</p>
-<p>Every slot in a pattern can be filled by every value that slot accepts. When a pattern says <em>"deploy {host}"</em> and <code>{host}</code> can be any of your machines, that's one pattern generating many sentences. When a pattern says <em>"what {question} is {pokemon}"</em> and <code>{question}</code> has 24 values and <code>{pokemon}</code> has 1,024, that's one pattern generating 24,576 sentences.</p>
+<p>Every slot in a pattern can be filled by every value that slot accepts. When a pattern says <em>"deploy {host}"</em> and <code>{host}</code> can be any of your machines, that's one pattern generating many sentences. When a pattern says <em>"play {track} on {speaker}"</em> and <code>{track}</code> has 1,024 values and <code>{speaker}</code> has 24, that's one pattern generating 24,576 sentences.</p>
 <p>Stack enough slots across enough scripts, and the multiplication does what multiplication does. <strong>8,043 patterns × ~133,064 variations per pattern = over a billion distinct sentences</strong> the runtime matcher recognizes.</p>
     </div>
   </div>
 </section>
-
-<section class="content-section"><div class="wrap reveal">
-  <div class="wildcard-note">
-    <strong>Wildcards aren't counted.</strong>
-    A slot like <code>{eggMoves.wildcard = true}</code> accepts any value, not a fixed list — so it can't be enumerated. The 1.07 billion is therefore a <em>lower bound</em> on what <code>yo</code> understands, not an upper one. Wildcard slots push the real reach further past a billion than the counted number does.
-  </div>
-</div></section>
-
-<section class="content-section">
-  <div class="wrap reveal">
-    <div class="prose-section">
-      <h3 class="sub-heading">The number may seem astronomical, but the number is not the interesting part</h3>
-<p>Plenty of tools can generate a billion strings. A billion is trivial to fake — <em>"repeat the word quack one billion times"</em> is a one-line script and also meaningless. What makes this milestone different is what the number represents.</p>
-    </div>
-  </div>
-</section>
-
-<section class="content-section"><div class="wrap reveal">
-  <ul class="prose-list">
-    <li><strong>Every phrase is a real, resolvable command.</strong> If you say it (or type it), <code>yo do</code> finds the script that matches, resolves the parameters, and executes it. Nothing in that billion is theoretical. The phrase count is a lower bound on the set of actually understandable inputs — not the set of parseable ones.</li>
-    <li><strong>It's parameter variations, not sentence variations.</strong> A billion ChatGPT prompts would be a billion sentences. A billion <code>yo</code> phrases is a much smaller set of sentence shapes with every meaningful combination of slots filled in. That's why it works: the system doesn't need to have seen your exact sentence. It needs to recognize your sentence as belonging to a pattern it does understand, then read the parameters out of it.</li>
-    <li><strong>Natural language, not command syntax.</strong> These are the phrases you'd actually say out loud. <em>"Do I have bulbasaur shiny."</em> <em>"Deploy homie."</em> <em>"Which move is flamethrower."</em> <em>"How many shinies do I have left."</em> The billion is the count of those — not of <code>yo pokemon --pokemon bulbasaur --shiny true</code>.</li>
-  </ul>
-</div></section>
 
 <section class="content-section">
   <div class="wrap reveal">
