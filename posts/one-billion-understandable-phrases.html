@@ -590,7 +590,7 @@ main > .content-section + .content-section { padding-top: 0; }
 <p><code>yo</code> is a natural language to shell script translator. You speak or type a sentence. It runs exact and fuzzy pattern matching against a set of templates, resolves the parameters, and executes the corresponding script. No command list to memorize. No aliases to look up. Just a sentence.</p>
 <p>A billion is easy to say and hard to picture. So let's make it concrete.</p>
 <h3 class="sub-heading">The math</h3>
-<p><code>yo</code> doesn't have a billion sentences written into it. It has <strong>8,043 patterns</strong> — human-written templates with slots. What turns those 8,043 patterns into <strong>1,070,236,143 phrases</strong> is the parameter space.</p>
+<p><code>yo</code> doesn't have a billion sentences written into it. It has <strong>8,043 patterns</strong> - human-written templates with slots. What turns those 8,043 patterns into <strong>1,070,236,143 phrases</strong> is the parameter space.</p>
 <p>Every slot in a pattern can be filled by every value that slot accepts. When a pattern says <em>"deploy {host}"</em> and <code>{host}</code> can be any of your machines, that's one pattern generating many sentences. When a pattern says <em>"play {track} on {speaker}"</em> and <code>{track}</code> has 1,024 values and <code>{speaker}</code> has 24, that's one pattern generating 24,576 sentences.</p>
 <p>Stack enough slots across enough scripts, and the multiplication does what multiplication does. <strong>8,043 patterns × ~133,064 variations per pattern = over a billion distinct sentences</strong> the runtime matcher recognizes.</p>
     </div>
@@ -610,9 +610,9 @@ main > .content-section + .content-section { padding-top: 0; }
     <div class="prose-section">
       <p>The billion is not <em>"sentences the system will attempt."</em> It's <em>"sentences the system will correctly recognize, resolve, and run."</em> That's a much smaller, much more honest number.</p>
 <h3 class="sub-heading">Not "weekend work"</h3>
-<p>8,043 patterns is a lot to hand-write. 133,064 phrases per pattern is a lot of grammar to get right — plural, word order, synonyms, optional words, alternative words. Every new pattern multiplies against every existing parameter list, and every new parameter value multiplies against every existing pattern. The phrase count grows quadratically, initially the work to keep it accurate grew with both sides, that's before I implemented fuzzy sentence conflict detection at compile-time.</p>
-<p>That's what hitting one billion really means: not that the matcher is fast — <strong>97 ms average across 1,467 runs</strong> is nice but cheap — but that the vocabulary underneath it is dense enough. The multiplication naturally clears a billion.</p>
-<p>And it helps that <strong>74 of the 103 scripts</strong> expose their vocabulary to the voice layer. Those 74 are the scripts that can be spoken to, and they're what feeds the phrase count. The other 29 are infrastructure — hooks, generators, helpers — that nobody needs to say out loud.</p>
+<p>8,043 patterns is a lot to hand-write. 133,064 phrases per pattern is a lot of grammar to get right - plural, word order, synonyms, optional words, alternative words. Every new pattern multiplies against every existing parameter list, and every new parameter value multiplies against every existing pattern. The phrase count grows quadratically, initially the work to keep it accurate grew with both sides, that's before I implemented fuzzy sentence conflict detection at compile-time.</p>
+<p>That's what hitting one billion really means: not that the matcher is fast - <strong>97 ms average across 1,467 runs</strong> is nice but cheap - but that the vocabulary underneath it is dense enough. The multiplication naturally clears a billion.</p>
+<p>And it helps that <strong>74 of the 103 scripts</strong> expose their vocabulary to the voice layer. Those 74 are the scripts that can be spoken to, and they're what feeds the phrase count. The other 29 are infrastructure - hooks, generators, helpers - that nobody needs to say out loud.</p>
     </div>
   </div>
 </section>

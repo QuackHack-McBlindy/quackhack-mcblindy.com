@@ -1,7 +1,7 @@
 [
   {
     "title": "Tor in a Shell",
-    "description": "Every other Tor setup asks you to point something at something. This one asks you to type hide — Firejail, nftables, and a NetworkManager bridge.",
+    "description": "Every other Tor setup asks you to point something at something. This one asks you to type hide - Firejail, nftables, and a NetworkManager bridge.",
     "tags": ["tor", "privacy", "nixos", "networking"],
     "date": "2026-11-09",
     "link": "https://quackhack-mcblindy.com/posts/tor-in-a-shell.html"
@@ -15,7 +15,7 @@
   },
   {
     "title": "From Commit to Release",
-    "description": "My typical workflow working with various flake projects — the general public-project pipeline with CHANGELOG, PR gate, and semver tagging.",
+    "description": "My typical workflow working with various flake projects - the general public-project pipeline with CHANGELOG, PR gate, and semver tagging.",
     "tags": ["nixos", "nix", "workflow"],
     "date": "2026-11-08",
     "link": "https://quackhack-mcblindy.com/posts/project-workflow.html"
