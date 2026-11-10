@@ -2,12 +2,12 @@
   "https://quackhack-mcblindy.com/posts/tor-in-a-shell.html": ["", "https://quackhack-mcblindy.com/posts/project-workflow.html", "https://quackhack-mcblindy.com/posts/dotfiles-workflow.html"],
   "https://quackhack-mcblindy.com/home-automation-in-swedish.html": ["", "https://quackhack-mcblindy.com/posts/project-workflow.html", "https://quackhack-mcblindy.com/posts/dotfiles-workflow.html"],
   "https://quackhack-mcblindy.com/posts/pokenix.html": ["https://quackhack-mcblindy.com/posts/the-voice-integrated-pokedex.html", "https://quackhack-mcblindy.github.io/blog/", "https://quackhack-mcblindy.com/posts/project-workflow.html"],
-  "https://quackhack-mcblindy.com/posts/the-voice-integrated-pokedex.html": ["https://quackhack-mcblindy.com/posts/pokenix.html", "https://quackhack-mcblindy.github.io/blog/", "https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html"],
-  "https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html": ["https://quackhack-mcblindy.github.io/blog/", "https://quackhack-mcblindy.com/posts/the-voice-integrated-pokedex.html", ""],
+  "https://quackhack-mcblindy.com/posts/the-voice-integrated-pokedex.html": ["https://quackhack-mcblindy.com/posts/pokenix.html", "https://quackhack-mcblindy.github.io/blog/", "https://quackhack-mcblindy.com/posts/milestone.html"],
+  "https://quackhack-mcblindy.com/posts/milestone.html": ["https://quackhack-mcblindy.github.io/blog/", "https://quackhack-mcblindy.com/posts/the-voice-integrated-pokedex.html", ""],
   "https://quackhack-mcblindy.com/posts/project-workflow.html": ["https://quackhack-mcblindy.com/posts/dotfiles-workflow.html", "", "https://quackhack-mcblindy.com/home-automation-in-swedish.html"],
   "https://quackhack-mcblindy.com/posts/dotfiles-workflow.html": ["https://quackhack-mcblindy.com/posts/project-workflow.html", "", "https://quackhack-mcblindy.com/home-automation-in-swedish.html"],
   "https://quackhack-mcblindy.com/posts/hardware.html": [],
-  "": ["https://quackhack-mcblindy.com/posts/dotfiles-workflow.html", "https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html", "https://quackhack-mcblindy.com/posts/tor-in-a-shell.html"],
+  "": ["https://quackhack-mcblindy.com/posts/dotfiles-workflow.html", "https://quackhack-mcblindy.com/posts/milestone.html", "https://quackhack-mcblindy.com/posts/tor-in-a-shell.html"],
   "": ["https://quackhack-mcblindy.com/posts/project-workflow.html", "https://quackhack-mcblindy.com/posts/dotfiles-workflow.html", "https://quackhack-mcblindy.com/home-automation-in-swedish.html"],
-  "https://quackhack-mcblindy.github.io/blog/": ["https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html", "https://quackhack-mcblindy.com/posts/the-voice-integrated-pokedex.html", "https://quackhack-mcblindy.com/posts/pokenix.html"]
+  "https://quackhack-mcblindy.github.io/blog/": ["https://quackhack-mcblindy.com/posts/milestone.html", "https://quackhack-mcblindy.com/posts/the-voice-integrated-pokedex.html", "https://quackhack-mcblindy.com/posts/pokenix.html"]
 }
