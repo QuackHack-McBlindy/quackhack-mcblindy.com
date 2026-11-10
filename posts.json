@@ -4,7 +4,7 @@
     "description": "Every other Tor setup asks you to point something at something. This one asks you to type hide — Firejail, nftables, and a NetworkManager bridge.",
     "tags": ["tor", "privacy", "nixos", "networking"],
     "date": "2026-11-09",
-    "link": "https://quackhack-mcblindy.com/tor-in-a-shell.html"
+    "link": "https://quackhack-mcblindy.com/posts/tor-in-a-shell.html"
   },
   {
     "title": "Home Automation in Swedish",
@@ -18,35 +18,35 @@
     "description": "Typed Nix in. Self-contained 5-page site out. Edit live in the browser, export back to .nix — the site is a UI for the source file.",
     "tags": ["pokemon", "nix", "web", "generator"],
     "date": "2026-11-09",
-    "link": "https://quackhack-mcblindy.com/pokenix.html"
+    "link": "https://quackhack-mcblindy.com/posts/pokenix.html"
   },
   {
     "title": "The Voice-Integrated Pokédex",
     "description": "134.5 million sentences across 912 patterns. Merged Pokédex and collection, English and Swedish, queried by voice or by sentence.",
     "tags": ["pokemon", "nix", "nlp", "yo"],
     "date": "2026-11-09",
-    "link": "https://quackhack-mcblindy.com/pokemon.html"
+    "link": "https://quackhack-mcblindy.com/posts/the-voice-integrated-pokedex.html"
   },
   {
     "title": "A Different Milestone Reached",
     "description": "yo do crossed one billion generated phrases. 8,043 patterns, 97 ms average across 1,467 runs, and a caveat about the wildcards that aren't counted.",
     "tags": ["yo", "nlp", "bash", "milestone"],
     "date": "2026-11-09",
-    "link": "https://quackhack-mcblindy.com/billion.html"
+    "link": "https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html"
   },
   {
     "title": "From Commit to Release",
     "description": "My typical workflow working with various flake projects — the general public-project pipeline with CHANGELOG, PR gate, and semver tagging.",
     "tags": ["nixos", "nix", "workflow"],
     "date": "2026-11-08",
-    "link": "https://quackhack-mcblindy.com/posts/project_workflow.html"
+    "link": "https://quackhack-mcblindy.com/posts/project-workflow.html"
   },
   {
     "title": "Dotfiles workflow",
     "description": "Two commands, one tag, five sounds. yo switch, yo deploy, yo push, yo rollback — with bootstrap, update-readme, and generation tagging.",
     "tags": ["nixos", "nix", "workflow"],
     "date": "2026-11-08",
-    "link": "https://quackhack-mcblindy.com/work.html"
+    "link": "https://quackhack-mcblindy.com/posts/dotfiles-workflow.html"
   },
   {
     "title": "Hardware",

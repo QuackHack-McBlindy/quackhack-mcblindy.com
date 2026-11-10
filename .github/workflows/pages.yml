@@ -1,3 +1,5 @@
+# .github/workflows/pages.yml
+
 name: Deploy GitHub Pages
 
 on:
@@ -7,9 +9,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -22,6 +28,38 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Regenerate similar.json
+        run: bash hooks/build-similar.sh
+
+      - name: Refresh versions.json
+        run: bash hooks/fetch-versions.sh
+
+      - name: Commit regenerated files
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- similar.json static/versions.json && \
+             [[ -z "$(git ls-files --others --exclude-standard -- similar.json static/versions.json)" ]]; then
+            echo "No changes — nothing to commit."
+            exit 0
+          fi
+
+          git add similar.json static/versions.json
+          git commit -m "chore: regenerate similar.json and versions.json [skip ci]"
+
+          for i in 1 2 3; do
+            if git push origin HEAD:main; then
+              break
+            fi
+            [[ $i -eq 3 ]] && { echo "push failed after 3 attempts" >&2; exit 1; }
+            git pull --rebase origin main
+          done
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
