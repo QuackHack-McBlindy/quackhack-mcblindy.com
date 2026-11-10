@@ -599,11 +599,11 @@
   ▼
 ┌─────────────────────────────────────────────┐
 │ BUILD ───────────────&gt; CI only              │
-│   │                                         │
-│   ▼                                         │
+│   │                                            │
+│   ▼                                            │
 │ DOCS ────────────────&gt; hooks/get-options.sh │
-│                        commit hooks/*.json  │
-│                        to dev [skip ci]     │
+│                        commit hooks/*.json     │
+│                        to dev [skip ci]        │
 └─────────────────────────────────────────────┘
   │
   │ release script
@@ -662,7 +662,7 @@ SYNC dev &lt;-- MAIN
   │
   │
   ├─────────────────────────────────┐
-  │                                 │
+  │                                  │
   ▼                                 ▼
 SUCCESS: --&gt; exit 0             FAILURE: --&gt; exit 1
   🎵 duck_celebration.mp3         FAIL 1-4 --&gt; 🎵 duck_say_fuck.mp3

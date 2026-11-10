@@ -25,10 +25,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <link rel="manifest" href="/site.webmanifest" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png" />
+  <link rel="icon" href="/static/favicon/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png" />
 
+  <link rel="stylesheet" href="./../static/css/styles.css" />
   <style>:root {
   --bg: #050707; --panel: #0b1110; --panel2: #0e1716;
   --teal: #11e6d2; --teal2: #05a99f;
@@ -75,79 +76,14 @@ a { color: inherit; text-decoration: none; }
 .teal { color: var(--teal); } .green { color: var(--green); } .pink { color: var(--pink); }
 .purple { color: var(--purple); } .red { color: var(--red); } .blue { color: var(--blue); }
 
-.duckhawk-frame {
-  position: fixed; inset: 0; width: 100vw; height: 100vh;
-  z-index: var(--frame-z); pointer-events: none; overflow: hidden; display: none;
+#top {
+  min-height: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden;
 }
-.frame-piece { position: fixed; display: block; pointer-events: none; user-select: none; max-width: none; }
-.frame-header { top: 0; left: 0; width: 100vw; height: var(--frame-header-h); object-fit: fill; }
-.frame-left { top: var(--frame-header-h); left: 0; width: var(--frame-left-w); height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h)); object-fit: fill; }
-.frame-right { top: var(--frame-header-h); right: 0; width: var(--frame-right-w); height: calc(100vh - var(--frame-header-h) - var(--frame-bottom-h)); object-fit: fill; }
-.frame-bottom { left: 0; bottom: 0; width: 100vw; height: var(--frame-bottom-h); object-fit: fill; }
-
-.frame-navigation {
-  position: fixed; inset: 0 0 auto 0; width: 100vw; height: var(--frame-header-h);
-  z-index: calc(var(--frame-z) + 1); pointer-events: none; display: none;
-}
-.frame-nav-link {
-  position: absolute; pointer-events: auto;
-  display: flex; align-items: center; justify-content: center;
-  padding: 10px 18px; color: #f4df9a;
-  font-family: "Cinzel Decorative", Georgia, serif;
-  font-size: 40px; font-weight: 800; letter-spacing: .13em;
-  text-transform: uppercase; white-space: nowrap;
-  text-shadow: 0 2px 4px rgba(0,0,0,.95), 0 0 12px rgba(17,230,210,.35);
-  transition: color .25s ease, transform .25s ease, text-shadow .25s ease;
-}
-.frame-nav-home     { left: 25%; top: 140px; transform: translate(-50%, -50%); }
-.frame-nav-showcase { left: 75%; top: 140px; transform: translate(-50%, -50%); }
-.frame-nav-link::after {
-  content: ""; position: absolute; left: 15%; right: 15%; bottom: 3px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--teal), transparent);
-  opacity: .65; transform: scaleX(.35);
-  transition: transform .25s ease, opacity .25s ease;
-}
-.frame-nav-link:hover {
-  color: #fff5cf; transform: translate(-50%, -50%) translateY(-2px);
-  text-shadow: 0 2px 4px rgba(0,0,0,1), 0 0 18px rgba(17,230,210,.65);
-}
-.frame-nav-link:hover::after { opacity: 1; transform: scaleX(1); }
-
-.mobile-nav {
-  display: none; justify-content: center; gap: 10px;
-  padding: 12px 14px; background: linear-gradient(180deg, #0b1110, #050707);
-  border-bottom: 1px solid var(--line);
-}
-.mobile-nav a {
-  padding: 8px 16px; border-radius: 10px; color: var(--gold);
-  font-family: "Cinzel Decorative", Georgia, serif; font-weight: 700; letter-spacing: .06em;
-}
-.mobile-nav a:hover { background: rgba(17, 230, 210, .1); color: var(--gold2); }
-
-@media (min-width: 1200px) and (min-height: 700px) {
-  .duckhawk-frame, .frame-navigation { display: block; }
-}
-@media (max-width: 1199px), (max-height: 699px), (min-width: 3440px),
-       (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
-  .duckhawk-frame, .frame-navigation { display: none; }
-  .mobile-nav { display: flex; }
-  .wrap { width: min(calc(100vw - 40px), var(--max)); }
-  main { padding-top: 20px !important; padding-bottom: 24px !important; }
-}
-
-header { position: relative; min-height: 200px; isolation: isolate; }
-header:before {
-  content: ""; position: absolute; inset: 0; z-index: -2;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,0) 30%, var(--bg) 100%),
-    url("/static/img/header.png") center top / min(1500px, 100vw) auto no-repeat;
-  filter: saturate(1.04);
-}
-header:after {
-  content: ""; position: absolute; z-index: -1;
-  left: 0; right: 0; bottom: 0; height: 100px;
-  background: linear-gradient(180deg, transparent, var(--bg)); pointer-events: none;
-}
+#top::before { display: none !important; }
 
 main {
   padding-top: calc(var(--frame-header-h) + 20px);
@@ -181,26 +117,15 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   100% { filter: hue-rotate(360deg); }
 }
 
-@media (max-width: 850px) {
-  :root {
-    --frame-header-h: 190px; --frame-bottom-h: 48px;
-    --frame-left-w: 105px; --frame-right-w: 108px;
+@media (max-width: 1199px),
+       (max-height: 699px),
+       (min-width: 3440px),
+       (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+  .wrap { width: min(calc(100vw - 40px), var(--max)); }
+  main {
+    padding-top: 20px !important;
+    padding-bottom: 24px !important;
   }
-  header { min-height: 150px; }
-  .frame-nav-link { font-size: 17px; letter-spacing: .08em; padding: 8px 10px; }
-  .frame-nav-home     { left: 24%; top: 78px; }
-  .frame-nav-showcase { left: 76%; top: 78px; }
-}
-@media (max-width: 560px) {
-  :root {
-    --frame-header-h: 145px; --frame-bottom-h: 38px;
-    --frame-left-w: 72px; --frame-right-w: 74px;
-  }
-  .wrap { width: min(calc(100% - 28px), var(--max)); }
-  header { min-height: 120px; }
-  .frame-nav-link { font-size: 14px; letter-spacing: .06em; padding: 7px 6px; }
-  .frame-nav-home     { left: 23%; top: 61px; }
-  .frame-nav-showcase { left: 77%; top: 61px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -560,27 +485,25 @@ main > .content-section + .content-section { padding-top: 0; }
   .milestone-number { font-size: clamp(2.4rem, 16vw, 4rem); }
 }
 </style>
+  <link rel="stylesheet" href="./../static/css/viewport.css" />
 </head>
-<body>
-
-  <nav class="mobile-nav" aria-label="Main navigation">
-    <a href="/index.html">Me</a>
-    <a href="/work.html">Work</a>
-  </nav>
+<body data-post-link="/one-billion-understandable-phrases.html">
 
   <div class="duckhawk-frame" aria-hidden="true">
-    <img class="frame-piece frame-header glitch hue-shift" src="/static/img/frame/header.png" alt="" />
-    <img class="frame-piece frame-left" src="/static/img/frame/left.png" alt="" />
-    <img class="frame-piece frame-right" src="/static/img/frame/right.png" alt="" />
-    <img class="frame-piece frame-bottom" src="/static/img/frame/bottom.png" alt="" />
+    <img class="frame-piece frame-header glitch hue-shift" src="./../static/img/frame/header.png" alt="" />
+    <img class="frame-piece frame-left" src="./../static/img/frame/left.png" alt="" />
+    <img class="frame-piece frame-right" src="./../static/img/frame/right.png" alt="" />
+    <img class="frame-piece frame-bottom" src="./../static/img/frame/bottom.png" alt="" />
+
+    <img class="frame-piece frame-header-standalone glitch hue-shift" src="./../static/img/frame/header-standalone-small.png" alt="" />
+
+    <nav class="frame-navigation" aria-label="Main navigation">
+      <a class="frame-nav-link frame-nav-home" href="https://quackhack-mcblindy.com">Me</a>
+      <a class="frame-nav-link frame-nav-showcase" href="https://quackhack-mcblindy.com/work.html">Work</a>
+    </nav>
   </div>
 
-  <nav class="frame-navigation" aria-label="Main navigation">
-    <a class="frame-nav-link frame-nav-home" href="/index.html">Me</a>
-    <a class="frame-nav-link frame-nav-showcase" href="/work.html">Work</a>
-  </nav>
-
-  <div id="content-glitch">
+  <div id="content-glitch" class="glitch hue-shift">
     <header id="top"></header>
 
     <main>
@@ -593,7 +516,7 @@ main > .content-section + .content-section { padding-top: 0; }
           </h1>
 
           <p class="milestone-number">1,070,236,143</p>
-<p class="milestone-unit">Understandable phrases/variations</p>
+<p class="milestone-unit">Understandable phrases/variations compiled at build-time.</p>
 <p class="milestone-sub">
   From <strong>8,043 patterns</strong>, at a ratio of
   <strong>133,064</strong> phrases per pattern.
@@ -659,10 +582,10 @@ main > .content-section + .content-section { padding-top: 0; }
   <div class="wrap reveal">
     <div class="prose-section">
       <h3 class="sub-heading">What a billion actually means</h3>
-<p><code>yo do</code> is a natural language to shell script translator. You speak or type a sentence. It runs exact and fuzzy pattern matching against a set of templates, resolves the parameters, and executes the corresponding script. No command list to memorize. No aliases to look up. Just a sentence.</p>
+<p><code>yo</code> is a natural language to shell script translator. You speak or type a sentence. It runs exact and fuzzy pattern matching against a set of templates, resolves the parameters, and executes the corresponding script. No command list to memorize. No aliases to look up. Just a sentence.</p>
 <p>A billion is easy to say and hard to picture. So let's make it concrete.</p>
 <h3 class="sub-heading">The math</h3>
-<p><code>yo do</code> doesn't have a billion sentences written into it. It has <strong>8,043 patterns</strong> — human-written templates with slots. What turns those 8,043 patterns into <strong>1,070,236,143 phrases</strong> is the parameter space.</p>
+<p><code>yo</code> doesn't have a billion sentences written into it. It has <strong>8,043 patterns</strong> — human-written templates with slots. What turns those 8,043 patterns into <strong>1,070,236,143 phrases</strong> is the parameter space.</p>
 <p>Every slot in a pattern can be filled by every value that slot accepts. When a pattern says <em>"deploy {host}"</em> and <code>{host}</code> can be any of your machines, that's one pattern generating many sentences. When a pattern says <em>"what {question} is {pokemon}"</em> and <code>{question}</code> has 24 values and <code>{pokemon}</code> has 1,024, that's one pattern generating 24,576 sentences.</p>
 <p>Stack enough slots across enough scripts, and the multiplication does what multiplication does. <strong>8,043 patterns × ~133,064 variations per pattern = over a billion distinct sentences</strong> the runtime matcher recognizes.</p>
     </div>
@@ -672,14 +595,14 @@ main > .content-section + .content-section { padding-top: 0; }
 <section class="content-section"><div class="wrap reveal">
   <div class="wildcard-note">
     <strong>Wildcards aren't counted.</strong>
-    A slot like <code>{eggMoves.wildcard = true}</code> accepts any value, not a fixed list — so it can't be enumerated. The 1.07 billion is therefore a <em>lower bound</em> on what <code>yo do</code> understands, not an upper one. Wildcard slots push the real reach further past a billion than the counted number does.
+    A slot like <code>{eggMoves.wildcard = true}</code> accepts any value, not a fixed list — so it can't be enumerated. The 1.07 billion is therefore a <em>lower bound</em> on what <code>yo</code> understands, not an upper one. Wildcard slots push the real reach further past a billion than the counted number does.
   </div>
 </div></section>
 
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading">The number isn't the interesting part</h3>
+      <h3 class="sub-heading">The number may seem astronomical, but the number is not the interesting part</h3>
 <p>Plenty of tools can generate a billion strings. A billion is trivial to fake — <em>"repeat the word quack one billion times"</em> is a one-line script and also meaningless. What makes this milestone different is what the number represents.</p>
     </div>
   </div>
@@ -688,7 +611,7 @@ main > .content-section + .content-section { padding-top: 0; }
 <section class="content-section"><div class="wrap reveal">
   <ul class="prose-list">
     <li><strong>Every phrase is a real, resolvable command.</strong> If you say it (or type it), <code>yo do</code> finds the script that matches, resolves the parameters, and executes it. Nothing in that billion is theoretical. The phrase count is a lower bound on the set of actually understandable inputs — not the set of parseable ones.</li>
-    <li><strong>It's parameter variations, not sentence variations.</strong> A billion ChatGPT prompts would be a billion sentences. A billion <code>yo do</code> phrases is a much smaller set of sentence shapes with every meaningful combination of slots filled in. That's why it works: the system doesn't need to have seen your exact sentence. It needs to recognize your sentence as belonging to a pattern it does understand, then read the parameters out of it.</li>
+    <li><strong>It's parameter variations, not sentence variations.</strong> A billion ChatGPT prompts would be a billion sentences. A billion <code>yo</code> phrases is a much smaller set of sentence shapes with every meaningful combination of slots filled in. That's why it works: the system doesn't need to have seen your exact sentence. It needs to recognize your sentence as belonging to a pattern it does understand, then read the parameters out of it.</li>
     <li><strong>Natural language, not command syntax.</strong> These are the phrases you'd actually say out loud. <em>"Do I have bulbasaur shiny."</em> <em>"Deploy homie."</em> <em>"Which move is flamethrower."</em> <em>"How many shinies do I have left."</em> The billion is the count of those — not of <code>yo pokemon --pokemon bulbasaur --shiny true</code>.</li>
   </ul>
 </div></section>
@@ -697,7 +620,6 @@ main > .content-section + .content-section { padding-top: 0; }
   <div class="wrap reveal">
     <div class="prose-section">
       <h3 class="sub-heading">What <strong>understandable</strong> means here</h3>
-<p>The phrase count only includes sentences that pass three tests:</p>
     </div>
   </div>
 </section>
@@ -705,10 +627,10 @@ main > .content-section + .content-section { padding-top: 0; }
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <p>So the billion is not <em>"sentences the system will attempt."</em> It's <em>"sentences the system will correctly recognize, resolve, and run."</em> That's a much smaller, much more honest number.</p>
-<h3 class="sub-heading">Why it took a while</h3>
-<p>8,043 patterns is a lot to hand-write. 133,064 phrases per pattern is a lot of grammar to get right — genders, plural forms, word order, Swedish and English, synonyms, optional words, abbreviations. Every new pattern multiplies against every existing parameter list, and every new parameter value multiplies against every existing pattern. The phrase count grows quadratically, but the work to keep it accurate grows with both sides.</p>
-<p>That's what hitting one billion really means: not that the matcher is fast — <strong>97 ms average across 1,467 runs</strong> is nice but cheap — but that the vocabulary underneath it is dense enough. <strong>1,024 Pokémon. 938 moves. 311 abilities.</strong> Every host, every ball, every stat, every question kind. The multiplication naturally clears a billion.</p>
+      <p>The billion is not <em>"sentences the system will attempt."</em> It's <em>"sentences the system will correctly recognize, resolve, and run."</em> That's a much smaller, much more honest number.</p>
+<h3 class="sub-heading">Not "weekend work"</h3>
+<p>8,043 patterns is a lot to hand-write. 133,064 phrases per pattern is a lot of grammar to get right — plural, word order, synonyms, optional words, alternative words. Every new pattern multiplies against every existing parameter list, and every new parameter value multiplies against every existing pattern. The phrase count grows quadratically, initially the work to keep it accurate grew with both sides, that's before I implemented fuzzy sentence conflict detection at compile-time.</p>
+<p>That's what hitting one billion really means: not that the matcher is fast — <strong>97 ms average across 1,467 runs</strong> is nice but cheap — but that the vocabulary underneath it is dense enough. The multiplication naturally clears a billion.</p>
 <p>And it helps that <strong>74 of the 103 scripts</strong> expose their vocabulary to the voice layer. Those 74 are the scripts that can be spoken to, and they're what feeds the phrase count. The other 29 are infrastructure — hooks, generators, helpers — that nobody needs to say out loud.</p>
     </div>
   </div>
@@ -744,6 +666,18 @@ And thorough, at this scale, is <strong>its own kind of milestone.</strong>
         </div>
       </div>
     </footer>
+
+    <svg height="0" width="0" style="position:absolute" aria-hidden="true">
+      <filter id="f1">
+        <feTurbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp"/>
+        <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp"/>
+        <feColorMatrix type="matrix" result="red_" values="4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/>
+        <feOffset in="red_" dx="2" dy="0" result="red"/>
+        <feColorMatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 1 0"/>
+        <feOffset in="blue_" dx="-3" dy="0" result="blue"/>
+        <feBlend mode="screen" in="red" in2="blue"/>
+      </filter>
+    </svg>
   </div>
 
   <noscript>
@@ -773,7 +707,8 @@ And thorough, at this scale, is <strong>its own kind of milestone.</strong>
     function setupRelatedPosts() {
       var section = document.getElementById('similar-section');
       var container = document.getElementById('similar-posts');
-      if (!section || !container) return;
+      var myLink = document.body.dataset.postLink;
+      if (!section || !container || !myLink) return;
 
       function esc(s) {
         var d = document.createElement('div');
@@ -786,11 +721,10 @@ And thorough, at this scale, is <strong>its own kind of milestone.</strong>
         .then(function(posts) {
           if (!Array.isArray(posts)) return;
 
-          var path = window.location.pathname;
           var current = null;
           for (var i = 0; i < posts.length; i++) {
             try {
-              if (new URL(posts[i].link, window.location.origin).pathname === path) {
+              if (new URL(posts[i].link, window.location.origin).pathname === myLink) {
                 current = posts[i];
                 break;
               }
