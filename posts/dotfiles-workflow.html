@@ -2,60 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>The Dotfiles Workflow » QuackHack-McBlindy.com</title>
+    <link rel="canonical" href="https://quackhack-mcblindy.com/work.html" />
+
     <meta name="google-site-verification" content="nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Dotfiles Workflow — QuackHack-McBlindy.com</title>
-    <meta name="description" content="Two commands, one tag, four sounds. How yo switch and yo deploy rebuild a NixOS system locally or remotely, then tag the generation via yo push — and how yo rollback brings it back.">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://quackhack-mcblindy.com/work.html">
-    <meta property="og:title" content="The Dotfiles Workflow — QuackHack-McBlindy.com">
-    <meta property="og:description" content="Two commands, one tag, four sounds.">
-    <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Dotfiles Workflow — QuackHack-McBlindy.com">
-    <meta name="twitter:description" content="Two commands, one tag, four sounds.">
-    <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
-
-    <link rel="canonical" href="https://quackhack-mcblindy.com/work.html" />
-    <meta name="theme-color" content="#050707">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/css/styles.css">
-    <script src="static/js/script.js" defer></script>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quackhack-mcblindy.com/work.html">
+    <meta property="og:title" content="The Dotfiles Workflow » QuackHack-McBlindy.com">
+    <meta property="og:description" content="Two commands, one tag, four sounds. yo switch, yo deploy, yo push, yo rollback.">
+    <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+    <meta name="description" content="Two commands, one tag, four sounds. yo switch, yo deploy, yo push, yo rollback.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Dotfiles Workflow » QuackHack-McBlindy.com">
+    <meta name="twitter:description" content="Two commands, one tag, four sounds.">
+    <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="🦯🦆">
+    <link rel="icon" href="/static/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="apple-touch-icon" sizes="180x180" href="static/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon-16x16.png">
+
+    <script src="./../static/js/script.js" defer></script>
+
+    <meta name="theme-color" content="#050707">
+    <link rel="stylesheet" href="./../static/css/styles.css">
 
     <style>
-        :root {
-            --bg: #050707;
-            --panel: #0b1110;
-            --panel2: #0e1716;
-            --teal: #11e6d2;
-            --teal2: #05a99f;
-            --gold: #f4b52f;
-            --gold2: #ffdc72;
-            --green: #5eea8f;
-            --red: #ff5470;
-            --pink: #ff7ab8;
-            --purple: #b392ff;
-            --text: #f3fffd;
-            --muted: #8ea6a3;
-            --line: rgba(17, 230, 210, .16);
-            --max: 1180px;
-        }
-
-        .content-section { padding: 20px 0 50px; }
-
         .page-title {
             font-family: "Cinzel Decorative", Georgia, serif;
             font-size: clamp(2rem, 6vw, 3.4rem);
@@ -229,7 +211,6 @@
             border-color: rgba(94, 234, 143, .4);
             background: rgba(94, 234, 143, .08);
         }
-
         .terminal pre {
             position: relative;
             margin: 0;
@@ -459,7 +440,6 @@
             from { transform: translateY(0)    rotate(-4deg); }
             to   { transform: translateY(-6px) rotate(4deg);  }
         }
-
         .sound-key {
             position: absolute;
             top: 12px; right: 14px;
@@ -608,12 +588,45 @@
             to   { box-shadow: 0 0 40px rgba(94, 234, 143, .25); }
         }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(22px);
-            transition: .7s ease;
+        #similar-posts {
+          margin-top: 70px;
+          padding-top: 40px;
+          border-top: 1px solid var(--line);
         }
-        .reveal.in { opacity: 1; transform: none; }
+        #similar-posts h2 {
+          font-size: clamp(1.5rem, 3vw, 2.2rem);
+          margin: 0 0 22px;
+          color: var(--text);
+          letter-spacing: -.02em;
+        }
+        #similar-posts-list {
+          display: grid;
+          gap: 14px;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+        .similar-post {
+          display: block;
+          padding: 18px 20px;
+          background: rgba(255, 255, 255, .03);
+          border: 1px solid rgba(255, 255, 255, .08);
+          border-radius: 16px;
+          transition: transform .2s ease, border-color .2s ease;
+        }
+        .similar-post:hover {
+          transform: translateY(-2px);
+          border-color: rgba(17, 230, 210, .3);
+        }
+        .similar-post h4 {
+          margin: 0 0 6px;
+          color: var(--text);
+          font-size: 1rem;
+        }
+        .similar-post p {
+          margin: 0;
+          color: var(--muted);
+          font-size: .88rem;
+          line-height: 1.5;
+        }
 
         @media (max-width: 700px) {
             .flow-glance { grid-template-columns: 1fr; gap: 8px; }
@@ -622,36 +635,35 @@
             .terminal pre { padding: 18px 16px; font-size: 12px; }
         }
         @media (prefers-reduced-motion: reduce) {
-            .reveal { opacity: 1; transform: none; }
             .terminal pre::before { display: none; }
         }
     </style>
 
-    <link rel="stylesheet" href="static/css/viewport.css">
+    <link rel="stylesheet" href="./../static/css/viewport.css">
 </head>
 
-<body>
+<body data-post-link="/work.html">
 
     <div class="duckhawk-frame" aria-hidden="true">
-        <img class="frame-piece frame-header glitch hue-shift" src="static/img/frame/header.png" alt="">
-        <img class="frame-piece frame-left"   src="static/img/frame/left.png"   alt="">
-        <img class="frame-piece frame-right"  src="static/img/frame/right.png"  alt="">
-        <img class="frame-piece frame-bottom" src="static/img/frame/bottom.png" alt="">
+        <img class="frame-piece frame-header glitch hue-shift" src="./../static/img/frame/header.png" alt="">
+        <img class="frame-piece frame-left"   src="./../static/img/frame/left.png"   alt="">
+        <img class="frame-piece frame-right"  src="./../static/img/frame/right.png"  alt="">
+        <img class="frame-piece frame-bottom" src="./../static/img/frame/bottom.png" alt="">
 
-        <img class="frame-piece frame-header-standalone glitch hue-shift" src="static/img/frame/header-standalone-small.png" alt="">
+        <img class="frame-piece frame-header-standalone glitch hue-shift" src="./../static/img/frame/header-standalone-small.png" alt="">
 
         <nav class="frame-navigation" aria-label="Main navigation">
-            <a class="frame-nav-link frame-nav-home"     href="about.html">Me</a>
-            <a class="frame-nav-link frame-nav-showcase" href="work.html">Work</a>
+            <a class="frame-nav-link frame-nav-home"     href="https://quackhack-mcblindy.com">Me</a>
+            <a class="frame-nav-link frame-nav-showcase" href="https://quackhack-mcblindy.com/work.html">Work</a>
         </nav>
     </div>
 
-    <div id="content-glitch">
+    <div id="content-glitch" class="glitch hue-shift">
         <header id="top"></header>
 
         <main>
 
-            <section class="content-section" style="padding-bottom: 20px;">
+            <section class="content-section" id="intro" style="padding-bottom: 20px;">
                 <div class="wrap reveal">
                     <h1 class="page-title">
                         <span class="gold">The</span> <span class="white">Dotfiles Workflow</span>
@@ -1190,7 +1202,7 @@ jobs:
                     <div class="sound-grid" role="group" aria-label="Duck sound effects">
                         <button class="sound-card" type="button"
                                 data-tone="success" data-key="1"
-                                data-sound="static/sound/duck_celebration.mp3"
+                                data-sound="./../static/sound/duck_celebration.mp3"
                                 data-burst="success"
                                 aria-label="Play duck celebration sound (Success, exit 0)">
                             <span class="sound-key" aria-hidden="true">1</span>
@@ -1202,7 +1214,7 @@ jobs:
 
                         <button class="sound-card" type="button"
                                 data-tone="fail1" data-key="2"
-                                data-sound="static/sound/duck_say_fuck.mp3"
+                                data-sound="./../static/sound/duck_say_fuck.mp3"
                                 data-burst="fail"
                                 aria-label="Play duck says fuck sound (Fail 1 to 4)">
                             <span class="sound-key" aria-hidden="true">2</span>
@@ -1214,7 +1226,7 @@ jobs:
 
                         <button class="sound-card" type="button"
                                 data-tone="fail2" data-key="3"
-                                data-sound="static/sound/duck_more_mad.mp3"
+                                data-sound="./../static/sound/duck_more_mad.mp3"
                                 data-burst="fail"
                                 aria-label="Play duck more mad sound (Fail 4 to 7)">
                             <span class="sound-key" aria-hidden="true">3</span>
@@ -1226,7 +1238,7 @@ jobs:
 
                         <button class="sound-card" type="button"
                                 data-tone="fail3" data-key="4"
-                                data-sound="static/sound/DUCK_GO_CRAZY.mp3"
+                                data-sound="./../static/sound/DUCK_GO_CRAZY.mp3"
                                 data-burst="fail"
                                 aria-label="Play duck go crazy sound (Fail 8 or more)">
                             <span class="sound-key" aria-hidden="true">4</span>
@@ -1245,33 +1257,37 @@ jobs:
                 </div>
             </section>
 
+            <section id="similar-posts" hidden>
+              <h2>Similar <span class="gold">Posts</span></h2>
+              <div id="similar-posts-list"></div>
+            </section>
+
         </main>
 
         <footer>
             <div class="wrap footer-row">
-                <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBlindy.com</span></strong></div>
+                <div><a href="https://github.com/QuackHack-McBlindy/quackhack-mcblindy.com" class="gold-link" target="_blank" rel="noopener">Source</a> » <span class="gold">©</span> <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBlindy.com</span></strong></div>
                 <div class="footer-links">
                     <a href="#top">Top</a>
                 </div>
             </div>
         </footer>
 
-        <svg height="0" width="0" style="position:absolute" aria-hidden="true">
+        <svg height="0" width="0" style="position:absolute;">
             <filter id="f1">
-                <feTurbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp"/>
-                <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp"/>
-                <feColorMatrix type="matrix" result="red_" values="4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/>
-                <feOffset in="red_" dx="2" dy="0" result="red"/>
-                <feColorMatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 1 0"/>
-                <feOffset in="blue_" dx="-3" dy="0" result="blue"/>
-                <feBlend mode="screen" in="red" in2="blue"/>
+                <feTurbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp"></feTurbulence>
+                <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp"></feDisplacementMap>
+                <feColorMatrix type="matrix" result="red_" values="4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"></feColorMatrix>
+                <feOffset in="red_" dx="2" dy="0" result="red"></feOffset>
+                <feColorMatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 1 0"></feColorMatrix>
+                <feOffset in="blue_" dx="-3" dy="0" result="blue"></feOffset>
+                <feBlend mode="screen" in="red" in2="blue"></feBlend>
             </filter>
         </svg>
     </div>
 
     <noscript>
         <style>
-            .reveal { opacity: 1 !important; transform: none !important; }
             .terminal pre::before { display: none; }
         </style>
     </noscript>
@@ -1300,22 +1316,18 @@ jobs:
             el._t = setTimeout(() => el.classList.remove('show'), 2600);
         }
 
-        const yearEl = document.getElementById('year');
-        if (yearEl) yearEl.textContent = new Date().getFullYear();
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-        if ('IntersectionObserver' in window) {
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in');
-                        io.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-            document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-        } else {
-            document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
-        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in', 'in-view');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal, .anim').forEach(el => observer.observe(el));
 
         function highlight(text) {
             const tokens = [];
@@ -1527,7 +1539,54 @@ jobs:
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) stopCurrent();
         });
+
+        (async function () {
+          const section = document.getElementById('similar-posts');
+          const list    = document.getElementById('similar-posts-list');
+          const myLink  = document.body.dataset.postLink;
+          if (!section || !list || !myLink) return;
+
+          try {
+            const [simRes, postsRes] = await Promise.all([
+              fetch('/similar.json', { cache: 'no-cache' }),
+              fetch('/posts.json',   { cache: 'no-cache' })
+            ]);
+            if (!simRes.ok || !postsRes.ok) return;
+
+            const similar = await simRes.json();
+            const posts   = await postsRes.json();
+            const links   = similar[myLink] || [];
+            if (!links.length) return;
+
+            const byLink = new Map(posts.map(p => [p.link, p]));
+
+            list.innerHTML = links.map(link => {
+              const p = byLink.get(link);
+              if (!p) return '';
+              return `
+                <a class="similar-post" href="${escAttr(link)}">
+                  <h4>${esc(p.title)}</h4>
+                  <p>${esc(p.description)}</p>
+                </a>
+              `;
+            }).join('');
+
+            section.hidden = false;
+          } catch (e) {
+            console.warn('[similar-posts]', e);
+          }
+
+          function esc(s) {
+            const d = document.createElement('div');
+            d.textContent = String(s);
+            return d.innerHTML;
+          }
+          function escAttr(s) {
+            return String(s).replace(/"/g, '&quot;');
+          }
+        })();
     })();
     </script>
+
 </body>
 </html>
