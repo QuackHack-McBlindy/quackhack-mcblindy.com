@@ -3,38 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <title>QuackHack-McBLindy.com » Accessibility on Linux / NixOS </title>
-  <link rel="canonical" href="https://quackhack-mcblindy.com" />
+  <link rel="canonical" href="https://quackhack-mcblindy.com/posts/accessibility-on-linux.html" />
 
   <meta name="google-site-verification=nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&display=swap" rel="stylesheet"> -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
 
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://quackhack-mcblindy.com/work.html">
-  <meta property="og:title" content="QuackHack-McBLindy.com">
-  <meta property="og:description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes. » I write code related to anything. » I write texts related to tech. » Think Different. Build Bold. Quack Loud.">
+  <meta property="og:url" content="https://quackhack-mcblindy.com/posts/accessibility-on-linux.html">
+  <meta property="og:title" content="QuackHack-McBLindy.com » Accessibility on Linux / NixOS">
+  <meta property="og:description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes.">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Accessibility on Linux / NixOS",
-  "url": "https://quackhack-mcblindy.com/accessibility-on-linux.html",
+  "url": "https://quackhack-mcblindy.com/posts/accessibility-on-linux.html",
   "datePublished": "2026-11-14",
   "keywords": ["accessibility", "nixos", "gnome", "linux", "magnifier", "zoom"]
 }
 </script>
 
 
-  <meta name="description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes. » I write code related to anything. » I write texts related to tech. » Think Different. Build Bold. Quack Loud.">
+  <meta name="description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes.">
   <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="QuackHack-McBLindy.com » Accessibility on Linux / NixOS">
-  <meta name="twitter:description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes. » I write code related to anything. » I write texts related to tech. » Think Different. Build Bold. Quack Loud.">
+  <meta name="twitter:description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes.">
   <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -45,13 +44,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-
-
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-
 
   <link rel="stylesheet" href="./../static/css/styles.css" />
   <style>:root {
@@ -140,7 +135,6 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   90% { filter: hue-rotate(0deg); }
   100% { filter: hue-rotate(360deg); }
 }
-
 
 @media (max-width: 1199px), (max-height: 699px) {
     main {
@@ -382,11 +376,10 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
       border: 1px solid rgba(17,230,210,.25);
       padding: 4px 12px; border-radius: 999px;
     }
-
 </style>
   <link rel="stylesheet" href="./../static/css/viewport.css" />
 </head>
-<body data-post-link="/accessibility-on-linux.html">
+<body data-post-link="/posts/accessibility-on-linux.html">
 
   <div class="duckhawk-frame" aria-hidden="true">
     <img class="frame-piece frame-header glitch hue-shift" src="./../static/img/frame/header.png" alt="" />
@@ -448,12 +441,31 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 
 
 
-      <section class="content-section" id="similar-section" hidden>
-  <div class="wrap">
+      <section class="content-section">
+  <div class="wrap reveal">
     <div class="section-head">
       <h2><span class="gold">Related</span> <span class="white">posts</span></h2>
     </div>
-    <div class="cross-links" id="similar-posts"></div>
+    <div class="cross-links">
+      <a class="cross-link" href="/posts/hardware.html">
+  <span class="cl-icon" aria-hidden="true">🔗</span>
+  <div class="cl-body">
+    <h3 class="cl-title">Meet My Hardware</h3>
+    <p class="cl-desc">A gallery of the machines I actually run - past and present.</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
+<a class="cross-link" href="/posts/tor-in-a-shell.html">
+  <span class="cl-icon" aria-hidden="true">🔗</span>
+  <div class="cl-body">
+    <h3 class="cl-title">Tor in a Shell</h3>
+    <p class="cl-desc">Every other Tor setup asks you to point something at something. This one asks you to type &lt;code&gt;hide&lt;/code&gt;.</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
+    </div>
   </div>
 </section>
 
@@ -505,74 +517,6 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     } else {
       document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
     }
-
-    function setupRelatedPosts() {
-      var section = document.getElementById('similar-section');
-      var container = document.getElementById('similar-posts');
-      var myLink = document.body.dataset.postLink;
-      if (!section || !container || !myLink) return;
-
-      function esc(s) {
-        var d = document.createElement('div');
-        d.textContent = s == null ? "" : String(s);
-        return d.innerHTML;
-      }
-
-      fetch('/posts.json')
-        .then(function(r) { return r.ok ? r.json() : null; })
-        .then(function(posts) {
-          if (!Array.isArray(posts)) return;
-
-          var current = null;
-          for (var i = 0; i < posts.length; i++) {
-            try {
-              if (new URL(posts[i].link, window.location.origin).pathname === myLink) {
-                current = posts[i];
-                break;
-              }
-            } catch (_) { /* skip malformed link */ }
-          }
-
-          if (!current || !Array.isArray(current.tags) || current.tags.length === 0) return;
-
-          var scored = [];
-          for (var j = 0; j < posts.length; j++) {
-            var p = posts[j];
-            if (p.link === current.link) continue;
-            var shared = 0;
-            if (Array.isArray(p.tags)) {
-              for (var k = 0; k < p.tags.length; k++) {
-                if (current.tags.indexOf(p.tags[k]) !== -1) shared++;
-              }
-            }
-            if (shared > 0) scored.push({ post: p, score: shared });
-          }
-
-          scored.sort(function(a, b) { return b.score - a.score; });
-          scored = scored.slice(0, 3);
-          if (scored.length === 0) return;
-
-          var html = "";
-          for (var m = 0; m < scored.length; m++) {
-            var q = scored[m].post;
-            html +=
-              '<a class="cross-link" href="' + esc(q.link) + '">' +
-                '<span class="cl-icon" aria-hidden="true">🔗</span>' +
-                '<div class="cl-body">' +
-                  '<h3 class="cl-title">' + esc(q.title) + '</h3>' +
-                  '<p class="cl-desc">' + esc(q.description || "") + '</p>' +
-                '</div>' +
-                '<span class="cl-arrow" aria-hidden="true">→</span>' +
-              '</a>';
-          }
-
-          container.innerHTML = html;
-          section.hidden = false;
-        })
-        .catch(function() { /* silent */ });
-    }
-
-    setupRelatedPosts();
 
     document.querySelectorAll('.copy-btn').forEach((btn) => {
       btn.addEventListener('click', async () => {
