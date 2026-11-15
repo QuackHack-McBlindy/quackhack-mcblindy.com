@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -euo pipefail
 
 src="$HOME/QuackHack-McBlindy.com/posts/posts.json"
 dst="$HOME/QuackHack-McBlindy.com/posts.json"
