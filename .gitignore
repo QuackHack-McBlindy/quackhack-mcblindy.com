@@ -3,5 +3,5 @@ dump
 /dump
 dump/
 *.bak
-
+posts-new.json.backup
 posts/posts.json
