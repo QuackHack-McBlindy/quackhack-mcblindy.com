@@ -53,6 +53,10 @@
     observeAnimElements(container.querySelectorAll('.anim'));
   }
 
+  function sortByDateDesc(posts) {
+    return [...posts].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  }
+
   function extractTags(posts) {
     const tagMap = new Map();
     posts.forEach(post => {
@@ -192,7 +196,7 @@
 
     observeAnimElements(document.querySelectorAll('.anim'));
 
-    allPosts = await fetchPosts();
+    allPosts = sortByDateDesc(await fetchPosts());
     renderLatestPosts(allPosts);
     renderTagFilters(allPosts);
     renderAllPosts(allPosts);
