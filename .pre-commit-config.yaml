@@ -37,4 +37,3 @@ repos:
     hooks:
       - id: check-json
       - id: check-toml
-      - id: pretty-format-json
