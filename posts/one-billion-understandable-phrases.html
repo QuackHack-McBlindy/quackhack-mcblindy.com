@@ -17,6 +17,18 @@
   <meta property="og:url" content="https://quackhack-mcblindy.com/work.html">
   <meta property="og:title" content="QuackHack-McBLindy.com">
   <meta property="og:description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes. » I write code related to anything. » I write texts related to tech. » Think Different. Build Bold. Quack Loud.">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "A Unique Milestone Reached",
+  "url": "https://quackhack-mcblindy.com/one-billion-understandable-phrases.html",
+  "datePublished": "2025-01-01",
+  "keywords": ["yo", "voice", "nix", "milestone"]
+}
+</script>
+
+
   <meta name="description" content="QuackHack-McBLindy.com » Portfolio » I share code, wisdom and tells tales of NixOS flakes. » I write code related to anything. » I write texts related to tech. » Think Different. Build Bold. Quack Loud.">
   <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
@@ -359,6 +371,18 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
       font-size: clamp(1.4rem, 3.2vw, 1.9rem);
       margin: 0; letter-spacing: -.01em; text-align: center;
     }
+    .tag-list {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; max-width: 720px; margin: 0 auto;
+    }
+    .tag-list .tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: .74rem; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--teal); background: rgba(17,230,210,.08);
+      border: 1px solid rgba(17,230,210,.25);
+      padding: 4px 12px; border-radius: 999px;
+    }
+
 main > .content-section + .content-section { padding-top: 0; }
 
 .milestone-number {
@@ -625,6 +649,14 @@ main > .content-section + .content-section { padding-top: 0; }
 <p>8,043 patterns is a lot to hand-write. 133,064 phrases per pattern is a lot of grammar to get right - plural, word order, synonyms, optional words, alternative words. Every new pattern multiplies against every existing parameter list, and every new parameter value multiplies against every existing pattern. The phrase count grows quadratically, initially the work to keep it accurate grew with both sides, that's before I implemented fuzzy sentence conflict detection at compile-time.</p>
 <p>That's what hitting one billion really means: not that the matcher is fast - <strong>97 ms average across 1,467 runs</strong> is nice but cheap - but that the vocabulary underneath it is dense enough. The multiplication naturally clears a billion.</p>
 <p>And it helps that <strong>74 of the 103 scripts</strong> expose their vocabulary to the voice layer. Those 74 are the scripts that can be spoken to, and they're what feeds the phrase count. The other 29 are infrastructure - hooks, generators, helpers - that nobody needs to say out loud.</p>
+    </div>
+  </div>
+</section>
+
+      <section class="content-section">
+  <div class="wrap reveal">
+    <div class="tag-list">
+      <span class="tag">yo</span> <span class="tag">voice</span> <span class="tag">nix</span> <span class="tag">milestone</span>
     </div>
   </div>
 </section>

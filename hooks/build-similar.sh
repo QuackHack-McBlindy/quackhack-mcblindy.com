@@ -13,10 +13,9 @@ command -v jq  >/dev/null || { echo "need jq"  >&2; exit 1; }
 command -v awk >/dev/null || { echo "need awk" >&2; exit 1; }
 [ -f "$POSTS_JSON" ]      || { echo "missing $POSTS_JSON" >&2; exit 1; }
 
-
 jq -r '
   .[]
-  | select(.link != null)
+  | select(.link != null and .link != "")
   | [ .link,
       (.title       // ""),
       (.description // ""),

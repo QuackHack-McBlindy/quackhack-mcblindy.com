@@ -11,18 +11,17 @@ repos:
         exclude: '^(docs/|dist/|vendor/|.*\.snap$)'
       - id: check-yaml
         args: [--allow-multiple-documents]
-      #- id: check-added-large-files
-      #  args: [--maxkb=500]
       - id: check-merge-conflict
 
   - repo: local
     hooks:
-#      - id: update-versions
-#        name: Update versions.json
-#        entry: bash hooks/fetch-versions.sh
-#        language: system
-#        pass_filenames: false
-#        always_run: false
+
+      - id: move-posts-json
+        name: Move posts.json to webroot
+        entry: bash hooks/move-posts-json.sh
+        language: system
+        pass_filenames: false
+        always_run: true
 
       - id: build-similar
         name: Build similar.json
@@ -30,3 +29,12 @@ repos:
         language: system
         pass_filenames: false
         always_run: false
+
+
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-json
+      - id: check-toml
+      - id: pretty-format-json
