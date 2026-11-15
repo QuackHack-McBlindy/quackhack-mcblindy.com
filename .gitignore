@@ -3,6 +3,5 @@ dump
 /dump
 dump/
 *.bak
-posts.json
-similar.json
+
 posts/posts.json
