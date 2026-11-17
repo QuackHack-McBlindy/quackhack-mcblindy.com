@@ -592,7 +592,7 @@ shl = {
   <div class="wrap reveal">
     <div class="prose-section">
       <h3 class="sub-heading"><strong>Step 4 - mkDuckPUCKConfig</strong></h3>
-<p>Rather than write two scripts, I wrote one unified builder and instantiated<br>it twice. Everything that differs between the leagues lives in a<br>plain attrset - API base, token, team aliases, voice prefix - and<br>the shell body is shared verbatim. Full source is linked below;<br>here's the callable surface:</p>
+<p>Rather than write multiple <code>yo</code>  scripts, I wrote one unified builder and instantiated<br>it twice. Everything that differs between the leagues lives in a<br>plain attrset. Teans are defined outside of the league to avoid the need for manual entries each season. <br>Teams are also fuzzy matched for user friendly searches.</p>
     </div>
   </div>
 </section>
@@ -620,7 +620,133 @@ shl = {
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading"><strong>Step 5 - ask it who the fattest player is</strong></h3>
+      <h3 class="sub-heading"><strong>Step 5 - Parameters</strong></h3>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="config-block">
+  <div class="config-bar">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+    <span class="config-title">yo.scripts.duckPUCK.parameters</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code class="language-bash">
+</code></pre>
+</div>
+
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="prose-section">
+      <h3 class="sub-heading"><strong>Step 6 - Sentences & Entity lists</strong></h3>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="config-block">
+  <div class="config-bar">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+    <span class="config-title">yo.scripts.duckPUCK.voice</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><code class="language-bash">sharedSentenceBodies = [
+  # generic table
+  &quot;tabellen&quot;
+  &quot;visa tabellen&quot;
+  &quot;hur ser tabellen ut&quot;
+  &quot;hur ligger lagen till&quot;
+  &quot;vad är ställningen&quot;
+
+  # team-specific
+  &quot;vad ligger {team} i tabellen&quot;
+  &quot;visa {team} statistik&quot;
+  &quot;var ligger {team} i tabellen&quot;
+  &quot;vilken plats har {team}&quot;
+  &quot;hur går det för {team}&quot;
+  &quot;hur ligger {team} till&quot;
+  &quot;är {team} på slutspelsplats&quot;
+  &quot;är {team} på kvalplats&quot;
+  &quot;hur många poäng har {team}&quot;
+  &quot;visa {team}s statistik&quot;
+  &quot;visa statistik för {team}&quot;
+  &quot;hur ser {team}s statistik ut&quot;
+  &quot;vad har {team} för statistik&quot;
+  &quot;ge mig {team} siffror&quot;
+  &quot;hur går det för {team} {mode}&quot;
+  &quot;analysera {team}&quot;
+  &quot;ge en analys av {team}&quot;
+  &quot;analysera laget {team}&quot;
+  &quot;analysera {team}s {mode} matcher&quot;
+  &quot;hur presterade {team} i {mode} matchen&quot;
+  &quot;vilka trender har {team}&quot;
+
+  # stat-specific
+  &quot;vad har {team} för {stat} statistik&quot;
+  &quot;analysera {team} {stat}&quot;
+  &quot;hur bra är {team} i {stat}&quot;
+  &quot;hur presterar {team} i {stat}&quot;
+  &quot;hur ser {team}s {stat} ut&quot;
+  &quot;visa {team}s {stat}&quot;
+  &quot;analysera {team}s {stat}&quot;
+  &quot;ge en analys av {team}s {stat}&quot;
+
+  # heaviest / tallest / other player attributes
+  &quot;vem är ligans {stat} spelare&quot;
+  &quot;vilken spelare är ligans {stat}&quot;
+  &quot;visa ligans {stat} spelare&quot;
+  &quot;vem har ligans {mode} {stat}&quot;
+
+  # best / worst leaders
+  &quot;vem har ligans {mode} {stat}&quot;
+  &quot;vilket lag har ligans {mode} {stat}&quot;
+  &quot;vilken målvakt är {mode}&quot;
+  &quot;vem är {mode} målvakt&quot;
+
+  # schedule / recent / upcoming
+  &quot;visa {mode} matcher&quot;
+  &quot;vilka matcher spelas {mode}&quot;
+  &quot;när spelar {team} {mode}&quot;
+  &quot;vilka möter {team} {mode}&quot;
+  &quot;vilka matcher har {team} {mode}&quot;
+  &quot;när är {team}s {mode} match&quot;
+
+  # player leaderboards
+  &quot;visa topp {count} i {stat}&quot;
+  &quot;{count} är {stat} i ligan&quot;
+
+  # single-player queries
+  &quot;vilken spelare har gjort {mode} {stat}&quot;
+  &quot;vem har gjort {mode} {stat}&quot;
+
+  # team shorthanded goals
+  &quot;vilket lag har {mode} {stat}&quot;
+  &quot;vem har {mode} {stat} i ligan&quot;
+  &quot;vilka har {mode} {stat}&quot;
+  &quot;vilket lag har gjort {mode} {stat}&quot;
+];
+
+
+</code></pre>
+</div>
+
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="prose-section">
+      <h3 class="sub-heading"><strong>Step 7 - ask it who the fattest player is</strong></h3>
 <p>The whole point. <code>duckPUCK</code> understands both Swedish and English<br>voice phrasing, and its vocabulary is per-league so "puck" doesn't<br>accidentally mean HA when you wanted SHL.</p>
     </div>
   </div>
@@ -636,9 +762,13 @@ shl = {
     <span class="config-title">yo duckPUCK</span>
     <button class="copy-btn" type="button">Copy</button>
   </div>
-  <pre><code class="language-bash">$ yo duckPUCK --mode best --stat heaviest
-$ yo duckPUCK --mode best --stat lightest
-$ yo duckPUCK --team björklöven --stat powerplay
+  <pre><code class="language-bash">$ yo duckPUCK-shl --mode best --stat heaviest
+  [🦆🏒] INFO - Saved 14 teams to /home/pungkula/.config/yo/hockey-shl/table.json
+  [🦆🏒] INFO - SHL scraping completed!
+  99. Joona Ikonen (Malmö Redhawks) - Vikt: 178 kg
+  79. Radim Zohorna (Färjestad BK) - Vikt: 104 kg
+  87. Patrik Karlkvist (Örebro Hockey) - Vikt: 98 kg
+
 </code></pre>
 </div>
 
