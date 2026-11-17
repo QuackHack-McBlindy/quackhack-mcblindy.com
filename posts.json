@@ -1,7 +1,7 @@
 [
   {
     "date": "2026-11-14",
-    "description": "",
+    "description": "Linux should be for everyone, not just people without disabilities. Accessibility on NixOS is terrible out of the box — here's my magnifier flake and a voice-to-shell translator.",
     "link": "https://quackhack-mcblindy.com/posts/accessibility-on-linux.html",
     "tags": [
       "accessibility",
@@ -14,8 +14,8 @@
     "title": "Accessibility on Linux / NixOS"
   },
   {
-    "date": "2025-01-01",
-    "description": "Every other Tor setup asks you to point something at something. This one asks you to type <code>hide</code>.",
+    "date": "2026-11-09",
+    "description": "Every other Tor setup asks you to point something at something. This one asks you to type hide — Firejail, nftables, and a NetworkManager bridge.",
     "link": "https://quackhack-mcblindy.com/posts/tor-in-a-shell.html",
     "tags": [
       "tor",
