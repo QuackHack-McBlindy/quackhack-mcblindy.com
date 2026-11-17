@@ -1,5 +1,18 @@
 [
   {
+    "date": "2026-11-09",
+    "description": "I assumed there'd be a wall, a token expiry, a rate limit - something. There wasn't. They save an absurd amount of data, so hey - thanks for the free, unlimited API. Of course I made it voice-controlled.",
+    "link": "https://quackhack-mcblindy.com/posts/reverse-engineering-the-swedish-hockey-league.html",
+    "tags": [
+      "reverse-engineering",
+      "nixos",
+      "nix",
+      "hockey",
+      "api"
+    ],
+    "title": "Reverse Engineering the Swedish Hockey League"
+  },
+  {
     "date": "2026-11-14",
     "description": "Linux should be for everyone, not just people without disabilities. Accessibility on NixOS is terrible out of the box — here's my magnifier flake and a voice-to-shell translator.",
     "link": "https://quackhack-mcblindy.com/posts/accessibility-on-linux.html",
