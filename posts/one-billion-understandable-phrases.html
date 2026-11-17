@@ -15,7 +15,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html">
   <meta property="og:title" content="QuackHack-McBLindy.com » A Unique Milestone Reached">
-  <meta property="og:description" content="yo crossed one billion generated phrases. 4,365 patterns. 121,213,478,686 phrases. 101 scripts, 69 voice-ready. 97 ms average over 1,467 runs.">
+  <meta property="og:description" content="yo crossed one billion generated phrases. 4,373 patterns. 121,213,478,958 phrases. 101 scripts, 69 voice-ready. 97 ms average over 1,467 runs.">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -28,12 +28,12 @@
 </script>
 
 
-  <meta name="description" content="yo crossed one billion generated phrases. 4,365 patterns. 121,213,478,686 phrases. 101 scripts, 69 voice-ready. 97 ms average over 1,467 runs.">
+  <meta name="description" content="yo crossed one billion generated phrases. 4,373 patterns. 121,213,478,958 phrases. 101 scripts, 69 voice-ready. 97 ms average over 1,467 runs.">
   <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="QuackHack-McBLindy.com » A Unique Milestone Reached">
-  <meta name="twitter:description" content="yo crossed one billion generated phrases. 4,365 patterns. 121,213,478,686 phrases. 101 scripts, 69 voice-ready. 97 ms average over 1,467 runs.">
+  <meta name="twitter:description" content="yo crossed one billion generated phrases. 4,373 patterns. 121,213,478,958 phrases. 101 scripts, 69 voice-ready. 97 ms average over 1,467 runs.">
   <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -632,11 +632,11 @@ main > .content-section + .content-section { padding-top: 0; }
             <span class="gold"><span style="color:#fff">A Unique Mile</span><span style="color:var(--gold)">stone Reached!</span></span> <span class="white"></span>
           </h1>
 
-          <p class="milestone-number">121,213,478,686</p>
+          <p class="milestone-number">121,213,478,958</p>
 <p class="milestone-unit">Understandable phrases/variations compiled at build-time.</p>
 <p class="milestone-sub">
-  From <strong>4,365 patterns</strong>, at a ratio of
-  <strong>27,769,410</strong> phrases per pattern.
+  From <strong>4,373 patterns</strong>, at a ratio of
+  <strong>27,718,609</strong> phrases per pattern.
   All matched at runtime, with <strong>97 ms</strong>
   average execution across <strong>1,467 runs</strong>.
 </p>
@@ -653,7 +653,7 @@ main > .content-section + .content-section { padding-top: 0; }
 </div>
 
 <div class="stat-tile accent-teal">
-  <strong>4,365</strong>
+  <strong>4,373</strong>
   <span>Generated regex patterns</span>
 </div>
 
@@ -663,7 +663,7 @@ main > .content-section + .content-section { padding-top: 0; }
 </div>
 
 <div class="stat-tile accent-pink">
-  <strong>27769k</strong>
+  <strong>27718k</strong>
   <span>Variations / Pattern</span>
 </div>
 
@@ -702,9 +702,9 @@ main > .content-section + .content-section { padding-top: 0; }
 <p><code>yo</code> is a natural language to shell script translator. You speak or type a sentence. It runs exact and fuzzy pattern matching against a set of templates, resolves the parameters, and executes the corresponding script. No command list to memorize. No aliases to look up. Just a sentence.</p>
 <p>A billion is easy to say and hard to picture. So let's make it concrete.</p>
 <h3 class="sub-heading">The math</h3>
-<p><code>yo</code> doesn't have a billion sentences written into it. It has <strong>4,365 patterns</strong> - human-written templates with slots. What turns those 4,365 patterns into <strong>121,213,478,686 phrases</strong> is the parameter space.</p>
+<p><code>yo</code> doesn't have a billion sentences written into it. It has <strong>4,373 patterns</strong> - human-written templates with slots. What turns those 4,373 patterns into <strong>121,213,478,958 phrases</strong> is the parameter space.</p>
 <p>Every slot in a pattern can be filled by every value that slot accepts. When a pattern says <em>"deploy {host}"</em> and <code>{host}</code> can be any of your machines, that's one pattern generating many sentences. When a pattern says <em>"play {track} on {speaker}"</em> and <code>{track}</code> has 1,024 values and <code>{speaker}</code> has 24, that's one pattern generating 24,576 sentences.</p>
-<p>Stack enough slots across enough scripts, and the multiplication does what multiplication does. <strong>4,365 patterns × ~27,769,410 variations per pattern = over a billion distinct sentences</strong> the runtime matcher recognizes.</p>
+<p>Stack enough slots across enough scripts, and the multiplication does what multiplication does. <strong>4,373 patterns × ~27,718,609 variations per pattern = over a billion distinct sentences</strong> the runtime matcher recognizes.</p>
     </div>
   </div>
 </section>
@@ -722,7 +722,7 @@ main > .content-section + .content-section { padding-top: 0; }
     <div class="prose-section">
       <p>The billion is not <em>"sentences the system will attempt."</em> It's <em>"sentences the system will correctly recognize, resolve, and run."</em> That's a much smaller, much more honest number.</p>
 <h3 class="sub-heading">Not "weekend work"</h3>
-<p>4,365 patterns is a lot to hand-write. 27,769,410 phrases per pattern is a lot of grammar to get right - plural, word order, synonyms, optional words, alternative words. Every new pattern multiplies against every existing parameter list, and every new parameter value multiplies against every existing pattern. The phrase count grows quadratically, initially the work to keep it accurate grew with both sides, that's before I implemented fuzzy sentence conflict detection at compile-time.</p>
+<p>4,373 patterns is a lot to hand-write. 27,718,609 phrases per pattern is a lot of grammar to get right - plural, word order, synonyms, optional words, alternative words. Every new pattern multiplies against every existing parameter list, and every new parameter value multiplies against every existing pattern. The phrase count grows quadratically, initially the work to keep it accurate grew with both sides, that's before I implemented fuzzy sentence conflict detection at compile-time.</p>
 <p>That's what hitting one billion really means: not that the matcher is fast - <strong>97 ms average across 1,467 runs</strong> is nice but cheap - but that the vocabulary underneath it is dense enough. The multiplication naturally clears a billion.</p>
 <p>And it helps that <strong>69 of the 101 scripts</strong> expose their vocabulary to the voice layer. Those 69 are the scripts that can be spoken to, and they're what feeds the phrase count. The other 32 are infrastructure - hooks, generators, helpers - that nobody needs to say out loud.</p>
     </div>
@@ -756,7 +756,7 @@ And thorough, at this scale, is <strong>its own kind of milestone.</strong>
       <a class="cross-link" href="/posts/reverse-engineering-the-swedish-hockey-league.html">
   <span class="cl-icon" aria-hidden="true">🔗</span>
   <div class="cl-body">
-    <h3 class="cl-title">Reverse Engineering the Swedish Hockey League</h3>
+    <h3 class="cl-title">Reverse Engineering the Swedish Hockey League inside a Nix string.</h3>
     <p class="cl-desc">I assumed there&#39;d be a wall, a token expiry, a rate limit - something. There wasn&#39;t. They save an absurd amount of data, so hey - thanks for the free, unlimited API. Of course I made it voice-controlled.</p>
   </div>
   <span class="cl-arrow" aria-hidden="true">→</span>

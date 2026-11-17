@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>QuackHack-McBLindy.com » Reverse Engineering the Swedish Hockey League </title>
+  <title>QuackHack-McBLindy.com » Reverse Engineering the Swedish Hockey League inside a Nix string. </title>
   <link rel="canonical" href="https://quackhack-mcblindy.com/posts/reverse-engineering-the-swedish-hockey-league.html" />
 
   <meta name="google-site-verification=nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ" />
@@ -14,16 +14,16 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://quackhack-mcblindy.com/posts/reverse-engineering-the-swedish-hockey-league.html">
-  <meta property="og:title" content="QuackHack-McBLindy.com » Reverse Engineering the Swedish Hockey League">
+  <meta property="og:title" content="QuackHack-McBLindy.com » Reverse Engineering the Swedish Hockey League inside a Nix string.">
   <meta property="og:description" content="I assumed there&#39;d be a wall, a token expiry, a rate limit - something. There wasn&#39;t. They save an absurd amount of data, so hey - thanks for the free, unlimited API. Of course I made it voice-controlled.">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Reverse Engineering the Swedish Hockey League",
+  "headline": "Reverse Engineering the Swedish Hockey League inside a Nix string.",
   "url": "https://quackhack-mcblindy.com/posts/reverse-engineering-the-swedish-hockey-league.html",
-  "datePublished": "2026-11-09",
-  "keywords": ["reverse-engineering", "nixos", "nix", "hockey", "api"]
+  "datePublished": "2026-11-17",
+  "keywords": ["reverse-engineering", "nixos", "nix", "shl", "voice-assistant", "api"]
 }
 </script>
 
@@ -32,7 +32,7 @@
   <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="QuackHack-McBLindy.com » Reverse Engineering the Swedish Hockey League">
+  <meta name="twitter:title" content="QuackHack-McBLindy.com » Reverse Engineering the Swedish Hockey League inside a Nix string.">
   <meta name="twitter:description" content="I assumed there&#39;d be a wall, a token expiry, a rate limit - something. There wasn&#39;t. They save an absurd amount of data, so hey - thanks for the free, unlimited API. Of course I made it voice-controlled.">
   <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
@@ -489,7 +489,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
           <h1 class="hero-title">
             <span class="gold">Meanwhile in</span> <span class="white">Sweden</span>
           </h1>
-          <p class="hero-sub">Seven seconds, one token, and a Nix string later - SHL and HA are voice-controlled.</p>
+          <p class="hero-sub">Reverse engineering the Swedish Hockey League inside a Nix string.</p>
 
 
           <div class="stat-strip">
@@ -518,8 +518,11 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     <div class="prose-section">
       <p>Meanwhile our country is being attacked by unknown forces and food worth<br>millions is destroyed because the freezers are all on the same network.<br>The internet sure is a funny place, but the position we've put ourselves<br>in - low, if not zero, security by default - may not end so funny. And I<br>can't help but think: will we ever change?</p>
 <p>No. This is something I've been using for some years now.<br>It's shorter than you'd expect.</p>
-<h3 class="sub-heading">The discovery</h3>
+<h3 class="sub-heading"><strong>The discovery</strong></h3>
 <p>A <code>curl</code> against the league's public site, a URL for their internal API<br>buried in the <code>.html</code>, and another <code>curl</code> on that. I braced for<br><code>403 Forbidden</code>. I got <code>200 OK</code>. I checked again. Still <code>200</code>. No<br>headers, no token in a cookie, no auth I could see. Just JSON, and decades of it, for the asking.</p>
+<h3 class="sub-heading"><strong>Quickly my hacker story turn into something else...</strong></h3>
+<p>Hats off to the Swedish Hockey League and their web administrators for keeping the statistics open, see-through and for pushing open source forward.</p>
+<p>Blind people <strong>do</strong> watch hockey.<br>But it's hard to listen for my teams game schuedule, unless someone tells me.<br>Now I can just ask, thanks for that.</p>
     </div>
   </div>
 </section>
@@ -528,7 +531,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
       <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading">Step 2 - the endpoint that just worked</h3>
+      <h3 class="sub-heading"><strong>Step 2 - the endpoint that just worked</strong></h3>
 <p>The powerplay endpoint returns the full statistics for every team<br>in the league. No headers, no authentication, no rate limit I could<br>hit in a minute of hammering. The other stats endpoints -<br><code>players_point</code>, <code>goalkeepers_summary</code>, <code>players_penalty</code>,<br><code>site-news</code> - all of them open. I kept waiting for the wall to<br>appear. It didn't.</p>
     </div>
   </div>
@@ -555,7 +558,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading">Step 3 - the token</h3>
+      <h3 class="sub-heading"><strong>Step 3 - the token</strong></h3>
 <p>The <code>ssgtUuid</code> is not a secret in any meaningful sense. It isn't<br>even obfuscated - it sits in a query string in the page source,<br>unchanged for years. The <code>layout-info</code> endpoint lists one for every<br>season, series, and game type the league has ever played. The<br>regular-season SHL one for 2026 is <code>qa98unlbd6</code>. Both leagues<br>publish their own:</p>
     </div>
   </div>
@@ -588,7 +591,7 @@ shl = {
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading">Step 4 - mkDuckPUCKConfig</h3>
+      <h3 class="sub-heading"><strong>Step 4 - mkDuckPUCKConfig</strong></h3>
 <p>Rather than write two scripts, I wrote one unified builder and instantiated<br>it twice. Everything that differs between the leagues lives in a<br>plain attrset - API base, token, team aliases, voice prefix - and<br>the shell body is shared verbatim. Full source is linked below;<br>here's the callable surface:</p>
     </div>
   </div>
@@ -617,7 +620,7 @@ shl = {
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading">Step 5 - ask it who the fattest player is</h3>
+      <h3 class="sub-heading"><strong>Step 5 - ask it who the fattest player is</strong></h3>
 <p>The whole point. <code>duckPUCK</code> understands both Swedish and English<br>voice phrasing, and its vocabulary is per-league so "puck" doesn't<br>accidentally mean HA when you wanted SHL.</p>
     </div>
   </div>
@@ -645,7 +648,7 @@ $ yo duckPUCK --team björklöven --stat powerplay
       <section class="content-section">
   <div class="wrap reveal">
     <div class="tag-list">
-      <span class="tag">reverse-engineering</span> <span class="tag">nixos</span> <span class="tag">nix</span> <span class="tag">hockey</span> <span class="tag">api</span>
+      <span class="tag">reverse-engineering</span> <span class="tag">nixos</span> <span class="tag">nix</span> <span class="tag">shl</span> <span class="tag">voice-assistant</span> <span class="tag">api</span>
     </div>
   </div>
 </section>
