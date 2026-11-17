@@ -16,12 +16,12 @@ repos:
   - repo: local
     hooks:
 
-#      - id: move-posts-json
-#        name: Move posts.json to webroot
-#        entry: bash hooks/move-posts-json.sh
-#        language: system
-#        pass_filenames: false
-#        always_run: true
+      - id: move-posts-json
+        name: Move posts.json to webroot
+        entry: bash hooks/move-posts-json.sh
+        language: system
+        pass_filenames: false
+        always_run: true
 
       - id: build-similar
         name: Build similar.json
