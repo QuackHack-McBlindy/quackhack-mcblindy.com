@@ -267,6 +267,76 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   .frenzy-ring { display: none; }
   .frenzy-quack { animation-duration: .6s; }
 }
+
+.duck-comment,
+.idea {
+  max-width: 760px;
+  margin: 25px auto;
+}
+
+.duck-comment {
+  position: relative;
+  padding: 18px 22px;
+  background: rgba(255, 215, 0, 0.06);
+  border-left: 4px solid var(--gold);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+.duck-comment::before {
+  content: "🦆";
+  position: absolute;
+  left: -25px;
+  top: 15px;
+  font-size: 1.8rem;
+  background: var(--panel2);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--gold);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+.duck-comment p {
+  margin: 10px 0;
+  font-style: italic;
+  color: var(--gold2);
+}
+
+.idea {
+  position: relative;
+  padding: 22px 26px;
+  background: rgba(108, 180, 255, 0.06);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+.idea::before {
+  content: "💡";
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: var(--panel2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--blue);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+.idea p {
+  color: #c9dbd8;
+}
+
+@media (max-width: 768px) {
+  .duck-comment::before { left: -15px; width: 30px; height: 30px; font-size: 1.2rem; }
+  .idea::before         { left: -35px; width: 40px; height: 40px; font-size: 1.5rem; }
+}
 .hero { text-align: center; padding: 30px 0 50px; }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
@@ -492,6 +562,10 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 .config-bar .copy-btn {
   cursor: pointer;
 }
+.prose-section ul,
+.prose-section ol { color: #c9dbd8; padding-left: 1.4em; margin: 0 0 16px; }
+.prose-section li { margin: 6px 0; line-height: 1.7; }
+
 </style>
   <link rel="stylesheet" href="./../static/css/viewport.css" />
 </head>
@@ -647,6 +721,15 @@ programs.bash = {
   </div>
 </section>
 
+<section class="content-section">
+  <div class="wrap reveal">
+    <p class="big-quote">The network is unchanged. <strong>What changed is the ceremony.</strong>"
+</p>
+
+
+  </div>
+</section>
+
       <section class="content-section">
   <div class="wrap reveal">
     <div class="tag-list">
@@ -656,11 +739,6 @@ programs.bash = {
 </section>
 
 
-      <section class="content-section">
-  <div class="wrap reveal">
-    <p class="big-quote">The network is unchanged. <strong>What changed is the ceremony.</strong></p>
-  </div>
-</section>
 
 
       <section class="content-section">
@@ -705,7 +783,7 @@ programs.bash = {
 
     <footer>
       <div class="wrap footer-row">
-        <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBlindy.com</span></strong></div>
+        <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBLindy.com</span></strong></div>
         <div class="footer-links">
           <a href="#top">Top</a>
         </div>
@@ -777,16 +855,16 @@ programs.bash = {
 
       block.addEventListener('click', (e) => {
         if (e.target.closest('.copy-btn')) return;
+        if (!e.target.closest('.config-bar')) return;   // ← only the header toggles
         const selection = window.getSelection();
         if (selection && !selection.isCollapsed) return;
         toggle();
       });
+
     });
 
   })();
   </script>
-
-
 
 
   <script>

@@ -8,7 +8,9 @@
       "nixos",
       "nix",
       "shl",
+      "yo",
       "voice-assistant",
+      "hockey",
       "api"
     ],
     "title": "Reverse Engineering the Swedish Hockey League inside a Nix string."

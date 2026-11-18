@@ -23,7 +23,7 @@
   "headline": "Reverse Engineering the Swedish Hockey League inside a Nix string.",
   "url": "https://quackhack-mcblindy.com/posts/reverse-engineering-the-swedish-hockey-league.html",
   "datePublished": "2026-11-17",
-  "keywords": ["reverse-engineering", "nixos", "nix", "shl", "voice-assistant", "api"]
+  "keywords": ["reverse-engineering", "nixos", "nix", "shl", "yo", "voice-assistant", "hockey", "api"]
 }
 </script>
 
@@ -267,6 +267,76 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   .frenzy-ring { display: none; }
   .frenzy-quack { animation-duration: .6s; }
 }
+
+.duck-comment,
+.idea {
+  max-width: 760px;
+  margin: 25px auto;
+}
+
+.duck-comment {
+  position: relative;
+  padding: 18px 22px;
+  background: rgba(255, 215, 0, 0.06);
+  border-left: 4px solid var(--gold);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+.duck-comment::before {
+  content: "🦆";
+  position: absolute;
+  left: -25px;
+  top: 15px;
+  font-size: 1.8rem;
+  background: var(--panel2);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--gold);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+.duck-comment p {
+  margin: 10px 0;
+  font-style: italic;
+  color: var(--gold2);
+}
+
+.idea {
+  position: relative;
+  padding: 22px 26px;
+  background: rgba(108, 180, 255, 0.06);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+.idea::before {
+  content: "💡";
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: var(--panel2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--blue);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+.idea p {
+  color: #c9dbd8;
+}
+
+@media (max-width: 768px) {
+  .duck-comment::before { left: -15px; width: 30px; height: 30px; font-size: 1.2rem; }
+  .idea::before         { left: -35px; width: 40px; height: 40px; font-size: 1.5rem; }
+}
 .hero { text-align: center; padding: 30px 0 50px; }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
@@ -492,6 +562,10 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 .config-bar .copy-btn {
   cursor: pointer;
 }
+.prose-section ul,
+.prose-section ol { color: #c9dbd8; padding-left: 1.4em; margin: 0 0 16px; }
+.prose-section li { margin: 6px 0; line-height: 1.7; }
+
 </style>
   <link rel="stylesheet" href="./../static/css/viewport.css" />
 </head>
@@ -553,15 +627,31 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 <p>No. This is something I've been using for some years now.<br>It's shorter than you'd expect.</p>
 <h3 class="sub-heading"><strong>Step 1: Discover the API.</strong></h3>
 <p>A <code>curl</code> against the league's public site, a URL for their internal API<br>buried in the <code>.html</code>, and another <code>curl</code> on that. I braced for<br><code>403 Forbidden</code>. I got <code>200 OK</code>. I checked again. Still <code>200</code>. No<br>headers, no token in a cookie, no auth I could see. Just JSON, and decades of it, for the asking.</p>
-<h3 class="sub-heading"><strong>Quickly my hacker story turn into something else...</strong></h3>
-<p>Hats off to the Swedish Hockey League and their web administrators for keeping the statistics open, see-through and for pushing open source forward.</p>
-<p>Blind people <strong>do</strong> watch hockey.<br>But it's hard to listen for my teams game schuedule, unless someone tells me.<br>Now I can just ask, thanks for that.</p>
     </div>
   </div>
 </section>
 
 
       <section class="content-section">
+  <div class="wrap reveal">
+    <div class="duck-comment">
+
+  <p><strong>Quackly my hacker story turn into something entirely different...</strong></p>
+</div>
+
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="prose-section">
+      <p><strong>Hats off</strong> to the Swedish Hockey League and their web administrators for keeping the statistics open and see-through allowing open source to push forward.</p>
+<p>Blind people <strong>do</strong> watch hockey.<br>But it's hard to listen for my teams game schuedule, unless someone tells me.<br>Now I can just ask, thanks for that.</p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
       <h3 class="sub-heading"><strong>Step 2: Find the endpoints.</strong></h3>
@@ -641,6 +731,16 @@ shl = {
 
 <section class="content-section">
   <div class="wrap reveal">
+    <div class="warning">
+  <strong> Heads up!</strong>
+  <p>These are public endpoints serving public data. Don't hammer them,<br>don't redistribute the raw feed</p>
+</div>
+
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
     <div class="prose-section">
       <h3 class="sub-heading"><strong>Step 4: Build a reusable Nix configuration.</strong></h3>
 <p>Rather than write multiple <code>yo</code>  scripts, I wrote one unified builder and instantiated<br>it twice. Everything that differs between the leagues lives in a<br>plain attrset. Teans are defined outside of the league to avoid the need for manual entries each season. <br>Teams are also fuzzy matched for user friendly searches.</p>
@@ -671,8 +771,9 @@ shl = {
   </div>
 
   <pre><code class="language-nix">yo.scripts = {
-  &quot;duckPUCK-ha&quot;  = mkDuckPUCKConfig &quot;ha&quot;  leagues.ha;
-  &quot;duckPUCK-shl&quot; = mkDuckPUCKConfig &quot;shl&quot; leagues.shl;
+  &quot;duckPUCK-ha&quot;    = mkDuckPUCK &quot;ha&quot;  leagues.ha;
+  &quot;duckPUCK-shl&quot;   = mkDuckPUCK &quot;shl&quot; leagues.shl;
+  &quot;duckPUCK-games&quot; = mkDuckPUCKGames;
 };
 </code></pre>
 </div>
@@ -687,7 +788,7 @@ shl = {
 <p>Every parameter here is what <code>yo</code> exposes to the caller and what the<br>voice layer fills in from natural language. <code>mode</code> is the only required<br>one - <code>table</code>, <code>recent</code>, <code>upcoming</code>, <code>best</code>, <code>worst</code> - and it is pulled<br>from a shared enum (<code>swe.allowFrom</code>) so the Swedish synonyms stay in<br>sync across scripts. <code>team</code> is the fuzzy-matched team name, <code>stat</code> is<br>the stat key (<code>powerplay</code>, <code>tallest</code>, <code>goals</code>, …), <code>count</code> is how many<br>rows to return, and <code>dataDir</code> is where the scraper writes <code>table.json</code>.</p>
 <p>All of it is declared once per league, and the builder wires it into<br>the scraper, the analyzer and the voice parser. There is no second<br>place to keep in sync - which is the whole point of building this<br>as an attrset instead of two hand-written shell scripts.</p>
 <p>So, these will be the valid parameters for stats:</p>
-<p><ul><br>    <li>powerplay</li><br>    <li>boxplay</li><br>    <li>shorthanded_goals</li><br>    <li>shorthanded</lu><br>    <li>goalkeeper</li><br>    <li>save_percentage</li><br>    <li>penalty</li><br>    <li>tallest</li><br>    <li>shortest</li><br>    <li>heaviest</li><br>    <li>lightest</li><br>    <li>oldest</li><br>    <li>youngest</li><br>    <li>icetime</li><br>    <li>goals</li><br>    <li>assists points</li>          <br></ul></p>
+<p><ul><br>    <li>powerplay</li><br>    <li>boxplay</li><br>    <li>shorthanded_goals</li><br>    <li>shorthanded</lu><br>    <li>goalkeeper</li><br>    <li>save_percentage</li><br>    <li>penalty</li><br>    <li>tallest</li><br>    <li>shortest</li><br>    <li>heaviest</li><br>    <li>lightest</li><br>    <li>oldest</li><br>    <li>youngest</li><br>    <li>icetime</li><br>    <li>goals</li><br>    <li>assists</li><br>    <li>points</li>          <br></ul></p>
     </div>
   </div>
 </section>
@@ -1320,7 +1421,36 @@ let
   ];
 
 
-  mkDuckPUCKConfig = leagueKey: league:
+  mkDuckPUCKGames = {
+    description = &quot;Hockey Game Assistant. Fetches game schedule/results from SHL or HockeyAllsvenskan and delivers analyzed natural-language responses (TTS).&quot;;
+    category    = &quot;🧩 Miscellaneous&quot;;
+    aliases     = [ &quot;hockeyGames&quot; &quot;hag&quot; ];
+    logLevel    = &quot;INFO&quot;;
+
+    parameters = [
+      { name = &quot;type&quot;; type = &quot;string&quot;; description = &quot;Game type: recent, upcoming or live&quot;; optional = true; default = &quot;upcoming&quot;;
+        values = [ &quot;recent&quot; &quot;upcoming&quot; &quot;live&quot; ];
+      }
+      { name   = &quot;days&quot;; type = &quot;int&quot;; description = &quot;Number of past days to show&quot;; optional = true; default = 2; }
+      { name   = &quot;league&quot;; type = &quot;string&quot;; description = &quot;League name&quot;; optional = false; default = &quot;shl&quot;;
+        values = [ &quot;shl&quot; &quot;ha&quot; ];
+      }
+      { name = &quot;team&quot;; type = &quot;string&quot;; description = &quot;Filter games for specific team&quot;; optional = true; }
+      { name = &quot;home&quot;; type = &quot;string&quot;; description = &quot;Filter games where this team is the home team&quot;; optional = true; }
+      { name = &quot;away&quot;; type = &quot;string&quot;; description = &quot;Filter games where this team is the away team&quot;; optional = true; }
+      { name = &quot;json&quot;; type = &quot;bool&quot;; description = &quot;Machine-readable JSON output; exit 0 if games found, 1 if not.&quot;; optional = true; default = false; }
+      { name = &quot;dataDir&quot;; type = &quot;path&quot;; description = &quot;Directory path to save data in.&quot;; optional = true; default = &quot;&quot;; }
+      { name = &quot;debug&quot;; type = &quot;bool&quot;; description = &quot;Enable debug mode for API calls&quot;; optional = true; default = false; }
+      { name = &quot;check&quot;; type = &quot;bool&quot;; description = &quot;Silent true/false if any game matches (for scripting/voice)&quot;; optional = true; default = false; }
+    ];
+
+    code  = &#39;&#39;
+      #
+    &#39;&#39;;
+    voice = { };
+  };
+
+  mkDuckPUCK = leagueKey: league:
     let
       scraper        = mkScraper league;
       fuzzyMatch     = mkFuzzyMatch league;
@@ -1704,7 +1834,6 @@ let
         }
 
 
-        # $description / $sort_key — undefined jq vars. Now uses --arg.
         get_goalie_stats() {
           local stat_type=&quot;$1&quot;
           local count=&quot;$2&quot;
@@ -2010,9 +2139,9 @@ let
 
 in {
   yo.scripts = {
-    &quot;duckPUCK-ha&quot;  = mkDuckPUCKConfig &quot;ha&quot;  leagues.ha;
-    &quot;duckPUCK-shl&quot; = mkDuckPUCKConfig &quot;shl&quot; leagues.shl;
-
+    &quot;duckPUCK-ha&quot;    = mkDuckPUCK &quot;ha&quot;  leagues.ha;
+    &quot;duckPUCK-shl&quot;   = mkDuckPUCK &quot;shl&quot; leagues.shl;
+    &quot;duckPUCK-games&quot; = mkDuckPUCKGames;
   };}
 </code></pre>
 </div>
@@ -2020,30 +2149,23 @@ in {
   </div>
 </section>
 
+<section class="content-section">
+  <div class="wrap reveal">
+    <p class="big-quote">Please don't harden...<br>That's another Nix string....</p>
+
+
+  </div>
+</section>
+
       <section class="content-section">
   <div class="wrap reveal">
     <div class="tag-list">
-      <span class="tag">reverse-engineering</span> <span class="tag">nixos</span> <span class="tag">nix</span> <span class="tag">shl</span> <span class="tag">voice-assistant</span> <span class="tag">api</span>
+      <span class="tag">reverse-engineering</span> <span class="tag">nixos</span> <span class="tag">nix</span> <span class="tag">shl</span> <span class="tag">yo</span> <span class="tag">voice-assistant</span> <span class="tag">hockey</span> <span class="tag">api</span>
     </div>
   </div>
 </section>
 
-      <section class="content-section">
-  <div class="wrap reveal">
-    <div class="warning">
-      <strong>Heads up.</strong>
-      These are public endpoints serving public data. Don't hammer them,
-don't redistribute the raw feed
 
-    </div>
-  </div>
-</section>
-
-      <section class="content-section">
-  <div class="wrap reveal">
-    <p class="big-quote">Please don't harden...<br>That's another Nix string....</p>
-  </div>
-</section>
 
 
       <section class="content-section">
@@ -2052,7 +2174,16 @@ don't redistribute the raw feed
       <h2><span class="gold">Related</span> <span class="white">posts</span></h2>
     </div>
     <div class="cross-links">
-      <a class="cross-link" href="/posts/accessibility-on-linux.html">
+      <a class="cross-link" href="/posts/one-billion-understandable-phrases.html">
+  <span class="cl-icon" aria-hidden="true">🔗</span>
+  <div class="cl-body">
+    <h3 class="cl-title">A Unique Milestone Reached</h3>
+    <p class="cl-desc">yo crossed one billion generated phrases. 4,373 patterns. 121,213,478,958 phrases. 102 scripts, 69 voice-ready. 97 ms average over 1,467 runs.</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
+<a class="cross-link" href="/posts/accessibility-on-linux.html">
   <span class="cl-icon" aria-hidden="true">🔗</span>
   <div class="cl-body">
     <h3 class="cl-title">Accessibility on Linux / NixOS</h3>
@@ -2070,15 +2201,6 @@ don't redistribute the raw feed
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
 
-<a class="cross-link" href="/posts/hardware.html">
-  <span class="cl-icon" aria-hidden="true">🔗</span>
-  <div class="cl-body">
-    <h3 class="cl-title">Meet My Hardware</h3>
-    <p class="cl-desc">A gallery of the machines I actually run - past and present.</p>
-  </div>
-  <span class="cl-arrow" aria-hidden="true">→</span>
-</a>
-
     </div>
   </div>
 </section>
@@ -2088,7 +2210,7 @@ don't redistribute the raw feed
 
     <footer>
       <div class="wrap footer-row">
-        <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBlindy.com</span></strong></div>
+        <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBLindy.com</span></strong></div>
         <div class="footer-links">
           <a href="#top">Top</a>
         </div>
@@ -2160,16 +2282,16 @@ don't redistribute the raw feed
 
       block.addEventListener('click', (e) => {
         if (e.target.closest('.copy-btn')) return;
+        if (!e.target.closest('.config-bar')) return;   // ← only the header toggles
         const selection = window.getSelection();
         if (selection && !selection.isCollapsed) return;
         toggle();
       });
+
     });
 
   })();
   </script>
-
-
 
 
   <script>
