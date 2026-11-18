@@ -16,6 +16,16 @@
     "title": "Reverse Engineering the Swedish Hockey League inside a Nix string."
   },
   {
+    "date": "2026-11-18",
+    "description": "Suddenly this feels a lot more like me.",
+    "link": "https://quackhack-mcblindy.com/posts/blog-from-dotfiles.html",
+    "tags": [
+      "blog",
+      "nixos"
+    ],
+    "title": "Blog from Dotfiles"
+  },
+  {
     "date": "2026-11-14",
     "description": "Linux should be for everyone, not just people without disabilities. Accessibility on NixOS is terrible out of the box — here's my magnifier flake and a voice-to-shell translator.",
     "link": "https://quackhack-mcblindy.com/posts/accessibility-on-linux.html",
