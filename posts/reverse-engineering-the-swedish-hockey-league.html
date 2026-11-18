@@ -151,6 +151,28 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     }
 }
 
+.config-bar button {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: rgba(17,230,210,.07);
+  color: var(--teal);
+  font: inherit;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.config-bar button:hover {
+  background: rgba(17,230,210,.15);
+  border-color: rgba(17,230,210,.4);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .001ms !important;
@@ -245,51 +267,51 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   .frenzy-ring { display: none; }
   .frenzy-quack { animation-duration: .6s; }
 }
-    .hero { text-align: center; padding: 30px 0 50px; }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 6px 16px; background: rgba(17, 230, 210, .06);
-      border: 1px solid rgba(17, 230, 210, .3); border-radius: 999px;
-      font-family: "JetBrains Mono", monospace; font-size: .76rem;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: var(--teal); margin-bottom: 24px;
-    }
-    .hero-title {
-      font-family: "Cinzel Decorative", Georgia, serif;
-      font-size: clamp(2rem, 6vw, 3.4rem);
-      line-height: 1.1; letter-spacing: -.02em; margin: 0 0 22px;
-    }
-    .hero-sub {
-      font-size: clamp(1.02rem, 1.8vw, 1.15rem);
-      color: var(--muted); max-width: 680px;
-      margin: 0 auto 28px; line-height: 1.65;
-    }
-    .hero-sub code {
-      color: var(--gold2); background: rgba(244,181,47,.08);
-      padding: 1px 6px; border-radius: 4px;
-      font-family: "JetBrains Mono", monospace; font-size: .9em;
-    }
+.hero { text-align: center; padding: 30px 0 50px; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 6px 16px; background: rgba(17, 230, 210, .06);
+  border: 1px solid rgba(17, 230, 210, .3); border-radius: 999px;
+  font-family: "JetBrains Mono", monospace; font-size: .76rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 24px;
+}
+.hero-title {
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  line-height: 1.1; letter-spacing: -.02em; margin: 0 0 22px;
+}
+.hero-sub {
+  font-size: clamp(1.02rem, 1.8vw, 1.15rem);
+  color: var(--muted); max-width: 680px;
+  margin: 0 auto 28px; line-height: 1.65;
+}
+.hero-sub code {
+  color: var(--gold2); background: rgba(244,181,47,.08);
+  padding: 1px 6px; border-radius: 4px;
+  font-family: "JetBrains Mono", monospace; font-size: .9em;
+}
 
-    .stat-strip {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 14px; max-width: 1000px; margin: 0 auto;
-    }
-    .stat-tile {
-      background: linear-gradient(180deg, var(--panel2), var(--panel));
-      border: 1px solid var(--line); border-radius: 16px;
-      padding: 22px 16px; text-align: center;
-      transition: border-color .25s ease, transform .25s ease;
-    }
-    .stat-tile:hover { border-color: rgba(17,230,210,.35); transform: translateY(-2px); }
-    .stat-tile strong {
-      display: block; font-family: "Cinzel Decorative", Georgia, serif;
-      font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--gold2);
-      letter-spacing: -.01em; line-height: 1; margin-bottom: 8px;
-    }
-    .stat-tile span {
-      color: var(--muted); font-size: .74rem; letter-spacing: .06em;
-      text-transform: uppercase; font-family: "JetBrains Mono", monospace;
-    }
+.stat-strip {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px; max-width: 1000px; margin: 0 auto;
+}
+.stat-tile {
+  background: linear-gradient(180deg, var(--panel2), var(--panel));
+  border: 1px solid var(--line); border-radius: 16px;
+  padding: 22px 16px; text-align: center;
+  transition: border-color .25s ease, transform .25s ease;
+}
+.stat-tile:hover { border-color: rgba(17,230,210,.35); transform: translateY(-2px); }
+.stat-tile strong {
+  display: block; font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--gold2);
+  letter-spacing: -.01em; line-height: 1; margin-bottom: 8px;
+}
+.stat-tile span {
+  color: var(--muted); font-size: .74rem; letter-spacing: .06em;
+  text-transform: uppercase; font-family: "JetBrains Mono", monospace;
+}
 .stat-tile.accent-teal strong   { color: var(--teal); }
 .stat-tile.accent-gold strong   { color: var(--gold); }
 .stat-tile.accent-gold2 strong  { color: var(--gold2); }
@@ -299,166 +321,177 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 .stat-tile.accent-blue strong   { color: var(--blue); }
 .stat-tile.accent-red strong    { color: var(--red); }
 
-    .prose-section { max-width: 720px; margin: 0 auto; }
-    .prose-section p {
-      color: #c9dbd8; font-size: 1rem; line-height: 1.75; margin: 0 0 16px;
-    }
-    .prose-section p:last-child { margin-bottom: 0; }
-    .prose-section strong { color: var(--gold2); font-weight: 700; }
-    .prose-section em { color: var(--gold2); font-style: italic; }
-    .prose-section code {
-      color: var(--gold2); background: rgba(244,181,47,.08);
-      padding: 1px 6px; border-radius: 4px;
-      font-family: "JetBrains Mono", monospace; font-size: .9em;
-    }
-    .sub-heading {
-      font-family: "Cinzel Decorative", Georgia, serif;
-      font-size: clamp(1.15rem, 2.2vw, 1.4rem); color: var(--teal);
-      margin: 32px 0 14px; letter-spacing: .01em;
-    }
-    .prose-quote {
-      margin: 24px 0;
-      padding: 14px 20px 14px 24px;
-      border-left: 3px solid var(--teal);
-      background: rgba(17,230,210,.04);
-      border-radius: 0 10px 10px 0;
-      color: #c9dbd8; font-size: 1rem; line-height: 1.7;
-      font-style: italic;
-    }
+.prose-section { max-width: 720px; margin: 0 auto; }
+.prose-section p {
+  color: #c9dbd8; font-size: 1rem; line-height: 1.75; margin: 0 0 16px;
+}
+.prose-section p:last-child { margin-bottom: 0; }
+.prose-section strong { color: var(--gold2); font-weight: 700; }
+.prose-section em { color: var(--gold2); font-style: italic; }
+.prose-section code {
+  color: var(--gold2); background: rgba(244,181,47,.08);
+  padding: 1px 6px; border-radius: 4px;
+  font-family: "JetBrains Mono", monospace; font-size: .9em;
+}
+.sub-heading {
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem); color: var(--teal);
+  margin: 32px 0 14px; letter-spacing: .01em;
+}
+.prose-quote {
+  margin: 24px 0;
+  padding: 14px 20px 14px 24px;
+  border-left: 3px solid var(--teal);
+  background: rgba(17,230,210,.04);
+  border-radius: 0 10px 10px 0;
+  color: #c9dbd8; font-size: 1rem; line-height: 1.7;
+  font-style: italic;
+}
 
-    .caveat {
-      max-width: 760px; margin: 0 auto;
-      padding: 18px 22px;
-      background: rgba(255,84,112,.04);
-      border: 1px solid rgba(255,84,112,.2);
-      border-left: 3px solid var(--red);
-      border-radius: 10px;
-      color: #c9dbd8; font-size: .95rem; line-height: 1.7;
-    }
-    .caveat strong {
-      color: var(--red); font-weight: 700;
-      display: inline-flex; align-items: center; gap: 6px;
-    }
-    .caveat strong::before { content: "⚠"; font-size: 1.05em; }
-    .caveat code {
-      color: var(--gold2); background: rgba(244,181,47,.08);
-      padding: 1px 5px; border-radius: 3px;
-      font-family: "JetBrains Mono", monospace; font-size: .9em;
-    }
+.warning {
+  max-width: 760px; margin: 0 auto;
+  padding: 18px 22px;
+  background: rgba(255,84,112,.04);
+  border: 1px solid rgba(255,84,112,.2);
+  border-left: 3px solid var(--red);
+  border-radius: 10px;
+  color: #c9dbd8; font-size: .95rem; line-height: 1.7;
+}
+.warning strong {
+  color: var(--red); font-weight: 700;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.warning strong::before { content: "⚠"; font-size: 1.05em; }
+.warning code {
+  color: var(--gold2); background: rgba(244,181,47,.08);
+  padding: 1px 5px; border-radius: 3px;
+  font-family: "JetBrains Mono", monospace; font-size: .9em;
+}
 
-    .big-quote {
-      font-family: "Cinzel Decorative", Georgia, serif;
-      font-size: clamp(1.15rem, 2.4vw, 1.4rem); line-height: 1.5;
-      text-align: center; color: var(--gold2);
-      margin: 20px auto; max-width: 700px; padding: 0 20px;
-    }
-    .big-quote::before, .big-quote::after {
-      content: ""; display: block; width: 60px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--teal), transparent);
-      margin: 0 auto;
-    }
-    .big-quote::before { margin-bottom: 20px; }
-    .big-quote::after { margin-top: 20px; }
-    .big-quote strong { color: var(--teal); font-style: italic; }
+.big-quote {
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem); line-height: 1.5;
+  text-align: center; color: var(--gold2);
+  margin: 20px auto; max-width: 700px; padding: 0 20px;
+}
+.big-quote::before, .big-quote::after {
+  content: ""; display: block; width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+  margin: 0 auto;
+}
+.big-quote::before { margin-bottom: 20px; }
+.big-quote::after { margin-top: 20px; }
+.big-quote strong { color: var(--teal); font-style: italic; }
 
-    .cross-links {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px; max-width: 900px; margin: 0 auto;
-    }
-    .cross-link {
-      display: flex; align-items: center; gap: 16px;
-      padding: 20px 22px;
-      background: linear-gradient(180deg, var(--panel2), var(--panel));
-      border: 1px solid var(--line); border-radius: 14px;
-      transition: border-color .25s ease, transform .25s ease;
-    }
-    .cross-link:hover { border-color: rgba(17,230,210,.4); transform: translateY(-2px); }
-    .cross-link .cl-icon { font-size: 1.8rem; flex: 0 0 auto; }
-    .cross-link .cl-body { flex: 1; min-width: 0; }
-    .cross-link .cl-title {
-      font-family: "Cinzel Decorative", Georgia, serif;
-      font-size: 1rem; color: var(--gold2);
-      margin: 0 0 3px; letter-spacing: .02em;
-    }
-    .cross-link .cl-desc {
-      color: var(--muted); font-size: .85rem;
-      margin: 0; line-height: 1.5;
-    }
-    .cross-link .cl-desc code {
-      color: var(--gold2); background: rgba(244,181,47,.08);
-      padding: 1px 5px; border-radius: 3px;
-      font-family: "JetBrains Mono", monospace; font-size: .9em;
-    }
-    .cross-link .cl-arrow {
-      color: var(--teal); font-family: "JetBrains Mono", monospace;
-      font-size: 1.2rem; flex: 0 0 auto;
-      transition: transform .2s ease;
-    }
-    .cross-link:hover .cl-arrow { transform: translateX(4px); }
+.cross-links {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; max-width: 900px; margin: 0 auto;
+}
+.cross-link {
+  display: flex; align-items: center; gap: 16px;
+  padding: 20px 22px;
+  background: linear-gradient(180deg, var(--panel2), var(--panel));
+  border: 1px solid var(--line); border-radius: 14px;
+  transition: border-color .25s ease, transform .25s ease;
+}
+.cross-link:hover { border-color: rgba(17,230,210,.4); transform: translateY(-2px); }
+.cross-link .cl-icon { font-size: 1.8rem; flex: 0 0 auto; }
+.cross-link .cl-body { flex: 1; min-width: 0; }
+.cross-link .cl-title {
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: 1rem; color: var(--gold2);
+  margin: 0 0 3px; letter-spacing: .02em;
+}
+.cross-link .cl-desc {
+  color: var(--muted); font-size: .85rem;
+  margin: 0; line-height: 1.5;
+}
+.cross-link .cl-desc code {
+  color: var(--gold2); background: rgba(244,181,47,.08);
+  padding: 1px 5px; border-radius: 3px;
+  font-family: "JetBrains Mono", monospace; font-size: .9em;
+}
+.cross-link .cl-arrow {
+  color: var(--teal); font-family: "JetBrains Mono", monospace;
+  font-size: 1.2rem; flex: 0 0 auto;
+  transition: transform .2s ease;
+}
+.cross-link:hover .cl-arrow { transform: translateX(4px); }
 
-    .config-block {
-      background: #080d0c; border: 1px solid var(--line);
-      border-radius: 18px; overflow: hidden;
-      box-shadow: 0 22px 70px rgba(0,0,0,.55); margin-bottom: 20px;
-    }
-    .config-bar {
-      display: flex; align-items: center; gap: 8px;
-      padding: 11px 16px;
-      background: linear-gradient(180deg, #101a18, #0b1110);
-      border-bottom: 1px solid var(--line);
-    }
-    .config-bar .dot { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; }
-    .config-bar .dot.red    { background: #ff5f57; }
-    .config-bar .dot.yellow { background: #febc2e; }
-    .config-bar .dot.green  { background: #28c840; }
-    .config-bar .config-title {
-      margin-left: 10px; color: var(--muted);
-      font-family: "JetBrains Mono", monospace; font-size: .82rem; flex: 1;
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    }
-    .config-bar .copy-btn {
-      appearance: none; border: 1px solid var(--line);
-      background: rgba(17,230,210,.07); color: var(--teal);
-      font: inherit; font-size: .78rem; font-weight: 700;
-      letter-spacing: .06em; text-transform: uppercase;
-      padding: 6px 14px; border-radius: 8px; cursor: pointer;
-      transition: background .2s ease, border-color .2s ease;
-    }
-    .config-bar .copy-btn:hover {
-      background: rgba(17,230,210,.15); border-color: rgba(17,230,210,.4);
-    }
-    .config-block pre {
-      margin: 0; padding: 22px 24px; overflow-x: auto;
-      font-family: "JetBrains Mono", "Fira Code", monospace;
-      font-size: 13px; line-height: 1.6; color: #d9ece9;
-      -webkit-font-smoothing: antialiased;
-    }
-    .config-block code { font: inherit; color: inherit; }
+.config-block {
+  background: #080d0c; border: 1px solid var(--line);
+  border-radius: 18px; overflow: hidden;
+  box-shadow: 0 22px 70px rgba(0,0,0,.55); margin-bottom: 20px;
+}
+.config-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 11px 16px;
+  background: linear-gradient(180deg, #101a18, #0b1110);
+  border-bottom: 1px solid var(--line);
+}
+.config-bar .dot { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; }
+.config-bar .dot.red    { background: #ff5f57; }
+.config-bar .dot.yellow { background: #febc2e; }
+.config-bar .dot.green  { background: #28c840; }
+.config-bar .config-title {
+  margin-left: 10px; color: var(--muted);
+  font-family: "JetBrains Mono", monospace; font-size: .82rem; flex: 1;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.config-bar .copy-btn {
+  appearance: none; border: 1px solid var(--line);
+  background: rgba(17,230,210,.07); color: var(--teal);
+  font: inherit; font-size: .78rem; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 8px; cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+}
+.config-bar .copy-btn:hover {
+  background: rgba(17,230,210,.15); border-color: rgba(17,230,210,.4);
+}
+.config-block pre {
+  margin: 0; padding: 22px 24px; overflow-x: auto;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 13px; line-height: 1.6; color: #d9ece9;
+  -webkit-font-smoothing: antialiased;
+}
+.config-block.is-collapsed pre {
+  display: none;
+}
+.config-block code { font: inherit; color: inherit; }
 
-    @media (max-width: 560px) {
-      .config-block pre { padding: 18px 16px; font-size: 12px; }
-    }
+@media (max-width: 560px) {
+  .config-block pre { padding: 18px 16px; font-size: 12px; }
+}
 
-    .section-head {
-      display: flex; align-items: center; gap: 16px;
-      margin: 0 0 26px; justify-content: center; flex-wrap: wrap;
-    }
-    .section-head h2 {
-      font-family: "Cinzel Decorative", Georgia, serif;
-      font-size: clamp(1.4rem, 3.2vw, 1.9rem);
-      margin: 0; letter-spacing: -.01em; text-align: center;
-    }
-    .tag-list {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      justify-content: center; max-width: 720px; margin: 0 auto;
-    }
-    .tag-list .tag {
-      font-family: "JetBrains Mono", monospace;
-      font-size: .74rem; letter-spacing: .06em; text-transform: uppercase;
-      color: var(--teal); background: rgba(17,230,210,.08);
-      border: 1px solid rgba(17,230,210,.25);
-      padding: 4px 12px; border-radius: 999px;
-    }
+.section-head {
+  display: flex; align-items: center; gap: 16px;
+  margin: 0 0 26px; justify-content: center; flex-wrap: wrap;
+}
+.section-head h2 {
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(1.4rem, 3.2vw, 1.9rem);
+  margin: 0; letter-spacing: -.01em; text-align: center;
+}
+.tag-list {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  justify-content: center; max-width: 720px; margin: 0 auto;
+}
+.tag-list .tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: .74rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--teal); background: rgba(17,230,210,.08);
+  border: 1px solid rgba(17,230,210,.25);
+  padding: 4px 12px; border-radius: 999px;
+}
+.config-bar {
+  cursor: pointer;
+  user-select: none;
+}
+
+.config-bar .copy-btn {
+  cursor: pointer;
+}
 </style>
   <link rel="stylesheet" href="./../static/css/viewport.css" />
 </head>
@@ -518,7 +551,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     <div class="prose-section">
       <p>Meanwhile our country is being attacked by unknown forces and food worth<br>millions is destroyed because the freezers are all on the same network.<br>The internet sure is a funny place, but the position we've put ourselves<br>in - low, if not zero, security by default - may not end so funny. And I<br>can't help but think: will we ever change?</p>
 <p>No. This is something I've been using for some years now.<br>It's shorter than you'd expect.</p>
-<h3 class="sub-heading"><strong>The discovery</strong></h3>
+<h3 class="sub-heading"><strong>Step 1: Discover the API.</strong></h3>
 <p>A <code>curl</code> against the league's public site, a URL for their internal API<br>buried in the <code>.html</code>, and another <code>curl</code> on that. I braced for<br><code>403 Forbidden</code>. I got <code>200 OK</code>. I checked again. Still <code>200</code>. No<br>headers, no token in a cookie, no auth I could see. Just JSON, and decades of it, for the asking.</p>
 <h3 class="sub-heading"><strong>Quickly my hacker story turn into something else...</strong></h3>
 <p>Hats off to the Swedish Hockey League and their web administrators for keeping the statistics open, see-through and for pushing open source forward.</p>
@@ -531,7 +564,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
       <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading"><strong>Step 2 - the endpoint that just worked</strong></h3>
+      <h3 class="sub-heading"><strong>Step 2: Find the endpoints.</strong></h3>
 <p>The powerplay endpoint returns the full statistics for every team<br>in the league. No headers, no authentication, no rate limit I could<br>hit in a minute of hammering. The other stats endpoints -<br><code>players_point</code>, <code>goalkeepers_summary</code>, <code>players_penalty</code>,<br><code>site-news</code> - all of them open. I kept waiting for the wall to<br>appear. It didn't.</p>
     </div>
   </div>
@@ -544,9 +577,18 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     <span class="dot red"></span>
     <span class="dot yellow"></span>
     <span class="dot green"></span>
-    <span class="config-title">bare curl, no headers, 200 OK</span>
+
+    <span class="config-title">curl, 200 OK</span>
+
+    <button
+      class="collapse-btn"
+      type="button"
+      aria-expanded="true"
+    >Collapse</button>
+
     <button class="copy-btn" type="button">Copy</button>
   </div>
+
   <pre><code class="language-bash">$ curl -s &quot;https://www.shl.se/api/statistics-v2/stats-info/teams_powerplay?count=25&amp;ssgtUuid=qa98unlbd6&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot; | head -c 200
 [{&quot;dataColumns&quot;:[{&quot;name&quot;:&quot;Rank&quot;,&quot;type&quot;:&quot;integer&quot;,&quot;highlighted&quot;:false,&quot;group&quot;:&quot;&quot;},{&quot;name&quot;:&quot;Team&quot;,&quot;type&quot;:&quot;string&quot;,&quot;highlig
 </code></pre>
@@ -558,7 +600,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading"><strong>Step 3 - the token</strong></h3>
+      <h3 class="sub-heading"><strong>Step 3: Understand the league identifiers.</strong></h3>
 <p>The <code>ssgtUuid</code> is not a secret in any meaningful sense. It isn't<br>even obfuscated - it sits in a query string in the page source,<br>unchanged for years. The <code>layout-info</code> endpoint lists one for every<br>season, series, and game type the league has ever played. The<br>regular-season SHL one for 2026 is <code>qa98unlbd6</code>. Both leagues<br>publish their own:</p>
     </div>
   </div>
@@ -571,9 +613,18 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     <span class="dot red"></span>
     <span class="dot yellow"></span>
     <span class="dot green"></span>
+
     <span class="config-title">leagues</span>
+
+    <button
+      class="collapse-btn"
+      type="button"
+      aria-expanded="true"
+    >Collapse</button>
+
     <button class="copy-btn" type="button">Copy</button>
   </div>
+
   <pre><code class="language-nix">ha  = {
   ssgtUuid = &quot;uy2zvu6xaa&quot;;
   apiBase  = &quot;https://www.hockeyallsvenskan.se/api&quot;;
@@ -591,8 +642,11 @@ shl = {
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading"><strong>Step 4 - mkDuckPUCKConfig</strong></h3>
+      <h3 class="sub-heading"><strong>Step 4: Build a reusable Nix configuration.</strong></h3>
 <p>Rather than write multiple <code>yo</code>  scripts, I wrote one unified builder and instantiated<br>it twice. Everything that differs between the leagues lives in a<br>plain attrset. Teans are defined outside of the league to avoid the need for manual entries each season. <br>Teams are also fuzzy matched for user friendly searches.</p>
+<p>The interesting part is that Nix isn't just configuring two scripts here. It's generating the whole interface.</p>
+<p>One attrset describes the league, its teams, API endpoints and identifiers. From that, the builder produces the scraper, team matching, API mappings, voice entities, parameters and sentence templates.</p>
+<p>Same engine. Two leagues. duckPUCK</p>
     </div>
   </div>
 </section>
@@ -604,9 +658,18 @@ shl = {
     <span class="dot red"></span>
     <span class="dot yellow"></span>
     <span class="dot green"></span>
+
     <span class="config-title">yo.scripts</span>
+
+    <button
+      class="collapse-btn"
+      type="button"
+      aria-expanded="true"
+    >Collapse</button>
+
     <button class="copy-btn" type="button">Copy</button>
   </div>
+
   <pre><code class="language-nix">yo.scripts = {
   &quot;duckPUCK-ha&quot;  = mkDuckPUCKConfig &quot;ha&quot;  leagues.ha;
   &quot;duckPUCK-shl&quot; = mkDuckPUCKConfig &quot;shl&quot; leagues.shl;
@@ -620,7 +683,11 @@ shl = {
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading"><strong>Step 5 - Parameters</strong></h3>
+      <h3 class="sub-heading"><strong>Step 5: Define the parameters.</strong></h3>
+<p>Every parameter here is what <code>yo</code> exposes to the caller and what the<br>voice layer fills in from natural language. <code>mode</code> is the only required<br>one - <code>table</code>, <code>recent</code>, <code>upcoming</code>, <code>best</code>, <code>worst</code> - and it is pulled<br>from a shared enum (<code>swe.allowFrom</code>) so the Swedish synonyms stay in<br>sync across scripts. <code>team</code> is the fuzzy-matched team name, <code>stat</code> is<br>the stat key (<code>powerplay</code>, <code>tallest</code>, <code>goals</code>, …), <code>count</code> is how many<br>rows to return, and <code>dataDir</code> is where the scraper writes <code>table.json</code>.</p>
+<p>All of it is declared once per league, and the builder wires it into<br>the scraper, the analyzer and the voice parser. There is no second<br>place to keep in sync - which is the whole point of building this<br>as an attrset instead of two hand-written shell scripts.</p>
+<p>So, these will be the valid parameters for stats:</p>
+<p><ul><br>    <li>powerplay</li><br>    <li>boxplay</li><br>    <li>shorthanded_goals</li><br>    <li>shorthanded</lu><br>    <li>goalkeeper</li><br>    <li>save_percentage</li><br>    <li>penalty</li><br>    <li>tallest</li><br>    <li>shortest</li><br>    <li>heaviest</li><br>    <li>lightest</li><br>    <li>oldest</li><br>    <li>youngest</li><br>    <li>icetime</li><br>    <li>goals</li><br>    <li>assists points</li>          <br></ul></p>
     </div>
   </div>
 </section>
@@ -632,10 +699,45 @@ shl = {
     <span class="dot red"></span>
     <span class="dot yellow"></span>
     <span class="dot green"></span>
+
     <span class="config-title">yo.scripts.duckPUCK.parameters</span>
+
+    <button
+      class="collapse-btn"
+      type="button"
+      aria-expanded="true"
+    >Collapse</button>
+
     <button class="copy-btn" type="button">Copy</button>
   </div>
-  <pre><code class="language-bash">
+
+  <pre><code class="language-bash">parameters = [
+  { name        = &quot;mode&quot;; description = &quot;What to display: &#39;recent&#39;, &#39;table&#39;, &#39;upcoming&#39;, or best/worst analysis&quot;;
+    optional    = false;
+    values      = swe.allowFrom &quot;mode&quot;;
+      &quot;recent&quot; &quot;upcoming&quot; &quot;table&quot;
+      &quot;best&quot; &quot;worst&quot;
+    ];
+    default     = &quot;table&quot;;
+  }
+  { name = &quot;team&quot;; description = &quot;Team specific search with TTS&quot;;                       optional = true; }
+  { name = &quot;stat&quot;; description = &quot;Search for specific stats.&quot;;
+    optional    = true;
+    values      = [
+      &quot;powerplay&quot; &quot;boxplay&quot;
+      &quot;shorthanded_goals&quot; &quot;shorthanded&quot;
+      &quot;goalkeeper&quot; &quot;save_percentage&quot;
+      &quot;penalty&quot; &quot;tallest&quot; &quot;shortest&quot;
+      &quot;heaviest&quot; &quot;lightest&quot;
+      &quot;oldest&quot; &quot;youngest&quot; &quot;icetime&quot;
+      &quot;goals&quot; &quot;assists&quot; &quot;points&quot;
+    ];
+  }
+  { name = &quot;count&quot;;   description = &quot;Optional number to fetch stats for&quot;; optional = true; type = &quot;int&quot;; default = 3; }
+  { name = &quot;dataDir&quot;; description = &quot;Directory path to save data.&quot;; optional = false;
+    default = &quot;~/&quot; + &quot;.config/yo/${league.dataDirName}&quot;; }
+];
+
 </code></pre>
 </div>
 
@@ -645,21 +747,32 @@ shl = {
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading"><strong>Step 6 - Sentences & Entity lists</strong></h3>
+      <h3 class="sub-heading"><strong>Step 6: Generate the voice vocabulary.</strong></h3>
+<p>The vocabulary is where the project gets silly. Each entry in<br><code>sharedSentenceBodies</code> is a Swedish phrase with placeholders for<br><code>{team}</code>, <code>{stat}</code>, <code>{mode}</code> and <code>{count}</code>. The <code>voiceTeamVals</code> list<br>turns every alias - <code>färjestad</code>, <code>farjestad</code>, <code>fbk</code> - into a voice<br>entity, so the same team can be reached through any of its names.<br>Multiply roughly sixty sentence bodies by the team aliases, the<br>stat values, the mode values and the count values, and you land<br>around 88,000 recognisable phrases per league.</p>
+<p>The Nix builder does this arithmetic at evaluation time: the<br><code>sentences</code> list is <code>map (s: "${league.voicePrefix} ${s}") sharedSentenceBodies</code>,<br>and the <code>lists</code> are built from the same attrsets that drive the<br>scraper. One source of truth, two leagues, one voice prefix each.</p>
     </div>
   </div>
 </section>
 
 <section class="content-section">
   <div class="wrap reveal">
-    <div class="config-block">
+    <div class="config-block is-collapsed">
   <div class="config-bar">
     <span class="dot red"></span>
     <span class="dot yellow"></span>
     <span class="dot green"></span>
+
     <span class="config-title">yo.scripts.duckPUCK.voice</span>
+
+    <button
+      class="collapse-btn"
+      type="button"
+      aria-expanded="false"
+    >Expand</button>
+
     <button class="copy-btn" type="button">Copy</button>
   </div>
+
   <pre><code class="language-bash">sharedSentenceBodies = [
   # generic table
   &quot;tabellen&quot;
@@ -746,8 +859,12 @@ shl = {
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading"><strong>Step 7 - ask it who the fattest player is</strong></h3>
-<p>The whole point. <code>duckPUCK</code> understands both Swedish and English<br>voice phrasing, and its vocabulary is per-league so "puck" doesn't<br>accidentally mean HA when you wanted SHL.</p>
+      <h3 class="sub-heading"><strong>Step 7: Turning raw statistics into spoken interpretation / analysis engine.</strong></h3>
+<p>The assistant actually <strong>understands hockey context</strong>.<br><br>It doesn't simply read a table and announce the numbers.<br></p>
+<p>It interprets league position and generates contextual commentary:</p>
+<p><ul><br>    <li>League leader.</li><br>    <li>Top-three contender.</li><br>    <li>Mid-table team.</li><br>    <li>Lower-half team.</li><br>    <li>Relegation-threatened team.</li><br></ul></p>
+<p>Then it adds goal difference, overtime performance and other observations.<br>The powerplay and boxplay analysis also evaluates league rankings and generates different commentary depending on performance.</p>
+<p>Numbers into Swedish words, positions into ordinal words, useful for a good duckPUCK commentary.</p>
     </div>
   </div>
 </section>
@@ -759,16 +876,1144 @@ shl = {
     <span class="dot red"></span>
     <span class="dot yellow"></span>
     <span class="dot green"></span>
-    <span class="config-title">yo duckPUCK</span>
+
+    <span class="config-title">yo shl vem är seriens fetaste spelare?</span>
+
+    <button
+      class="collapse-btn"
+      type="button"
+      aria-expanded="true"
+    >Collapse</button>
+
     <button class="copy-btn" type="button">Copy</button>
   </div>
-  <pre><code class="language-bash">$ yo duckPUCK-shl --mode best --stat heaviest
+
+  <pre><code class="language-bash">$ yo do &quot;shl vem är seriens fetaste spelare&quot;
   [🦆🏒] INFO - Saved 14 teams to /home/pungkula/.config/yo/hockey-shl/table.json
   [🦆🏒] INFO - SHL scraping completed!
   99. Joona Ikonen (Malmö Redhawks) - Vikt: 178 kg
   79. Radim Zohorna (Färjestad BK) - Vikt: 104 kg
   87. Patrik Karlkvist (Örebro Hockey) - Vikt: 98 kg
 
+</code></pre>
+</div>
+
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="prose-section">
+      <h3 class="sub-heading"><strong>And just like that we see a human-error.</strong></h3>
+<p>Someone entered this poor Finish guys length as weight...</p>
+<p>Sorry Joona Ikonen, You're this season's duckPUCK favourite!</p>
+<p>Catch you later.</p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="config-block is-collapsed">
+  <div class="config-bar">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+
+    <span class="config-title">Click to view duckPUCK source code</span>
+
+    <button
+      class="collapse-btn"
+      type="button"
+      aria-expanded="false"
+    >Expand</button>
+
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+
+  <pre><code class="language-nix"># dotfiles/bin/misc/duckPUCK.nix ⮞ https://github.com/quackhack-mcblindy/dotfiles
+{ # 🦆 says ⮞ hockey assistant and analyzer — SHL + HockeyAllsvenskan
+  self,
+  lib,
+  config,
+  pkgs,
+  cmdHelpers,
+  swe,
+  ...
+}:
+let
+  teamsByLeague = {
+    ha = {
+      &quot;IF Björklöven&quot;     = { apiName = &quot;Björklöven&quot;;    aliases = [ &quot;björklöven&quot; &quot;bjorkloven&quot; &quot;löven&quot; &quot;bjk&quot; ]; };
+      &quot;MoDo Hockey&quot;       = { apiName = &quot;MoDo&quot;;          aliases = [ &quot;modo&quot; &quot;modos&quot; ]; };
+      &quot;BIK Karlskoga&quot;     = { apiName = &quot;Karlskoga&quot;;     aliases = [ &quot;karlskoga&quot; &quot;bik&quot; &quot;bofors&quot; ]; };
+      &quot;Nybro Vikings IF&quot;  = { apiName = &quot;Nybro&quot;;         aliases = [ &quot;nybro&quot; &quot;nybros&quot; &quot;vikings&quot; ]; };
+      &quot;Kalmar HC&quot;         = { apiName = &quot;Kalmar&quot;;        aliases = [ &quot;kalmar&quot; &quot;kalmars&quot; ]; };
+      &quot;IK Oskarshamn&quot;     = { apiName = &quot;Oskarshamn&quot;;    aliases = [ &quot;oskarshamn&quot; ]; };
+      &quot;Almtuna IS&quot;        = { apiName = &quot;Almtuna&quot;;       aliases = [ &quot;almtuna&quot; ]; };
+      &quot;AIK&quot;               = { apiName = &quot;AIK&quot;;           aliases = [ &quot;aik&quot; &quot;aiks&quot; ]; };
+      &quot;Mora IK&quot;           = { apiName = &quot;Mora&quot;;          aliases = [ &quot;mora&quot; ]; };
+      &quot;Södertälje SK&quot;     = { apiName = &quot;Södertälje&quot;;    aliases = [ &quot;södertälje&quot; &quot;sodertalje&quot; ]; };
+      &quot;Östersunds IK&quot;     = { apiName = &quot;Östersund&quot;;     aliases = [ &quot;östersund&quot; &quot;ostersund&quot; ]; };
+      &quot;IF Troja-Ljungby&quot;  = { apiName = &quot;Troja-Ljungby&quot;; aliases = [ &quot;troja&quot; &quot;ljungby&quot; &quot;troja-ljungby&quot; ]; };
+      &quot;Västerås IK&quot;       = { apiName = &quot;Västerås&quot;;      aliases = [ &quot;västerås&quot; &quot;vasteras&quot; ]; };
+      &quot;Vimmerby HC&quot;       = { apiName = &quot;Vimmerby&quot;;      aliases = [ &quot;vimmerby&quot; ]; };
+    };
+    shl = {
+      &quot;Djurgårdens IF&quot;    = { apiName = &quot;Djurgårdens IF&quot;;   aliases = [ &quot;djurgården&quot; &quot;djurgarden&quot; &quot;djurgårdens&quot; &quot;dif&quot; ]; };
+      &quot;Växjö Lakers&quot;      = { apiName = &quot;Växjö Lakers&quot;;     aliases = [ &quot;växjö&quot; &quot;vaxjo&quot; &quot;lakers&quot; ]; };
+      &quot;Rögle BK&quot;          = { apiName = &quot;Rögle BK&quot;;         aliases = [ &quot;rögle&quot; &quot;rogle&quot; ]; };
+      &quot;Brynäs IF&quot;         = { apiName = &quot;Brynäs IF&quot;;        aliases = [ &quot;brynäs&quot; &quot;brynas&quot; ]; };
+      &quot;Skellefteå AIK&quot;    = { apiName = &quot;Skellefteå AIK&quot;;   aliases = [ &quot;skellefteå&quot; &quot;skelleftea&quot; &quot;skellefte&quot; &quot;saik&quot; ]; };
+      &quot;Frölunda HC&quot;       = { apiName = &quot;Frölunda HC&quot;;      aliases = [ &quot;frölunda&quot; &quot;frolunda&quot; &quot;fhc&quot; ]; };
+      &quot;Örebro HK&quot;         = { apiName = &quot;Örebro Hockey&quot;;    aliases = [ &quot;örebro&quot; &quot;orebro&quot; ]; };
+      &quot;Malmö Redhawks&quot;    = { apiName = &quot;Malmö Redhawks&quot;;   aliases = [ &quot;malmö&quot; &quot;malmo&quot; &quot;redhawks&quot; ]; };
+      &quot;Luleå HF&quot;          = { apiName = &quot;Luleå Hockey&quot;;     aliases = [ &quot;luleå&quot; &quot;lulea&quot; &quot;lhf&quot; ]; };
+      &quot;Färjestad BK&quot;      = { apiName = &quot;Färjestad BK&quot;;     aliases = [ &quot;färjestad&quot; &quot;farjestad&quot; &quot;fbk&quot; ]; };
+      &quot;Linköping HC&quot;      = { apiName = &quot;Linköping HC&quot;;     aliases = [ &quot;linköping&quot; &quot;linkoping&quot; &quot;lhc&quot; ]; };
+      &quot;Timrå IK&quot;          = { apiName = &quot;Timrå IK&quot;;         aliases = [ &quot;timrå&quot; &quot;timra&quot; ]; };
+      &quot;Leksands IF&quot;       = { apiName = &quot;Leksands IF&quot;;      aliases = [ &quot;leksand&quot; &quot;leksands&quot; ]; };
+      &quot;HV71&quot;              = { apiName = &quot;HV71&quot;;             aliases = [ &quot;hv71&quot; &quot;hv&quot; ]; };
+      &quot;Modo Hockey&quot;       = { apiName = &quot;Modo Hockey&quot;;      aliases = [ &quot;modo&quot; &quot;modos&quot; ]; };
+    };
+  };
+
+
+  leagues = {
+    ha = {
+      key         = &quot;ha&quot;;
+      name        = &quot;HockeyAllsvenskan&quot;;
+      displayName = &quot;Hockey Allsvenskan (SWE)&quot;;
+      title       = &quot;HOCKEYALLSVENSKAN&quot;;
+      speakLeague = &quot;allsvenskan&quot;;
+      apiBase     = &quot;https://www.hockeyallsvenskan.se/api&quot;;
+      siteHost    = &quot;hockeyallsvenskan.se&quot;;
+      ssgtUuid    = &quot;uy2zvu6xaa&quot;;
+      tableUrl    = &quot;https://sportstatistik.nu/hockey/hockeyallsvenskan/tabell&quot;;
+      dataDirName = &quot;hockey&quot;;
+      logLevel    = &quot;DEBUG&quot;;
+      aliases     = [ &quot;puck-ha&quot; ];
+      voicePrefix = &quot;hockey allsvenskan&quot;;
+      teams       = teamsByLeague.ha;
+    };
+    shl = {
+      key         = &quot;shl&quot;;
+      name        = &quot;SHL&quot;;
+      displayName = &quot;Swedish Hockey League (SHL)&quot;;
+      title       = &quot;SHL&quot;;
+      speakLeague = &quot;SHL&quot;;
+      apiBase     = &quot;https://www.shl.se/api&quot;;
+      siteHost    = &quot;www.shl.se&quot;;
+      ssgtUuid    = &quot;zg0pa4po75&quot;;
+      tableUrl    = &quot;https://sportstatistik.nu/hockey/shl/tabell&quot;;
+      dataDirName = &quot;hockey-shl&quot;;
+      logLevel    = &quot;INFO&quot;;
+      aliases     = [ &quot;puck&quot; &quot;shl&quot; ];
+      voicePrefix = &quot;shl&quot;;
+      teams       = teamsByLeague.shl;
+    };
+  };
+
+
+  numberToText = &#39;&#39;
+    number_to_text() {
+      local num=$1
+      case $num in
+        0) echo &quot;noll&quot; ;; 1) echo &quot;ett&quot; ;; 2) echo &quot;två&quot; ;; 3) echo &quot;tre&quot; ;;
+        4) echo &quot;fyra&quot; ;; 5) echo &quot;fem&quot; ;; 6) echo &quot;sex&quot; ;; 7) echo &quot;sju&quot; ;;
+        8) echo &quot;åtta&quot; ;; 9) echo &quot;nio&quot; ;; 10) echo &quot;tio&quot; ;;
+        11) echo &quot;elva&quot; ;; 12) echo &quot;tolv&quot; ;; 13) echo &quot;tretton&quot; ;;
+        14) echo &quot;fjorton&quot; ;; 15) echo &quot;femton&quot; ;; 16) echo &quot;sexton&quot; ;;
+        17) echo &quot;sjutton&quot; ;; 18) echo &quot;arton&quot; ;; 19) echo &quot;nitton&quot; ;;
+        20) echo &quot;tjugo&quot; ;;
+        *) echo &quot;$num&quot; ;;
+      esac
+    }
+
+    position_to_text() {
+      local pos=$1
+      case $pos in
+        1) echo &quot;första&quot; ;; 2) echo &quot;andra&quot; ;; 3) echo &quot;tredje&quot; ;;
+        4) echo &quot;fjärde&quot; ;; 5) echo &quot;femte&quot; ;; 6) echo &quot;sjätte&quot; ;;
+        7) echo &quot;sjunde&quot; ;; 8) echo &quot;åttonde&quot; ;; 9) echo &quot;nionde&quot; ;;
+        10) echo &quot;tionde&quot; ;; 11) echo &quot;elfte&quot; ;; 12) echo &quot;tolfte&quot; ;;
+        13) echo &quot;trettonde&quot; ;; 14) echo &quot;fjortonde&quot; ;;
+        *) echo &quot;$pos&quot; ;;
+      esac
+    }
+  &#39;&#39;;
+
+  pyEnv = pkgs.python3.withPackages (ps: [ ps.requests ]);
+  mkScraper = league:
+    let
+      teamMappingJson = builtins.toJSON (lib.mapAttrs (name: team: team.apiName) league.teams);
+    in pkgs.writeScript &quot;hockey-scraper-${league.key}.py&quot; &#39;&#39;
+      #!${pyEnv}/bin/python
+      import os, re, json, logging, argparse
+      import requests
+
+      parser = argparse.ArgumentParser()
+      parser.add_argument(&quot;--dataDir&quot;, type=str, required=True)
+      args = parser.parse_args()
+      os.makedirs(args.dataDir, exist_ok=True)
+      table_path = os.path.join(args.dataDir, &quot;table.json&quot;)
+      logging.basicConfig(level=logging.INFO, format=&quot;[🦆🏒] %(levelname)s - %(message)s&quot;)
+      logger = logging.getLogger()
+
+      headers = {
+          &quot;User-Agent&quot;: &quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36&quot;,
+          &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;,
+          &quot;Accept-Language&quot;: &quot;en-US,en;q=0.5&quot;,
+      }
+      SSGT_UUID = &quot;${league.ssgtUuid}&quot;
+      API_BASE  = &quot;${league.apiBase}&quot;
+      TABLE_URL = &quot;${league.tableUrl}&quot;
+
+      TEAM_MAPPING = ${teamMappingJson}
+
+      def fetch(url):
+          logger.info(f&quot;Fetching {url}&quot;)
+          try:
+              r = requests.get(url, headers=headers, timeout=15)
+              r.raise_for_status()
+              return r.text
+          except Exception as e:
+              logger.error(f&quot;Failed to fetch {url}: {e}&quot;)
+              return None
+
+      def fetch_powerplay_data():
+          url = f&quot;{API_BASE}/statistics-v2/stats-info/teams_powerplay?count=25&amp;ssgtUuid={SSGT_UUID}&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;
+          html = fetch(url)
+          if not html:
+              return {}
+          try:
+              data = json.loads(html)
+              return {t[&#39;info&#39;][&#39;siteDisplayName&#39;]: t.get(&#39;PPPerc&#39;, &#39;?&#39;) for t in data[0][&#39;stats&#39;]}
+          except Exception as e:
+              logger.error(f&quot;Failed to parse powerplay: {e}&quot;)
+              return {}
+
+      def fetch_boxplay_data():
+          url = f&quot;{API_BASE}/statistics-v2/stats-info/teams_penaltyKilling?count=25&amp;ssgtUuid={SSGT_UUID}&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;
+          html = fetch(url)
+          if not html:
+              return {}
+          try:
+              data = json.loads(html)
+              return {t[&#39;info&#39;][&#39;siteDisplayName&#39;]: t.get(&#39;PKPerc&#39;, &#39;?&#39;) for t in data[0][&#39;stats&#39;]}
+          except Exception as e:
+              logger.error(f&quot;Failed to parse boxplay: {e}&quot;)
+              return {}
+
+      def scrape_table():
+          html = fetch(TABLE_URL)
+          if not html:
+              return []
+          table_match = re.search(r&#39;&lt;table[^&gt;]*class=&quot;[^&quot;]*table[^&quot;]*&quot;[^&gt;]*&gt;(.*?)&lt;/table&gt;&#39;, html, re.DOTALL)
+          if not table_match:
+              table_match = re.search(r&#39;&lt;table[^&gt;]*&gt;(.*?)&lt;/table&gt;&#39;, html, re.DOTALL)
+          if not table_match:
+              return []
+          rows = re.findall(r&#39;&lt;tr[^&gt;]*&gt;(.*?)&lt;/tr&gt;&#39;, table_match.group(1), re.DOTALL)
+          table_data, seen = [], set()
+          for row in rows:
+              cells = re.findall(r&#39;&lt;t[dh][^&gt;]*&gt;(.*?)&lt;/t[dh]&gt;&#39;, row, re.DOTALL)
+              if len(cells) &lt; 11:
+                  continue
+              clean = []
+              for cell in cells:
+                  c = re.sub(r&#39;&lt;[^&gt;]*&gt;&#39;, &quot;&quot;, cell)
+                  c = re.sub(r&#39;&amp;nbsp;&#39;, &#39; &#39;, c)
+                  c = re.sub(r&#39;\s+&#39;, &#39; &#39;, c).strip()
+                  clean.append(c)
+              if not clean[0].isdigit() or not clean[1] or clean[1] in seen:
+                  continue
+              seen.add(clean[1])
+              table_data.append({
+                  &quot;position&quot;:        clean[0],
+                  &quot;team&quot;:            clean[1],
+                  &quot;games_played&quot;:    clean[2],
+                  &quot;wins&quot;:            clean[3],
+                  &quot;ties&quot;:            clean[4],
+                  &quot;losses&quot;:          clean[5],
+                  &quot;overtime_wins&quot;:   clean[6],
+                  &quot;overtime_losses&quot;: clean[7],
+                  &quot;goals_for&quot;:       clean[8],
+                  &quot;goals_against&quot;:   clean[9],
+                  &quot;goal_difference&quot;: clean[10],
+                  &quot;points&quot;:          clean[11] if len(clean) &gt; 11 else &quot;0&quot;,
+              })
+              if len(table_data) &gt;= 14:
+                  break
+          return table_data
+
+      def main():
+          logger.info(&quot;🏒 Starting ${league.name} scraper...&quot;)
+          table_data = scrape_table()
+          pp = fetch_powerplay_data()
+          bp = fetch_boxplay_data()
+          for team in table_data:
+              api_name = TEAM_MAPPING.get(team[&#39;team&#39;], team[&#39;team&#39;])
+              team[&#39;powerplay&#39;] = pp.get(api_name, &#39;?&#39;)
+              team[&#39;boxplay&#39;]   = bp.get(api_name, &#39;?&#39;)
+          if table_data:
+              with open(table_path, &#39;w&#39;) as f:
+                  json.dump(table_data, f, ensure_ascii=False, indent=2)
+              logger.info(f&quot;Saved {len(table_data)} teams to {table_path}&quot;)
+          else:
+              logger.warning(&quot;No table data to save&quot;)
+          logger.info(&quot;${league.name} scraping completed!&quot;)
+
+      if __name__ == &quot;__main__&quot;:
+          main()
+    &#39;&#39;;
+
+
+
+  mkFuzzyMatch = league:
+    let
+      teamCases = lib.concatStringsSep &quot;\n&quot;
+        (lib.mapAttrsToList (name: team:
+          &quot;            ${lib.concatMapStringsSep &quot;|&quot; (a: &quot;*${a}*&quot;) team.aliases}) echo \&quot;${name}\&quot;; return 0 ;;&quot;
+        ) league.teams);
+    in &#39;&#39;
+      fuzzy_match_team() {
+        local input_team=&quot;$1&quot;
+        local table_file=&quot;$2&quot;
+        dt_debug &quot;Fuzzy matching team: $input_team&quot;
+        local lowered
+        lowered=$(echo &quot;$input_team&quot; | tr &#39;[:upper:]&#39; &#39;[:lower:]&#39;)
+        case &quot;$lowered&quot; in
+          ${teamCases}
+        esac
+
+        # 🦆 says ⮞ fall back to fuzzy match against table teams
+        local -a teams
+        mapfile -t teams &lt; &lt;(jq -r &#39;.[].team&#39; &quot;$table_file&quot;)
+        local best_match=&quot;&quot;
+        local best_score=0
+        local normalized_input
+        normalized_input=$(normalize_string &quot;$input_team&quot;)
+        for team in &quot;&#39;&#39;${teams[@]}&quot;; do
+          local normalized_team
+          normalized_team=$(normalize_string &quot;$team&quot;)
+          if [[ &quot;$normalized_team&quot; == *&quot;$normalized_input&quot;* ]] || [[ &quot;$normalized_input&quot; == *&quot;$normalized_team&quot;* ]]; then
+            echo &quot;$team&quot;
+            return 0
+          fi
+          local lev_score
+          lev_score=$(levenshtein_similarity &quot;$normalized_input&quot; &quot;$normalized_team&quot;)
+          if (( lev_score &gt; best_score )); then
+            best_score=$lev_score
+            best_match=&quot;$team&quot;
+          fi
+        done
+        if (( best_score &gt;= 30 )); then
+          echo &quot;$best_match&quot;
+          return 0
+        else
+          dt_debug &quot;No good fuzzy match (best: $best_match, score: $best_score%)&quot;
+          return 1
+        fi
+      }
+    &#39;&#39;;
+
+
+  mkTeamApiMap = league:
+    let
+      cases = lib.concatStringsSep &quot;\n&quot;
+        (lib.mapAttrsToList (name: team:
+          &quot;          \&quot;${name}\&quot;) echo \&quot;${team.apiName}\&quot; ;;&quot;
+        ) league.teams);
+    in &#39;&#39;
+      map_team_to_api() {
+        local team=&quot;$1&quot;
+        case &quot;$team&quot; in
+      ${cases}
+          *) echo &quot;$team&quot; ;;
+        esac
+      }
+    &#39;&#39;;
+
+
+  mkVoiceTeamValues = league:
+    lib.mapAttrsToList (name: team: {
+      &quot;in&quot;  = &quot;[&quot; + lib.concatStringsSep &quot;|&quot; team.aliases + &quot;]&quot;;
+      out = name;
+    }) league.teams;
+
+
+  sharedSentenceBodies = [
+    # generic table
+    &quot;tabellen&quot;
+    &quot;visa tabellen&quot;
+    &quot;hur ser tabellen ut&quot;
+    &quot;hur ligger lagen till&quot;
+    &quot;vad är ställningen&quot;
+
+    # team-specific
+    &quot;vad ligger {team} i tabellen&quot;
+    &quot;visa {team} statistik&quot;
+    &quot;var ligger {team} i tabellen&quot;
+    &quot;vilken plats har {team}&quot;
+    &quot;hur går det för {team}&quot;
+    &quot;hur ligger {team} till&quot;
+    &quot;är {team} på slutspelsplats&quot;
+    &quot;är {team} på kvalplats&quot;
+    &quot;hur många poäng har {team}&quot;
+    &quot;visa {team}s statistik&quot;
+    &quot;visa statistik för {team}&quot;
+    &quot;hur ser {team}s statistik ut&quot;
+    &quot;vad har {team} för statistik&quot;
+    &quot;ge mig {team} siffror&quot;
+    &quot;hur går det för {team} {mode}&quot;
+    &quot;analysera {team}&quot;
+    &quot;ge en analys av {team}&quot;
+    &quot;analysera laget {team}&quot;
+    &quot;analysera {team}s {mode} matcher&quot;
+    &quot;hur presterade {team} i {mode} matchen&quot;
+    &quot;vilka trender har {team}&quot;
+
+    # stat-specific
+    &quot;vad har {team} för {stat} statistik&quot;
+    &quot;analysera {team} {stat}&quot;
+    &quot;hur bra är {team} i {stat}&quot;
+    &quot;hur presterar {team} i {stat}&quot;
+    &quot;hur ser {team}s {stat} ut&quot;
+    &quot;visa {team}s {stat}&quot;
+    &quot;analysera {team}s {stat}&quot;
+    &quot;ge en analys av {team}s {stat}&quot;
+
+    # heaviest / tallest / other player attributes
+    &quot;vem är ligans {stat} spelare&quot;
+    &quot;vilken spelare är ligans {stat}&quot;
+    &quot;visa ligans {stat} spelare&quot;
+    &quot;vem har ligans {mode} {stat}&quot;
+
+    # best / worst leaders
+    &quot;vem har ligans {mode} {stat}&quot;
+    &quot;vilket lag har ligans {mode} {stat}&quot;
+    &quot;vilken målvakt är {mode}&quot;
+    &quot;vem är {mode} målvakt&quot;
+
+    # schedule / recent / upcoming
+    &quot;visa {mode} matcher&quot;
+    &quot;vilka matcher spelas {mode}&quot;
+    &quot;när spelar {team} {mode}&quot;
+    &quot;vilka möter {team} {mode}&quot;
+    &quot;vilka matcher har {team} {mode}&quot;
+    &quot;när är {team}s {mode} match&quot;
+
+    # player leaderboards
+    &quot;visa topp {count} i {stat}&quot;
+    &quot;{count} är {stat} i ligan&quot;
+
+    # single-player queries
+    &quot;vilken spelare har gjort {mode} {stat}&quot;
+    &quot;vem har gjort {mode} {stat}&quot;
+
+    # team shorthanded goals
+    &quot;vilket lag har {mode} {stat}&quot;
+    &quot;vem har {mode} {stat} i ligan&quot;
+    &quot;vilka har {mode} {stat}&quot;
+    &quot;vilket lag har gjort {mode} {stat}&quot;
+  ];
+
+
+  mkDuckPUCKConfig = leagueKey: league:
+    let
+      scraper        = mkScraper league;
+      fuzzyMatch     = mkFuzzyMatch league;
+      teamApiMap     = mkTeamApiMap league;
+      voiceTeamVals  = mkVoiceTeamValues league;
+    in {
+      description = &quot;[🏒🦆] - Your Personal Hockey Assistant! - Expert commentary and analyzer specialized on ${league.displayName}. Analyzing games, scraping scoreboards and keeping track of all dates and numbers.&quot;;
+      category    = &quot;🧩 Miscellaneous&quot;;
+      aliases     = league.aliases;
+      logLevel    = league.logLevel;
+
+      parameters = [
+        { name        = &quot;mode&quot;; description = &quot;What to display: &#39;recent&#39;, &#39;table&#39;, &#39;upcoming&#39;, or best/worst analysis&quot;;
+          optional    = false;
+          values      = swe.allowFrom &quot;mode&quot;; #[
+          #  &quot;recent&quot; &quot;upcoming&quot; &quot;table&quot;
+          #  &quot;best&quot; &quot;worst&quot;
+          #];
+          default     = &quot;table&quot;;
+        }
+        { name = &quot;team&quot;; description = &quot;Team specific search with TTS&quot;;                       optional = true; }
+        { name = &quot;stat&quot;; description = &quot;Search for specific stats.&quot;;
+          type        = &quot;string&quot;;
+          optional    = true;
+          values      = [
+            &quot;powerplay&quot; &quot;boxplay&quot;
+            &quot;shorthanded_goals&quot; &quot;shorthanded&quot;
+            &quot;goalkeeper&quot; &quot;save_percentage&quot;
+            &quot;penalty&quot; &quot;tallest&quot; &quot;shortest&quot;
+            &quot;heaviest&quot; &quot;lightest&quot;
+            &quot;oldest&quot; &quot;youngest&quot; &quot;icetime&quot;
+            &quot;goals&quot; &quot;assists&quot; &quot;points&quot;
+          ];
+        }
+        { name = &quot;count&quot;;   description = &quot;Optional number to fetch stats for&quot;; optional = true; type = &quot;int&quot;; default = 3; }
+        { name = &quot;dataDir&quot;; description = &quot;Directory path to save data.&quot;; optional = false;
+          default = &quot;/home/&quot; + config.this.user.me.name + &quot;/.config/yo/${league.dataDirName}&quot;; }
+      ];
+
+      code = &#39;&#39;
+        ${cmdHelpers}
+        ${numberToText}
+        ${fuzzyMatch}
+        ${teamApiMap}
+
+        API_BASE=&quot;${league.apiBase}&quot;
+        SSGT_UUID=&quot;${league.ssgtUuid}&quot;
+        LEAGUE_NAME=&quot;${league.speakLeague}&quot;
+        LEAGUE_TITLE=&quot;${league.title}&quot;
+
+        analyze_team() {
+          local team_name=&quot;$1&quot;
+          local table_file=&quot;$2&quot;
+          dt_debug &quot;Analyzing team: $team_name&quot;
+          local team_data
+          team_data=$(jq -r &quot;.[] | select(.team == \&quot;$team_name\&quot;)&quot; &quot;$table_file&quot;)
+          if [ -z &quot;$team_data&quot; ]; then
+            dt_error &quot;Team &#39;$team_name&#39; not found in table&quot;
+            return 1
+          fi
+
+          local position points wins losses ties goals_for goals_against goal_diff games_played
+          position=$(echo &quot;$team_data&quot; | jq -r &#39;.position&#39;)
+          points=$(echo &quot;$team_data&quot; | jq -r &#39;.points&#39;)
+          wins=$(echo &quot;$team_data&quot; | jq -r &#39;.wins&#39;)
+          losses=$(echo &quot;$team_data&quot; | jq -r &#39;.losses&#39;)
+          ties=$(echo &quot;$team_data&quot; | jq -r &#39;.ties&#39;)
+          goals_for=$(echo &quot;$team_data&quot; | jq -r &#39;.goals_for&#39;)
+          goals_against=$(echo &quot;$team_data&quot; | jq -r &#39;.goals_against&#39;)
+          goal_diff=$(echo &quot;$team_data&quot; | jq -r &#39;.goal_difference&#39;)
+          games_played=$(echo &quot;$team_data&quot; | jq -r &#39;.games_played&#39;)
+
+          local points_text wins_text losses_text games_played_text goal_diff_text
+          local goals_for_text goals_against_text position_text
+          points_text=$(number_to_text &quot;$points&quot;)
+          wins_text=$(number_to_text &quot;$wins&quot;)
+          losses_text=$(number_to_text &quot;$losses&quot;)
+          games_played_text=$(number_to_text &quot;$games_played&quot;)
+          goal_diff_text=$(number_to_text &quot;$goal_diff&quot;)
+          goals_for_text=$(number_to_text &quot;$goals_for&quot;)
+          goals_against_text=$(number_to_text &quot;$goals_against&quot;)
+          position_text=$(position_to_text &quot;$position&quot;)
+
+          local analysis=&quot;&quot;
+          case $position in
+            1)
+              analysis=&quot;Det går jättebra för $team_name just nu! Dom leder $LEAGUE_NAME med $points_text poäng efter $games_played_text matcher. &quot;
+              analysis+=&quot;Med $wins_text vinster och bara $losses_text förluster är dom klara serieledare. &quot;
+              analysis+=&quot;Dom har överlägset bäst målskillnad på $goal_diff_text och släpper sällan in mål med bara $goals_against_text insläppta.&quot;
+              ;;
+            2|3)
+              analysis=&quot;$team_name ligger bra till på $position_text plats med $points_text poäng. &quot;
+              analysis+=&quot;Med $wins_text vinster och $losses_text förluster är dom med och kämpar i toppen.&quot;
+              ;;
+            4|5|6)
+              analysis=&quot;$team_name håller sig stabilt i mitten på $position_text plats med $points_text poäng. &quot;
+              analysis+=&quot;Med $wins_text vinster och $losses_text förluster har dom en bra bas att bygga på. &quot;
+              analysis+=&quot;Målskillnaden på $goal_diff_text visar att dom kan prestera bra.&quot;
+              ;;
+            7|8|9|10)
+              analysis=&quot;$team_name ligger i nedre halvan på $position_text plats med $points_text poäng. &quot;
+              analysis+=&quot;Med $wins_text vinster och $losses_text förluster behöver dom ta fler poäng. &quot;
+              analysis+=&quot;Dom har gjort $goals_for_text mål men släppt in $goals_against_text, vilket visar att försvaret behöver skärpas.&quot;
+              ;;
+            11|12|13)
+              analysis=&quot;Det går lite trögt för $team_name som ligger på $position_text plats med bara $points_text poäng. &quot;
+              analysis+=&quot;Med $losses_text förluster och bara $wins_text vinster behöver dom vända trenden snart. &quot;
+              analysis+=&quot;Målskillnaden på $goal_diff_text indikerar att det behövs förbättring både framåt och bakåt.&quot;
+              ;;
+            14)
+              analysis=&quot;Tyvärr går det väldigt dåligt för $team_name som ligger sist i tabellen med bara $points_text poäng. &quot;
+              analysis+=&quot;Med $losses_text förluster och bara $wins_text vinster ser det ut att bli en tuff säsong. &quot;
+              analysis+=&quot;Dom har släppt in $goals_against_text mål vilket är mest i serien och behöver skärpa försvaret rejält.&quot;
+              ;;
+            *)
+              analysis=&quot;$team_name ligger på $position_text plats med $points_text poäng efter $games_played_text matcher.&quot;
+              ;;
+          esac
+
+          if [ &quot;$goal_diff&quot; -gt 15 ]; then
+            analysis+=&quot; Dom har en imponerande målskillnad som visar att dom dominerar sina motståndare.&quot;
+          elif [ &quot;$goal_diff&quot; -lt -10 ]; then
+            analysis+=&quot; Den stora negativa målskillnaden visar att dom har svårt att hålla jämna steg med topplagen.&quot;
+          fi
+
+          local ot_wins ot_losses ot_wins_text ot_losses_text
+          ot_wins=$(echo &quot;$team_data&quot; | jq -r &#39;.overtime_wins&#39;)
+          ot_losses=$(echo &quot;$team_data&quot; | jq -r &#39;.overtime_losses&#39;)
+          ot_wins_text=$(number_to_text &quot;$ot_wins&quot;)
+          ot_losses_text=$(number_to_text &quot;$ot_losses&quot;)
+          if [ &quot;$ot_wins&quot; -gt 2 ]; then
+            analysis+=&quot; Laget är tuffa i övertid med $ot_wins_text övertidsvinster.&quot;
+          elif [ &quot;$ot_losses&quot; -gt 2 ]; then
+            analysis+=&quot; Dom har haft otur i övertid med $ot_losses_text övertidsförluster.&quot;
+          fi
+          echo &quot;$analysis&quot;
+        }
+
+        hockey_news() {
+          response=$(curl -s -L \
+              -H &quot;Accept: application/json; charset=utf-8&quot; \
+              -H &quot;User-Agent: HockeyNews/1.0&quot; \
+              &quot;https://${league.siteHost}/api/articles/site-news/list?page=0&amp;pagesize=10&amp;orderByDate=desc&quot;)
+          if [ $? -ne 0 ]; then
+            dt_error &quot;Failed to fetch news&quot;
+            return 1
+          fi
+          if command -v jq &gt;/dev/null 2&gt;&amp;1; then
+            echo &quot;$response&quot; | jq -r &#39;.data.articleItems[] | &quot;\(.header)&quot;&#39; 2&gt;/dev/null | head -5
+          else
+            dt_error &quot;Failed to get news.&quot;
+            return 1
+          fi
+        }
+
+        get_team_powerplay() {
+          local team_name=&quot;$1&quot;
+          if [ -z &quot;$team_name&quot; ]; then
+            dt_error &quot;Please specify a team name&quot;
+            return 1
+          fi
+          local endpoint=&quot;$API_BASE/statistics-v2/stats-info/teams_powerplay?count=25&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;
+          local response
+          response=$(curl -s -L -H &quot;Accept: application/json; charset=utf-8&quot; -H &quot;User-Agent: HockeyStats/1.0&quot; &quot;$endpoint&quot;)
+          if [ $? -ne 0 ]; then
+            dt_error &quot;Failed to fetch powerplay data&quot;
+            return 1
+          fi
+
+          local team_data
+          team_data=$(echo &quot;$response&quot; | jq -r --arg team &quot;$team_name&quot; &#39;
+            .[0].stats[] |
+            select(.info.siteDisplayName == $team) |
+            &quot;\(.info.siteDisplayName)|\(.Rank)|\(.GP)|\(.PPG)|\(.PPPerc)|\(.PPOpp)|\(.PPSOG)|\(.PPTime)&quot;&#39;)
+          if [ -z &quot;$team_data&quot; ]; then
+            team_data=$(echo &quot;$response&quot; | jq -r --arg team &quot;$team_name&quot; &#39;
+              .[0].stats[] |
+              select(.info.siteDisplayName | test($team; &quot;i&quot;)) |
+              &quot;\(.info.siteDisplayName)|\(.Rank)|\(.GP)|\(.PPG)|\(.PPPerc)|\(.PPOpp)|\(.PPSOG)|\(.PPTime)&quot;&#39; | head -1)
+          fi
+          if [ -z &quot;$team_data&quot; ]; then
+            dt_error &quot;Team &#39;$team_name&#39; not found&quot;
+            return 1
+          fi
+          IFS=&#39;|&#39; read -r name rank gp ppg efficiency ppopp ppsog pptime &lt;&lt;&lt; &quot;$team_data&quot;
+          echo &quot;Rank: $rank&quot;
+          echo &quot;Games Played: $gp&quot;
+          echo &quot;Power Play Goals: $ppg&quot;
+          echo &quot;Power Play Opportunities: $ppopp&quot;
+          echo &quot;Power Play Efficiency: $efficiency%&quot;
+          echo &quot;Power Play Shots on Goal: $ppsog&quot;
+          echo &quot;Power Play Time: $pptime&quot;
+        }
+
+
+        get_team_boxplay() {
+          local team_name=&quot;$1&quot;
+          if [ -z &quot;$team_name&quot; ]; then
+            dt_error &quot;Please specify a team name&quot;
+            return 1
+          fi
+          local endpoint=&quot;$API_BASE/statistics-v2/stats-info/teams_penaltyKilling?count=25&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;
+          local response
+          response=$(curl -s -L -H &quot;Accept: application/json; charset=utf-8&quot; -H &quot;User-Agent: HockeyStats/1.0&quot; &quot;$endpoint&quot;)
+          if [ $? -ne 0 ]; then
+            dt_error &quot;Failed to fetch boxplay data&quot;
+            return 1
+          fi
+
+          local team_data
+          team_data=$(echo &quot;$response&quot; | jq -r --arg team &quot;$team_name&quot; &#39;
+            .[0].stats[] |
+            select(.info.siteDisplayName == $team) |
+            &quot;\(.info.siteDisplayName)|\(.Rank)|\(.GP)|\(.SHG)|\(.PPGA)|\(.PKOpp)|\(.PKPerc)|\(.PPSOGA)|\(.PKTime)&quot;&#39;)
+          if [ -z &quot;$team_data&quot; ]; then
+            team_data=$(echo &quot;$response&quot; | jq -r --arg team &quot;$team_name&quot; &#39;
+              .[0].stats[] |
+              select(.info.siteDisplayName | test($team; &quot;i&quot;)) |
+              &quot;\(.info.siteDisplayName)|\(.Rank)|\(.GP)|\(.SHG)|\(.PPGA)|\(.PKOpp)|\(.PKPerc)|\(.PPSOGA)|\(.PKTime)&quot;&#39; | head -1)
+          fi
+          if [ -z &quot;$team_data&quot; ]; then
+            dt_error &quot;Team &#39;$team_name&#39; not found&quot;
+            return 1
+          fi
+          IFS=&#39;|&#39; read -r name rank gp shg ppga pkopp pkperc ppsoga pktime &lt;&lt;&lt; &quot;$team_data&quot;
+          echo &quot;$name BoxPlay&quot;
+          echo &quot;Rank: $rank&quot;
+          echo &quot;Games Played: $gp&quot;
+          echo &quot;Short-handed Goals: $shg&quot;
+          echo &quot;Power Play Goals Against: $ppga&quot;
+          echo &quot;Boxplay Opportunities: $pkopp&quot;
+          echo &quot;Boxplay Efficiency: $pkperc%&quot;
+          echo &quot;Power Play Shots on Goal Against: $ppsoga&quot;
+          echo &quot;Boxplay tid: $pktime&quot;
+        }
+
+        analyze_special_teams() {
+          local query_type=&quot;$1&quot;
+          local table_file=&quot;$2&quot;
+          if [ ! -f &quot;$table_file&quot; ]; then
+            dt_error &quot;Table file not found: $table_file&quot;
+            return 1
+          fi
+          case &quot;$query_type&quot; in
+            &quot;best-powerplay&quot;)
+              local row
+              row=$(jq -r &#39;[.[] | select(.powerplay != &quot;?&quot; and .powerplay != null) | {team: .team, e: (.powerplay | sub(&quot;%&quot;; &quot;&quot;) | tonumber)}] | sort_by(.e) | reverse | .[0] | &quot;\(.team)|\(.e)&quot;&#39; &quot;$table_file&quot;)
+              if [ -n &quot;$row&quot; ] &amp;&amp; [ &quot;$row&quot; != &quot;null&quot; ]; then
+                IFS=&#39;|&#39; read -r team efficiency &lt;&lt;&lt; &quot;$row&quot;
+                echo &quot;$team har $LEAGUE_NAME s bästa powerplay med $efficiency% i effektivitet.&quot;
+              else echo &quot;Kunde inte hitta data om powerplay.&quot;; fi
+              ;;
+            &quot;worst-powerplay&quot;)
+              local row
+              row=$(jq -r &#39;[.[] | select(.powerplay != &quot;?&quot; and .powerplay != null) | {team: .team, e: (.powerplay | sub(&quot;%&quot;; &quot;&quot;) | tonumber)}] | sort_by(.e) | .[0] | &quot;\(.team)|\(.e)&quot;&#39; &quot;$table_file&quot;)
+              if [ -n &quot;$row&quot; ] &amp;&amp; [ &quot;$row&quot; != &quot;null&quot; ]; then
+                IFS=&#39;|&#39; read -r team efficiency &lt;&lt;&lt; &quot;$row&quot;
+                echo &quot;$team har $LEAGUE_NAME s sämsta powerplay med bara $efficiency% i effektivitet.&quot;
+              else echo &quot;Kunde inte hitta data om powerplay.&quot;; fi
+              ;;
+            &quot;best-boxplay&quot;)
+              local row
+              row=$(jq -r &#39;[.[] | select(.boxplay != &quot;?&quot; and .boxplay != null) | {team: .team, e: (.boxplay | sub(&quot;%&quot;; &quot;&quot;) | tonumber)}] | sort_by(.e) | reverse | .[0] | &quot;\(.team)|\(.e)&quot;&#39; &quot;$table_file&quot;)
+              if [ -n &quot;$row&quot; ] &amp;&amp; [ &quot;$row&quot; != &quot;null&quot; ]; then
+                IFS=&#39;|&#39; read -r team efficiency &lt;&lt;&lt; &quot;$row&quot;
+                echo &quot;$team har $LEAGUE_NAME s bästa boxplay med $efficiency% i effektivitet.&quot;
+              else echo &quot;Kunde inte hitta data om boxplay.&quot;; fi
+              ;;
+            &quot;worst-boxplay&quot;)
+              local row
+              row=$(jq -r &#39;[.[] | select(.boxplay != &quot;?&quot; and .boxplay != null) | {team: .team, e: (.boxplay | sub(&quot;%&quot;; &quot;&quot;) | tonumber)}] | sort_by(.e) | .[0] | &quot;\(.team)|\(.e)&quot;&#39; &quot;$table_file&quot;)
+              if [ -n &quot;$row&quot; ] &amp;&amp; [ &quot;$row&quot; != &quot;null&quot; ]; then
+                IFS=&#39;|&#39; read -r team efficiency &lt;&lt;&lt; &quot;$row&quot;
+                echo &quot;$team har $LEAGUE_NAME s sämsta boxplay med bara $efficiency% i effektivitet.&quot;
+              else echo &quot;Kunde inte hitta data om boxplay.&quot;; fi
+              ;;
+          esac
+        }
+
+        display_table_with_special_teams() {
+          local table_file=&quot;$1&quot;
+          if [ ! -f &quot;$table_file&quot; ]; then
+            dt_error &quot;Table file not found&quot;
+            return 1
+          fi
+          {
+            echo &quot;# 🏆 $LEAGUE_TITLE 25/26&quot;
+            echo &quot;| Pos | Lag | M | V | X | F | ÖV | ÖF | + | - | +/- | P | PP | BP |&quot;
+            echo &quot;|-----|-----|---|---|---|---|----|----|----|----|-----|---|-----|-----|&quot;
+            jq -r &#39;.[] | &quot;| \(.position) | \(.team) | \(.games_played) | \(.wins) | \(.ties) | \(.losses) | \(.overtime_wins) | \(.overtime_losses) | \(.goals_for) | \(.goals_against) | \(.goal_difference) | \(.points) | \(.powerplay) | \(.boxplay) |&quot;&#39; &quot;$table_file&quot;
+          } | ${pkgs.glow}/bin/glow -
+        }
+
+        get_player_stats() {
+          local stat_type=&quot;$1&quot;
+          local count=&quot;$2&quot;
+          local endpoint=&quot;$API_BASE/statistics-v2/stats-info/players_point&quot;
+          local params=&quot;count=100&amp;sortKey=TP&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=point&quot;
+          local response
+          response=$(curl -s &quot;&#39;&#39;${endpoint}?&#39;&#39;${params}&quot;)
+          if [ $? -ne 0 ]; then
+            dt_error &quot;Failed to fetch player data&quot;
+            return 1
+          fi
+
+          case &quot;$stat_type&quot; in
+            &quot;tallest&quot;|&quot;shortest&quot;)
+              local sort_dir=&quot;desc&quot;
+              [ &quot;$stat_type&quot; = &quot;shortest&quot; ] &amp;&amp; sort_dir=&quot;asc&quot;
+              echo &quot;$response&quot; | jq -r &#39;
+                .[0].stats |
+                map(select(.info.height.value != null)) |
+                sort_by(.info.height.value) |
+                &#39;&quot;$( [ &quot;$sort_dir&quot; = &quot;desc&quot; ] &amp;&amp; echo &quot;reverse |&quot; )&quot;&#39;
+                .[0:&#39;$count&#39;] |
+                .[] |
+                &quot;\(.Rank). \(.info.fullName) (\(.info.team.name)) - Längd: \(.info.height.value) \(.info.height.format)&quot;&#39;
+              ;;
+            &quot;heaviest&quot;|&quot;lightest&quot;)
+              local sort_dir=&quot;desc&quot;
+              [ &quot;$stat_type&quot; = &quot;lightest&quot; ] &amp;&amp; sort_dir=&quot;asc&quot;
+              echo &quot;$response&quot; | jq -r &#39;
+                .[0].stats |
+                map(select(.info.weight.value != null)) |
+                sort_by(.info.weight.value) |
+                &#39;&quot;$( [ &quot;$sort_dir&quot; = &quot;desc&quot; ] &amp;&amp; echo &quot;reverse |&quot; )&quot;&#39;
+                .[0:&#39;$count&#39;] |
+                .[] |
+                &quot;\(.Rank). \(.info.fullName) (\(.info.team.name)) - Vikt: \(.info.weight.value) \(.info.weight.format)&quot;&#39;
+              ;;
+            &quot;oldest&quot;|&quot;youngest&quot;)
+              local sort_dir=&quot;asc&quot;
+              [ &quot;$stat_type&quot; = &quot;youngest&quot; ] &amp;&amp; sort_dir=&quot;desc&quot;
+              echo &quot;$response&quot; | jq -r &#39;
+                .[0].stats |
+                map(select(.info.birthDate != null)) |
+                sort_by(.info.birthDate) |
+                &#39;&quot;$( [ &quot;$sort_dir&quot; = &quot;desc&quot; ] &amp;&amp; echo &quot;reverse |&quot; )&quot;&#39;
+                .[0:&#39;$count&#39;] |
+                .[] |
+                &quot;\(.Rank). \(.info.fullName) (\(.info.team.name)) - Född: \(.info.birthDate)&quot;&#39;
+              ;;
+            &quot;goals&quot;|&quot;points&quot;|&quot;assists&quot;)
+              local sort_key
+              case &quot;$stat_type&quot; in
+                &quot;goals&quot;)   sort_key=&quot;G&quot;  ;;
+                &quot;points&quot;)  sort_key=&quot;TP&quot; ;;
+                &quot;assists&quot;) sort_key=&quot;A&quot;  ;;
+              esac
+              local endpoint2=&quot;$API_BASE/statistics-v2/stats-info/players_point&quot;
+              local params2=&quot;count=$count&amp;sortKey=$sort_key&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=point&quot;
+              response=$(curl -s &quot;&#39;&#39;${endpoint2}?&#39;&#39;${params2}&quot;)
+              # 🦆 says ⮞ FIX: use --arg for $stat and $k (was broken in HA original)
+              echo &quot;$response&quot; | jq -r --arg stat &quot;$stat_type&quot; --arg k &quot;$sort_key&quot; &#39;
+                .[0].stats[] |
+                &quot;\(.Rank). \(.info.fullName) (\(.info.team.name)) - \($stat): \(.[$k])&quot;&#39;
+              ;;
+            &quot;icetime&quot;)
+              echo &quot;$response&quot; | jq -r &#39;
+                .[0].stats |
+                map(select(.TOI_GP != null)) |
+                sort_by((.TOI_GP | split(&quot;:&quot;) | (.[0]|tonumber)*60 + (.[1]|tonumber))) |
+                reverse |
+                .[0:&#39;$count&#39;] |
+                .[] |
+                &quot;\(.Rank). \(.info.fullName) (\(.info.team.name)) - Istid: \(.TOI_GP) per match&quot;&#39;
+              ;;
+            &quot;shorthanded&quot;)
+              echo &quot;$response&quot; | jq -r &#39;
+                .[0].stats |
+                sort_by(-.SHTP) |
+                .[0:&#39;$count&#39;] |
+                .[] |
+                &quot;\(.Rank). \(.info.fullName) (\(.info.team.name)) - Boxplay poäng: \(.SHTP)&quot;&#39;
+              ;;
+            *)
+              dt_error &quot;Unknown stat type: $stat_type&quot;
+              return 1
+              ;;
+          esac
+        }
+
+
+        # $description / $sort_key — undefined jq vars. Now uses --arg.
+        get_goalie_stats() {
+          local stat_type=&quot;$1&quot;
+          local count=&quot;$2&quot;
+          local endpoint=&quot;$API_BASE/statistics-v2/stats-info/goalkeepers_summary&quot;
+          local sort_key=&quot;svPct&quot;
+          local json_key=&quot;SVSPerc&quot;
+          local description=&quot;Räddningsprocent&quot;
+          case &quot;$stat_type&quot; in
+            &quot;save_percentage&quot;) sort_key=&quot;svPct&quot;; json_key=&quot;SVSPerc&quot;; description=&quot;Räddningsprocent&quot; ;;
+            &quot;gaa&quot;)             sort_key=&quot;GAA&quot;;   json_key=&quot;GAA&quot;;     description=&quot;Insläppta mål i snitt&quot; ;;
+          esac
+          local params=&quot;count=$count&amp;sortKey=$sort_key&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=goal&quot;
+          local response
+          response=$(curl -s &quot;&#39;&#39;${endpoint}?&#39;&#39;${params}&quot;)
+          echo &quot;$response&quot; | jq -r --arg description &quot;$description&quot; --arg k &quot;$json_key&quot; &#39;
+            .[0].stats[] |
+            &quot;\(.Rank). \(.info.fullName) (\(.info.team.name)) - \($description): \(.[$k])&quot;&#39;
+        }
+
+        get_best_goalkeeper() {
+          local endpoint=&quot;$API_BASE/statistics-v2/stats-info/goalkeepers_summary&quot;
+          local params=&quot;count=1&amp;sortKey=svPct&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=goal&quot;
+          local response
+          response=$(curl -s &quot;&#39;&#39;${endpoint}?&#39;&#39;${params}&quot;)
+          if [ $? -ne 0 ]; then
+            echo &quot;NOT_FOUND&quot;
+            return 1
+          fi
+          echo &quot;$response&quot; | jq -r &#39;
+            .[0].stats[0] |
+            &quot;\(.info.fullName)|\(.info.team.name)|\(.SVSPerc)|\(.GP)|\(.GAA)|\(.SO)&quot;&#39;
+        }
+
+
+        get_most_shorthanded_goals() {
+          local endpoint=&quot;$API_BASE/statistics-v2/stats-info/teams_penaltyKilling?count=25&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;
+          local response
+          response=$(curl -s -L -H &quot;Accept: application/json; charset=utf-8&quot; -H &quot;User-Agent: HockeyStats/1.0&quot; &quot;$endpoint&quot;)
+          if [ $? -ne 0 ]; then
+            dt_error &quot;Failed to fetch boxplay data&quot;
+            return 1
+          fi
+          echo &quot;$response&quot; | jq -r &#39;
+            .[0].stats |
+            sort_by(.SHG|tonumber) | reverse |
+            .[0] |
+            &quot;\(.info.siteDisplayName) - \(.SHG) boxplay mål&quot;&#39;
+        }
+
+        get_top_shorthanded_teams() {
+          local count=&quot;&#39;&#39;${1:-5}&quot;
+          local endpoint=&quot;$API_BASE/statistics-v2/stats-info/teams_penaltyKilling?count=25&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;
+          local response
+          response=$(curl -s -L -H &quot;Accept: application/json; charset=utf-8&quot; -H &quot;User-Agent: HockeyStats/1.0&quot; &quot;$endpoint&quot;)
+          if [ $? -ne 0 ]; then
+            dt_error &quot;Failed to fetch boxplay data&quot;
+            return 1
+          fi
+          echo &quot;$response&quot; | jq -r &#39;
+            .[0].stats |
+            sort_by(.SHG|tonumber) | reverse |
+            .[0:&#39;$count&#39;] |
+            &quot;\(.Rank). \(.info.siteDisplayName) - \(.SHG) boxplay mål&quot;&#39;
+        }
+
+
+        handle_player_stat_query() {
+          local stat=&quot;$1&quot;
+          local count=&quot;$2&quot;
+          dt_debug &quot;Processing stat query: stat=$stat, count=$count&quot;
+          case &quot;$stat&quot; in
+            &quot;goals&quot;|&quot;points&quot;|&quot;assists&quot;|&quot;tallest&quot;|&quot;heaviest&quot;|&quot;oldest&quot;|&quot;youngest&quot;|&quot;icetime&quot;|&quot;shorthanded&quot;|&quot;shortest&quot;|&quot;lightest&quot;)
+              get_player_stats &quot;$stat&quot; &quot;$count&quot;
+              ;;
+            &quot;save_percentage&quot;|&quot;gaa&quot;)
+              get_goalie_stats &quot;$stat&quot; &quot;$count&quot;
+              ;;
+            &quot;penalty&quot;)
+              local endpoint=&quot;$API_BASE/statistics-v2/stats-info/players_penalty&quot;
+              local params=&quot;count=$count&amp;sortKey=PM&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=penalty&quot;
+              local response
+              response=$(curl -s &quot;&#39;&#39;${endpoint}?&#39;&#39;${params}&quot;)
+              echo &quot;$response&quot; | jq -r &#39;
+                .[0].stats[] |
+                &quot;\(.Rank). \(.info.fullName) (\(.info.team.name)) - Utvisningsminuter: \(.PM)&quot;&#39;
+              ;;
+            *)
+              dt_error &quot;Unknown stat: $stat&quot;
+              echo &quot;❌ Okänd statistik: $stat&quot;
+              ;;
+          esac
+        }
+
+
+        # MAIN
+
+        dt_info &quot;[🏒🦆] duckPUCK🏒🦆 ${league.name}!&quot;
+        ${scraper} --dataDir &quot;$dataDir&quot;
+        status=$?
+        if [ $status -ne 0 ]; then
+          dt_error &quot;duck say fuck failed with exit code $status&quot;
+          exit $status
+        fi
+        dt_debug &quot;Scraping done, files updated in $dataDir&quot;
+        table_file=&quot;$dataDir/table.json&quot;
+
+
+        if [ -n &quot;$stat&quot; ] &amp;&amp; [ -z &quot;$team&quot; ]; then
+          if { [ &quot;$stat&quot; = &quot;powerplay&quot; ] || [ &quot;$stat&quot; = &quot;boxplay&quot; ] || [ &quot;$stat&quot; = &quot;shorthanded_goals&quot; ]; } \
+             &amp;&amp; { [ &quot;$mode&quot; = &quot;best&quot; ] || [ &quot;$mode&quot; = &quot;worst&quot; ]; }; then
+            dt_debug &quot;Handling best/worst team stat query - mode: $mode, stat: $stat&quot;
+            if [ -f &quot;$table_file&quot; ]; then
+              if [ &quot;$stat&quot; = &quot;shorthanded_goals&quot; ]; then
+                if [ &quot;$mode&quot; = &quot;best&quot; ]; then
+                  result=$(get_most_shorthanded_goals)
+                  if [ $? -eq 0 ] &amp;&amp; [ -n &quot;$result&quot; ]; then
+                    analysis=&quot;$result är laget som gjort mest boxplay mål i $LEAGUE_NAME!&quot;
+                    echo &quot;$analysis&quot;
+                    yo say --text &quot;$analysis&quot; --silence &quot;0.8&quot;
+                  fi
+                else
+                  result=$(get_top_shorthanded_teams 14 | tail -1)
+                  if [ $? -eq 0 ] &amp;&amp; [ -n &quot;$result&quot; ]; then
+                    analysis=&quot;$result har gjort minst boxplay mål i $LEAGUE_NAME.&quot;
+                    echo &quot;$analysis&quot;
+                    yo say --text &quot;$analysis&quot; --silence &quot;0.8&quot;
+                  fi
+                fi
+              else
+                analysis=$(analyze_special_teams &quot;$mode-$stat&quot; &quot;$table_file&quot;)
+                echo &quot;$analysis&quot;
+                yo say --text &quot;$analysis&quot; --silence &quot;0.8&quot;
+              fi
+            else
+              dt_error &quot;No table data found for special teams analysis&quot;
+            fi
+            exit 0
+          else
+            dt_debug &quot;Handling player stat query - stat: $stat, count: &#39;&#39;${count:-10}&quot;
+            result=$(handle_player_stat_query &quot;$stat&quot; &quot;&#39;&#39;${count:-10}&quot;)
+            if [ $? -eq 0 ] &amp;&amp; [ -n &quot;$result&quot; ]; then
+              echo &quot;$result&quot;
+              speech_result=$(echo &quot;$result&quot; | head -5)
+              yo say --text &quot;$speech_result&quot; --silence &quot;0.8&quot;
+            fi
+            exit 0
+          fi
+        fi
+
+
+        if [ &quot;$stat&quot; = &quot;goalkeeper&quot; ]; then
+          if [ -n &quot;$team&quot; ]; then
+            api_team=$(map_team_to_api &quot;$team&quot;)
+            if [ &quot;$mode&quot; = &quot;best&quot; ]; then
+              best_gk_data=$(get_best_goalkeeper)
+              if [ &quot;$best_gk_data&quot; != &quot;NOT_FOUND&quot; ]; then
+                IFS=&#39;|&#39; read -r gk_name gk_team gk_save_percent gk_games gk_gaa gk_shutouts &lt;&lt;&lt; &quot;$best_gk_data&quot;
+                analysis=&quot;$LEAGUE_NAME s bästa målvakt just nu är $gk_name från $gk_team med $gk_save_percent% i räddningsprocent.&quot;
+                analysis+=&quot; Efter $gk_games matcher har $gk_name bara släppt in $gk_gaa mål i genomsnitt och hållit $gk_shutouts nollor.&quot;
+                if [ &quot;$gk_team&quot; = &quot;$api_team&quot; ]; then
+                  analysis+=&quot; DET ÄR EN $team MÅLVAKT SOM LEDER LIGAN! GRATTIS!&quot;
+                fi
+                echo &quot;$analysis&quot;
+                yo say --text &quot;$analysis&quot; --silence &quot;0.8&quot;
+              fi
+            else
+              echo &quot;Målvaktsstatistik för $team:&quot;
+              get_goalie_stats &quot;save_percentage&quot; 25 | grep &quot;$api_team&quot; || echo &quot;Ingen målvaktsdata hittades för $team&quot;
+            fi
+          else
+            if [ &quot;$mode&quot; = &quot;best&quot; ]; then
+              best_gk_data=$(get_best_goalkeeper)
+              if [ &quot;$best_gk_data&quot; != &quot;NOT_FOUND&quot; ] &amp;&amp; [ -n &quot;$best_gk_data&quot; ]; then
+                IFS=&#39;|&#39; read -r gk_name gk_team gk_save_percent gk_games gk_gaa gk_shutouts &lt;&lt;&lt; &quot;$best_gk_data&quot;
+                analysis=&quot;$LEAGUE_NAME s bästa målvakt just nu är $gk_name från $gk_team med $gk_save_percent% i räddningsprocent.&quot;
+                echo &quot;$analysis&quot;
+                yo say --text &quot;$analysis&quot; --silence &quot;0.8&quot;
+              fi
+            else
+              get_goalie_stats &quot;save_percentage&quot; $count
+            fi
+          fi
+          exit 0
+        fi
+
+
+        if [ -n &quot;$team&quot; ]; then
+          if [ -f &quot;$table_file&quot; ]; then
+            matched_team=$(fuzzy_match_team &quot;$team&quot; &quot;$table_file&quot;)
+            if [ $? -eq 0 ]; then
+              team=&quot;$matched_team&quot;
+            else
+              dt_warning &quot;No fuzzy match found for &#39;$team&#39;, using exact match&quot;
+            fi
+            api_team=$(map_team_to_api &quot;$team&quot;)
+
+            if [ &quot;$stat&quot; = &quot;powerplay&quot; ]; then
+              pp_data=$(get_team_powerplay &quot;$api_team&quot;)
+              pp_perc=$(echo &quot;$pp_data&quot; | grep &quot;Power Play Efficiency:&quot; | awk &#39;{print $4}&#39; | sed &#39;s/%//&#39;)
+              rank=$(echo &quot;$pp_data&quot; | grep &quot;Rank:&quot; | awk &#39;{print $2}&#39;)
+              echo &quot;$pp_data&quot; &amp;&amp; echo &quot;&quot;
+              if [[ &quot;$pp_perc&quot; =~ ^[0-9.]+$ ]]; then
+                case &quot;$rank&quot; in
+                  1)    pp_analysis=&quot;JÄVLAR ANKA! $team har $LEAGUE_NAME s BÄSTA POWERPLAY på rank &#39;&#39;${rank} med &#39;&#39;${pp_perc}%! &quot; ;;
+                  2|3)  pp_analysis=&quot;$team har ett ELIT powerplay på rank &#39;&#39;${rank} med &#39;&#39;${pp_perc}%. &quot; ;;
+                  4|5|6) pp_analysis=&quot;$team har ett SOLITT powerplay på rank &#39;&#39;${rank} med &#39;&#39;${pp_perc}%. &quot; ;;
+                  7|8|9) pp_analysis=&quot;$team har ett OK powerplay på rank &#39;&#39;${rank} med &#39;&#39;${pp_perc}%. &quot; ;;
+                  *)    pp_analysis=&quot;$team har ett powerplay på &#39;&#39;${pp_perc}% på rank &#39;&#39;${rank}. &quot; ;;
+                esac
+                dt_info &quot;🏒🦆duckPUCK🏒🦆 POWERPLAY ANALYS:&quot;
+                echo &quot;$pp_analysis&quot;
+                yo say &quot;$pp_analysis&quot; --silence &quot;0.8&quot;
+              fi
+
+            elif [ &quot;$stat&quot; = &quot;boxplay&quot; ]; then
+              bp_data=$(get_team_boxplay &quot;$api_team&quot;)
+              bp_perc=$(echo &quot;$bp_data&quot; | grep &quot;Boxplay Efficiency:&quot; | awk &#39;{print $3}&#39; | sed &#39;s/%//&#39;)
+              rank=$(echo &quot;$bp_data&quot; | grep &quot;Rank:&quot; | awk &#39;{print $2}&#39;)
+              echo &quot;$bp_data&quot; &amp;&amp; echo &quot;&quot;
+              if [[ &quot;$bp_perc&quot; =~ ^[0-9.]+$ ]]; then
+                case &quot;$rank&quot; in
+                  1)    bp_analysis=&quot;HELT OTROLIGT! $team har $LEAGUE_NAME s BÄSTA BOXPLAY på rank &#39;&#39;${rank} med &#39;&#39;${bp_perc}%! &quot; ;;
+                  2|3)  bp_analysis=&quot;$team har ett FENOMENALT boxplay på rank &#39;&#39;${rank} med &#39;&#39;${bp_perc}%. &quot; ;;
+                  4|5|6) bp_analysis=&quot;$team har ett STABILT boxplay på rank &#39;&#39;${rank} med &#39;&#39;${bp_perc}%. &quot; ;;
+                  7|8|9) bp_analysis=&quot;$team har ett OK boxplay på rank &#39;&#39;${rank} med &#39;&#39;${bp_perc}%. &quot; ;;
+                  *)    bp_analysis=&quot;$team har ett boxplay på &#39;&#39;${bp_perc}% på rank &#39;&#39;${rank}. &quot; ;;
+                esac
+                dt_info &quot;🏒🦆duckPUCK🏒🦆 BOXPLAY ANALYS:&quot;
+                echo &quot;$bp_analysis&quot;
+                yo say &quot;$bp_analysis&quot; --silence &quot;0.8&quot;
+              fi
+
+            else
+              team_analysis=$(analyze_team &quot;$team&quot; &quot;$table_file&quot;)
+              if [ $? -eq 0 ]; then
+                dt_info &quot;🏒🦆duckPUCK🏒🦆 TEAM ANALYS:&quot;
+                echo &quot;$team_analysis&quot;
+                yo say &quot;$team_analysis&quot; --silence &quot;0.8&quot;
+              fi
+            fi
+          else
+            dt_error &quot;No table data found for analysis&quot;
+          fi
+        else
+          if [ -f &quot;$table_file&quot; ]; then
+            team_count=$(jq length &quot;$table_file&quot; 2&gt;/dev/null || echo &quot;0&quot;)
+            dt_debug &quot;Found $team_count teams in table&quot;
+            echo &quot;&quot;
+            ${pkgs.gum}/bin/gum format &quot;# 🗞️ **${league.title} NYHETER**&quot;
+            hockey_news | head -5 &amp;&amp; echo &quot;----------------------------&quot; &amp;&amp; echo &quot;&quot;
+            display_table_with_special_teams &quot;$table_file&quot;
+            echo &quot;&quot;
+
+            yo hockeyGames --league ${leagueKey}
+          else
+            dt_error &quot;No table data found at $table_file&quot;
+          fi
+        fi
+      &#39;&#39;;
+
+      voice = {
+        enabled  = true;
+        priority = 4;
+        sentences = map (s: &quot;${league.voicePrefix} ${s}&quot;) sharedSentenceBodies;
+        lists = {
+          mode.values = [
+            { &quot;in&quot; = &quot;[förra|senaste|igår]&quot;;                  out = &quot;recent&quot;;   }
+            { &quot;in&quot; = &quot;[idag|nästa|kommande|imorgon]&quot;;         out = &quot;upcoming&quot;; }
+            { &quot;in&quot; = &quot;[tabellen|ställningen|poängställning]&quot;; out = &quot;table&quot;;    }
+            { &quot;in&quot; = &quot;[bäst|bästa|best|mest|flest]&quot;;          out = &quot;best&quot;;     }
+            { &quot;in&quot; = &quot;[sämst|sämsta|kassast]&quot;;                out = &quot;worst&quot;;    }
+          ];
+          team.values = voiceTeamVals;
+          stat.values = [
+            { &quot;in&quot; = &quot;[power|powerplay|pp|överläge|numerärt överläge]&quot;;       out = &quot;powerplay&quot;;       }
+            { &quot;in&quot; = &quot;[box|boxplay|bp|box play|undertal|numerärt underläge]&quot;; out = &quot;boxplay&quot;;  }
+            { &quot;in&quot; = &quot;[underläge|shorthanded|boxmål|boxplay mål]&quot;;            out = &quot;shorthanded_goals&quot;; }
+            { &quot;in&quot; = &quot;[målvakt|målvakten|målvakter|goalie|goalkeeper]&quot;;       out = &quot;goalkeeper&quot;;      }
+            { &quot;in&quot; = &quot;[räddningsprocent|räddningar|save percentage]&quot;;    out = &quot;save_percentage&quot;; }
+            { &quot;in&quot; = &quot;[straff|utvisning|penalty|pim]&quot;;                   out = &quot;penalty&quot;;         }
+            { &quot;in&quot; = &quot;[längd|längst|lång]&quot;;                              out = &quot;tallest&quot;;         }
+            { &quot;in&quot; = &quot;[kort|kortast]&quot;;                                   out = &quot;shortest&quot;;        }
+            { &quot;in&quot; = &quot;[vikt|tyngst|tung|tjock|tjockast]&quot;;                out = &quot;heaviest&quot;;        }
+            { &quot;in&quot; = &quot;[lätt|lättast]&quot;;                                   out = &quot;lightest&quot;;        }
+            { &quot;in&quot; = &quot;[mål|skytter]&quot;;                                    out = &quot;goals&quot;;           }
+            { &quot;in&quot; = &quot;[assist|passningar]&quot;;                              out = &quot;assists&quot;;         }
+            { &quot;in&quot; = &quot;[äldst|äldsta]&quot;;                                   out = &quot;oldest&quot;;          }
+            { &quot;in&quot; = &quot;[yngst|yngsta]&quot;;                                   out = &quot;youngest&quot;;        }
+            { &quot;in&quot; = &quot;[underläge|shorthanded|boxmål]&quot;;                   out = &quot;shorthanded&quot;;     }
+            { &quot;in&quot; = &quot;[istid|speltid|mest istid]&quot;;                       out = &quot;icetime&quot;;         }
+            { &quot;in&quot; = &quot;[poäng]&quot;;                                          out = &quot;points&quot;;          }
+          ];
+          count.values = [
+            { &quot;in&quot; = &quot;[1|ett|en|bästa|vem|vilken]&quot;; out = &quot;1&quot;;  }
+            { &quot;in&quot; = &quot;[2|två|tvåan|näst]&quot;;          out = &quot;2&quot;;  }
+            { &quot;in&quot; = &quot;[3|tre|vilka]&quot;;               out = &quot;3&quot;;  }
+            { &quot;in&quot; = &quot;[5|fem]&quot;;                     out = &quot;5&quot;;  }
+            { &quot;in&quot; = &quot;[10|tio]&quot;;                    out = &quot;10&quot;; }
+          ];
+        };
+      };
+    };
+
+in {
+  yo.scripts = {
+    &quot;duckPUCK-ha&quot;  = mkDuckPUCKConfig &quot;ha&quot;  leagues.ha;
+    &quot;duckPUCK-shl&quot; = mkDuckPUCKConfig &quot;shl&quot; leagues.shl;
+
+  };}
 </code></pre>
 </div>
 
@@ -785,11 +2030,10 @@ shl = {
 
       <section class="content-section">
   <div class="wrap reveal">
-    <div class="caveat">
+    <div class="warning">
       <strong>Heads up.</strong>
       These are public endpoints serving public data. Don't hammer them,
-don't redistribute the raw feed, and if they ever add rate limiting -
-it won't be because of this post.
+don't redistribute the raw feed
 
     </div>
   </div>
@@ -902,6 +2146,26 @@ it won't be because of this post.
         }
       });
     });
+
+    document.querySelectorAll('.config-block').forEach((block) => {
+      const toggle = () => {
+        const collapsed = block.classList.toggle('is-collapsed');
+        const btn = block.querySelector('.collapse-btn');
+
+        if (btn) {
+          btn.setAttribute('aria-expanded', String(!collapsed));
+          btn.textContent = collapsed ? 'Expand' : 'Collapse';
+        }
+      };
+
+      block.addEventListener('click', (e) => {
+        if (e.target.closest('.copy-btn')) return;
+        const selection = window.getSelection();
+        if (selection && !selection.isCollapsed) return;
+        toggle();
+      });
+    });
+
   })();
   </script>
 
@@ -1247,6 +2511,9 @@ it won't be because of this post.
         const h = Math.min(CORNER_HEIGHT, vh * 0.22);
         return x >= vw - w && y <= h;
       }
+
+
+
 
       function onPointerDown(e) {
         if (e.button !== 0) return;
