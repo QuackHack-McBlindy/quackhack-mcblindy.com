@@ -744,7 +744,7 @@ shl = {
     <div class="prose-section">
       <h3 class="sub-heading"><strong>Step 4: Build a reusable Nix configuration.</strong></h3>
 <p>Rather than write multiple <code>yo</code>  scripts, I wrote one unified builder.</p>
-<p>### Say hello to <strong>mkDuckPUCK</strong>!</p>
+<p><strong>Say hello to mkDuckPUCK!</strong></p>
 <p><strong>mkDuckPUCK</strong> is instantiated twice, once per league. I also decided to make one additional script exclusively for searching games.<br>Everything that differs between the leagues lives in a plain attrset. <br>Teans are defined outside of the league to avoid the need for manual entries each season. <br>Teams are also fuzzy matched for user friendly searches.</p>
 <p>The interesting part is that Nix isn't just configuring two scripts here. It's generating the whole interface.</p>
 <p>One attrset describes the league, its teams, API endpoints and identifiers. From that, the builder produces the scraper, team matching, API mappings, voice entities, parameters and sentence templates.</p>
@@ -1012,6 +1012,40 @@ lists = {
     <span class="dot yellow"></span>
     <span class="dot green"></span>
 
+    <span class="config-title">yo shl när möter löven lule?</span>
+
+    <button
+      class="collapse-btn"
+      type="button"
+      aria-expanded="true"
+    >Collapse</button>
+
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+
+  <pre><code class="language-bash">🦆🏠  HOME via 🐍 v3.14.10 via 🦀 v1.98.0
+05:04:45 ❯ yo do &quot;när möter löven lule&quot;
+   ┌─(yo-duckPUCK-games)
+   │ 🦆 quack! när möter löven lule
+   └─⮞ --home Björklöven
+   └─⮞ --away Luleå
+   └─ ⏰ do took 46.346035ms
+På Lördag den fem December spelar Björklöven hemma match mot Luleå i Visionite Arena.
+På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite Arena.
+</code></pre>
+</div>
+
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="config-block">
+  <div class="config-bar">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+
     <span class="config-title">yo shl vem är seriens fetaste spelare?</span>
 
     <button
@@ -1023,13 +1057,17 @@ lists = {
     <button class="copy-btn" type="button">Copy</button>
   </div>
 
-  <pre><code class="language-bash">$ yo do &quot;shl vem är seriens fetaste spelare&quot;
-  [🦆🏒] INFO - Saved 14 teams to /home/pungkula/.config/yo/hockey-shl/table.json
-  [🦆🏒] INFO - SHL scraping completed!
-  99. Joona Ikonen (Malmö Redhawks) - Vikt: 178 kg
-  79. Radim Zohorna (Färjestad BK) - Vikt: 104 kg
-  87. Patrik Karlkvist (Örebro Hockey) - Vikt: 98 kg
-
+  <pre><code class="language-bash"> 🦆🏠  HOME via 🐍 v3.14.10 via 🦀 v1.98.0
+05:13:31 ❯ yo do &quot;shl vem är ligans fetaste spelare&quot;
+   ┌─(yo-duckPUCK-shl)
+   │ 🦆 quack! shl vem är ligans fetaste spelare
+   └─⮞ --stat heaviest
+   └─ ⏰ do took 2.842625ms
+   [🦆🏒] INFO - Saved 14 teams to /home/pungkula/.config/yo/hockey-shl/table.json
+   [🦆🏒] INFO - SHL scraping completed!
+   99. Joona Ikonen (Malmö Redhawks) - Vikt: 178 kg
+   79. Radim Zohorna (Färjestad BK) - Vikt: 104 kg
+   87. Patrik Karlkvist (Örebro Hockey) - Vikt: 98 kg
 </code></pre>
 </div>
 
@@ -1041,7 +1079,7 @@ lists = {
     <div class="prose-section">
       <h3 class="sub-heading"><strong>And just like that we see a human-error.</strong></h3>
 <p>Someone entered this poor Finish guys length as weight...</p>
-<p># <strong>Sorry <code>Joona Ikonen</code>, You're this season's duckPUCK heavy-weight champion!</strong></p>
+<p><strong>Sorry <code>Joona Ikonen</code>, You're this season's duckPUCK heavy-weight champion!</strong></p>
     </div>
   </div>
 </section>
@@ -2888,7 +2926,7 @@ in {
   <span class="cl-icon" aria-hidden="true">🔗</span>
   <div class="cl-body">
     <h3 class="cl-title">A Unique Milestone Reached</h3>
-    <p class="cl-desc">yo crossed one billion generated phrases. 4,641 patterns. 121,213,559,724 phrases. 102 scripts, 71 voice-ready. 97 ms average over 1,467 runs.</p>
+    <p class="cl-desc">yo crossed one billion generated phrases. 4,640 patterns. 121,213,559,436 phrases. 102 scripts, 71 voice-ready. 97 ms average over 1,467 runs.</p>
   </div>
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
