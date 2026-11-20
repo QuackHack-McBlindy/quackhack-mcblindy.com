@@ -743,6 +743,87 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   }
 }
 
+.section-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  padding: 15px 30px;
+  min-width: 190px;
+
+  color: #050707;
+  background: linear-gradient(135deg, #ffd75e, #f4b52f);
+  border: 1px solid #ffe28a;
+  border-radius: 12px;
+
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  box-shadow:
+    0 0 8px rgba(244, 181, 47, 0.45),
+    0 0 22px rgba(244, 181, 47, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.cta-button span {
+  color: #050707;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.cta-button:hover {
+  color: #050707;
+  background: linear-gradient(135deg, #ffe994, #ffc52e);
+  border-color: #fff0b5;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 0 12px rgba(244, 181, 47, 0.75),
+    0 0 32px rgba(244, 181, 47, 0.35),
+    0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.cta-button:hover span {
+  transform: translate(3px, -3px);
+}
+
+.cta-button:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.cta-button:focus-visible {
+  outline: 2px solid #ffe28a;
+  outline-offset: 5px;
+}
+
+@media (max-width: 560px) {
+  .cta-button {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 20px;
+    font-size: 0.8rem;
+  }
+}
+
 </style>
   <link rel="stylesheet" href="./../static/css/viewport.css" />
 </head>
@@ -887,7 +968,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
             content = builtins.readFile ./blog-from-dotfiles.nix;
           };
         }
-        { prose = &quot;## **What I wrote to get the zigduck webpage:**&quot;; }
+        { prose = &quot;## **Another example:**&quot;; }
         {
           code = {
             title   = &quot;View the nix file for the quackhackmcblindy.com/posts/zigduck webpage.&quot;;
@@ -905,8 +986,9 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
             content = builtins.readFile ./../blog.nix;
           };
         }
-        { button = { title = &quot;View my flake&quot;; link = &quot;https://github.com/quackhack-mcblindy/dotfiles&quot;; }; }
         { duck = &quot;Stay safe, peace and code. QuackHack-McBLindy out!&quot;; }
+        { button = { title = &quot;Explore my flake&quot;; link = &quot;https://github.com/quackhack-mcblindy/dotfiles&quot;; }; }
+
 
       ];
     };
@@ -921,7 +1003,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading"><strong>What I wrote to get the zigduck webpage:</strong></h3>
+      <h3 class="sub-heading"><strong>Another example:</strong></h3>
     </div>
   </div>
 </section>
@@ -979,7 +1061,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
       tagline = &quot;A Flake For Your House&quot;;
       description = &quot;A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.&quot;;
 
-      markdownFile = ./../../home/zigduck.md;
+      markdownFile = ./../../home/README/zigduck.md;
       sections = [{ button = { title = &quot;View on GitHub&quot;; link = &quot;https://github.com/quackhack-mcblindy.com/zigduck&quot;; }; }];
 
     };
@@ -2594,6 +2676,87 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
       }
     }
 
+    .section-cta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem auto;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+
+      padding: 15px 30px;
+      min-width: 190px;
+
+      color: #050707;
+      background: linear-gradient(135deg, #ffd75e, #f4b52f);
+      border: 1px solid #ffe28a;
+      border-radius: 12px;
+
+      font-family: &#39;Orbitron&#39;, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+
+      box-shadow:
+        0 0 8px rgba(244, 181, 47, 0.45),
+        0 0 22px rgba(244, 181, 47, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .cta-button span {
+      color: #050707;
+      font-size: 1.1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .cta-button:hover {
+      color: #050707;
+      background: linear-gradient(135deg, #ffe994, #ffc52e);
+      border-color: #fff0b5;
+
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 0 12px rgba(244, 181, 47, 0.75),
+        0 0 32px rgba(244, 181, 47, 0.35),
+        0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .cta-button:hover span {
+      transform: translate(3px, -3px);
+    }
+
+    .cta-button:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    .cta-button:focus-visible {
+      outline: 2px solid #ffe28a;
+      outline-offset: 5px;
+    }
+
+    @media (max-width: 560px) {
+      .cta-button {
+        width: 100%;
+        max-width: 320px;
+        padding: 14px 20px;
+        font-size: 0.8rem;
+      }
+    }
+
   &#39;&#39;;
 
 
@@ -3012,6 +3175,16 @@ in {
 
 <section class="content-section">
   <div class="wrap reveal">
+    <div class="duck-comment">
+
+  <p>Stay safe, peace and code. QuackHack-McBLindy out!</p>
+</div>
+
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
     <div class="section-cta">
       <a
         class="cta-button"
@@ -3019,20 +3192,10 @@ in {
         target="_blank"
         rel="noopener noreferrer"
       >
-        View my flake
+        Explore my flake
         <span aria-hidden="true">↗</span>
       </a>
     </div>
-  </div>
-</section>
-
-<section class="content-section">
-  <div class="wrap reveal">
-    <div class="duck-comment">
-
-  <p>Stay safe, peace and code. QuackHack-McBLindy out!</p>
-</div>
-
   </div>
 </section>
 
@@ -3062,20 +3225,20 @@ in {
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
 
+<a class="cross-link" href="/posts/pokenix.html">
+  <span class="cl-icon" aria-hidden="true">🔗</span>
+  <div class="cl-body">
+    <h3 class="cl-title">pokenix</h3>
+    <p class="cl-desc">Nix generates HTML + JS generates Nix + GitHub pages hosts. A complete web hosting plattform and sprteadsheet manager built for Pokémon collections using Nix</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
 <a class="cross-link" href="/posts/zigduck.html">
   <span class="cl-icon" aria-hidden="true">🔗</span>
   <div class="cl-body">
     <h3 class="cl-title">zigduck</h3>
     <p class="cl-desc">A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.</p>
-  </div>
-  <span class="cl-arrow" aria-hidden="true">→</span>
-</a>
-
-<a class="cross-link" href="/posts/accessibility-on-linux.html">
-  <span class="cl-icon" aria-hidden="true">🔗</span>
-  <div class="cl-body">
-    <h3 class="cl-title">Accessibility on Linux / NixOS</h3>
-    <p class="cl-desc">Linux should be for everyone, not just people without disabilities. Accessibility on NixOS is terrible out of the box - here&#39;s my magnifier flake and a voice-to-shell translator.</p>
   </div>
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>

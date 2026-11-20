@@ -18,7 +18,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://quackhack-mcblindy.com/posts/one-billion-understandable-phrases.html">
   <meta property="og:title" content="QuackHack-McBLindy.com » A Unique Milestone Reached">
-  <meta property="og:description" content="yo crossed one billion generated phrases. 9,465 patterns. 121,402,307,390 phrases. 105 scripts, 74 voice-ready. 97 ms average over 1,467 runs.">
+  <meta property="og:description" content="yo crossed one billion generated phrases. 9,465 patterns. 121,402,307,390 phrases. 105 scripts, 74 voice-ready. 37 ms average over 1,467 runs.">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -31,12 +31,12 @@
 </script>
 
 
-  <meta name="description" content="yo crossed one billion generated phrases. 9,465 patterns. 121,402,307,390 phrases. 105 scripts, 74 voice-ready. 97 ms average over 1,467 runs.">
+  <meta name="description" content="yo crossed one billion generated phrases. 9,465 patterns. 121,402,307,390 phrases. 105 scripts, 74 voice-ready. 37 ms average over 1,467 runs.">
   <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="QuackHack-McBLindy.com » A Unique Milestone Reached">
-  <meta name="twitter:description" content="yo crossed one billion generated phrases. 9,465 patterns. 121,402,307,390 phrases. 105 scripts, 74 voice-ready. 97 ms average over 1,467 runs.">
+  <meta name="twitter:description" content="yo crossed one billion generated phrases. 9,465 patterns. 121,402,307,390 phrases. 105 scripts, 74 voice-ready. 37 ms average over 1,467 runs.">
   <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -743,6 +743,87 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   }
 }
 
+.section-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  padding: 15px 30px;
+  min-width: 190px;
+
+  color: #050707;
+  background: linear-gradient(135deg, #ffd75e, #f4b52f);
+  border: 1px solid #ffe28a;
+  border-radius: 12px;
+
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  box-shadow:
+    0 0 8px rgba(244, 181, 47, 0.45),
+    0 0 22px rgba(244, 181, 47, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.cta-button span {
+  color: #050707;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.cta-button:hover {
+  color: #050707;
+  background: linear-gradient(135deg, #ffe994, #ffc52e);
+  border-color: #fff0b5;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 0 12px rgba(244, 181, 47, 0.75),
+    0 0 32px rgba(244, 181, 47, 0.35),
+    0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.cta-button:hover span {
+  transform: translate(3px, -3px);
+}
+
+.cta-button:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.cta-button:focus-visible {
+  outline: 2px solid #ffe28a;
+  outline-offset: 5px;
+}
+
+@media (max-width: 560px) {
+  .cta-button {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 20px;
+    font-size: 0.8rem;
+  }
+}
+
 main > .content-section + .content-section { padding-top: 0; }
 
 .milestone-number {
@@ -921,7 +1002,7 @@ main > .content-section + .content-section { padding-top: 0; }
 <p class="milestone-sub">
   From <strong>9,465 patterns</strong>, at a ratio of
   <strong>12,826,445</strong> phrases per pattern.
-  All matched at runtime, with <strong>97 ms</strong>
+  All matched at runtime, with <strong>37 ms</strong>
   average execution across <strong>1,467 runs</strong>.
 </p>
 
@@ -952,7 +1033,7 @@ main > .content-section + .content-section { padding-top: 0; }
 </div>
 
 <div class="stat-tile accent-blue">
-  <strong>97 ms</strong>
+  <strong>37 ms</strong>
   <span>Average on 1,467 executions</span>
 </div>
 
@@ -1010,7 +1091,7 @@ main > .content-section + .content-section { padding-top: 0; }
       <p>The billion is not <em>"sentences the system will attempt."</em> It's <em>"sentences the system will correctly recognize, resolve, and run."</em> That's a much smaller, much more honest number.</p>
 <h3 class="sub-heading">Not "weekend work"</h3>
 <p>9,465 patterns is a lot to hand-write. 12,826,445 phrases per pattern is a lot of grammar to get right - plural, word order, synonyms, optional words, alternative words. Every new pattern multiplies against every existing parameter list, and every new parameter value multiplies against every existing pattern. The phrase count grows quadratically, initially the work to keep it accurate grew with both sides, that's before I implemented fuzzy sentence conflict detection at compile-time.</p>
-<p>That's what hitting one billion really means: not that the matcher is fast - <strong>97 ms average across 1,467 runs</strong> is nice but cheap - but that the vocabulary underneath it is dense enough. The multiplication naturally clears a billion.</p>
+<p>That's what hitting one billion really means: not that the matcher is fast - <strong>37 ms average across 1,467 runs</strong> is nice but cheap - but that the vocabulary underneath it is dense enough. The multiplication naturally clears a billion.</p>
 <p>And it helps that <strong>74 of the 105 scripts</strong> expose their vocabulary to the voice layer. Those 74 are the scripts that can be spoken to, and they're what feeds the phrase count. The other 31 are infrastructure - hooks, generators, helpers - that nobody needs to say out loud.</p>
     </div>
   </div>
@@ -1052,11 +1133,20 @@ And thorough, at this scale, is <strong>its own kind of milestone.</strong>
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
 
-<a class="cross-link" href="/posts/zigduck.html">
+<a class="cross-link" href="/posts/ESP32-S3-WATCH-rs.html">
   <span class="cl-icon" aria-hidden="true">🔗</span>
   <div class="cl-body">
-    <h3 class="cl-title">zigduck</h3>
-    <p class="cl-desc">A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.</p>
+    <h3 class="cl-title">Smart-watch operating system on ESP32-S3 microcontroller.</h3>
+    <p class="cl-desc">Bare Metal (no-std) voice-driven wearable OS for ESP32-S3 smartwatch with a high focus on accessibility and smart home/media control. Written in Rust, using esp-hal as it&#39;s hardware abstraction layer.</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
+<a class="cross-link" href="/posts/pokenix.html">
+  <span class="cl-icon" aria-hidden="true">🔗</span>
+  <div class="cl-body">
+    <h3 class="cl-title">pokenix</h3>
+    <p class="cl-desc">Nix generates HTML + JS generates Nix + GitHub pages hosts. A complete web hosting plattform and sprteadsheet manager built for Pokémon collections using Nix</p>
   </div>
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>

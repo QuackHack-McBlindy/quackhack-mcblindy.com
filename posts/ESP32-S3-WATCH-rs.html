@@ -1,0 +1,2581 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QuackHack-McBLindy.com » Smart-watch operating system on ESP32-S3 microcontroller. </title>
+  <link rel="canonical" href="https://quackhack-mcblindy.com/posts/ESP32-S3-WATCH-rs.html" />
+
+  <meta
+    name="google-site-verification"
+    content="nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ"
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quackhack-mcblindy.com/posts/ESP32-S3-WATCH-rs.html">
+  <meta property="og:title" content="QuackHack-McBLindy.com » Smart-watch operating system on ESP32-S3 microcontroller.">
+  <meta property="og:description" content="Bare Metal (no-std) voice-driven wearable OS for ESP32-S3 smartwatch with a high focus on accessibility and smart home/media control. Written in Rust, using esp-hal as it&#39;s hardware abstraction layer.">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Smart-watch operating system on ESP32-S3 microcontroller.",
+  "url": "https://quackhack-mcblindy.com/posts/ESP32-S3-WATCH-rs.html",
+  "datePublished": "2026-11-17",
+  "keywords": ["esp32", "rust", "nix", "flake", "rust", "smart-watch", "home-automation", "yo", "zigduck"]
+}
+</script>
+
+
+  <meta name="description" content="Bare Metal (no-std) voice-driven wearable OS for ESP32-S3 smartwatch with a high focus on accessibility and smart home/media control. Written in Rust, using esp-hal as it&#39;s hardware abstraction layer.">
+  <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="QuackHack-McBLindy.com » Smart-watch operating system on ESP32-S3 microcontroller.">
+  <meta name="twitter:description" content="Bare Metal (no-std) voice-driven wearable OS for ESP32-S3 smartwatch with a high focus on accessibility and smart home/media control. Written in Rust, using esp-hal as it&#39;s hardware abstraction layer.">
+  <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="🦯🦆">
+  <link rel="icon" href="/static/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./../static/css/styles.css" />
+  <style>:root {
+  --bg: #050707; --panel: #0b1110; --panel2: #0e1716;
+  --teal: #11e6d2; --teal2: #05a99f;
+  --gold: #f4b52f; --gold2: #ffdc72;
+  --green: #5eea8f; --red: #ff5470; --pink: #ff7ab8;
+  --purple: #b392ff; --blue: #6cb4ff;
+  --text: #f3fffd; --muted: #8ea6a3;
+  --line: rgba(17, 230, 210, .16);
+  --max: 1180px;
+  --frame-header-h: 260px; --frame-bottom-h: 64px;
+  --frame-left-w: 190px; --frame-right-w: 196px;
+  --frame-z: 10000;
+  --mask-left-w: 214px; --mask-right-w: 214px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(0, 221, 204, .10), transparent 34rem),
+    radial-gradient(circle at 90% 45%, rgba(244, 181, 47, .07), transparent 28rem),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: -1;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(17, 230, 210, .08), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(244, 181, 47, .08), transparent 40%);
+  animation: aurora 20s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes aurora {
+  0%   { opacity: .5; transform: scale(1); }
+  100% { opacity: 1;  transform: scale(1.15); }
+}
+a { color: inherit; text-decoration: none; }
+.wrap { width: min(calc(100vw - var(--mask-left-w) - var(--mask-right-w) - 40px), var(--max)); margin: auto; }
+.gold { color: var(--gold); } .white { color: #fff; } .muted { color: var(--muted); }
+.teal { color: var(--teal); } .green { color: var(--green); } .pink { color: var(--pink); }
+.purple { color: var(--purple); } .red { color: var(--red); } .blue { color: var(--blue); }
+
+#top {
+  min-height: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden;
+}
+#top::before { display: none !important; }
+
+main {
+  padding-top: calc(var(--frame-header-h) + 20px);
+  padding-bottom: calc(var(--frame-bottom-h) + 20px);
+}
+.content-section { padding: 20px 0 50px; }
+
+.reveal { opacity: 0; transform: translateY(22px); transition: .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
+.footer-row {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: .92rem;
+}
+.footer-links a { color: var(--teal); transition: color .2s ease; }
+.footer-links a:hover { color: var(--gold); }
+
+.glitch { animation: glitch 3s linear infinite; }
+@keyframes glitch {
+  0%, 4%, 8%, 12%, 100% { filter: none; }
+  1%, 5%, 9% { filter: url(#f1); }
+}
+.hue-shift { animation: hueshift 45s ease-in-out infinite; }
+@keyframes hueshift {
+  0%, 50% { filter: hue-rotate(0deg); }
+  60% { filter: hue-rotate(360deg); }
+  70% { filter: hue-rotate(0deg); }
+  80% { filter: hue-rotate(360deg); }
+  90% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+@media (max-width: 1199px), (max-height: 699px) {
+    main {
+        padding-top: calc(var(--frame-header-h, 260px) + 20px) !important;
+        padding-bottom: calc(var(--frame-bottom-h, 64px) + 20px) !important;
+    }
+}
+
+@media (min-width: 3440px),
+       (min-aspect-ratio: 1/2) and (max-aspect-ratio: 9/16) {
+    main {
+        padding-top: 20px !important;
+        padding-bottom: 24px !important;
+    }
+}
+
+.config-bar button {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: rgba(17,230,210,.07);
+  color: var(--teal);
+  font: inherit;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.config-bar button:hover {
+  background: rgba(17,230,210,.15);
+  border-color: rgba(17,230,210,.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  body::before { animation: none; opacity: .6; }
+  .glitch, .hue-shift { animation: none !important; }
+}
+
+.frenzy-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.frenzy-duck {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  will-change: transform;
+  transform-origin: 50% 50%;
+  text-shadow: 0 0 14px rgba(0, 229, 209, .45);
+}
+
+.frenzy-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(circle at 85% 0%,
+      rgba(255, 232, 130, .95),
+      rgba(0, 229, 209, .45) 38%,
+      rgba(0, 0, 0, 0) 72%);
+  animation: frenzyFlash .8s ease-out forwards;
+}
+
+.frenzy-ring {
+  position: fixed;
+  z-index: 10000;
+  width: 120px;
+  height: 120px;
+  margin: -60px 0 0 -60px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 214, 90, .9);
+  box-shadow:
+    0 0 44px rgba(0, 229, 209, .75),
+    inset 0 0 44px rgba(255, 214, 90, .55);
+  pointer-events: none;
+  animation: frenzyRing .95s cubic-bezier(.12, .72, .26, 1) forwards;
+}
+
+.frenzy-quack {
+  position: fixed;
+  z-index: 10001;
+  pointer-events: none;
+  font-family: 'Orbitron', system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: .08em;
+  white-space: nowrap;
+  text-shadow: 0 0 18px currentColor, 0 0 42px currentColor;
+  animation: frenzyQuack 1.15s ease-out forwards;
+}
+
+@keyframes frenzyFlash {
+  from { opacity: .95; }
+  to   { opacity: 0; }
+}
+
+@keyframes frenzyRing {
+  from { transform: scale(.12); opacity: 1; }
+  to   { transform: scale(10);  opacity: 0; }
+}
+
+@keyframes frenzyQuack {
+  0%   { opacity: 0; transform: translate(-50%, -50%)  scale(.30) rotate(var(--frenzy-rot, 0deg)); }
+  18%  { opacity: 1; transform: translate(-50%, -50%)  scale(1.15) rotate(var(--frenzy-rot, 0deg)); }
+  100% { opacity: 0; transform: translate(-50%, -210%) scale(.85) rotate(var(--frenzy-rot, 0deg)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frenzy-flash,
+  .frenzy-ring { display: none; }
+  .frenzy-quack { animation-duration: .6s; }
+}
+
+.duck-comment,
+.idea {
+  max-width: 760px;
+  margin: 25px auto;
+}
+
+.duck-comment {
+  position: relative;
+  padding: 18px 22px;
+  background: rgba(255, 215, 0, 0.06);
+  border-left: 4px solid var(--gold);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+.duck-comment::before {
+  content: "🦆";
+  position: absolute;
+  left: -25px;
+  top: 15px;
+  font-size: 1.8rem;
+  background: var(--panel2);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--gold);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+.duck-comment p {
+  margin: 10px 0;
+  font-style: italic;
+  color: var(--gold2);
+}
+
+.idea {
+  position: relative;
+  padding: 22px 26px;
+  background: rgba(108, 180, 255, 0.06);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+.idea::before {
+  content: "💡";
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: var(--panel2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--blue);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+.idea p {
+  color: #c9dbd8;
+}
+
+@media (max-width: 768px) {
+  .duck-comment::before { left: -15px; width: 30px; height: 30px; font-size: 1.2rem; }
+  .idea::before         { left: -35px; width: 40px; height: 40px; font-size: 1.5rem; }
+}
+
+.hero { text-align: center; padding: 30px 0 50px; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 6px 16px; background: rgba(17, 230, 210, .06);
+  border: 1px solid rgba(17, 230, 210, .3); border-radius: 999px;
+  font-family: "JetBrains Mono", monospace; font-size: .76rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 24px;
+}
+.hero-title {
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  line-height: 1.1; letter-spacing: -.02em; margin: 0 0 22px;
+}
+.hero-sub {
+  font-size: clamp(1.02rem, 1.8vw, 1.15rem);
+  color: var(--muted); max-width: 680px;
+  margin: 0 auto 28px; line-height: 1.65;
+}
+.hero-sub code {
+  color: var(--gold2); background: rgba(244,181,47,.08);
+  padding: 1px 6px; border-radius: 4px;
+  font-family: "JetBrains Mono", monospace; font-size: .9em;
+}
+
+.stat-strip {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px; max-width: 1000px; margin: 0 auto;
+}
+.stat-tile {
+  background: linear-gradient(180deg, var(--panel2), var(--panel));
+  border: 1px solid var(--line); border-radius: 16px;
+  padding: 22px 16px; text-align: center;
+  transition: border-color .25s ease, transform .25s ease;
+}
+.stat-tile:hover { border-color: rgba(17,230,210,.35); transform: translateY(-2px); }
+.stat-tile strong {
+  display: block; font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--gold2);
+  letter-spacing: -.01em; line-height: 1; margin-bottom: 8px;
+}
+.stat-tile span {
+  color: var(--muted); font-size: .74rem; letter-spacing: .06em;
+  text-transform: uppercase; font-family: "JetBrains Mono", monospace;
+}
+.stat-tile.accent-teal strong   { color: var(--teal); }
+.stat-tile.accent-gold strong   { color: var(--gold); }
+.stat-tile.accent-gold2 strong  { color: var(--gold2); }
+.stat-tile.accent-green strong  { color: var(--green); }
+.stat-tile.accent-pink strong   { color: var(--pink); }
+.stat-tile.accent-purple strong { color: var(--purple); }
+.stat-tile.accent-blue strong   { color: var(--blue); }
+.stat-tile.accent-red strong    { color: var(--red); }
+
+.prose-section { max-width: 720px; margin: 0 auto; }
+.prose-section p {
+  color: #c9dbd8; font-size: 1rem; line-height: 1.75; margin: 0 0 16px;
+}
+.prose-section p:last-child { margin-bottom: 0; }
+.prose-section strong { color: var(--gold2); font-weight: 700; }
+.prose-section em { color: var(--gold2); font-style: italic; }
+.prose-section code {
+  color: var(--gold2); background: rgba(244,181,47,.08);
+  padding: 1px 6px; border-radius: 4px;
+  font-family: "JetBrains Mono", monospace; font-size: .9em;
+}
+.sub-heading {
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem); color: var(--teal);
+  margin: 32px 0 14px; letter-spacing: .01em;
+}
+.prose-quote {
+  margin: 24px 0;
+  padding: 14px 20px 14px 24px;
+  border-left: 3px solid var(--teal);
+  background: rgba(17,230,210,.04);
+  border-radius: 0 10px 10px 0;
+  color: #c9dbd8; font-size: 1rem; line-height: 1.7;
+  font-style: italic;
+}
+
+.warning {
+  max-width: 760px; margin: 0 auto;
+  padding: 18px 22px;
+  background: rgba(255,84,112,.04);
+  border: 1px solid rgba(255,84,112,.2);
+  border-left: 3px solid var(--red);
+  border-radius: 10px;
+  color: #c9dbd8; font-size: .95rem; line-height: 1.7;
+}
+.warning strong {
+  color: var(--red); font-weight: 700;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.warning strong::before { content: "⚠"; font-size: 1.05em; }
+.warning code {
+  color: var(--gold2); background: rgba(244,181,47,.08);
+  padding: 1px 5px; border-radius: 3px;
+  font-family: "JetBrains Mono", monospace; font-size: .9em;
+}
+
+.big-quote {
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem); line-height: 1.5;
+  text-align: center; color: var(--gold2);
+  margin: 20px auto; max-width: 700px; padding: 0 20px;
+}
+.big-quote::before, .big-quote::after {
+  content: ""; display: block; width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+  margin: 0 auto;
+}
+.big-quote::before { margin-bottom: 20px; }
+.big-quote::after { margin-top: 20px; }
+.big-quote strong { color: var(--teal); font-style: italic; }
+
+.cross-links {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; max-width: 900px; margin: 0 auto;
+}
+.cross-link {
+  display: flex; align-items: center; gap: 16px;
+  padding: 20px 22px;
+  background: linear-gradient(180deg, var(--panel2), var(--panel));
+  border: 1px solid var(--line); border-radius: 14px;
+  transition: border-color .25s ease, transform .25s ease;
+}
+.cross-link:hover { border-color: rgba(17,230,210,.4); transform: translateY(-2px); }
+.cross-link .cl-icon { font-size: 1.8rem; flex: 0 0 auto; }
+.cross-link .cl-body { flex: 1; min-width: 0; }
+.cross-link .cl-title {
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: 1rem; color: var(--gold2);
+  margin: 0 0 3px; letter-spacing: .02em;
+}
+.cross-link .cl-desc {
+  color: var(--muted); font-size: .85rem;
+  margin: 0; line-height: 1.5;
+}
+.cross-link .cl-desc code {
+  color: var(--gold2); background: rgba(244,181,47,.08);
+  padding: 1px 5px; border-radius: 3px;
+  font-family: "JetBrains Mono", monospace; font-size: .9em;
+}
+.cross-link .cl-arrow {
+  color: var(--teal); font-family: "JetBrains Mono", monospace;
+  font-size: 1.2rem; flex: 0 0 auto;
+  transition: transform .2s ease;
+}
+.cross-link:hover .cl-arrow { transform: translateX(4px); }
+
+.config-block {
+  background: #080d0c; border: 1px solid var(--line);
+  border-radius: 18px; overflow: hidden;
+  box-shadow: 0 22px 70px rgba(0,0,0,.55); margin-bottom: 20px;
+}
+.config-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 11px 16px;
+  background: linear-gradient(180deg, #101a18, #0b1110);
+  border-bottom: 1px solid var(--line);
+}
+.config-bar .dot { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; }
+.config-bar .dot.red    { background: #ff5f57; }
+.config-bar .dot.yellow { background: #febc2e; }
+.config-bar .dot.green  { background: #28c840; }
+.config-bar .config-title {
+  margin-left: 10px; color: var(--muted);
+  font-family: "JetBrains Mono", monospace; font-size: .82rem; flex: 1;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.config-bar .copy-btn {
+  appearance: none; border: 1px solid var(--line);
+  background: rgba(17,230,210,.07); color: var(--teal);
+  font: inherit; font-size: .78rem; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 8px; cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+}
+.config-bar .copy-btn:hover {
+  background: rgba(17,230,210,.15); border-color: rgba(17,230,210,.4);
+}
+.config-block pre {
+  margin: 0; padding: 22px 24px; overflow-x: auto;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 13px; line-height: 1.6; color: #d9ece9;
+  -webkit-font-smoothing: antialiased;
+}
+.config-block.is-collapsed pre {
+  display: none;
+}
+.config-block code { font: inherit; color: inherit; }
+
+@media (max-width: 560px) {
+  .config-block pre { padding: 18px 16px; font-size: 12px; }
+}
+
+.section-head {
+  display: flex; align-items: center; gap: 16px;
+  margin: 0 0 26px; justify-content: center; flex-wrap: wrap;
+}
+.section-head h2 {
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(1.4rem, 3.2vw, 1.9rem);
+  margin: 0; letter-spacing: -.01em; text-align: center;
+}
+.tag-list {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  justify-content: center; max-width: 720px; margin: 0 auto;
+}
+.tag-list .tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: .74rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--teal); background: rgba(17,230,210,.08);
+  border: 1px solid rgba(17,230,210,.25);
+  padding: 4px 12px; border-radius: 999px;
+}
+.config-bar {
+  cursor: pointer;
+  user-select: none;
+}
+
+.config-bar .copy-btn {
+  cursor: pointer;
+}
+.prose-section ul,
+.prose-section ol { color: #c9dbd8; padding-left: 1.4em; margin: 0 0 16px; }
+.prose-section li { margin: 6px 0; line-height: 1.7; }
+
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+  font-family: "Cinzel Decorative", Georgia, serif;
+  color: var(--teal);
+  margin: 32px 0 16px;
+  line-height: 1.35;
+}
+
+.markdown-content h1 {
+  font-size: 1.8rem;
+}
+
+.markdown-content h2 {
+  font-size: 1.5rem;
+}
+
+.markdown-content h3 {
+  font-size: 1.2rem;
+}
+
+.markdown-content a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.markdown-content a:hover {
+  color: var(--gold);
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  color: #c9dbd8;
+  padding-left: 1.6em;
+  margin-bottom: 20px;
+}
+
+.markdown-content li {
+  margin: 6px 0;
+  line-height: 1.7;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid var(--teal);
+  background: rgba(17,230,210,.04);
+  padding: 14px 20px;
+  margin: 24px 0;
+  border-radius: 0 10px 10px 0;
+  color: #c9dbd8;
+}
+
+.markdown-content pre {
+  background: #080d0c;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 20px 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.markdown-content pre code {
+  background: none;
+  padding: 0;
+  color: #d9ece9;
+}
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  display: block;
+  overflow-x: auto;
+}
+
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid var(--line);
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.markdown-content th {
+  color: var(--gold2);
+  background: var(--panel2);
+}
+
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.markdown-content hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 32px 0;
+}
+
+.markdown-content input[type="checkbox"] {
+  accent-color: var(--teal);
+  margin-right: 8px;
+}
+
+
+.section-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 16px 30px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(17, 230, 210, .16),
+    rgba(244, 181, 47, .12)
+  );
+
+  border: 1px solid rgba(17, 230, 210, .45);
+  border-radius: 12px;
+
+  color: var(--teal);
+  font-family: "JetBrains Mono", monospace;
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .3);
+
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+.cta-button span {
+  color: var(--gold);
+  font-size: 1.2rem;
+  transition: transform .25s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  background: rgba(17, 230, 210, .15);
+  box-shadow: 0 12px 35px rgba(17, 230, 210, .12);
+}
+
+.cta-button:hover span {
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 560px) {
+  .cta-button {
+    width: 100%;
+    padding: 15px 20px;
+  }
+}
+
+.section-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  padding: 15px 30px;
+  min-width: 190px;
+
+  color: #050707;
+  background: linear-gradient(135deg, #ffd75e, #f4b52f);
+  border: 1px solid #ffe28a;
+  border-radius: 12px;
+
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  box-shadow:
+    0 0 8px rgba(244, 181, 47, 0.45),
+    0 0 22px rgba(244, 181, 47, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.cta-button span {
+  color: #050707;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.cta-button:hover {
+  color: #050707;
+  background: linear-gradient(135deg, #ffe994, #ffc52e);
+  border-color: #fff0b5;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 0 12px rgba(244, 181, 47, 0.75),
+    0 0 32px rgba(244, 181, 47, 0.35),
+    0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.cta-button:hover span {
+  transform: translate(3px, -3px);
+}
+
+.cta-button:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.cta-button:focus-visible {
+  outline: 2px solid #ffe28a;
+  outline-offset: 5px;
+}
+
+@media (max-width: 560px) {
+  .cta-button {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+</style>
+  <link rel="stylesheet" href="./../static/css/viewport.css" />
+</head>
+<body data-post-link="/posts/ESP32-S3-WATCH-rs.html">
+
+  <div class="duckhawk-frame" aria-hidden="true">
+    <img class="frame-piece frame-header glitch hue-shift" src="./../static/img/frame/header.png" alt="" />
+    <img class="frame-piece frame-left" src="./../static/img/frame/left.png" alt="" />
+    <img class="frame-piece frame-right" src="./../static/img/frame/right.png" alt="" />
+    <img class="frame-piece frame-bottom" src="./../static/img/frame/bottom.png" alt="" />
+
+    <img class="frame-piece frame-header-standalone glitch hue-shift" src="./../static/img/frame/header-standalone-small.png" alt="" />
+
+    <nav class="frame-navigation" aria-label="Main navigation">
+      <a class="frame-nav-link frame-nav-home" href="https://quackhack-mcblindy.com">Me</a>
+      <a class="frame-nav-link frame-nav-showcase" href="https://quackhack-mcblindy.com/work.html">Work</a>
+    </nav>
+  </div>
+
+  <div id="content-glitch" class="glitch hue-shift">
+    <header id="top"></header>
+
+    <main>
+      <section class="content-section hero">
+        <div class="wrap reveal">
+          <div class="hero-eyebrow">home-automation · esp32 · voice-assistant · smart-watch</div>
+
+          <h1 class="hero-title">
+            <span class="gold">Rust Operating System</span> <span class="white">on ESP32-S3 smmart watch</span>
+          </h1>
+          <p class="hero-sub">ESP32-S3-AMOLED WaveShare</p>
+
+
+
+        </div>
+      </section>
+
+
+
+      <section class="content-section">
+  <div class="wrap reveal">
+    <div class="prose-section markdown-content">
+      <h1 id="esp32-s3-watch-rs"><strong>ESP32-S3-WATCH-rs</strong></h1>
+<p><a href="https://github.com/sponsors/QuackHack-McBlindy"><img src="https://img.shields.io/github/sponsors/QuackHack-McBlindy?logo=githubsponsors&amp;label=Sponsor&amp;style=flat&amp;labelColor=ff1493&amp;logoColor=fff&amp;color=rgba(234,74,170,0.5)" alt="Sponsors" /></a> <a href="https://buymeacoffee.com/quackhackmcblindy"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Sponsor?style=flat&amp;logo=buymeacoffee&amp;logoColor=fff&amp;labelColor=ff1493&amp;color=ff1493" alt="Buy Me a Coffee" /></a></p>
+<h2 id="esp32-s3-watch"><strong>ESP32-S3-WATCH</strong></h2>
+<div class="note">
+<div class="title">
+<p>Note</p>
+</div>
+<p><strong>🧑‍🦯 Personal project!</strong><br />
+<strong>As I am blind this OS is mostly focused on accessibility through the voice assistant functionality of the watch.</strong><br />
+<strong>It has a full graphical user interface -- but it's designed for a blind man, so it's BIG.</strong></p>
+</div>
+<br>
+
+<p><strong>Bare Metal</strong> <em>(no-std)</em> voice-driven wearable OS for <strong>ESP32-S3</strong> smartwatch with a high focus on accessibility and smart home and media control. Written in Rust, using <code>esp-hal</code> as it's hardware abstraction layer.<br />
+There is no usage of the <code>ESP-IDF</code> API in this firmware.</p>
+<p>Designed to be used as a personal voice assistant watch with <strong>EXTENSIVE</strong> custom voice commands &amp; <strong>much much more!</strong> <em>(I flush the toilet with this thing..)</em></p>
+<p><em>“Source code is the best documentation.“</em></p>
+<br>
+Be sure to check out the demo usage videos/pictures down below.
+<br>
+
+<p>Its up to <a href="https://github.com/QuackHack-McBlindy/yo">yo</a> to write your own voice commands.<br />
+My watch can execute <strong>57</strong> different <a href="https://github.com/QuackHack-McBlindy/dotfiles">scripts</a>, and understands <strong>272684913</strong> different phrases as voice commands <strong>-- with a average processing time of 2,72 ms per command</strong>.</p>
+<p>The top-tier performance come from a <strong>deterministic</strong> voice architecture and smart caching inside the voice intents.</p>
+<h2 id="summary"><strong>Summary</strong></h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" />Async &amp; WiFi</label></li>
+<li><label><input type="checkbox" checked="" />Handle multiple SSID/WiFi alternatives</label></li>
+<li><label><input type="checkbox" checked="" />Buttons &amp; Deep Sleep (power-save mode)</label></li>
+<li><label><input type="checkbox" checked="" />Interactive Shell terminal (Bash syntax over HTTP)</label></li>
+<li><label><input type="checkbox" checked="" />Remote file upload to the SD card (streamed chunks, POST)</label></li>
+<li><label><input type="checkbox" checked="" />Remote file download from the SD card (streamed chunks)</label></li>
+<li><label><input type="checkbox" checked="" />i2s: RX Microphone</label></li>
+<li><label><input type="checkbox" checked="" />i2s: TX Speaker</label></li>
+<li><label><input type="checkbox" checked="" />i2s: Simultaneous RX &amp; TX (Full-Duplex)</label></li>
+<li><label><input type="checkbox" checked="" />Voice Command Execution (Wake word, speech to shell command)</label></li>
+<li><label><input type="checkbox" checked="" />Push-to-talk feature (more battery effecient)</label></li>
+<li><label><input type="checkbox" checked="" />Media Player - Stream any audio to speaker (wav, mp3, flac, mp4, ...)</label></li>
+<li><label><input type="checkbox" checked="" />Fuzzy search &amp; play local media from the SD card. (with downsampling)</label></li>
+<li><label><input type="checkbox" checked="" />Browse server stored media in the GUI and cast to TV</label></li>
+<li><label><input type="checkbox" checked="" />Live bidirectional intercom with backend</label></li>
+<li><label><input type="checkbox" checked="" />50+ API endpoints</label></li>
+<li><label><input type="checkbox" checked="" />On-Device WebServer &amp; Web Media Player (with casting to Android TV)</label></li>
+<li><label><input type="checkbox" checked="" />Control &amp; start/pause any task from the GUI</label></li>
+<li><label><input type="checkbox" checked="" />SSHd (+ client)</label></li>
+<li><label><input type="checkbox" checked="" />Live feed keyboard input over SSH</label></li>
+<li><label><input type="checkbox" checked="" />Interactive Shell over SSH</label></li>
+<li><label><input type="checkbox" checked="" />Broadcasting all text-to-speech to every ESP32 device.</label></li>
+<li><label><input type="checkbox" checked="" />tinyWeather app - tap weather page to cycle displayed day (3-day forecast)</label></li>
+<li><label><input type="checkbox" checked="" />Overclock/underclock CPU at runtime/from GUI</label></li>
+<li><label><input type="checkbox" checked="" />Automatic filesystem testing (cargo run --release --features sd-test)</label></li>
+<li><label><input type="checkbox" checked="" />Image Gallery</label></li>
+<li><label><input type="checkbox" />Pinch-to-zoom anywhere</label></li>
+<li><label><input type="checkbox" />Phone calls/text message (HFP)</label></li>
+<li><label><input type="checkbox" checked="" />WireGuard™ client</label></li>
+<li><label><input type="checkbox" />Entire voice pipeline <code>no-std</code></label></li>
+<li><label><input type="checkbox" checked="" />Backend: <code>yo</code></label></li>
+</ul>
+<br>
+
+<h2 id="table-of-contents"><strong>Table Of Contents</strong></h2>
+<ul>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a>
+<ul>
+<li><a href="#frontend">Frontend</a></li>
+<li><a href="#api">API</a></li>
+<li><a href="#media-player">Media Player</a></li>
+<li><a href="#ssh">SSH</a></li>
+</ul></li>
+<li><a href="#voice-assistant">Voice Assistant</a>
+<ul>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#my-voice-commands">My Voice Commands</a></li>
+</ul></li>
+<li><a href="#networking">Networking</a></li>
+<li><a href="#hardware">Hardware</a></li>
+<li><a href="#graphical-user-interface">Graphical User Interface</a></li>
+<li><a href="#applications">Applications</a></li>
+<li><a href="#power-management--optimizations">Power Management/Optimization</a></li>
+<li><a href="#sponsor">♥️ Sponsor</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<br>
+
+<h2 id="demo"><strong>Demo</strong></h2>
+<h4 id="voice-assistant-video"><strong>Voice Assistant Video</strong></h4>
+<p>Turn up volume &amp; hit play.</p>
+<p><a href="https://github.com/user-attachments/assets/357bf377-0874-4f42-8d15-3532c31bc813">Play voice assistant wake word demo video</a></p>
+<p><strong>Yes, it's fast!</strong> <em>(TTS generation is the bottleneck)</em></p>
+<br>
+
+<p><a href="https://github.com/user-attachments/assets/0620ad92-fc35-46b9-bc6d-33b7ace8a9b4">Play demo video of duck-TV</a></p>
+<br>
+
+<p><a href="https://github.com/user-attachments/assets/19572217-8631-4e67-9cca-f6afe24042c8">Play demo video of Qwackify</a></p>
+<br>
+
+<h4 id="pictures"><strong>Pictures</strong></h4>
+<p><strong>Homescreens (swipe left/right)</strong></p>
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/homescreen1.jpeg">
+  <img src="resource/demo/homescreen1.jpeg" alt="Homescreen" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/control_center.jpeg">
+  <img src="resource/demo/control_center.jpeg" alt="Control Center" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/battery.jpeg">
+  <img src="resource/demo/battery.jpeg" alt="Battery" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/charging.jpeg">
+  <img src="resource/demo/charging.jpeg" alt="Charging" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/tinyweather.jpeg">
+  <img src="resource/demo/tinyweather.jpeg" alt="Tiny Weather" width="148">
+</a> <br>
+
+<p><strong>Launcher - accessed far left at homescreen (in launcher swipe up/down)</strong></p>
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/launcher1.jpeg">
+  <img src="resource/demo/launcher1.jpeg" alt="Launcher 1" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/launcher2.jpeg">
+  <img src="resource/demo/launcher2.jpeg" alt="Launcher 2" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/launcher3.jpeg">
+  <img src="resource/demo/launcher3.jpeg" alt="Launcher 3" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/launcher4.jpeg">
+  <img src="resource/demo/launcher4.jpeg" alt="Launcher 4" width="148">
+</a> <br>
+
+<p><strong>Apps/Misc</strong></p>
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/media_player.jpeg">
+  <img src="resource/demo/media_player.jpeg" alt="Media Player" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/calling.jpeg">
+  <img src="resource/demo/calling.jpeg" alt="Dad is calling" width="148">
+</a> <br>
+
+<p><strong>Settings (swipe left/right between settings, up/down to control)</strong></p>
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings0.jpeg">
+  <img src="resource/demo/settings0.jpeg" alt="Settings 0" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings1.jpeg">
+  <img src="resource/demo/settings1.jpeg" alt="Settings 1" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings2.jpeg">
+  <img src="resource/demo/settings2.jpeg" alt="Settings 2" width="148">
+</a> <br>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings3.jpeg">
+  <img src="resource/demo/settings3.jpeg" alt="Settings 3" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/setteings4.jpeg">
+  <img src="resource/demo/setteings4.jpeg" alt="Settings 4" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings5.jpeg">
+  <img src="resource/demo/settings5.jpeg" alt="Settings 5" width="148">
+</a> <br>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings6.jpeg">
+  <img src="resource/demo/settings6.jpeg" alt="Settings 6" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settomgs7.jpeg">
+  <img src="resource/demo/settomgs7.jpeg" alt="Settings 7" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings8.jpeg">
+  <img src="resource/demo/settings8.jpeg" alt="Settings 8" width="148">
+</a> <br>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/IMG_2916.jpeg">
+  <img src="resource/demo/IMG_2916.jpeg" alt="IMG 2916" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/IMG_2918.jpeg">
+  <img src="resource/demo/IMG_2918.jpeg" alt="IMG 2918" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings10.jpeg">
+  <img src="resource/demo/settings10.jpeg" alt="Settings 10" width="148">
+</a> <br>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings11.jpeg">
+  <img src="resource/demo/settings11.jpeg" alt="Settings 11" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings12.jpeg">
+  <img src="resource/demo/settings12.jpeg" alt="Settings 12" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings13.jpeg">
+  <img src="resource/demo/settings13.jpeg" alt="Settings 13" width="148">
+</a> <br>
+
+<p><strong>Settings (info pages (swipe up/down)</strong></p>
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings_info_0.jpeg">
+  <img src="resource/demo/settings_info_0.jpeg" alt="Settings Info 0" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings_info_1.jpeg">
+  <img src="resource/demo/settings_info_1.jpeg" alt="Settings Info 1" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings_info_2.jpeg">
+  <img src="resource/demo/settings_info_2.jpeg" alt="Settings Info 2" width="148">
+</a>
+
+<a href="https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs/blob/main/resource/demo/settings_info_3.jpeg">
+  <img src="resource/demo/settings_info_3.jpeg" alt="Settings Info 3" width="148">
+</a> <br>
+
+<p><strong>Sorry, I have been told I am the master of blurry pictures.</strong><br />
+<em>(how would I know...)</em></p>
+<p>There is a video demo from the web-based Qwackify too down below.</p>
+<br>
+
+<h2 id="overview"><strong>Overview</strong></h2>
+<p><em>“A powerful voice assistant can make a huge difference for blind people.”</em><br />
+<em>“Imagine yourself stumbling blindly across the room looking for the remote — meanwhile, I cam call it using only my voice.”</em></p>
+<p><code>ESP32-S3-WATCH-rs</code> is a <code>no_std</code> Rust firmware for the ESP32-S3 based smartwatch. The primary goal is to create a fully voice‑controlled assistant that is highly accessible for blind and visually impaired users. All interactions can be performed via voice, and the graphical interface is designed with large, high‑contrast elements.</p>
+<p>The watch streams audio to a companion backend service called <a href="https://github.com/QuackHack-McBlindy/yo"><code>yo</code></a>, which handles wake word detection, speech‑to‑text, intent recognition and execution, and text‑to‑speech synthesis. The watch itself streams microphone audio, serves TCP server for audio streaming to the speaker, manages notifications, plays media, and serves a web frontend for web based media playback in the browser called <strong>Qwackify</strong>, which is like Jellyfin on steroids - but much more good looking and served directly from a watch. <br></p>
+<p>The watch also has an internal API serving GET endpoints for controlling options and media playback -- playing local music straight from the micro SD card is as easy as: <br> <strong>From your desktop:</strong> <code>curl http://&lt;ESP_IP&gt;/api/media/search/songs/mysong</code>. <br> <strong>From the watch:</strong> tap the display and swipe left open the app launcher, swipe down to the app <code>Qwackify</code> and double tap it to open then press play. <br> <strong>Using your voice, say:</strong> <code>yo bitch! play the duck song</code>.</p>
+<br>
+
+<h2 id="project-structure--design"><strong>Project Structure &amp; Design</strong></h2>
+<p>I knew that if I did not do this properly like I want it - right away, that it would get really messy, and never get done.<br />
+I amm basically writing a complete voice-driven API on top of every available run-time option of <code>esp-hal</code>.<br />
+Modular API and using use statements only when needed, otherwise fully qualified paths everywhere, should help keep things as tiny as possible.<br />
+I also prefer to have some of the extensive code as library crates, it can be useful for other people or simplify usage for myself on my other devices.</p>
+<pre><code>📂 ESP32-S3-WATCH-rs
+├── 📂 applications
+├── 📂 base
+│   ├── 📂 routes
+│   │   └── 📂 ...
+│   │       └── 📂 ...
+├── 📂 components
+├── 📂 crates
+│   ├── 📂 barely-fuzzy
+│   ├── 📂 embedded-png
+│   ├── 📂 embedded-keyboard
+│   ├── 📂 es7210
+│   ├── 📂 es8311
+│   ├── 📂 tinyapi
+│   └── 📂 yo-esp
+├── 📂 gui
+├── 📄 main.rs
+└── 📄 state.rs</code></pre>
+<br>
+
+<h2 id="installation"><strong>Installation</strong></h2>
+<details><summary><strong>
+❄️ Using flakes (TODO)
+</strong></summary>
+
+<p><em>sorry, not yet...</em></p>
+</details>
+
+<details><summary><strong>
+📦 Building from source
+</strong></summary>
+
+<p>Configure WiFi and other required seetings in the example <code>.env</code> file.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv .env.example .env</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nano .env</span></code></pre></div>
+<h2 id="build-and-flash"><strong>Build and flash!</strong></h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> run <span class="at">--release</span></span></code></pre></div>
+</details>
+
+<details><summary><strong>
+🐋 Docker (recommended)
+</strong></summary>
+
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git clone https://github.com/QuackHack-McBlindy/ESP32-S3-WATCH-rs</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ESP32-S3-WATCH-rs</span></code></pre></div>
+<p>Configure WiFi and other required seetings in the example <code>.env</code> file.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv .env.example .env</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nano .env</span></code></pre></div>
+<p><code>docker-compose.yaml</code> may require you to change the defined serial port.<br />
+To locate the serial port for use with the <code>docker-compose.yaml</code> file you can run the following command:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> /dev/serial/by-id/</span></code></pre></div>
+<p><strong>Build and Flash!</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker compose build</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker compose up</span></code></pre></div>
+</details>
+
+<br>
+
+<h2 id="usage"><strong>Usage</strong></h2>
+<h3 id="frontend"><strong>Frontend</strong></h3>
+<p>If you prefer to handle your media manually in the web browser - good news!<br />
+Your <code>ESP32-S3</code> is now serving a fully featured media player that can cast to your TV's and has built-in transcoding (transcoding on backend).<br />
+You can go ahead and visit your device at:</p>
+<p><code>http://&lt;ESP_IP&gt;/</code></p>
+<p><a href="https://github.com/user-attachments/assets/bdbd0250-b683-4ffa-b8cb-817d0589df1a">https://github.com/user-attachments/assets/bdbd0250-b683-4ffa-b8cb-817d0589df1a</a></p>
+<p><a href="https://github.com/user-attachments/assets/91760f4f-0f31-439e-bc6b-8d2960c62cd8">https://github.com/user-attachments/assets/91760f4f-0f31-439e-bc6b-8d2960c62cd8</a></p>
+<br>
+
+<h3 id="api"><strong>API</strong></h3>
+<p>The API is designed to be easily expandable.<br />
+<em>Fetch all your available endpoints at:</em> <code>curl http://&lt;ESP_IP&gt;/api</code></p>
+<p>Using the internal API you can for example set the <code>ESP32-S3</code> display brightness to 75 percentage using:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> http://<span class="op">&lt;</span>ESP_IP<span class="op">&gt;</span>/api/settings/display/brightness/75 </span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code></td>
+<td>Serves the web frontend (HTML dashboard)</td>
+</tr>
+<tr>
+<td><code>/favicon.ico</code></td>
+<td>Serves the favicon</td>
+</tr>
+<tr>
+<td><code>/www/{file}</code></td>
+<td>Serves static files from the <code>www</code> directory</td>
+</tr>
+<tr>
+<td><code>/api</code></td>
+<td>Returns a plain‑text list of all available API endpoints</td>
+</tr>
+<tr>
+<td><code>/api/process/{value}</code></td>
+<td>Process a plain text natural language sentence and executes corresponding script with extracted parameters.</td>
+</tr>
+<tr>
+<td><code>/api/shell/{value}</code></td>
+<td>Send a Shell command (see supported commands below)</td>
+</tr>
+<tr>
+<td><code>/api/sensor/{value}</code></td>
+<td>Read a single sensor/system value (see supported keys below)</td>
+</tr>
+<tr>
+<td><code>/api/sensors</code></td>
+<td>Returns all sensor/system values as JSON</td>
+</tr>
+<tr>
+<td><code>/api/weather/update</code></td>
+<td>Update tinyWeather data</td>
+</tr>
+<tr>
+<td><code>/api/download/file/music/{filename}</code></td>
+<td>Download a song from the SD card’s <code>/Music</code> directory</td>
+</tr>
+<tr>
+<td><code>/api/download/file/share/{filename}</code></td>
+<td>Download any file from the <code>/share</code> directory of the SD card</td>
+</tr>
+<tr>
+<td><code>/api/upload/file/music/{filename}</code></td>
+<td>Upload a song to the SD card’s <code>/Music</code> directory <strong>Note: POST</strong></td>
+</tr>
+<tr>
+<td><code>/api/media/gallery</code></td>
+<td>Draws <code>path</code> on the display. If no path is provided, the gallery is drawn.</td>
+</tr>
+<tr>
+<td><code>/api/media/prev</code></td>
+<td>Sends <code>previous</code> command to the media player – plays previous track</td>
+</tr>
+<tr>
+<td><code>/api/media/next</code></td>
+<td>Sends <code>next</code> command to the media player – plays next track</td>
+</tr>
+<tr>
+<td><code>/api/media/play_pause</code></td>
+<td>Toggles play/pause</td>
+</tr>
+<tr>
+<td><code>/api/media/heart</code></td>
+<td>Saves currently playing track to your favourite playlist</td>
+</tr>
+<tr>
+<td><code>/api/media/search/song/{value}</code></td>
+<td>Fuzzy search for the best single match and play it</td>
+</tr>
+<tr>
+<td><code>/api/media/search/songs/{value}</code></td>
+<td>Fuzzy search up to 10 matches and add them to the playlist</td>
+</tr>
+<tr>
+<td><code>/api/media/playlist/add/{value}</code></td>
+<td>Add a song (exact filename/path) to the playlist</td>
+</tr>
+<tr>
+<td><code>/api/media/playlist/remove/{value}</code></td>
+<td>Remove a song (exact filename/path) from the playlist</td>
+</tr>
+<tr>
+<td><code>/api/media/playlist/clear</code></td>
+<td>Clear the entire temporary playlist</td>
+</tr>
+<tr>
+<td><code>/api/media/playlist/fav</code></td>
+<td>Plays favourite playlist. Add/remove with heart.</td>
+</tr>
+<tr>
+<td><code>/api/settings/api/off</code></td>
+<td>Stops the internal API (including webserver). <strong>Note: use GUI to turn back on</strong></td>
+</tr>
+<tr>
+<td><code>/api/settings/ssh/{value}</code></td>
+<td>Enable/disable/toggle the SSH server (<code>on</code>, <code>off</code>, <code>toggle</code>)</td>
+</tr>
+<tr>
+<td><code>/api/settings/sleep</code></td>
+<td>Enter deep sleep immediately</td>
+</tr>
+<tr>
+<td><code>/api/settings/sleep/reset</code></td>
+<td>Reset the deep‑sleep timer</td>
+</tr>
+<tr>
+<td><code>/api/settings/power/low/{value}</code></td>
+<td>Toggle low‑power mode (<code>on</code>, <code>off</code>, <code>toggle</code>)</td>
+</tr>
+<tr>
+<td><code>/api/settings/cpu/{value}</code></td>
+<td>Set CPU frequency (<code>80</code>, <code>160</code>, <code>240</code>)</td>
+</tr>
+<tr>
+<td><code>/api/settings/mic/volume/{value}</code></td>
+<td>Set microphone gain (0–100%). <code>{value}</code> as integer percent</td>
+</tr>
+<tr>
+<td><code>/api/settings/mic/mute/{value}</code></td>
+<td>Mute/unmute mic: <code>1</code>/<code>on</code>/<code>mute</code>, <code>0</code>/<code>off</code>/<code>unmute</code>, or <code>toggle</code></td>
+</tr>
+<tr>
+<td><code>/api/settings/speaker/{value}</code></td>
+<td>Toggle speaker task on/off</td>
+</tr>
+<tr>
+<td><code>/api/settings/speaker/stream/{value}</code></td>
+<td>Toggle speaker streaming task on/off</td>
+</tr>
+<tr>
+<td><code>/api/settings/speaker/volume/{value}</code></td>
+<td>Set speaker volume (0–100%). Automatically handles mute/unmute &amp; amplifier state</td>
+</tr>
+<tr>
+<td><code>/api/settings/speaker/mute/{value}</code></td>
+<td>Mute/unmute speaker: same options as mic mute</td>
+</tr>
+<tr>
+<td><code>/api/settings/speaker/amp/{value}</code></td>
+<td>Amplifier power: <code>on</code>, <code>off</code>, or <code>toggle</code></td>
+</tr>
+<tr>
+<td><code>/api/settings/speaker/play/ding</code></td>
+<td>Play a test “ding” sound on the speaker</td>
+</tr>
+<tr>
+<td><code>/api/settings/voice/{value}</code></td>
+<td>Enable/disable/toggle the entire voice pipeline (<code>on</code>, <code>off</code>, <code>toggle</code>)</td>
+</tr>
+<tr>
+<td><code>/api/settings/voice/wakeword/{value}</code></td>
+<td>Enable/disable wake‑word streaming (<code>on</code>, <code>off</code>, <code>enable</code>, <code>disable</code>)</td>
+</tr>
+<tr>
+<td><code>/api/settings/voice/intercom/{value}</code></td>
+<td>Start/stop bidirectional live intercom mode with the backend.</td>
+</tr>
+<tr>
+<td><code>/api/settings/vpn/{value}</code></td>
+<td>Enable/disable/toggle the VPN client (<code>on</code>, <code>off</code>, <code>toggle</code>)</td>
+</tr>
+<tr>
+<td><code>/api/settings/display/brightness/{value}</code></td>
+<td>Set backlight brightness (0–100%). <code>{value}</code> as integer percent</td>
+</tr>
+<tr>
+<td><code>/api/settings/display/state/{value}</code></td>
+<td>Set display state (<code>on</code>, <code>off</code>, <code>toggle</code>)</td>
+</tr>
+<tr>
+<td><code>/api/settings/display/page/{value}</code></td>
+<td>Change display page. <code>{value}</code> integer: 0=clock, 1=battery, 2=apps, 10=media player, etc.</td>
+</tr>
+<tr>
+<td><code>/api/settings/display/text/{value}</code></td>
+<td>Displays the provided value as a large text on the display</td>
+</tr>
+<tr>
+<td><code>/api/settings/display/call/{value}</code></td>
+<td>Show the incoming call screen with the caller’s name. The watch can accept/decline the call</td>
+</tr>
+<tr>
+<td><code>/api/settings/display/redraw</code></td>
+<td>Force a full redraw of the display</td>
+</tr>
+<tr>
+<td><code>/api/settings/display/redraw/loop/{value}</code></td>
+<td>Enable/disable the redraw loop (<code>on</code>, <code>off</code>)</td>
+</tr>
+<tr>
+<td><code>/api/settings/wifi/off</code></td>
+<td>Turns off the WiFi <strong>Note: use GUI to turn back on</strong></td>
+</tr>
+<tr>
+<td><code>/api/settings/wifi/scan</code></td>
+<td>Trigger a WiFi scan (results printed to serial/log)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="supported-sensor-keys-for-apisensorvalue">Supported sensor keys for <code>/api/sensor/{value}</code></h3>
+<table>
+<thead>
+<tr>
+<th>Key(s)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>battery</code>, <code>battery_level</code>, <code>battery_percentage</code></td>
+<td>Battery charge in percent</td>
+</tr>
+<tr>
+<td><code>battery_voltage</code>, <code>voltage</code></td>
+<td>Battery voltage in millivolts</td>
+</tr>
+<tr>
+<td><code>battery_charging</code></td>
+<td>Charging status</td>
+</tr>
+<tr>
+<td><code>battery_need_charging</code></td>
+<td>Low battery warning</td>
+</tr>
+<tr>
+<td><code>battery_full</code></td>
+<td>Battery full flag</td>
+</tr>
+<tr>
+<td><code>battery_usb_connected</code></td>
+<td>USB connection status</td>
+</tr>
+<tr>
+<td><code>brightness</code>, <code>display</code></td>
+<td>Display brightness (0–100)</td>
+</tr>
+<tr>
+<td><code>display_state</code></td>
+<td>Display power state</td>
+</tr>
+<tr>
+<td><code>display_timeout</code>, <code>screen_timeout</code></td>
+<td>Display auto‑off timeout (seconds)</td>
+</tr>
+<tr>
+<td><code>rssi</code>, <code>wifi_signal</code>, <code>wifi</code></td>
+<td>Wi‑Fi signal strength in dBm</td>
+</tr>
+<tr>
+<td><code>ip</code></td>
+<td>Device IPv4 address</td>
+</tr>
+<tr>
+<td><code>cpu</code>, <code>cpu_freq</code>, <code>cpu_speed</code></td>
+<td>Current CPU frequency in MHz</td>
+</tr>
+<tr>
+<td><code>speaker</code></td>
+<td>Speaker volume (0–100)</td>
+</tr>
+<tr>
+<td><code>mic</code></td>
+<td>Microphone gain (0–100)</td>
+</tr>
+<tr>
+<td><code>uptime</code></td>
+<td>System uptime (e.g., "02h 15m 30s")</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>Current time in HH:MM:SS</td>
+</tr>
+<tr>
+<td><code>firmware</code>, <code>version</code></td>
+<td>Firmware version string</td>
+</tr>
+<tr>
+<td><code>mic_muted</code></td>
+<td>Microphone mute state</td>
+</tr>
+<tr>
+<td><code>speaker_muted</code></td>
+<td>Speaker mute state</td>
+</tr>
+<tr>
+<td><code>speaker_task_state</code></td>
+<td>Speaker task running</td>
+</tr>
+<tr>
+<td><code>speaker_allow_streaming</code></td>
+<td>Streaming allowed flag</td>
+</tr>
+<tr>
+<td><code>amplifier_state</code></td>
+<td>Audio amplifier power state</td>
+</tr>
+<tr>
+<td><code>low_power</code>, <code>low_power_mode</code>, <code>power_save</code></td>
+<td>Low‑power mode state</td>
+</tr>
+<tr>
+<td><code>sd_ready</code></td>
+<td>SD card ready status</td>
+</tr>
+<tr>
+<td><code>media_is_playing</code></td>
+<td>Media playback active</td>
+</tr>
+<tr>
+<td><code>ssh</code>, <code>ssh_state</code></td>
+<td>SSH server state</td>
+</tr>
+<tr>
+<td><code>vpn</code>, <code>vpn_state</code></td>
+<td>VPN client state</td>
+</tr>
+<tr>
+<td><code>powerdown_timeout</code>, <code>sleep_timeout</code></td>
+<td>Deep‑sleep timeout (seconds)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="shell"><strong>Shell</strong></h3>
+<p>A Bash‑like interactive shell over HTTP.<br />
+Commands are issued via <code>GET /api/shell/{command}</code>.<br />
+Spaces must be encoded as <code>%20</code>, and slashes inside paths as <code>%2F</code>.</p>
+<p><strong>Examples:</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `ls /Music`</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">&quot;http://&lt;ESP_IP&gt;/api/shell/ls%20%2FMusic&quot;</span></span></code></pre></div>
+<p>Or check what is on the SD card from browser, visit: <code>http://&lt;ESP_IP&gt;/api/shell/tree</code><br />
+You should see something like:</p>
+<pre><code>📂 .
+├── 📂 Music
+│   ├── 🎵 ducksong-1.mp3
+│   └── 🎵 ducksong-gangstarap.mp3
+└── 📂 share
+    └──  image.jpeg</code></pre>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--help</code> or <code>help</code></td>
+<td>Print shell documentation and examples</td>
+</tr>
+<tr>
+<td><code>ls [path]</code></td>
+<td>List directory contents (relative or absolute)</td>
+</tr>
+<tr>
+<td><code>cd [path]</code></td>
+<td>Change working directory (<code>.</code> = stay, <code>..</code> = up one, <code>...</code> = up two, no arg = root)</td>
+</tr>
+<tr>
+<td><code>pwd</code></td>
+<td>Print current working directory</td>
+</tr>
+<tr>
+<td><code>nano &lt;file&gt;</code></td>
+<td>Creates a text file (TODO)</td>
+</tr>
+<tr>
+<td><code>cat &lt;file&gt;</code></td>
+<td>Display text file content</td>
+</tr>
+<tr>
+<td><code>hexdump &lt;file&gt;</code></td>
+<td>Show binary file in hexadecimal (truncated to ~500 chars)</td>
+</tr>
+<tr>
+<td><code>rm &lt;file&gt;</code></td>
+<td>Delete a file (no confirmation)</td>
+</tr>
+<tr>
+<td><code>mv &lt;file&gt; &lt;path&gt;</code></td>
+<td>Moves a file <strong>Note: moving of very large is not possible</strong></td>
+</tr>
+<tr>
+<td><code>jq &lt;file&gt;</code></td>
+<td>Parse JSON file (TODO)</td>
+</tr>
+<tr>
+<td><code>tree [path]</code></td>
+<td>Recursive directory listing</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Persistence:</strong> The shell keeps state – <code>cd</code> into a directory, then <code>ls</code> and <code>cat</code> will use that directory for relative paths.<br />
+Use <code>pwd</code> to see where you are.</p>
+</blockquote>
+<br>
+
+<h3 id="media-player"><strong>Media Player</strong></h3>
+<div class="note">
+<div class="title">
+<p>Note</p>
+</div>
+<p><strong>🎵 Media Player</strong> <br> <strong>Media player supports any file format, and can play any file or playlist.</strong><br />
+<strong>You can use the provided <code>scripts/play-esp.sh</code> helper script to stream audioo to the device speaker.</strong></p>
+</div>
+<br>
+
+<br>
+
+<h3 id="ssh"><strong>SSH</strong></h3>
+<p>The SSH server uses <code>ed25519</code> key authentication.<br />
+If you want a fixed host key on the watch you can generate a secret key by running the command <code>./scripts/generate_host_key</code> from the project root. This will create a hex encoded key which can be placed in the <code>.env</code> file.<br />
+Omitting this step is perfectly fine - but you should be aware that a new host key will be used for every connection.<br />
+<em>(See the <code>.env.example</code> file for example usage.)</em></p>
+<p>The SSHd is running on port 2222 and can be started/stopped at any time from the settings page in the GUI.<br />
+The Shell gives the user full control of the device over a secure conection and supports both named and positional parameters.<br />
+Once a connection has been established you can type <code>keyboard</code> to start a live keyboard input feed to the device.<br />
+Type <code>help</code> to see all available commands.</p>
+<br>
+
+<h2 id="voice-assistant"><strong>Voice Assistant</strong></h2>
+<p>Wake word detection is disabled by default to save battery.<br />
+Hold the <code>BOOT</code> button to send voice commands, release it when done talking.</p>
+<h3 id="architecture"><strong>Architecture</strong></h3>
+<p>Check out the official <a href="https://github.com/QuackHack-Mcblindy/yo">yo repository</a>.</p>
+<br>
+
+<p>The <strong>yo</strong> voice assistant employs a dual-language architecture that separates grammar compilation from runtime interpretation.<br />
+This design allows for a <strong>rapid</strong> fast, deterministic, and privacy-first offline-capable system.</p>
+<p>The architecture is fundamentally split into two parts:</p>
+<ul>
+<li><p><strong>Compile-Time (Nix):</strong> Acts as a grammar compiler. It takes declarative sentence templates from configuration files, expands them into all possible variants, and pre-compiles them into optimized regular expressions.</p></li>
+<li><p><strong>Runtime (Rust):</strong> Functions as a deterministic interpreter. It takes audio input, matches it against the pre-compiled patterns, extracts any defined parameters, and executes the corresponding script with those arguments.</p></li>
+</ul>
+<br>
+
+<p>So - no more bad, expensive strategies like:</p>
+<blockquote>
+<ul>
+<li>speech ➤ LLM ➤ guess intent</li>
+</ul>
+</blockquote>
+<p>Instead the flow looks like:</p>
+<blockquote>
+<ul>
+<li>speech ➤ deterministic intent match ➤ script</li>
+</ul>
+</blockquote>
+<br>
+
+<p><strong>Result:</strong> Designed for speeed and safety. All heavy lifting is done at build-time.</p>
+<br>
+
+<h3 id="my-voice-commands"><strong>My Voice Commands</strong></h3>
+<!-- MY_VOICE_COMMANDS_START -->
+
+<p>My voice assistant can currently execute <strong>57</strong> voice scripts.<br />
+That is <strong>2503</strong> regex patterns and makes a total of <strong>272684913</strong> understandable phrases available as voice commands.</p>
+<table>
+<thead>
+<tr>
+<th>Command Syntax</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/system/deploy.nix">yo deploy</a> --host [--flake] [--user] [--repo] [--port] [--test]</td>
+<td>Build and deploy a NixOS configuration to a remote host. Bootstraps, builds locally, activates remotely, and auto-tags the generation.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/system/reboot.nix">yo reboot</a> [--host]</td>
+<td>Force reboot and wait for host</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/system/services.nix">yo services</a> --operation --service --host [--user] [--port] [--!]</td>
+<td>Systemd service handler.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/system/switch.nix">yo switch</a> [--flake] [--!]</td>
+<td>Rebuild and switch Nix OS system configuration. ('!' to test)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/call.nix">yo call</a> --contactName --contactFile</td>
+<td>Calls phone number from contact list</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/text.nix">yo text</a> --contactName --contactFile</td>
+<td>Text message a phone number from contact list</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/productivity/calculator.nix">yo calculator</a> --expression</td>
+<td>Calculate math expressions</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/productivity/calendar.nix">yo calendar</a> [--operation] [--calenders]</td>
+<td>Calendar assistant. Provides easy calendar access. Interactive terminal calendar, or manage the calendar through yo commands or with voice.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/productivity/clip2phone.nix">yo clip2phone</a> --copy</td>
+<td>Send clipboard to an iPhone, for quick copy paste</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/productivity/hitta.nix">yo hitta</a> --search</td>
+<td>Locate a persons address with help of Hitta.se</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/productivity/pull.nix">yo pull</a> [--flake] [--host]</td>
+<td>Pull the latest changes from your dotfiles repo. Resets tracked files to origin/main but keeps local extras.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/productivity/search.nix">yo search</a> --search [--token-file] [--num-results]</td>
+<td>Perform web search using Kagi with Quick Answer</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/stores.nix">yo stores</a> --store_name [--location] [--radius]</td>
+<td>Finds nearby stores using OpenStreetMap data with fuzzy name matching. Returns results with opening hours.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/travel.nix">yo travel</a> [--to] [--from] [--type] [--apikeyPath]</td>
+<td>Public transportation helper. Fetches current bus, boat, train and air travel schedules. (Sweden)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/weather.nix">yo weather</a> [--location] [--day] [--condition] [--locationPath]</td>
+<td>Weather Assistant. Ask anything weather related (3 day forecast)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/network/ip-updater.nix">yo ip-updater</a> [--token1] [--token2] [--token3]</td>
+<td>DDNS updater</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/network/shareWiFi.nix">yo shareWiFi</a> [--ssidFile] [--passwordFile]</td>
+<td>creates a QR code of guest WiFi and push image to iPhone</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/network/speed.nix">yo speed</a></td>
+<td>Test internet download speed</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/media/call-remote.nix">yo call-remote</a></td>
+<td>Used to call the tv remote, for easy localization.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/media/news.nix">yo news</a> [--apis] [--clear]</td>
+<td>API caller and playlist manager for latest Swedish news from SR.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/media/tv.nix">yo tv</a> [--typ] [--search] [--device] [--season] [--shuffle] [--tvshowsDir] [--moviesDir] [--musicDir] [--musicvideoDir] [--videosDir] [--podcastDir] [--audiobookDir] [--youtubeAPIkeyFile] [--webserver] [--defaultPlaylist] [--favoritesPlaylist] [--max_items] [--mqttUser] [--mqttPWFile]</td>
+<td>Android TV Controller. Fuzzy search all media types and creates playlist and serves over webserver for casting. Fully controllable.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/media/tv-guide.nix">yo tv-guide</a> [--search] [--channel] [--jsonFilePath]</td>
+<td>TV-guide assistant..</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/files/copy.nix">yo copy</a> --from --to</td>
+<td>Copy a file or directory to a new location</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/files/list.nix">yo list</a> [--path]</td>
+<td>List directory contents with details</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/files/makedir.nix">yo makedir</a> --path</td>
+<td>Create a new directory with parents if needed</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/files/move.nix">yo move</a> --from --to</td>
+<td>Move a file or directory to a new location</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/files/nano.nix">yo nano</a> --file --content</td>
+<td>Write content to filepath</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/files/remove.nix">yo remove</a> --target</td>
+<td>Remove files or directories safely</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/alarm.nix">yo alarm</a> --hours --minutes [--list] [--sound]</td>
+<td>Set an alarm for a specified time</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/battery.nix">yo battery</a> [--device]</td>
+<td>Fetch battery level for specified device.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/bed.nix">yo bed</a> [--part] [--state]</td>
+<td>Bed controller</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/blinds.nix">yo blinds</a> [--state]</td>
+<td>Turn blinds up/down</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/chair.nix">yo chair</a> [--part] [--state]</td>
+<td>Chair controller</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/display.nix">yo display</a> --path</td>
+<td>Creates a HTML image that can be displayed on the chat frontend.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/findPhone.nix">yo findPhone</a></td>
+<td>Helper for locating Phone</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/house.nix">yo house</a> [--device] [--state] [--brightness] [--color] [--temperature] [--scene] [--all-lights] [--room] [--json] [--hue-key-file]</td>
+<td>High-performance unified CLI for controlling all smart home devices.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/kitchenFan.nix">yo kitchenFan</a> [--state]</td>
+<td>Turns kitchen fan on/off</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/lights.nix">yo lights</a> [--state]</td>
+<td>Lights toggle</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/state.nix">yo state</a> [--device]</td>
+<td>Fetches the state of the specified device.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/temperatures.nix">yo temperatures</a></td>
+<td>Get all temperature values from sensors and return a average value.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/tibber.nix">yo tibber</a> [--mode] [--homeIDFile] [--APIKeyFile] [--filePath] [--user] [--pwfile]</td>
+<td>Fetches home electricity price data</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/timer.nix">yo timer</a> [--minutes] [--seconds] [--hours] [--list] [--sound]</td>
+<td>Set a timer</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/home/toilet.nix">yo toilet</a></td>
+<td>Flush the toilet</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/btc.nix">yo btc</a> [--filePath] [--user] [--pwfile]</td>
+<td>Crypto currency BTC price tracker</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/chat.nix">yo chat</a> --text</td>
+<td>No fwendz? Let's chat yo!</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/duckPUCK.nix">yo duckPUCK</a> [--mode] [--team] [--stat] [--count] [--dataDir]</td>
+<td>[🏒🦆] - Your Personal Hockey Assistant! - Expert commentary and analyzer specialized on Hockey Allsvenskan (SWE). Analyzing games, scraping scoreboards and keeping track of all dates and numbers.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/hockeyGames.nix">yo hockeyGames</a> [--type] [--days] [--team] [--dataDir] [--debug]</td>
+<td>Hockey Assistant. Provides Hockey Allsvenskan data and deliver analyzed natural language responses (TTS).</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/invokeai.nix">yo invokeai</a> --prompt [--host] [--port] [--outputDir] [--width] [--height] [--steps] [--cfgScale] [--seed] [--model]</td>
+<td>AI generated images powered by InvokeAI</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/joke.nix">yo joke</a> [--jokeFile]</td>
+<td>Duck says a funny joke.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/post.nix">yo post</a> [--postalCodeFile] [--postalCode]</td>
+<td>Check for the next postal delivery day. (Sweden)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/reminder.nix">yo reminder</a> [--about] [--list] [--clear] [--user] [--pwfile]</td>
+<td>Reminder Assistant</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/shop-list.nix">yo shop-list</a> [--operation] [--item] [--list] [--mqttUser] [--mqttPWFile]</td>
+<td>Shopping list management</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/suno.nix">yo suno</a> --prompt [--genre]</td>
+<td>AI generated lyrics and music files powered by Suno</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/timee.nix">yo timee</a></td>
+<td>Tells time, day, date &amp; week</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/misc/xmr.nix">yo xmr</a> [--filePath] [--user] [--pwfile]</td>
+<td>Crypto currency XMR price tracker</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/maintenance/duckTrace.nix">yo duckTrace</a> [--script] [--host] [--errors] [--monitor]</td>
+<td>View duckTrace logs quick and quack, unified logging system</td>
+</tr>
+<tr>
+<td><a href="https://github.com/QuackHack-McBlindy/dotfiles/blob/main/bin/maintenance/health.nix">yo health</a></td>
+<td>Check system health status across your machines. Returns JSON structured responses.</td>
+</tr>
+</tbody>
+</table>
+<!-- MY_VOICE_COMMANDS_END -->
+
+<br>
+
+<h2 id="networking"><strong>Networking</strong></h2>
+<p><strong>WiFi</strong></p>
+<p>User may provide multiple SSID connections using environment variables through the <code>.env</code> file <em>(see .env.example)</em>.<br />
+If the connection to the first provided SSID fails it will automatically try the next one in the file.<br />
+If none of the pre-defined networks has a successful connection, a wireless network scan is performed and it will try to connect to any open network.<br />
+This should be safe since all network traffic are routed through the VPN task <em>(see below)</em>.<br />
+You will hear a "ding" sound, when a network connection has been established.</p>
+<p>WiFi connection can be toggled on/off via the GUI from the settings page, and also lets the user scan for other availaable networks.</p>
+<br>
+
+<p><strong>WireGuard™ VPN</strong></p>
+<p>The watch runs a WireGuard™ client to ensure a secure connection to the users home network and that the <code>yo</code> backend is always available.<br />
+Just drop your WireGuard™ peer configuration file (most often generated by the server) in the project root as <code>.wg-client.conf</code>.</p>
+<p>User can toggle the VPN on/off at any time from the settings page using the GUI.</p>
+<br>
+
+<h2 id="hardware"><strong>Hardware</strong></h2>
+<details><summary><strong>
+Specs and GPIO
+</strong></summary>
+
+<p><strong>Display: CO5300</strong></p>
+<p>Screen width: 33.09 mm<br />
+Screen height: 40.51 mm</p>
+<p>QSPI_SIO0 &gt; GPIO4<br />
+QSPI_SI1 &gt; GPIO5<br />
+QSPI_SI2 &gt; GPIO6<br />
+QSPI_SI3 &gt; GPIO7<br />
+QSPI_SCL &gt; GPIO11</p>
+<p>LCD_CS &gt; GPIO12<br />
+LCD_RESET &gt; GPIO8<br />
+LCD_TE &gt; GPIO13</p>
+<p><strong>Touch: FT3168</strong></p>
+<p>RESET &gt; GPIO9<br />
+Interrupt &gt; GPIO38<br />
+I2C_SDA &gt; GPIO15<br />
+I2C_SCL &gt; GPIO14</p>
+<p><strong>PMU: AXP2101</strong></p>
+<p>I2C_SDA &gt; GPIO15<br />
+I2C_SCL &gt; GPIO14</p>
+<p>(Controlled by DSI_PWR_EN)</p>
+<p><strong>6-Axis IMU: QMI8658</strong></p>
+<p>Interrupt &gt; GPIO21<br />
+I2C_SDA &gt; GPIO15<br />
+I2C_SCL &gt; GPIO14</p>
+<p><strong>RTC: PCF85063</strong></p>
+<p>Interrupt &gt; GPIO39<br />
+I2C_SDA &gt; GPIO15<br />
+I2C_SCL &gt; GPIO14</p>
+<p><strong>Audio</strong></p>
+<p>I2C for configuration:<br />
+I2C_SDA &gt; GPIO15<br />
+I2C_SCL &gt; GPIO14</p>
+<p><strong>Speaker: ES8311</strong></p>
+<p>I2S_ASDOUT &gt; GPIO42<br />
+I2S_MCLK &gt; GPIO16<br />
+I2S_SCLK &gt; GPIO41</p>
+<p><strong>Microphone: ES7210</strong></p>
+<p>I2S_LRCK &gt; GPIO45<br />
+I2S_DSDIN &gt; GPIO40</p>
+<p><strong>Storage</strong></p>
+<p>32MB Flash + 8MB PSRAM</p>
+<p><strong>Micro SD Card</strong></p>
+<p>MOSI &gt; GPIO1<br />
+SCK &gt; GPIO2<br />
+MISO &gt; GPIO3<br />
+SDCS &gt; GPIO</p>
+<p><strong>Buttons / Control</strong></p>
+<p>BOOT &gt; GPIO0<br />
+PWR &gt; GPIO10<br />
+PA_CTRL &gt; GPIO46</p>
+</details>
+
+<details><summary><strong>
+DEVICE DIMENSIONS (unit: mm)
+</strong></summary>
+
+<p><strong>Front View</strong></p>
+<p>Overall width: 42.00 mm<br />
+Overall height: 50.80 mm<br />
+Screen width (inner): 33.09 mm<br />
+Screen height (inner): 40.51 mm<br />
+Corner radius: R9.2</p>
+<p><strong>Side View</strong></p>
+<p>Thickness (main body): 12.90 mm<br />
+Maximum thickness: 13.60 mm</p>
+<p><strong>Back View</strong></p>
+<p>Top section width: 22.00 mm<br />
+Bottom section width: 22.00 mm<br />
+Label: ESP32-S3-Touch-AMOLED-2.06</p>
+<p><strong>Strap</strong></p>
+<p>Total length: 250.00 mm<br />
+Strap width: 22.00 mm</p>
+</details>
+
+<br>
+
+<h2 id="graphical-user-interface"><strong>Graphical User Interface</strong></h2>
+<p>You boot up at the clock page.<br />
+Swiping down from the very top of the screen slides down the control center which has 4 quick access button slots.<br />
+Swipe left to get to the app launcher, which has 1x1 big icons that smoothly scrolls like a list.<br />
+Tapping an app does nothing (to prevent accidental openings).<br />
+Double tap will open the application.<br />
+A upwards swipe gesture from the very bottom will close the open application and send user back to homescreen (clock page).</p>
+<p>Going right from the clock page will show the battery page which has a clean looking ARC gauge with an bolt when charging.</p>
+<p>To the right of the battery page we have <strong>tinyWeather</strong> which shows temperature and a big weather icon.</p>
+<p>Inside the <strong>Qwackify</strong> (media player) application clicking the Qwackify icon will split the view into two pieces that slide apart and show the playlist.<br />
+The trashcan will clear the temporary playlist without confirmation.<br />
+CLicking the heart icon will save current song to your favourite playlist.</p>
+<br>
+
+<h2 id="applications"><strong>Applications</strong></h2>
+<p><strong>Settings</strong> - From the settings application user can control all settings at runtime using toggle switch buttons in the GUI and/or swipe gestures, like speaker volume swipe up/down for example.<br />
+All the embassy-executor tasks can also be started/paused from this application.</p>
+<p><strong>Qwackify</strong> - a media player that plays local MP3 files with play/pause &amp; previous/next track buttons, title &amp; progress bar.<br />
+It also allows saving favourite songs by tapping a heart icon - marking them as favourite.<br />
+The media player slides apart into two pieces and displays the playlist when the Qwackify icon is tapped, which allows the user to select any song to play from the playlist. Tap the trashcan icon to clear the playlist.<br />
+While in the application the two hardware buttons on the watch control the playback volume.</p>
+<p><strong>duck-TV</strong> - a TV controller application that lets the user browse media stored on external server.<br />
+Tapping on chosen media instantly casts it for playback on a Android TV device. Application also has prev/next track control buttons as well as play/puase.<br />
+While in the application the two hardware buttons on the side of the watch control the TV volume.</p>
+<p><strong>tinyWeather</strong> - More of a widget than an app really. Displays the current temperature and an icon representing the weather state on the display. Tapping anywhere on the weather page will cycle between current weather and a three day forecast.</p>
+<p><strong>Caller</strong> - simple application that starts bidirectional audio streaming between the watch and the backend server. This effectively creates a intercom session which lets user talk with a desktop computer while away.</p>
+<p><strong>Gallery</strong> - swipe between images stored in <code>/share</code> directory on the SD card.</p>
+<p>Will extend with more applications as I think of any useful ones.</p>
+<br>
+
+<h2 id="power-management--optimizations"><strong>Power Management &amp; Optimizations</strong></h2>
+<p>User control all tasks/peripherals and even the clock speed from the GUI, and therefore handle their own battery optimizations and have full control of battery lifetime.</p>
+<br>
+
+<h2 id="sponsor"><strong>Sponsor</strong></h2>
+<p><a href="https://github.com/sponsors/QuackHack-McBlindy"><img src="https://img.shields.io/github/sponsors/QuackHack-McBlindy?logo=githubsponsors&amp;label=Sponsor&amp;style=flat&amp;labelColor=ff1493&amp;logoColor=fff&amp;color=rgba(234,74,170,0.5)" alt="Sponsors" /></a> <a href="https://buymeacoffee.com/quackhackmcblindy"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Sponsor?style=flat&amp;logo=buymeacoffee&amp;logoColor=fff&amp;labelColor=ff1493&amp;color=ff1493" alt="Buy Me a Coffee" /></a></p>
+<h3 id="coffee"><strong>☕</strong></h3>
+<blockquote>
+<p>🦆🧑‍🦯 says ⮞ Hi! I'm QuackHack-McBlindy!<br />
+Like my work?<br />
+Buy me a coffee, or become a sponsor.<br />
+Thanks for supporting open source/hungry developers ♥️🦆!</p>
+</blockquote>
+<p>♥️₿ <em>Wallet:</em> <code>pungkula.x</code><br />
+<a href="https://www.buymeacoffee.com/quackhackmcblindy" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a></p>
+<br>
+
+<h2 id="license"><strong>License</strong></h2>
+<p>This project is licensed under the terms of the MIT license.<br />
+See the <code>LICENSE</code> file in the repository for full details.</p>
+
+    </div>
+  </div>
+</section>
+
+
+
+      <section class="content-section">
+  <div class="wrap reveal">
+    <div class="section-cta">
+      <a
+        class="cta-button"
+        href="https://github.com/quackhack-mcblindy.com/ESP32-S3-WATCH-rs"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View on GitHub
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+      <section class="content-section">
+  <div class="wrap reveal">
+    <div class="tag-list">
+      <span class="tag">esp32</span> <span class="tag">rust</span> <span class="tag">nix</span> <span class="tag">flake</span> <span class="tag">rust</span> <span class="tag">smart-watch</span> <span class="tag">home-automation</span> <span class="tag">yo</span> <span class="tag">zigduck</span>
+    </div>
+  </div>
+</section>
+
+
+
+
+      <section class="content-section">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <h2><span class="gold">Related</span> <span class="white">posts</span></h2>
+    </div>
+    <div class="cross-links">
+      <a class="cross-link" href="/posts/zigduck.html">
+  <span class="cl-icon" aria-hidden="true">🔗</span>
+  <div class="cl-body">
+    <h3 class="cl-title">zigduck</h3>
+    <p class="cl-desc">A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
+<a class="cross-link" href="/posts/reverse-engineering-the-swedish-hockey-league.html">
+  <span class="cl-icon" aria-hidden="true">🔗</span>
+  <div class="cl-body">
+    <h3 class="cl-title">Reverse Engineering the Swedish Hockey League inside a Nix string.</h3>
+    <p class="cl-desc">I assumed there&#39;d be a wall, a token expiry, a rate limit - something. There wasn&#39;t. They save an absurd amount of data, so hey - thanks for the free, unlimited API. Of course I made it voice-controlled.</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
+<a class="cross-link" href="/posts/pokenix.html">
+  <span class="cl-icon" aria-hidden="true">🔗</span>
+  <div class="cl-body">
+    <h3 class="cl-title">pokenix</h3>
+    <p class="cl-desc">Nix generates HTML + JS generates Nix + GitHub pages hosts. A complete web hosting plattform and sprteadsheet manager built for Pokémon collections using Nix</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
+    </div>
+  </div>
+</section>
+
+
+    </main>
+
+    <footer>
+      <div class="wrap footer-row">
+        <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBLindy.com</span></strong></div>
+
+        <div class="footer-links">
+          <a href="#top">Top</a>
+        </div>
+      </div>
+    </footer>
+
+    <svg height="0" width="0" style="position:absolute" aria-hidden="true">
+      <filter id="f1">
+        <feTurbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp"/>
+        <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp"/>
+        <feColorMatrix type="matrix" result="red_" values="4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/>
+        <feOffset in="red_" dx="2" dy="0" result="red"/>
+        <feColorMatrix type="matrix" in="SourceGraphic" result="blue_" values="0 0 0 0 0 0 3 0 0 0 0 0 10 0 0 0 0 1 0"/>
+        <feOffset in="blue_" dx="-3" dy="0" result="blue"/>
+        <feBlend mode="screen" in="red" in2="blue"/>
+      </filter>
+    </svg>
+  </div>
+
+  <noscript>
+    <style>.reveal { opacity: 1 !important; transform: none !important; }</style>
+  </noscript>
+
+  <script>
+  (function () {
+    'use strict';
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+    }
+
+    document.querySelectorAll('.copy-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const block = btn.closest('.config-block');
+        const code = block ? block.querySelector('pre code') : null;
+        if (!code) return;
+        try {
+          await navigator.clipboard.writeText(code.textContent);
+          btn.textContent = 'Copied ✓';
+          setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+        } catch (_) {
+          btn.textContent = 'Failed';
+        }
+      });
+    });
+
+    document.querySelectorAll('.config-block').forEach((block) => {
+      const toggle = () => {
+        const collapsed = block.classList.toggle('is-collapsed');
+        const btn = block.querySelector('.collapse-btn');
+
+        if (btn) {
+          btn.setAttribute('aria-expanded', String(!collapsed));
+          btn.textContent = collapsed ? 'Expand' : 'Collapse';
+        }
+      };
+
+      block.addEventListener('click', (e) => {
+        if (e.target.closest('.copy-btn')) return;
+        if (!e.target.closest('.config-bar')) return;   // ← only the header toggles
+        const selection = window.getSelection();
+        if (selection && !selection.isCollapsed) return;
+        toggle();
+      });
+
+    });
+
+  })();
+  </script>
+
+
+  <script>
+    (function () {
+      'use strict';
+
+      const CORNER_WIDTH    = 170;
+      const CORNER_HEIGHT   = 120;
+      const FRENZY_DURATION = 5200;
+      const MAX_DUCKS       = 190;
+
+      const GLYPHS = ['🦆','🦆','🦆','🦆','🦆','🦆','🦆','🦆','🐤','🪶'];
+      const QUACK_WORDS = ['QUACK!','QUACK!!','QUACK?!','HONK!','QUAAACK!','🦆 QUACK 🦆','QUACK QUACK'];
+
+      const ducks  = [];
+      const timers = new Set();
+
+      let layer         = null;
+      let rafId         = 0;
+      let lastTs        = 0;
+      let frenzyActive  = false;
+      let audioCtx      = null;
+
+      const originalTitle = document.title;
+
+      const rand = (min, max) => min + Math.random() * (max - min);
+      const pick = (arr) => arr[(Math.random() * arr.length) | 0];
+      const calm = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function later(fn, ms) {
+        const id = setTimeout(() => { timers.delete(id); fn(); }, ms);
+        timers.add(id);
+        return id;
+      }
+
+      function every(fn, ms) {
+        const id = setInterval(fn, ms);
+        timers.add(id);
+        return id;
+      }
+
+      function stopTimers() {
+        timers.forEach((id) => { clearTimeout(id); clearInterval(id); });
+        timers.clear();
+      }
+
+      function getLayer() {
+        if (!layer || !layer.isConnected) {
+          layer = document.createElement('div');
+          layer.className = 'frenzy-layer';
+          layer.setAttribute('aria-hidden', 'true');
+          document.body.appendChild(layer);
+        }
+        return layer;
+      }
+
+      function spawnDuck(originX, originY) {
+        if (ducks.length >= MAX_DUCKS) return;
+
+        const el = document.createElement('span');
+        el.className = 'frenzy-duck';
+        el.textContent = pick(GLYPHS);
+        el.setAttribute('aria-hidden', 'true');
+
+        const size = rand(16, 66);
+        const x = originX !== undefined
+          ? originX + rand(-110, 110)
+          : rand(-70, window.innerWidth + 70);
+        const y = originY !== undefined
+          ? originY + rand(-40, 40)
+          : rand(-window.innerHeight * 0.6, -30);
+
+        el.style.fontSize = size.toFixed(1) + 'px';
+        el.style.opacity  = (0.5 + Math.min(size, 66) / 66 * 0.5).toFixed(2);
+
+        const d = {
+          el: el,
+          x: x,
+          y: y,
+          vx: rand(-1.4, 1.4),
+          vy: rand(1.8, 5.2) * (0.65 + size / 66),
+          rot: rand(0, 360),
+          vrot: rand(-8, 8),
+          wobbleAmp: rand(0.2, 2.4),
+          wobbleFreq: rand(0.0015, 0.0055),
+          wobblePhase: rand(0, Math.PI * 2)
+        };
+
+        el.style.transform =
+          'translate3d(' + d.x.toFixed(1) + 'px,' + d.y.toFixed(1) + 'px,0) ' +
+          'rotate(' + d.rot.toFixed(1) + 'deg)';
+
+        getLayer().appendChild(el);
+        ducks.push(d);
+        ensureLoop();
+      }
+
+      function ensureLoop() {
+        if (rafId) return;
+        lastTs = performance.now();
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function tick(ts) {
+        rafId = 0;
+
+        const dt = Math.min(3, Math.max(0.2, (ts - lastTs) / 16.667));
+        lastTs = ts;
+
+        for (let i = ducks.length - 1; i >= 0; i--) {
+          const d = ducks[i];
+
+          d.y += d.vy * dt;
+          d.x += (d.vx + Math.sin(d.wobblePhase + ts * d.wobbleFreq) * d.wobbleAmp) * dt;
+          d.rot += d.vrot * dt;
+
+          d.el.style.transform =
+            'translate3d(' + d.x.toFixed(1) + 'px,' + d.y.toFixed(1) + 'px,0) ' +
+            'rotate(' + d.rot.toFixed(1) + 'deg)';
+
+          if (d.y > window.innerHeight + 140 ||
+              d.x < -260 ||
+              d.x > window.innerWidth + 260) {
+            d.el.remove();
+            ducks.splice(i, 1);
+          }
+        }
+
+        if (ducks.length || frenzyActive) {
+          rafId = requestAnimationFrame(tick);
+        } else if (layer) {
+          layer.remove();
+          layer = null;
+        }
+      }
+
+      function flash() {
+        const el = document.createElement('div');
+        el.className = 'frenzy-flash';
+        el.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(el);
+        el.addEventListener('animationend', () => el.remove(), { once: true });
+        setTimeout(() => el.remove(), 1500);
+      }
+
+      function shockwave(x, y) {
+        const el = document.createElement('div');
+        el.className = 'frenzy-ring';
+        el.setAttribute('aria-hidden', 'true');
+        el.style.left = x + 'px';
+        el.style.top  = y + 'px';
+        document.body.appendChild(el);
+        el.addEventListener('animationend', () => el.remove(), { once: true });
+        setTimeout(() => el.remove(), 1500);
+      }
+
+      function shake(el, strength) {
+        if (!el || typeof el.animate !== 'function') return;
+        if (calm()) return;
+
+        const frames = [];
+        const steps = 12;
+
+        for (let i = 0; i <= steps; i++) {
+          const decay = Math.pow(1 - i / steps, 2);
+          frames.push({
+            transform:
+              'translate3d(' +
+                ((Math.random() * 2 - 1) * strength * decay).toFixed(2) + 'px,' +
+                ((Math.random() * 2 - 1) * strength * decay).toFixed(2) + 'px,0) ' +
+              'rotate(' + ((Math.random() * 2 - 1) * 0.8 * decay).toFixed(2) + 'deg)'
+          });
+        }
+        frames.push({ transform: 'translate3d(0,0,0) rotate(0deg)' });
+
+        try {
+          el.animate(frames, { duration: 560, easing: 'linear', composite: 'add' });
+        } catch (err) {
+
+        }
+      }
+
+      function quackText() {
+        const el = document.createElement('div');
+        el.className = 'frenzy-quack';
+        el.textContent = pick(QUACK_WORDS);
+        el.setAttribute('aria-hidden', 'true');
+        el.style.left = rand(6, 94).toFixed(1) + 'vw';
+        el.style.top  = rand(12, 88).toFixed(1) + 'vh';
+        el.style.fontSize = rand(16, 48).toFixed(0) + 'px';
+        el.style.color = Math.random() < 0.5 ? '#ffd75e' : '#00e5d1';
+        el.style.setProperty('--frenzy-rot', rand(-24, 24).toFixed(1) + 'deg');
+        document.body.appendChild(el);
+        el.addEventListener('animationend', () => el.remove(), { once: true });
+        setTimeout(() => el.remove(), 2500);
+      }
+
+      function getAudioCtx() {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return null;
+        if (!audioCtx) {
+          try { audioCtx = new AC(); } catch (err) { return null; }
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume().catch(() => {});
+        }
+        return audioCtx;
+      }
+
+      function playQuack() {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+
+        const t0   = ctx.currentTime;
+        const base = rand(210, 330);
+
+        const osc  = ctx.createOscillator();
+        const osc2 = ctx.createOscillator();
+
+        osc.type  = 'sawtooth';
+        osc2.type = 'square';
+
+        osc.frequency.setValueAtTime(base * 3.2, t0);
+        osc.frequency.exponentialRampToValueAtTime(base, t0 + 0.16);
+
+        osc2.frequency.setValueAtTime(base * 1.6, t0);
+        osc2.frequency.exponentialRampToValueAtTime(base * 0.7, t0 + 0.18);
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(1400, t0);
+        filter.frequency.exponentialRampToValueAtTime(700, t0 + 0.2);
+        filter.Q.value = 3.5;
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.16, t0 + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.26);
+
+        osc.connect(filter);
+        osc2.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(t0);  osc2.start(t0);
+        osc.stop(t0 + 0.3); osc2.stop(t0 + 0.3);
+      }
+
+      function playQuackBurst(n) {
+        for (let i = 0; i < n; i++) {
+          setTimeout(playQuack, i * 110 + Math.random() * 90);
+        }
+      }
+
+      function isFrameVisible() {
+        const frame = document.querySelector('.duckhawk-frame');
+        if (!frame) return false;
+        if (getComputedStyle(frame).display === 'none') return false;
+
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const pieces = frame.querySelectorAll('.frame-header, .frame-header-standalone');
+
+        for (let i = 0; i < pieces.length; i++) {
+          const el = pieces[i];
+          const cs = getComputedStyle(el);
+
+          if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+          if (parseFloat(cs.opacity) < 0.05) continue;
+
+          const r = el.getBoundingClientRect();
+          if (r.width > 8 && r.height > 8 &&
+              r.right > 0 && r.left < vw &&
+              r.bottom > 0 && r.top < vh) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      function startFrenzy(x, y) {
+        if (frenzyActive) return;
+        frenzyActive = true;
+        const soft = calm();
+        getLayer();
+
+        document.title = '🦆 QUACK FRENZY 🦆';
+
+        if (!soft) {
+          flash();
+          shockwave(x, y);
+          shake(document.getElementById('content-glitch'), 11);
+          shake(document.querySelector('.duckhawk-frame'), 7);
+        }
+
+        playQuackBurst(soft ? 1 : 5);
+
+        const wall = soft ? 10 : 64;
+        for (let i = 0; i < wall; i++) {
+          spawnDuck(undefined, rand(-window.innerHeight * 0.8, -20));
+        }
+
+        const burst = soft ? 4 : 26;
+        for (let i = 0; i < burst; i++) {
+          spawnDuck(x, y);
+        }
+
+        every(() => {
+          const n = soft ? 1 : 3;
+          for (let i = 0; i < n; i++) spawnDuck();
+          if (!soft && Math.random() < 0.14) quackText();
+        }, soft ? 380 : 55);
+
+        if (!soft) {
+          let q = 0;
+          every(() => {
+            quackText();
+            if (q % 2 === 0 && q < 8) playQuack();
+            q++;
+          }, 400);
+        }
+
+        later(() => {
+          frenzyActive = false;
+          stopTimers();
+          document.title = originalTitle;
+
+          if (ducks.length === 0 && layer) {
+            layer.remove();
+            layer = null;
+          }
+        }, soft ? 2400 : FRENZY_DURATION);
+      }
+
+      function inCorner(x, y) {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const w = Math.min(CORNER_WIDTH, vw * 0.34);
+        const h = Math.min(CORNER_HEIGHT, vh * 0.22);
+        return x >= vw - w && y <= h;
+      }
+
+
+
+
+      function onPointerDown(e) {
+        if (e.button !== 0) return;
+        if (!inCorner(e.clientX, e.clientY)) return;
+        if (!isFrameVisible()) return;
+
+        const t = e.target;
+        if (t && typeof t.closest === 'function' &&
+            t.closest('a, button, input, textarea, select, summary, [role="button"], [contenteditable]')) {
+          return;
+        }
+
+        if (frenzyActive) {
+          for (let i = 0; i < 18; i++) spawnDuck(e.clientX, e.clientY);
+          playQuack();
+          if (!calm()) shockwave(e.clientX, e.clientY);
+          return;
+        }
+
+        startFrenzy(e.clientX, e.clientY);
+      }
+
+      document.addEventListener('pointerdown', onPointerDown, true);
+
+      try {
+        console.log(
+          '%c🦆 pssst… top-right corner, while the frame is up…',
+          'color:#00e5d1;font-weight:700;font-size:12px;'
+        );
+      } catch (err) { /* ignore */ }
+    })();
+  </script>
+
+</body>
+</html>

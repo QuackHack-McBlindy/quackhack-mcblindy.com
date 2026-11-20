@@ -20,6 +20,64 @@
   </author>
 
   <entry>
+  <title>pokenix</title>
+  <id>https://quackhack-mcblindy.com/posts/pokenix.html</id>
+
+  <link href="https://quackhack-mcblindy.com/posts/pokenix.html"/>
+
+
+  <published>2026-11-17T00:00:00Z</published>
+  <updated>2026-11-17T00:00:00Z</updated>
+
+  <summary type="text">Nix generates HTML + JS generates Nix + GitHub pages hosts. A complete web hosting plattform and sprteadsheet manager built for Pokémon collections using Nix</summary>
+
+  <category term="pokenix"/>
+
+<category term="nixos"/>
+
+<category term="nix"/>
+
+<category term="flake"/>
+
+<category term="pokemon"/>
+
+<category term="spreadsheet"/>
+
+</entry>
+
+<entry>
+  <title>Smart-watch operating system on ESP32-S3 microcontroller.</title>
+  <id>https://quackhack-mcblindy.com/posts/ESP32-S3-WATCH-rs.html</id>
+
+  <link href="https://quackhack-mcblindy.com/posts/ESP32-S3-WATCH-rs.html"/>
+
+
+  <published>2026-11-17T00:00:00Z</published>
+  <updated>2026-11-17T00:00:00Z</updated>
+
+  <summary type="text">Bare Metal (no-std) voice-driven wearable OS for ESP32-S3 smartwatch with a high focus on accessibility and smart home/media control. Written in Rust, using esp-hal as it&apos;s hardware abstraction layer.</summary>
+
+  <category term="esp32"/>
+
+<category term="rust"/>
+
+<category term="nix"/>
+
+<category term="flake"/>
+
+<category term="rust"/>
+
+<category term="smart-watch"/>
+
+<category term="home-automation"/>
+
+<category term="yo"/>
+
+<category term="zigduck"/>
+
+</entry>
+
+<entry>
   <title>zigduck</title>
   <id>https://quackhack-mcblindy.com/posts/zigduck.html</id>
 
@@ -135,7 +193,7 @@
   <published>2026-11-09T00:00:00Z</published>
   <updated>2026-11-09T00:00:00Z</updated>
 
-  <summary type="text">Every other Tor setup asks you to point something at something. This one asks you to type hide - Firejail, nftables, and a NetworkManager bridge.</summary>
+  <summary type="text">Every other Tor setup asks you to point something at something. This one asks you to type hide — Firejail, nftables, and a NetworkManager bridge.</summary>
 
   <category term="tor"/>
 

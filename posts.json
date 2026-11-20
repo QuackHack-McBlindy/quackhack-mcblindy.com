@@ -1,6 +1,37 @@
 [
   {
     "date": "2026-11-17",
+    "description": "Nix generates HTML + JS generates Nix + GitHub pages hosts. A complete web hosting plattform and sprteadsheet manager built for Pokémon collections using Nix",
+    "link": "https://quackhack-mcblindy.com/posts/pokenix.html",
+    "tags": [
+      "pokenix",
+      "nixos",
+      "nix",
+      "flake",
+      "pokemon",
+      "spreadsheet"
+    ],
+    "title": "pokenix"
+  },
+  {
+    "date": "2026-11-17",
+    "description": "Bare Metal (no-std) voice-driven wearable OS for ESP32-S3 smartwatch with a high focus on accessibility and smart home/media control. Written in Rust, using esp-hal as it's hardware abstraction layer.",
+    "link": "https://quackhack-mcblindy.com/posts/ESP32-S3-WATCH-rs.html",
+    "tags": [
+      "esp32",
+      "rust",
+      "nix",
+      "flake",
+      "rust",
+      "smart-watch",
+      "home-automation",
+      "yo",
+      "zigduck"
+    ],
+    "title": "Smart-watch operating system on ESP32-S3 microcontroller."
+  },
+  {
+    "date": "2026-11-17",
     "description": "A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.",
     "link": "https://quackhack-mcblindy.com/posts/zigduck.html",
     "tags": [
@@ -58,7 +89,7 @@
   },
   {
     "date": "2026-11-09",
-    "description": "Every other Tor setup asks you to point something at something. This one asks you to type hide - Firejail, nftables, and a NetworkManager bridge.",
+    "description": "Every other Tor setup asks you to point something at something. This one asks you to type hide — Firejail, nftables, and a NetworkManager bridge.",
     "link": "https://quackhack-mcblindy.com/posts/tor-in-a-shell.html",
     "tags": [
       "tor",

@@ -18,7 +18,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://quackhack-mcblindy.com/posts/tor-in-a-shell.html">
   <meta property="og:title" content="QuackHack-McBLindy.com » Tor in a Shell">
-  <meta property="og:description" content="Every other Tor setup asks you to point something at something. This one asks you to type hide - Firejail, nftables, and a NetworkManager bridge.">
+  <meta property="og:description" content="Every other Tor setup asks you to point something at something. This one asks you to type hide — Firejail, nftables, and a NetworkManager bridge.">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -31,12 +31,12 @@
 </script>
 
 
-  <meta name="description" content="Every other Tor setup asks you to point something at something. This one asks you to type hide - Firejail, nftables, and a NetworkManager bridge.">
+  <meta name="description" content="Every other Tor setup asks you to point something at something. This one asks you to type hide — Firejail, nftables, and a NetworkManager bridge.">
   <meta property="og:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="QuackHack-McBLindy.com » Tor in a Shell">
-  <meta name="twitter:description" content="Every other Tor setup asks you to point something at something. This one asks you to type hide - Firejail, nftables, and a NetworkManager bridge.">
+  <meta name="twitter:description" content="Every other Tor setup asks you to point something at something. This one asks you to type hide — Firejail, nftables, and a NetworkManager bridge.">
   <meta name="twitter:image" content="https://quackhack-mcblindy.com/static/img/logo.png">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -743,6 +743,87 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   }
 }
 
+.section-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  padding: 15px 30px;
+  min-width: 190px;
+
+  color: #050707;
+  background: linear-gradient(135deg, #ffd75e, #f4b52f);
+  border: 1px solid #ffe28a;
+  border-radius: 12px;
+
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  box-shadow:
+    0 0 8px rgba(244, 181, 47, 0.45),
+    0 0 22px rgba(244, 181, 47, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.cta-button span {
+  color: #050707;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.cta-button:hover {
+  color: #050707;
+  background: linear-gradient(135deg, #ffe994, #ffc52e);
+  border-color: #fff0b5;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 0 12px rgba(244, 181, 47, 0.75),
+    0 0 32px rgba(244, 181, 47, 0.35),
+    0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.cta-button:hover span {
+  transform: translate(3px, -3px);
+}
+
+.cta-button:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.cta-button:focus-visible {
+  outline: 2px solid #ffe28a;
+  outline-offset: 5px;
+}
+
+@media (max-width: 560px) {
+  .cta-button {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 20px;
+    font-size: 0.8rem;
+  }
+}
+
 </style>
   <link rel="stylesheet" href="./../static/css/viewport.css" />
 </head>
@@ -903,6 +984,16 @@ programs.bash = {
 
 <section class="content-section">
   <div class="wrap reveal">
+    <div class="duck-comment">
+
+  <p>BYEEEE!!!!1</p>
+</div>
+
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
     <p class="big-quote">The network is unchanged. <strong>What changed is the ceremony.</strong>"
 </p>
 
@@ -945,11 +1036,11 @@ programs.bash = {
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
 
-<a class="cross-link" href="/posts/zigduck.html">
+<a class="cross-link" href="/posts/pokenix.html">
   <span class="cl-icon" aria-hidden="true">🔗</span>
   <div class="cl-body">
-    <h3 class="cl-title">zigduck</h3>
-    <p class="cl-desc">A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.</p>
+    <h3 class="cl-title">pokenix</h3>
+    <p class="cl-desc">Nix generates HTML + JS generates Nix + GitHub pages hosts. A complete web hosting plattform and sprteadsheet manager built for Pokémon collections using Nix</p>
   </div>
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
