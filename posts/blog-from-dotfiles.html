@@ -620,8 +620,95 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   <div class="wrap reveal">
     <div class="prose-section">
       <h3 class="sub-heading"><strong>Why this makes a lot of sense for Me:</strong></h3>
-<p>Blog posts belong in these dotfiles because my repository already represents more than system configuration.<br>It represents the entire digital environment, workflows and the knowledge behind it.<br>Just as configurations document how the machines work, blog posts document the ideas, experiments, decisions and solutions that shape them. <br>Keeping everything together makes the knowledge version-controlled, reproducible, searchable and available alongside the actual implementation.</p>
+<p>Blog posts belong in these dotfiles because my repository already represents more than system configuration.<br>It represents the entire digital environment, workflows and the knowledge behind it.<br>Just as configurations document how the machines work, blog posts document the ideas, experiments, decisions and solutions that shape them.<br>Keeping everything together makes the knowledge version-controlled, reproducible, searchable and available alongside the actual implementation.</p>
     </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="config-block is-collapsed">
+  <div class="config-bar">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+
+    <span class="config-title">View this post&#39;s source code.</span>
+
+    <button
+      class="collapse-btn"
+      type="button"
+      aria-expanded="false"
+    >Expand</button>
+
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+
+  <pre><code class="language-nix"># dotfiles/modules/posts/blog-from-dotfiles.nix ⮞ https://github.com/quackhack-mcblindy/dotfiles
+#  » ★ QuackHack-McBLindy.com ★ «
+{ # 🦆 ⮞ nuthin&#39; to see here... (just some html generation)
+  lib,
+  config,
+  ...
+} : {
+
+  blog = {
+    enable = true;
+
+
+    posts.blog-from-dotfiles = {
+      title     = &quot;Blog from Dotfiles&quot;;
+      description = &quot;Suddenly this feels a lot more like me.&quot;;
+      header1   = &quot;Writing from the&quot;;
+      header2   = &quot;Flake&quot;;
+      tagline   = &quot;Blog as a NixOS module.&quot;;
+      date      = &quot;2026-11-18&quot;;
+      tags      = [ &quot;blog&quot; &quot;nixos&quot; ];
+      filename  = &quot;blog-from-dotfiles.html&quot;;
+
+
+      sections = [
+        { idea = &quot;Writing these posts straight from my dotfiles repo.&quot;; }
+
+        {
+          prose = &#39;&#39;
+            ## **Why this makes a lot of sense for Me:**
+
+            Blog posts belong in these dotfiles because my repository already represents more than system configuration.
+            It represents the entire digital environment, workflows and the knowledge behind it.
+            Just as configurations document how the machines work, blog posts document the ideas, experiments, decisions and solutions that shape them.
+            Keeping everything together makes the knowledge version-controlled, reproducible, searchable and available alongside the actual implementation.
+
+          &#39;&#39;;
+        }
+
+        {
+          code = {
+            title   = &quot;View this post&#39;s source code.&quot;;
+            lang = &quot;nix&quot;;
+            collapsed = true;
+            content = builtins.readFile ./blog-from-dotfiles.nix;
+          };
+        }
+
+        {
+          code = {
+            title   = &quot;Click to view blog.nix source code&quot;;
+            lang = &quot;nix&quot;;
+            collapsed = true;
+            content = builtins.readFile ./../blog.nix;
+          };
+        }
+
+        { duck = &quot;Stay safe, peace and code. QuackHack-McBLindy out!&quot;; }
+
+      ];
+    };
+
+  };}
+</code></pre>
+</div>
+
   </div>
 </section>
 
@@ -828,7 +915,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     &#39;&#39;
       &lt;p class=&quot;big-quote&quot;&gt;${section.content}&lt;/p&gt;
       ${optionalString (section.author or null != null)
-        &#39;&#39;&lt;p class=&quot;big-quote-cite&quot;&gt;— ${esc section.author}&lt;/p&gt;&#39;&#39;}
+        &#39;&#39;&lt;p class=&quot;big-quote-cite&quot;&gt;- ${esc section.author}&lt;/p&gt;&#39;&#39;}
     &#39;&#39;;
 
   renderCrossLinks = links: &#39;&#39;
@@ -2064,7 +2151,7 @@ in {
       default = null;
       description = &#39;&#39;
         Full override for posts.json. When set, blog.posts is used ONLY for
-        page generation — this list is emitted verbatim as posts.json.
+        page generation - this list is emitted verbatim as posts.json.
       &#39;&#39;;
     };
 
@@ -2261,96 +2348,6 @@ in {
 
 <section class="content-section">
   <div class="wrap reveal">
-    <div class="config-block is-collapsed">
-  <div class="config-bar">
-    <span class="dot red"></span>
-    <span class="dot yellow"></span>
-    <span class="dot green"></span>
-
-    <span class="config-title">View this post&#39;s source code.</span>
-
-    <button
-      class="collapse-btn"
-      type="button"
-      aria-expanded="false"
-    >Expand</button>
-
-    <button class="copy-btn" type="button">Copy</button>
-  </div>
-
-  <pre><code class="language-nix"># dotfiles/modules/posts/blog-from-dotfiles.nix ⮞ https://github.com/quackhack-mcblindy/dotfiles
-#  » ★ QuackHack-McBLindy.com ★ «
-{ # 🦆 ⮞ nuthin&#39; to see here... (just some html generation)
-  lib,
-  config,
-  ...
-} : {
-
-  blog = {
-    enable = true;
-
-
-    posts.blog-from-dotfiles = {
-      title     = &quot;Blog from Dotfiles&quot;;
-      description = &quot;Suddenly this feels a lot more like me.&quot;;
-      header1   = &quot;Writing from the&quot;;
-      header2   = &quot;Flake&quot;;
-      tagline   = &quot;Blog as a NixOS module.&quot;;
-      date      = &quot;2026-11-18&quot;;
-      tags      = [ &quot;blog&quot; &quot;nixos&quot; ];
-      filename  = &quot;blog-from-dotfiles.html&quot;;
-
-
-      sections = [
-        { idea = &quot;Writing these posts straight from my dotfiles repo.&quot;; }
-
-        {
-          prose = &#39;&#39;
-            ## **Why this makes a lot of sense for Me:**
-
-            Blog posts belong in these dotfiles because my repository already represents more than system configuration.
-            It represents the entire digital environment, workflows and the knowledge behind it.
-            Just as configurations document how the machines work, blog posts document the ideas, experiments, decisions and solutions that shape them.
-            Keeping everything together makes the knowledge version-controlled, reproducible, searchable and available alongside the actual implementation.
-
-          &#39;&#39;;
-        }
-
-
-        {
-          code = {
-            title   = &quot;Click to view blog.nix source code&quot;;
-            lang = &quot;nix&quot;;
-            collapsed = true;
-            content = builtins.readFile ./../blog.nix;
-          };
-        }
-
-
-        {
-          code = {
-            title   = &quot;View this post&#39;s source code.&quot;;
-            lang = &quot;nix&quot;;
-            collapsed = true;
-            content = builtins.readFile ./blog-from-dotfiles.nix;
-          };
-        }
-
-
-        { duck = &quot;Stay safe, peace and code. QuackHack-McBLindy out!&quot;; }
-
-      ];
-    };
-
-  };}
-</code></pre>
-</div>
-
-  </div>
-</section>
-
-<section class="content-section">
-  <div class="wrap reveal">
     <div class="duck-comment">
 
   <p>Stay safe, peace and code. QuackHack-McBLindy out!</p>
@@ -2389,7 +2386,7 @@ in {
   <span class="cl-icon" aria-hidden="true">🔗</span>
   <div class="cl-body">
     <h3 class="cl-title">Accessibility on Linux / NixOS</h3>
-    <p class="cl-desc">Linux should be for everyone, not just people without disabilities. Accessibility on NixOS is terrible out of the box — here&#39;s my magnifier flake and a voice-to-shell translator.</p>
+    <p class="cl-desc">Linux should be for everyone, not just people without disabilities. Accessibility on NixOS is terrible out of the box - here&#39;s my magnifier flake and a voice-to-shell translator.</p>
   </div>
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
@@ -2398,7 +2395,7 @@ in {
   <span class="cl-icon" aria-hidden="true">🔗</span>
   <div class="cl-body">
     <h3 class="cl-title">Tor in a Shell</h3>
-    <p class="cl-desc">Every other Tor setup asks you to point something at something. This one asks you to type hide — Firejail, nftables, and a NetworkManager bridge.</p>
+    <p class="cl-desc">Every other Tor setup asks you to point something at something. This one asks you to type hide - Firejail, nftables, and a NetworkManager bridge.</p>
   </div>
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
