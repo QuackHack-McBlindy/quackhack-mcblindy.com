@@ -726,13 +726,13 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 
 <div align="center">
   <a href="https://quackhack-mcblindy.github.io/zigduck">
-    <img src="images/logo.png" alt="Logo" width="440">
+    <img src="https://raw.githubusercontent.com/QuackHack-McBlindy/zigduck/refs/heads/main/images/logo.png" alt="Logo" width="440">
   </a>
 
   <br>
 
   <a href="https://quackhack-mcblindy.github.io/zigduck">
-    <img src="images/automations.png" alt="automations" width="800">
+    <img src="https://raw.githubusercontent.com/QuackHack-McBlindy/zigduck/refs/heads/main/images/automations.png" alt="automations" width="800">
   </a>
 
 <!-- VERSIONS_START -->
@@ -755,7 +755,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 <p><strong>zigduck</strong> uses smart defaults, after defining your rooms &amp; devices --<br> most users don’t need to write any automations at all.<br> Lights, dimmers, motion sensors - it should all work as expected <strong>out of the box</strong>.<br></p>
 <p>A built-in natural-language automation engine supporting hundreds of millions of possible phrases, with full device, TV and EPG control, timers, alarms, notifications, text-to-speech, and advanced logic (if not, if, while, until, when, chain, state) - all ready to use out of the box, with no grammar definitions or scripts to configure. <br> Much much faster than any LLM and at a much lower power consumption - plus no hallucinations!<br> Users can even write their automations at runtime.</p>
 <p><strong>EVERYTHING</strong> is configurable via NixOS options.<br></p>
-<p>Use the <a href="images/screenshot02.png">GNOME Shell extension</a> <em>(seperate flake)</em> for a handy top bar desktop widget and also an optional dashboard page is generated from the defined Nix configuration to display customized cards as well as scene activation and device control on-the-fly.<br><br></p>
+<p>Use the <a href="https://raw.githubusercontent.com/QuackHack-McBlindy/zigduck/refs/heads/main/images/screenshot02.png">GNOME Shell extension</a> <em>(seperate flake)</em> for a handy top bar desktop widget and also an optional dashboard page is generated from the defined Nix configuration to display customized cards as well as scene activation and device control on-the-fly.<br><br></p>
 <br>
 
 <p><img src="Screenshots/zigduck-widget.gif" alt="Zigduck GNOME Shell extension" /></p>
@@ -914,16 +914,14 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 
 <h2 id="installation"><strong>Installation</strong></h2>
 <h3 id="two-installation-paths"><strong>Two installation paths</strong></h3>
-<p><strong>🖥️ Automated USB installer</strong> <em>(dedicated host)</em></p>
+<p><strong>Automated USB installer</strong> <em>(dedicated host)</em></p>
 <ul>
-<li>Pick me if you never heard about NixOS and don't want to hear about NixOS.</li>
+<li><strong>Pick me</strong> if you never heard about NixOS and don't want to hear about NixOS.</li>
 <li>Insert USB, boot, wait for shutdown. Eject USB, boot &amp; you are done.</li>
 </ul>
-<p><strong>❄️ Nix flake module</strong> <em>(recommended)</em></p>
+<p><strong>Nix flake module</strong> <em>(recommended)</em></p>
 <ul>
 <li>For users already running NixOS with flakes</li>
-<li>Full control - every option exposed as a NixOS module</li>
-<li>Coexists with your other services on the same host</li>
 <li>Ideal for power users and custom configurations</li>
 </ul>
 <h3 id="two-configuration-paths-initial-deviceroomscenes-config"><strong>Two configuration paths (initial device/room/scenes config)</strong></h3>
@@ -931,8 +929,20 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 <li>Generate your Nix device config using JS from GitHub Pages. Phone/bbrowser friendly.</li>
 <li>Write it yourself. (fun)</li>
 </ul>
+<h4 id="installing-using-automated-usb-installer"><strong>Installing using automated USB installer</strong></h4>
 <details><summary><strong>
-❄️ Using flakes
+💾 Installing Using USB Stick
+</strong></summary>
+
+<h4 id="to-be-announced"><strong>To Be Announced</strong></h4>
+<p>Coming soon....</p>
+<br>
+
+</details>
+
+<h4 id="installing-using-flakes"><strong>Installing using Flakes</strong></h4>
+<details><summary><strong>
+❄️ Installing Using Flakes
 </strong></summary>
 
 <h4 id="1-add-zigduck-as-inputs-in-your-flakenix"><strong>1: Add zigduck as inputs in your flake.nix</strong></h4>
