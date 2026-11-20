@@ -5,7 +5,10 @@
   <title>QuackHack-McBLindy.com » zigduck </title>
   <link rel="canonical" href="https://quackhack-mcblindy.com/posts/zigduck.html" />
 
-  <meta name="google-site-verification=nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ" />
+  <meta
+    name="google-site-verification"
+    content="nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ"
+  />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +25,7 @@
   "@type": "BlogPosting",
   "headline": "zigduck",
   "url": "https://quackhack-mcblindy.com/posts/zigduck.html",
-  "datePublished": "2026-11-19",
+  "datePublished": "2026-11-17",
   "keywords": ["zigduck", "nixos", "nix", "flake", "rust", "smart-home", "home-automation", "zigbee", "mqtt"]
 }
 </script>
@@ -677,6 +680,68 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 }
 
 
+.section-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 16px 30px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(17, 230, 210, .16),
+    rgba(244, 181, 47, .12)
+  );
+
+  border: 1px solid rgba(17, 230, 210, .45);
+  border-radius: 12px;
+
+  color: var(--teal);
+  font-family: "JetBrains Mono", monospace;
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .3);
+
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+.cta-button span {
+  color: var(--gold);
+  font-size: 1.2rem;
+  transition: transform .25s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  background: rgba(17, 230, 210, .15);
+  box-shadow: 0 12px 35px rgba(17, 230, 210, .12);
+}
+
+.cta-button:hover span {
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 560px) {
+  .cta-button {
+    width: 100%;
+    padding: 15px 20px;
+  }
+}
 
 </style>
   <link rel="stylesheet" href="./../static/css/viewport.css" />
@@ -703,10 +768,10 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     <main>
       <section class="content-section hero">
         <div class="wrap reveal">
-          <div class="hero-eyebrow">home-automation · zigbee · nixos</div>
+          <div class="hero-eyebrow">home-automation · zigbee · flake · smart-home</div>
 
           <h1 class="hero-title">
-            <span class="gold">Home Automation with</span> <span class="white">NixOS & flakes</span>
+            <span class="gold">NixOS and flakes</span> <span class="white">Home Automation</span>
           </h1>
           <p class="hero-sub">A Flake For Your House</p>
 
@@ -752,18 +817,9 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 <p>A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure. Zigduck home automation system brings reproducibility, version control, and natural-language control to your deployable smart home.<br></p>
 <p>Nix for configuration, Rust for <strong>blazing fast</strong> responsive async runtime.<br> Under the hood: zigbee2mqtt, Mosquitto, tokio/serde_json, adb and yo.<br></p>
 <p><strong>Define once, deploy forever.</strong></p>
-<p><strong>zigduck</strong> uses smart defaults, after defining your rooms &amp; devices --<br> most users don’t need to write any automations at all.<br> Lights, dimmers, motion sensors - it should all work as expected <strong>out of the box</strong>.<br></p>
-<p>A built-in natural-language automation engine supporting hundreds of millions of possible phrases, with full device, TV and EPG control, timers, alarms, notifications, text-to-speech, and advanced logic (if not, if, while, until, when, chain, state) - all ready to use out of the box, with no grammar definitions or scripts to configure. <br> Much much faster than any LLM and at a much lower power consumption - plus no hallucinations!<br> Users can even write their automations at runtime.</p>
-<p><strong>EVERYTHING</strong> is configurable via NixOS options.<br></p>
-<p>Use the <a href="https://raw.githubusercontent.com/QuackHack-McBlindy/zigduck/refs/heads/main/images/screenshot02.png">GNOME Shell extension</a> <em>(seperate flake)</em> for a handy top bar desktop widget and also an optional dashboard page is generated from the defined Nix configuration to display customized cards as well as scene activation and device control on-the-fly.<br><br></p>
-<br>
-
-<p><img src="Screenshots/zigduck-widget.gif" alt="Zigduck GNOME Shell extension" /></p>
-<br>
-
-<h2 id="detailed-project-tree-view"><strong>Detailed project tree view</strong></h2>
+<h2 id="duck-detailed-project-tree-view"><strong>🦆🪾 Detailed project tree view</strong></h2>
 <details><summary><strong>
-❄️ View project tree (with info)
+--> View project tree (with info)
 </strong></summary>
 
 <div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>zigduck/</span>
@@ -912,7 +968,16 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 
 <br>
 
-<h2 id="installation"><strong>Installation</strong></h2>
+<p><strong>zigduck</strong> uses smart defaults, after defining your rooms &amp; devices --<br> most users don’t need to write any automations at all.<br> Lights, dimmers, motion sensors - it should all work as expected <strong>out of the box</strong>.<br></p>
+<p>A built-in natural-language automation engine supporting hundreds of millions of possible phrases, with full device, TV and EPG control, timers, alarms, notifications, text-to-speech, and advanced logic (if not, if, while, until, when, chain, state) - all ready to use out of the box, with no grammar definitions or scripts to configure. <br> Much much faster than any LLM and at a much lower power consumption - plus no hallucinations!<br> Users can even write their automations at runtime.</p>
+<p><strong>EVERYTHING</strong> is configurable via NixOS options.<br></p>
+<p>Use the <a href="https://raw.githubusercontent.com/QuackHack-McBlindy/zigduck/refs/heads/main/images/screenshot02.png">GNOME Shell extension</a> <em>(seperate flake)</em> for a handy top bar desktop widget and also an optional dashboard page is generated from the defined Nix configuration to display customized cards as well as scene activation and device control on-the-fly.<br><br></p>
+<br>
+
+<p><img src="https://raw.githubusercontent.com/QuackHack-McBlindy/zigduck/refs/heads/main/Screenshots/zigduck-widget.gif" alt="Zigduck GNOME Shell extension" /></p>
+<br>
+
+<h1 id="installation"><strong>Installation</strong></h1>
 <h3 id="two-installation-paths"><strong>Two installation paths</strong></h3>
 <p><strong>Automated USB installer</strong> <em>(dedicated host)</em></p>
 <ul>
@@ -923,11 +988,6 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 <ul>
 <li>For users already running NixOS with flakes</li>
 <li>Ideal for power users and custom configurations</li>
-</ul>
-<h3 id="two-configuration-paths-initial-deviceroomscenes-config"><strong>Two configuration paths (initial device/room/scenes config)</strong></h3>
-<ul>
-<li>Generate your Nix device config using JS from GitHub Pages. Phone/bbrowser friendly.</li>
-<li>Write it yourself. (fun)</li>
 </ul>
 <h4 id="installing-using-automated-usb-installer"><strong>Installing using automated USB installer</strong></h4>
 <details><summary><strong>
@@ -978,6 +1038,11 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>;</span></code></pre></div>
 </details>
 
+<h3 id="two-configuration-paths-initial-deviceroomscenes-config"><strong>Two configuration paths (initial device/room/scenes config)</strong></h3>
+<ul>
+<li>Generate your Nix device config using JS from GitHub Pages. Phone/bbrowser friendly.</li>
+<li>Write it yourself. (fun)</li>
+</ul>
 <br>
 
 <h2 id="configuration--setup--quick-start"><strong>Configuration / Setup / Quick Start</strong></h2>
@@ -1336,6 +1401,21 @@ Example usage (automations written in Nix)
 
 
 
+      <section class="content-section">
+  <div class="wrap reveal">
+    <div class="section-cta">
+      <a
+        class="cta-button"
+        href="https://github.com/quackhack-mcblindy.com/zigduck"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View on GitHub
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
 
       <section class="content-section">
   <div class="wrap reveal">

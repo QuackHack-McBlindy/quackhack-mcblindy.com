@@ -20,6 +20,38 @@
   </author>
 
   <entry>
+  <title>zigduck</title>
+  <id>https://quackhack-mcblindy.com/posts/zigduck.html</id>
+
+  <link href="https://quackhack-mcblindy.com/posts/zigduck.html"/>
+
+
+  <published>2026-11-17T00:00:00Z</published>
+  <updated>2026-11-17T00:00:00Z</updated>
+
+  <summary type="text">A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.</summary>
+
+  <category term="zigduck"/>
+
+<category term="nixos"/>
+
+<category term="nix"/>
+
+<category term="flake"/>
+
+<category term="rust"/>
+
+<category term="smart-home"/>
+
+<category term="home-automation"/>
+
+<category term="zigbee"/>
+
+<category term="mqtt"/>
+
+</entry>
+
+<entry>
   <title>Reverse Engineering the Swedish Hockey League inside a Nix string.</title>
   <id>https://quackhack-mcblindy.com/posts/reverse-engineering-the-swedish-hockey-league.html</id>
 

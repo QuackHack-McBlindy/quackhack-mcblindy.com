@@ -5,7 +5,10 @@
   <title>QuackHack-McBLindy.com » Blog from Dotfiles </title>
   <link rel="canonical" href="https://quackhack-mcblindy.com/posts/blog-from-dotfiles.html" />
 
-  <meta name="google-site-verification=nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ" />
+  <meta
+    name="google-site-verification"
+    content="nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ"
+  />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -677,6 +680,68 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 }
 
 
+.section-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 16px 30px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(17, 230, 210, .16),
+    rgba(244, 181, 47, .12)
+  );
+
+  border: 1px solid rgba(17, 230, 210, .45);
+  border-radius: 12px;
+
+  color: var(--teal);
+  font-family: "JetBrains Mono", monospace;
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .3);
+
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+.cta-button span {
+  color: var(--gold);
+  font-size: 1.2rem;
+  transition: transform .25s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  background: rgba(17, 230, 210, .15);
+  box-shadow: 0 12px 35px rgba(17, 230, 210, .12);
+}
+
+.cta-button:hover span {
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 560px) {
+  .cta-button {
+    width: 100%;
+    padding: 15px 20px;
+  }
+}
 
 </style>
   <link rel="stylesheet" href="./../static/css/viewport.css" />
@@ -734,11 +799,19 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 <section class="content-section">
   <div class="wrap reveal">
     <div class="prose-section">
-      <h3 class="sub-heading"><strong>Why this makes a lot of sense for Me:</strong></h3>
+      <h3 class="sub-heading"><strong>Why this makes a lot of sense to Me:</strong></h3>
 <p>Blog posts belong in these dotfiles because my repository already represents more than system configuration.<br>It represents the entire digital environment, workflows and the knowledge behind it.<br>Just as configurations document how the machines work, blog posts document the ideas, experiments, decisions and solutions that shape them. <br>Keeping everything together makes the knowledge version-controlled, reproducible, searchable and available alongside the actual implementation.</p>
 <p>I bundled this builder to also provide a RSS feed (Atom XML).</p>
 <p>And honestly, having referenced source code automatically refreshed on the website whenever I rebuild my system is pretty damn. sweet.<br>Change the code, rebuild the system and the published documentation follows along.</p>
 <p>It's another little example of how NixOS blurs the line between configuration, automation and documentation.<br>Why maintain things separately when they can all be part of the same flake?</p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="prose-section">
+      <h3 class="sub-heading"><strong>What I wrote to get this webpage:</strong></h3>
     </div>
   </div>
 </section>
@@ -787,10 +860,9 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 
       sections = [
         { idea = &quot;Writing these posts straight from my dotfiles repo.&quot;; }
-
         {
           prose = &#39;&#39;
-            ## **Why this makes a lot of sense for Me:**
+            ## **Why this makes a lot of sense to Me:**
 
             Blog posts belong in these dotfiles because my repository already represents more than system configuration.
             It represents the entire digital environment, workflows and the knowledge behind it.
@@ -804,10 +876,9 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 
             It&#39;s another little example of how NixOS blurs the line between configuration, automation and documentation.
             Why maintain things separately when they can all be part of the same flake?
-
           &#39;&#39;;
         }
-
+        { prose = &quot;## **What I wrote to get this webpage:**&quot;; }
         {
           code = {
             title   = &quot;View this post&#39;s source code.&quot;;
@@ -816,7 +887,16 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
             content = builtins.readFile ./blog-from-dotfiles.nix;
           };
         }
-
+        { prose = &quot;## **What I wrote to get the zigduck webpage:**&quot;; }
+        {
+          code = {
+            title   = &quot;View the nix file for the quackhackmcblindy.com/posts/zigduck webpage.&quot;;
+            lang = &quot;nix&quot;;
+            collapsed = true;
+            content = builtins.readFile ./zigduck.nix;
+          };
+        }
+        { prose = &quot;## **The NixOS module:**&quot;; }
         {
           code = {
             title   = &quot;Click to view blog.nix source code&quot;;
@@ -825,7 +905,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
             content = builtins.readFile ./../blog.nix;
           };
         }
-
+        { button = { title = &quot;View my flake&quot;; link = &quot;https://github.com/quackhack-mcblindy/dotfiles&quot;; }; }
         { duck = &quot;Stay safe, peace and code. QuackHack-McBLindy out!&quot;; }
 
       ];
@@ -835,6 +915,87 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 </code></pre>
 </div>
 
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="prose-section">
+      <h3 class="sub-heading"><strong>What I wrote to get the zigduck webpage:</strong></h3>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="config-block is-collapsed">
+  <div class="config-bar">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+
+    <span class="config-title">View the nix file for the quackhackmcblindy.com/posts/zigduck webpage.</span>
+
+    <button
+      class="collapse-btn"
+      type="button"
+      aria-expanded="false"
+    >Expand</button>
+
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+
+  <pre><code class="language-nix">{
+  lib,
+  config,
+  ...
+} : {
+
+  blog = {
+    enable = true;
+
+    posts.zigduck = {
+      filename    = &quot;zigduck.html&quot;;
+      title       = &quot;zigduck&quot;;
+      date        = &quot;2026-11-17&quot;;
+
+      header1 = &quot;NixOS and flakes&quot;;
+      header2 = &quot;Home Automation&quot;;
+      eyebrow = &quot;home-automation · zigbee · flake · smart-home&quot;;
+
+
+      tags = [
+        &quot;zigduck&quot;
+        &quot;nixos&quot;
+        &quot;nix&quot;
+        &quot;flake&quot;
+        &quot;rust&quot;
+        &quot;smart-home&quot;
+        &quot;home-automation&quot;
+        &quot;zigbee&quot;
+        &quot;mqtt&quot;
+      ];
+
+      tagline = &quot;A Flake For Your House&quot;;
+      description = &quot;A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.&quot;;
+
+      markdownFile = ./../../home/zigduck.md;
+      sections = [{ button = { title = &quot;View on GitHub&quot;; link = &quot;https://github.com/quackhack-mcblindy.com/zigduck&quot;; }; }];
+
+    };
+
+  };}
+</code></pre>
+</div>
+
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="prose-section">
+      <h3 class="sub-heading"><strong>The NixOS module:</strong></h3>
+    </div>
   </div>
 </section>
 
@@ -1002,6 +1163,15 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
         &lt;/div&gt;
       &lt;/section&gt;
     &#39;&#39;
+    else if sec.stats != [] then &#39;&#39;
+      &lt;section class=&quot;content-section&quot;&gt;
+        &lt;div class=&quot;wrap reveal&quot;&gt;
+          ${renderStats sec.stats}
+        &lt;/div&gt;
+      &lt;/section&gt;
+    &#39;&#39;
+    else if sec.button != null then
+      renderButton sec.button
     else if sec.quote != null then &#39;&#39;
       &lt;section class=&quot;content-section&quot;&gt;
         &lt;div class=&quot;wrap reveal&quot;&gt;
@@ -1081,6 +1251,27 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     &lt;/section&gt;
   &#39;&#39;;
 
+
+
+  renderButton = button: &#39;&#39;
+    &lt;section class=&quot;content-section&quot;&gt;
+      &lt;div class=&quot;wrap reveal&quot;&gt;
+        &lt;div class=&quot;section-cta&quot;&gt;
+          &lt;a
+            class=&quot;cta-button&quot;
+            href=&quot;${esc button.link}&quot;
+            target=&quot;_blank&quot;
+            rel=&quot;noopener noreferrer&quot;
+          &gt;
+            ${esc button.title}
+            &lt;span aria-hidden=&quot;true&quot;&gt;↗&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &#39;&#39;;
+
+
   postDescription = post:
     if post.description != null then post.description
     else if post.tagline != &quot;&quot; then post.tagline
@@ -1094,7 +1285,10 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
       &lt;title&gt;QuackHack-McBLindy.com » ${esc post.title} &lt;/title&gt;
       &lt;link rel=&quot;canonical&quot; href=&quot;${cfg.baseUrl}/posts/${post.filename}&quot; /&gt;
 
-      &lt;meta name=&quot;google-site-verification=nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ&quot; /&gt;
+      &lt;meta
+        name=&quot;google-site-verification&quot;
+        content=&quot;nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ&quot;
+      /&gt;
       &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
 
       &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
@@ -2337,8 +2531,71 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     }
 
 
+    .section-cta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 16px 30px;
+
+      background: linear-gradient(
+        135deg,
+        rgba(17, 230, 210, .16),
+        rgba(244, 181, 47, .12)
+      );
+
+      border: 1px solid rgba(17, 230, 210, .45);
+      border-radius: 12px;
+
+      color: var(--teal);
+      font-family: &quot;JetBrains Mono&quot;, monospace;
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .3);
+
+      transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .cta-button span {
+      color: var(--gold);
+      font-size: 1.2rem;
+      transition: transform .25s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+      background: rgba(17, 230, 210, .15);
+      box-shadow: 0 12px 35px rgba(17, 230, 210, .12);
+    }
+
+    .cta-button:hover span {
+      transform: translate(3px, -3px);
+    }
+
+    @media (max-width: 560px) {
+      .cta-button {
+        width: 100%;
+        padding: 15px 20px;
+      }
+    }
 
   &#39;&#39;;
+
 
 
   postFiles = lib.mapAttrs&#39; (name: post:
@@ -2655,6 +2912,24 @@ in {
                   description = &quot;Optional stat tiles under the hero.&quot;;
                 };
 
+                button = mkOption {
+                  type = types.nullOr (types.submodule {
+                    options = {
+                      title = mkOption {
+                        type = types.str;
+                        description = &quot;Button label.&quot;;
+                      };
+
+                      link = mkOption {
+                        type = types.str;
+                        description = &quot;Button destination URL.&quot;;
+                      };
+                    };
+                  });
+                  default = null;
+                  description = &quot;A call-to-action button.&quot;;
+                };
+
                 code = mkOption {
                   type = types.nullOr (types.submodule {
                     options = {
@@ -2732,6 +3007,22 @@ in {
 </code></pre>
 </div>
 
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap reveal">
+    <div class="section-cta">
+      <a
+        class="cta-button"
+        href="https://github.com/quackhack-mcblindy/dotfiles"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View my flake
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
   </div>
 </section>
 

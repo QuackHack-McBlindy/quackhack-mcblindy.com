@@ -5,7 +5,10 @@
   <title>QuackHack-McBLindy.com » Meet My Hardware </title>
   <link rel="canonical" href="https://quackhack-mcblindy.com/posts/hardware.html" />
 
-  <meta name="google-site-verification=nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ" />
+  <meta
+    name="google-site-verification"
+    content="nfCO9B-sHuohdde9OLWBELNHyZ9ODlhIl4wC5OkituQ"
+  />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -677,6 +680,68 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 }
 
 
+.section-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 16px 30px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(17, 230, 210, .16),
+    rgba(244, 181, 47, .12)
+  );
+
+  border: 1px solid rgba(17, 230, 210, .45);
+  border-radius: 12px;
+
+  color: var(--teal);
+  font-family: "JetBrains Mono", monospace;
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .3);
+
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+.cta-button span {
+  color: var(--gold);
+  font-size: 1.2rem;
+  transition: transform .25s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  background: rgba(17, 230, 210, .15);
+  box-shadow: 0 12px 35px rgba(17, 230, 210, .12);
+}
+
+.cta-button:hover span {
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 560px) {
+  .cta-button {
+    width: 100%;
+    padding: 15px 20px;
+  }
+}
 
 .hero-title {
   font-size: clamp(1.8rem, 5vw, 2.8rem);
@@ -1042,20 +1107,20 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
 
-<a class="cross-link" href="/posts/zigduck.html">
-  <span class="cl-icon" aria-hidden="true">🔗</span>
-  <div class="cl-body">
-    <h3 class="cl-title">zigduck</h3>
-    <p class="cl-desc">A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.</p>
-  </div>
-  <span class="cl-arrow" aria-hidden="true">→</span>
-</a>
-
 <a class="cross-link" href="/posts/blog-from-dotfiles.html">
   <span class="cl-icon" aria-hidden="true">🔗</span>
   <div class="cl-body">
     <h3 class="cl-title">Blog from Dotfiles</h3>
     <p class="cl-desc">Suddenly this feels a lot more like me.</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
+<a class="cross-link" href="/posts/zigduck.html">
+  <span class="cl-icon" aria-hidden="true">🔗</span>
+  <div class="cl-body">
+    <h3 class="cl-title">zigduck</h3>
+    <p class="cl-desc">A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.</p>
   </div>
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
