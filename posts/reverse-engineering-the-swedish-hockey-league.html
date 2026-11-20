@@ -337,6 +337,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   .duck-comment::before { left: -15px; width: 30px; height: 30px; font-size: 1.2rem; }
   .idea::before         { left: -35px; width: 40px; height: 40px; font-size: 1.5rem; }
 }
+
 .hero { text-align: center; padding: 30px 0 50px; }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
@@ -599,23 +600,6 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
           <p class="hero-sub">Reverse engineering the Swedish Hockey League inside a Nix string.</p>
 
 
-          <div class="stat-strip">
-  <div class="stat-tile accent-teal">
-  <strong>331</strong>
-  <span>Generated Regex patterns</span>
-</div>
-
-<div class="stat-tile accent-green">
-  <strong>88,153</strong>
-  <span>Understandable voice phrases / variations</span>
-</div>
-
-<div class="stat-tile accent-red">
-  <strong>266</strong>
-  <span>Average variations / pattern</span>
-</div>
-
-</div>
 
         </div>
       </section>
@@ -745,7 +729,7 @@ shl = {
       <h3 class="sub-heading"><strong>Step 4: Build a reusable Nix configuration.</strong></h3>
 <p>Rather than write multiple <code>yo</code>  scripts, I wrote one unified builder.</p>
 <p><strong>Say hello to mkDuckPUCK!</strong></p>
-<p><strong>mkDuckPUCK</strong> is instantiated twice, once per league. I also decided to make one additional script exclusively for searching games.<br>Everything that differs between the leagues lives in a plain attrset.<br>Teans are defined outside of the league to avoid the need for manual entries each season.<br>Teams are also fuzzy matched for user friendly searches.</p>
+<p><strong>mkDuckPUCK</strong> is instantiated twice, once per league. I also decided to make one additional script exclusively for searching games.<br>Everything that differs between the leagues lives in a plain attrset. <br>Teans are defined outside of the league to avoid the need for manual entries each season. <br>Teams are also fuzzy matched for user friendly searches.</p>
 <p>The interesting part is that Nix isn't just configuring two scripts here. It's generating the whole interface.</p>
 <p>One attrset describes the league, its teams, API endpoints and identifiers. From that, the builder produces the scraper, team matching, API mappings, voice entities, parameters and sentence templates.</p>
 <p>Same engine. Two leagues. duckPUCK</p>
@@ -790,7 +774,7 @@ shl = {
 <p>Every parameter here is what <code>yo</code> exposes to the caller and what the<br>voice layer fills in from natural language. <code>mode</code> is the only required<br>one - <code>table</code>, <code>recent</code>, <code>upcoming</code>, <code>best</code>, <code>worst</code> - and it is pulled<br>from a shared enum (<code>swe.allowFrom</code>) so the Swedish synonyms stay in<br>sync across scripts. <code>team</code> is the fuzzy-matched team name, <code>stat</code> is<br>the stat key (<code>powerplay</code>, <code>tallest</code>, <code>goals</code>, …), <code>count</code> is how many<br>rows to return, and <code>dataDir</code> is where the scraper writes <code>table.json</code>.</p>
 <p>All of it is declared once per league, and the builder wires it into<br>the scraper, the analyzer and the voice parser. There is no second<br>place to keep in sync - which is the whole point of building this<br>as an attrset instead of two hand-written shell scripts.</p>
 <p>So, these will be the valid parameters for stats:</p>
-<p><ul><br>    <li>powerplay</li><br>    <li>boxplay</li><br>    <li>shorthanded_goals</li><br>    <li>shorthanded</lu><br>    <li>goalkeeper</li><br>    <li>save_percentage</li><br>    <li>penalty</li><br>    <li>tallest</li><br>    <li>shortest</li><br>    <li>heaviest</li><br>    <li>lightest</li><br>    <li>oldest</li><br>    <li>youngest</li><br>    <li>icetime</li><br>    <li>goals</li><br>    <li>assists</li><br>    <li>points</li><br></ul></p>
+<p><ul><br>    <li>powerplay</li><br>    <li>boxplay</li><br>    <li>shorthanded_goals</li><br>    <li>shorthanded</lu><br>    <li>goalkeeper</li><br>    <li>save_percentage</li><br>    <li>penalty</li><br>    <li>tallest</li><br>    <li>shortest</li><br>    <li>heaviest</li><br>    <li>lightest</li><br>    <li>oldest</li><br>    <li>youngest</li><br>    <li>icetime</li><br>    <li>goals</li><br>    <li>assists</li><br>    <li>points</li>          <br></ul></p>
     </div>
   </div>
 </section>
@@ -2895,6 +2879,7 @@ in {
   </div>
 </section>
 
+
 <section class="content-section">
   <div class="wrap reveal">
     <div class="duck-comment">
@@ -2922,11 +2907,20 @@ in {
       <h2><span class="gold">Related</span> <span class="white">posts</span></h2>
     </div>
     <div class="cross-links">
-      <a class="cross-link" href="/posts/one-billion-understandable-phrases.html">
+      <a class="cross-link" href="/posts/zigduck.html">
+  <span class="cl-icon" aria-hidden="true">🔗</span>
+  <div class="cl-body">
+    <h3 class="cl-title">zigduck</h3>
+    <p class="cl-desc">A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
+<a class="cross-link" href="/posts/one-billion-understandable-phrases.html">
   <span class="cl-icon" aria-hidden="true">🔗</span>
   <div class="cl-body">
     <h3 class="cl-title">A Unique Milestone Reached</h3>
-    <p class="cl-desc">yo crossed one billion generated phrases. 9,465 patterns. 121,402,307,390 phrases. 103 scripts, 74 voice-ready. 97 ms average over 1,467 runs.</p>
+    <p class="cl-desc">yo crossed one billion generated phrases. 9,465 patterns. 121,402,307,390 phrases. 105 scripts, 74 voice-ready. 97 ms average over 1,467 runs.</p>
   </div>
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
@@ -2936,15 +2930,6 @@ in {
   <div class="cl-body">
     <h3 class="cl-title">Blog from Dotfiles</h3>
     <p class="cl-desc">Suddenly this feels a lot more like me.</p>
-  </div>
-  <span class="cl-arrow" aria-hidden="true">→</span>
-</a>
-
-<a class="cross-link" href="/posts/accessibility-on-linux.html">
-  <span class="cl-icon" aria-hidden="true">🔗</span>
-  <div class="cl-body">
-    <h3 class="cl-title">Accessibility on Linux / NixOS</h3>
-    <p class="cl-desc">Linux should be for everyone, not just people without disabilities. Accessibility on NixOS is terrible out of the box - here&#39;s my magnifier flake and a voice-to-shell translator.</p>
   </div>
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
@@ -2959,6 +2944,29 @@ in {
     <footer>
       <div class="wrap footer-row">
         <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBLindy.com</span></strong></div>
+        <a
+          href="https://quackhack-mcblindy.com/atom.xml"
+          aria-label="Subscribe to the Atom feed"
+          title="Subscribe to the Atom feed"
+          class="feed-link"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 19a2 2 0 0 1 0-4 2 2 0 0 1 0 4Z" />
+            <path d="M5 5a14 14 0 0 1 14 14" />
+            <path d="M5 12a7 7 0 0 1 7 7" />
+          </svg>
+        </a>
         <div class="footer-links">
           <a href="#top">Top</a>
         </div>

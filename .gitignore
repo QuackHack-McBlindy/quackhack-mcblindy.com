@@ -2,6 +2,8 @@ posts-new.json
 dump
 /dump
 dump/
+hooks/clean.sh
+clean.sh
 *.bak
 posts-new.json.backup
 posts/posts.json

@@ -337,6 +337,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   .duck-comment::before { left: -15px; width: 30px; height: 30px; font-size: 1.2rem; }
   .idea::before         { left: -35px; width: 40px; height: 40px; font-size: 1.5rem; }
 }
+
 .hero { text-align: center; padding: 30px 0 50px; }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
@@ -756,20 +757,20 @@ programs.bash = {
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
 
+<a class="cross-link" href="/posts/zigduck.html">
+  <span class="cl-icon" aria-hidden="true">🔗</span>
+  <div class="cl-body">
+    <h3 class="cl-title">zigduck</h3>
+    <p class="cl-desc">A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
 <a class="cross-link" href="/posts/blog-from-dotfiles.html">
   <span class="cl-icon" aria-hidden="true">🔗</span>
   <div class="cl-body">
     <h3 class="cl-title">Blog from Dotfiles</h3>
     <p class="cl-desc">Suddenly this feels a lot more like me.</p>
-  </div>
-  <span class="cl-arrow" aria-hidden="true">→</span>
-</a>
-
-<a class="cross-link" href="/posts/accessibility-on-linux.html">
-  <span class="cl-icon" aria-hidden="true">🔗</span>
-  <div class="cl-body">
-    <h3 class="cl-title">Accessibility on Linux / NixOS</h3>
-    <p class="cl-desc">Linux should be for everyone, not just people without disabilities. Accessibility on NixOS is terrible out of the box - here&#39;s my magnifier flake and a voice-to-shell translator.</p>
   </div>
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
@@ -784,6 +785,29 @@ programs.bash = {
     <footer>
       <div class="wrap footer-row">
         <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBLindy.com</span></strong></div>
+        <a
+          href="https://quackhack-mcblindy.com/atom.xml"
+          aria-label="Subscribe to the Atom feed"
+          title="Subscribe to the Atom feed"
+          class="feed-link"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 19a2 2 0 0 1 0-4 2 2 0 0 1 0 4Z" />
+            <path d="M5 5a14 14 0 0 1 14 14" />
+            <path d="M5 12a7 7 0 0 1 7 7" />
+          </svg>
+        </a>
         <div class="footer-links">
           <a href="#top">Top</a>
         </div>

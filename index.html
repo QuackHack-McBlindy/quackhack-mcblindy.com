@@ -110,6 +110,28 @@
         }
       }
 
+      .footer-copyright {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          flex-wrap: wrap;
+      }
+
+      .footer-rss {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          color: #d7a936;
+          margin-left: 5px;
+          transition: color .2s ease, transform .2s ease;
+      }
+
+      .footer-rss:hover {
+          color: #00d9c4;
+          transform: scale(1.15);
+      }
+
+
     </style>
 
     <!-- MUST COME LAST -->
@@ -386,7 +408,7 @@
                     <div class="section-head reveal anim">
                         <div>
                             <div class="eyebrow">FAQ</div>
-                            <h2>Fast questions.<br><span class="gold">Quack answers.</span></h2>
+                            <h2>Quick questions.<br><span class="gold">Quack answers.</span></h2>
                         </div>
                     </div>
 
@@ -419,14 +441,44 @@
 
         </main>
 
+
         <footer>
             <div class="wrap footer-row">
-                <div><a href="https://github.com/QuackHack-McBlindy/quackhack-mcblindy.com" class="gold-link" target="_blank" rel="noopener">Source</a> » <span class="gold">©</span> <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBlindy.com</span></strong></div>
+                <div class="footer-copyright">
+                    <a href="https://github.com/QuackHack-McBlindy/quackhack-mcblindy.com"
+                       class="gold-link"
+                       target="_blank"
+                       rel="noopener">Source</a>
+                    »
+                    <span class="gold">©</span>
+                    <span id="year"></span>
+                    <strong style="color:#d7e8e5">
+                        <span class="gold">QuackHack-McBlindy.com</span>
+                    </strong>
+
+                    <a href="https://quackhack-mcblindy.com/atom.xml"
+                       class="footer-rss"
+                       aria-label="Subscribe to RSS feed"
+                       title="Subscribe to RSS feed">
+                        <svg viewBox="0 0 24 24"
+                             width="15"
+                             height="15"
+                             fill="currentColor"
+                             aria-hidden="true">
+                            <circle cx="5" cy="19" r="2"/>
+                            <path d="M3 11a10 10 0 0 1 10 10h3A13 13 0 0 0 3 8z"/>
+                            <path d="M3 4a17 17 0 0 1 17 17h3A20 20 0 0 0 3 1z"/>
+                        </svg>
+                    </a>
+                </div>
+
                 <div class="footer-links">
                     <a href="#top">Top</a>
                 </div>
             </div>
         </footer>
+
+
 
         <svg height="0" width="0" style="position:absolute;">
             <filter id="f1">

@@ -337,6 +337,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   .duck-comment::before { left: -15px; width: 30px; height: 30px; font-size: 1.2rem; }
   .idea::before         { left: -35px; width: 40px; height: 40px; font-size: 1.5rem; }
 }
+
 .hero { text-align: center; padding: 30px 0 50px; }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
@@ -753,6 +754,12 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     [ &quot;&amp;amp;&quot; &quot;&amp;lt;&quot; &quot;&amp;gt;&quot; &quot;&amp;quot;&quot; &quot;&amp;#39;&quot; ]
     (toString s);
 
+  xmlEsc = s:
+    builtins.replaceStrings
+      [ &quot;&amp;&quot; &quot;&lt;&quot; &quot;&gt;&quot; &quot;\&quot;&quot; &quot;&#39;&quot; ]
+      [ &quot;&amp;amp;&quot; &quot;&amp;lt;&quot; &quot;&amp;gt;&quot; &quot;&amp;quot;&quot; &quot;&amp;apos;&quot; ]
+      (toString s);
+
   wrapMatches = re: wrap: s:
     let
       parts = builtins.split re s;
@@ -915,7 +922,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     &#39;&#39;
       &lt;p class=&quot;big-quote&quot;&gt;${section.content}&lt;/p&gt;
       ${optionalString (section.author or null != null)
-        &#39;&#39;&lt;p class=&quot;big-quote-cite&quot;&gt;- ${esc section.author}&lt;/p&gt;&#39;&#39;}
+        &#39;&#39;&lt;p class=&quot;big-quote-cite&quot;&gt;— ${esc section.author}&lt;/p&gt;&#39;&#39;}
     &#39;&#39;;
 
   renderCrossLinks = links: &#39;&#39;
@@ -1087,6 +1094,29 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
         &lt;footer&gt;
           &lt;div class=&quot;wrap footer-row&quot;&gt;
             &lt;div&gt;© &lt;span id=&quot;year&quot;&gt;&lt;/span&gt; &lt;strong style=&quot;color:#d7e8e5&quot;&gt;&lt;span class=&quot;gold&quot;&gt;${esc cfg.siteName}&lt;/span&gt;&lt;/strong&gt;&lt;/div&gt;
+            &lt;a
+              href=&quot;${cfg.baseUrl}/atom.xml&quot;
+              aria-label=&quot;Subscribe to the Atom feed&quot;
+              title=&quot;Subscribe to the Atom feed&quot;
+              class=&quot;feed-link&quot;
+            &gt;
+              &lt;svg
+                xmlns=&quot;http://www.w3.org/2000/svg&quot;
+                width=&quot;16&quot;
+                height=&quot;16&quot;
+                viewBox=&quot;0 0 24 24&quot;
+                fill=&quot;none&quot;
+                stroke=&quot;currentColor&quot;
+                stroke-width=&quot;2&quot;
+                stroke-linecap=&quot;round&quot;
+                stroke-linejoin=&quot;round&quot;
+                aria-hidden=&quot;true&quot;
+              &gt;
+                &lt;path d=&quot;M5 19a2 2 0 0 1 0-4 2 2 0 0 1 0 4Z&quot; /&gt;
+                &lt;path d=&quot;M5 5a14 14 0 0 1 14 14&quot; /&gt;
+                &lt;path d=&quot;M5 12a7 7 0 0 1 7 7&quot; /&gt;
+              &lt;/svg&gt;
+            &lt;/a&gt;
             &lt;div class=&quot;footer-links&quot;&gt;
               &lt;a href=&quot;#top&quot;&gt;Top&lt;/a&gt;
             &lt;/div&gt;
@@ -1838,6 +1868,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
       .duck-comment::before { left: -15px; width: 30px; height: 30px; font-size: 1.2rem; }
       .idea::before         { left: -35px; width: 40px; height: 40px; font-size: 1.5rem; }
     }
+
   &#39;&#39;;
 
   commonCss = &#39;&#39;
@@ -2108,13 +2139,69 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     ${pkgs.jq}/bin/jq . ${pkgs.writeText &quot;posts-raw.json&quot; (builtins.toJSON postsData)} &gt; $out
   &#39;&#39;;
 
+  atomXml = pkgs.writeText &quot;atom.xml&quot; &#39;&#39;
+    &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+    &lt;feed xmlns=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+
+      &lt;title&gt;${xmlEsc cfg.siteName}&lt;/title&gt;
+      &lt;subtitle&gt;Code, wisdom and tales of NixOS flakes.&lt;/subtitle&gt;
+
+      &lt;id&gt;${xmlEsc cfg.baseUrl}/&lt;/id&gt;
+      &lt;link href=&quot;${xmlEsc cfg.baseUrl}/&quot;/&gt;
+      &lt;link href=&quot;${xmlEsc cfg.baseUrl}/atom.xml&quot; rel=&quot;self&quot;
+            type=&quot;application/atom+xml&quot;/&gt;
+
+      &lt;updated&gt;${xmlEsc cfg.feedUpdated}&lt;/updated&gt;
+
+      &lt;author&gt;
+        &lt;name&gt;${xmlEsc cfg.siteName}&lt;/name&gt;
+        &lt;uri&gt;${xmlEsc cfg.baseUrl}/&lt;/uri&gt;
+      &lt;/author&gt;
+
+      ${concatStringsSep &quot;\n&quot; (map (post: &#39;&#39;
+        &lt;entry&gt;
+          &lt;title&gt;${xmlEsc post.title}&lt;/title&gt;
+
+          &lt;id&gt;${xmlEsc cfg.baseUrl}/posts/${xmlEsc post.filename}&lt;/id&gt;
+
+          &lt;link href=&quot;${xmlEsc cfg.baseUrl}/posts/${xmlEsc post.filename}&quot;/&gt;
+
+          &lt;published&gt;${xmlEsc post.date}T00:00:00Z&lt;/published&gt;
+          &lt;updated&gt;${xmlEsc post.date}T00:00:00Z&lt;/updated&gt;
+
+          &lt;summary type=&quot;text&quot;&gt;${xmlEsc (postDescription post)}&lt;/summary&gt;
+
+          ${concatStringsSep &quot;\n&quot; (map (tag: &#39;&#39;
+            &lt;category term=&quot;${xmlEsc tag}&quot;/&gt;
+          &#39;&#39;) post.tags)}
+        &lt;/entry&gt;
+      &#39;&#39;) sortedPosts)}
+
+      ${concatStringsSep &quot;\n&quot; (map (post: &#39;&#39;
+        &lt;entry&gt;
+          &lt;title&gt;${xmlEsc post.title}&lt;/title&gt;
+          &lt;id&gt;${xmlEsc post.link}&lt;/id&gt;
+          &lt;link href=&quot;${xmlEsc post.link}&quot;/&gt;
+          &lt;published&gt;${xmlEsc post.date}T00:00:00Z&lt;/published&gt;
+          &lt;updated&gt;${xmlEsc post.date}T00:00:00Z&lt;/updated&gt;
+          &lt;summary type=&quot;text&quot;&gt;${xmlEsc post.description}&lt;/summary&gt;
+          ${concatStringsSep &quot;\n&quot; (map (tag: &#39;&#39;
+            &lt;category term=&quot;${xmlEsc tag}&quot;/&gt;
+          &#39;&#39;) post.tags)}
+        &lt;/entry&gt;
+      &#39;&#39;) (if cfg.postsJson != null then cfg.postsJson else cfg.extraPosts))}
+
+    &lt;/feed&gt;
+  &#39;&#39;;
+
   html = pkgs.runCommand &quot;blog-html&quot; { } &#39;&#39;
     mkdir -p $out $out/posts
     ${concatStringsSep &quot;\n&quot; (mapAttrsToList (name: f: &quot;cp ${f} $out/${name}&quot;) postFiles)}
     cp ${postsJson} $out/posts.json
     cp ${postsJson} $out/posts/posts.json
-  &#39;&#39;;
 
+    cp ${atomXml} $out/atom.xml
+  &#39;&#39;;
 in {
 
   options.blog = {
@@ -2138,6 +2225,8 @@ in {
       description = &quot;Generated site directory (HTML files + posts.json).&quot;;
     };
 
+
+
     postsJson = mkOption {
       type = types.nullOr (types.listOf (types.submodule {
         options = {
@@ -2151,7 +2240,7 @@ in {
       default = null;
       description = &#39;&#39;
         Full override for posts.json. When set, blog.posts is used ONLY for
-        page generation - this list is emitted verbatim as posts.json.
+        page generation — this list is emitted verbatim as posts.json.
       &#39;&#39;;
     };
 
@@ -2169,6 +2258,16 @@ in {
       description = &#39;&#39;
         Extra entries appended to the auto-generated posts.json. Use for
         external links, placeholders, or anything without a real page.
+      &#39;&#39;;
+    };
+
+    feedUpdated = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+      example = &quot;2026-11-20T14:30:00Z&quot;;
+      description = &#39;&#39;
+        Optional ISO 8601 timestamp for the Atom feed&#39;s last update.
+        When null, the date of the newest post is used.
       &#39;&#39;;
     };
 
@@ -2242,26 +2341,26 @@ in {
               options = {
                 prose = mkOption { type = types.nullOr types.lines; default = null; };
                 html = mkOption { type = types.nullOr types.str; default = null; };
-                warning = mkOption {
-                  type = types.nullOr types.lines;
-                  default = null;
-                  description = &quot;Warning callout. HTML allowed.&quot;;
+                warning = mkOption { type = types.nullOr types.lines; default = null; description = &quot;Warning callout. HTML allowed.&quot;; };
+                quote = mkOption { type = types.nullOr types.lines; default = null; description = &quot;Quote callout. HTML allowed.&quot;; };
+                duck = mkOption { type = types.nullOr types.lines; default = null; description = &quot;Duck comment callout. HTML allowed.&quot;; };
+                idea = mkOption { type = types.nullOr types.lines; default = null; description = &quot;Idea callout. HTML allowed.&quot;; };
+
+                stats = mkOption {
+                  type = types.listOf (types.submodule {
+                    options = {
+                      value = mkOption { type = types.str; };
+                      label = mkOption { type = types.str; };
+                      accent = mkOption {
+                        type = types.enum [ &quot;teal&quot; &quot;gold&quot; &quot;gold2&quot; &quot;green&quot; &quot;pink&quot; &quot;purple&quot; &quot;blue&quot; &quot;red&quot; ];
+                        default = &quot;teal&quot;;
+                      };
+                    };
+                  });
+                  default = [ ];
+                  description = &quot;Optional stat tiles under the hero.&quot;;
                 };
-                quote = mkOption {
-                  type = types.nullOr types.lines;
-                  default = null;
-                  description = &quot;Quote callout. HTML allowed.&quot;;
-                };
-                duck = mkOption {
-                  type = types.nullOr types.lines;
-                  default = null;
-                  description = &quot;Duck comment callout. HTML allowed.&quot;;
-                };
-                idea = mkOption {
-                  type = types.nullOr types.lines;
-                  default = null;
-                  description = &quot;Idea callout. HTML allowed.&quot;;
-                };
+
                 code = mkOption {
                   type = types.nullOr (types.submodule {
                     options = {
@@ -2282,11 +2381,7 @@ in {
             default = [ ];
             description = &quot;Ordered content sections: prose, HTML, code, warning, quote, duck, and idea. Entries can be repeated.&quot;;
           };
-          warning = mkOption {
-            type = types.nullOr types.str;
-            default = null;
-            description = &quot;Warning box (HTML allowed).&quot;;
-          };
+          warning = mkOption { type = types.nullOr types.str; default = null; description = &quot;Warning box (HTML allowed).&quot;; };
           crossLinks = mkOption {
             type = types.listOf (types.submodule {
               options = {
@@ -2335,8 +2430,8 @@ in {
             &quot;${config.blog.html}/${post.filename}&quot;)
         config.blog.posts)
       // {
-        &quot;QuackHack-McBlindy.com/posts.json&quot; =
-          &quot;${config.blog.html}/posts.json&quot;;
+        &quot;QuackHack-McBlindy.com/posts.json&quot; = &quot;${config.blog.html}/posts.json&quot;;
+        &quot;QuackHack-McBlindy.com/atom.xml&quot;   = &quot;${config.blog.html}/atom.xml&quot;;
       };
 
   };}
@@ -2382,20 +2477,20 @@ in {
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
 
+<a class="cross-link" href="/posts/zigduck.html">
+  <span class="cl-icon" aria-hidden="true">🔗</span>
+  <div class="cl-body">
+    <h3 class="cl-title">zigduck</h3>
+    <p class="cl-desc">A declarative, reproducible smart-home operating system (NixOS) for people who want their home automation to be as maintainable as their infrastructure.</p>
+  </div>
+  <span class="cl-arrow" aria-hidden="true">→</span>
+</a>
+
 <a class="cross-link" href="/posts/accessibility-on-linux.html">
   <span class="cl-icon" aria-hidden="true">🔗</span>
   <div class="cl-body">
     <h3 class="cl-title">Accessibility on Linux / NixOS</h3>
     <p class="cl-desc">Linux should be for everyone, not just people without disabilities. Accessibility on NixOS is terrible out of the box - here&#39;s my magnifier flake and a voice-to-shell translator.</p>
-  </div>
-  <span class="cl-arrow" aria-hidden="true">→</span>
-</a>
-
-<a class="cross-link" href="/posts/tor-in-a-shell.html">
-  <span class="cl-icon" aria-hidden="true">🔗</span>
-  <div class="cl-body">
-    <h3 class="cl-title">Tor in a Shell</h3>
-    <p class="cl-desc">Every other Tor setup asks you to point something at something. This one asks you to type hide - Firejail, nftables, and a NetworkManager bridge.</p>
   </div>
   <span class="cl-arrow" aria-hidden="true">→</span>
 </a>
@@ -2410,6 +2505,29 @@ in {
     <footer>
       <div class="wrap footer-row">
         <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBLindy.com</span></strong></div>
+        <a
+          href="https://quackhack-mcblindy.com/atom.xml"
+          aria-label="Subscribe to the Atom feed"
+          title="Subscribe to the Atom feed"
+          class="feed-link"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 19a2 2 0 0 1 0-4 2 2 0 0 1 0 4Z" />
+            <path d="M5 5a14 14 0 0 1 14 14" />
+            <path d="M5 12a7 7 0 0 1 7 7" />
+          </svg>
+        </a>
         <div class="footer-links">
           <a href="#top">Top</a>
         </div>
