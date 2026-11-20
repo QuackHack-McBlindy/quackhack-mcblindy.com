@@ -567,6 +567,117 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 .prose-section ol { color: #c9dbd8; padding-left: 1.4em; margin: 0 0 16px; }
 .prose-section li { margin: 6px 0; line-height: 1.7; }
 
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+  font-family: "Cinzel Decorative", Georgia, serif;
+  color: var(--teal);
+  margin: 32px 0 16px;
+  line-height: 1.35;
+}
+
+.markdown-content h1 {
+  font-size: 1.8rem;
+}
+
+.markdown-content h2 {
+  font-size: 1.5rem;
+}
+
+.markdown-content h3 {
+  font-size: 1.2rem;
+}
+
+.markdown-content a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.markdown-content a:hover {
+  color: var(--gold);
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  color: #c9dbd8;
+  padding-left: 1.6em;
+  margin-bottom: 20px;
+}
+
+.markdown-content li {
+  margin: 6px 0;
+  line-height: 1.7;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid var(--teal);
+  background: rgba(17,230,210,.04);
+  padding: 14px 20px;
+  margin: 24px 0;
+  border-radius: 0 10px 10px 0;
+  color: #c9dbd8;
+}
+
+.markdown-content pre {
+  background: #080d0c;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 20px 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.markdown-content pre code {
+  background: none;
+  padding: 0;
+  color: #d9ece9;
+}
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  display: block;
+  overflow-x: auto;
+}
+
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid var(--line);
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.markdown-content th {
+  color: var(--gold2);
+  background: var(--panel2);
+}
+
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.markdown-content hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 32px 0;
+}
+
+.markdown-content input[type="checkbox"] {
+  accent-color: var(--teal);
+  margin-right: 8px;
+}
+
+
+
 </style>
   <link rel="stylesheet" href="./../static/css/viewport.css" />
 </head>
@@ -614,6 +725,9 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     </div>
   </div>
 </section>
+
+
+
 
 
       <section class="content-section">
@@ -2944,29 +3058,7 @@ in {
     <footer>
       <div class="wrap footer-row">
         <div>© <span id="year"></span> <strong style="color:#d7e8e5"><span class="gold">QuackHack-McBLindy.com</span></strong></div>
-        <a
-          href="https://quackhack-mcblindy.com/atom.xml"
-          aria-label="Subscribe to the Atom feed"
-          title="Subscribe to the Atom feed"
-          class="feed-link"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M5 19a2 2 0 0 1 0-4 2 2 0 0 1 0 4Z" />
-            <path d="M5 5a14 14 0 0 1 14 14" />
-            <path d="M5 12a7 7 0 0 1 7 7" />
-          </svg>
-        </a>
+
         <div class="footer-links">
           <a href="#top">Top</a>
         </div>
