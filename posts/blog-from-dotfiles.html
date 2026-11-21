@@ -881,7 +881,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   <div class="wrap reveal">
     <div class="prose-section">
       <h3 class="sub-heading"><strong>Why this makes a lot of sense to Me:</strong></h3>
-<p>Blog posts belong in these dotfiles because my repository already represents more than system configuration.<br>It represents the entire digital environment, workflows and the knowledge behind it.<br>Just as configurations document how the machines work, blog posts document the ideas, experiments, decisions and solutions that shape them. <br>Keeping everything together makes the knowledge version-controlled, reproducible, searchable and available alongside the actual implementation.</p>
+<p>Blog posts belong in these dotfiles because my repository already represents more than system configuration.<br>It represents the entire digital environment, workflows and the knowledge behind it.<br>Just as configurations document how the machines work, blog posts document the ideas, experiments, decisions and solutions that shape them.<br>Keeping everything together makes the knowledge version-controlled, reproducible, searchable and available alongside the actual implementation.</p>
 <p>I bundled this builder to also provide a RSS feed (Atom XML).</p>
 <p>And honestly, having referenced source code automatically refreshed on the website whenever I rebuild my system is pretty damn. sweet.<br>Change the code, rebuild the system and the published documentation follows along.</p>
 <p>It's another little example of how NixOS blurs the line between configuration, automation and documentation.<br>Why maintain things separately when they can all be part of the same flake?</p>
@@ -1118,6 +1118,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
     concatStringsSep &quot;, &quot; (map (t: &quot;\&quot;${t}\&quot;&quot;) tags);
 
 
+
   videoFilter = pkgs.writeText &quot;video-filter.lua&quot; &#39;&#39;
     function escapeHtml(s)
       return s:gsub(&quot;&amp;&quot;, &quot;&amp;amp;&quot;)
@@ -1128,33 +1129,28 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 
     function Link(el)
       local url = el.target
-      local lower = url:lower()
-
       local isGitHubVideo =
         url:match(&quot;^https://github.com/user%-attachments/assets/&quot;)
 
+      local lower = url:lower()
       local isVideo =
         lower:match(&quot;%.mp4$&quot;) or
         lower:match(&quot;%.webm$&quot;) or
         lower:match(&quot;%.ogg$&quot;)
 
       if isGitHubVideo or isVideo then
-        local safeUrl = escapeHtml(url)
-
-        return pandoc.RawInline(&quot;html&quot;, string.format(
-          &#39;&lt;video controls preload=&quot;metadata&quot; playsinline style=&quot;max-width:100%%;height:auto;border-radius:12px;&quot;&gt;&#39; ..
-          &#39;&lt;source src=&quot;%s&quot;&gt;&#39; ..
+        return pandoc.RawInline(&quot;html&quot;,
+          &#39;&lt;video controls preload=&quot;metadata&quot; playsinline &#39; ..
+          &#39;style=&quot;max-width:100%;height:auto;border-radius:12px;&quot;&gt;&#39; ..
+          &#39;&lt;source src=&quot;&#39; .. escapeHtml(url) .. &#39;&quot;&gt;&#39; ..
           &#39;Your browser does not support HTML5 video.&#39; ..
-          &#39;&lt;/video&gt;&#39;,
-          safeUrl
-        ))
+          &#39;&lt;/video&gt;&#39;
+        )
       end
 
       return el
     end
   &#39;&#39;;
-
-
 
   renderMarkdown = file:
     pkgs.runCommand &quot;blog-markdown.html&quot; {
@@ -1507,7 +1503,7 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 
           ${optionalString (post.markdownFile != null) &#39;&#39;
             &lt;section class=&quot;content-section&quot;&gt;
-              &lt;div class=&quot;wrap reveal&quot;&gt;
+              &lt;div class=&quot;wrap&quot;&gt;
                 &lt;div class=&quot;prose-section markdown-content&quot;&gt;
                   &lt;!-- BLOG_MARKDOWN_FILE --&gt;
                 &lt;/div&gt;
