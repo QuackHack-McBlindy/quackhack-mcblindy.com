@@ -883,9 +883,9 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
 
 <!-- VERSIONS_START -->
 
-<p><img src="https://img.shields.io/badge/license-MIT-black?style=flat-square&amp;logo=opensourceinitiative&amp;logoColor=white" alt="License" /> <img src="https://img.shields.io/badge/🦆%20zigduck-0.2.13-black?style=flat" alt="zigduck" /></p>
+<p><img src="https://img.shields.io/badge/license-MIT-black?style=flat-square&amp;logo=opensourceinitiative&amp;logoColor=white" alt="License" /> <img src="https://img.shields.io/badge/🦆%20zigduck-0.2.15-black?style=flat" alt="zigduck" /></p>
 <p><img src="https://github.com/QuackHack-McBlindy/zigduck/actions/workflows/ci.yml/badge.svg" alt="Build" /> <img src="https://github.com/QuackHack-McBlindy/zigduck/actions/workflows/wiki.yml/badge.svg" alt="Docs" /></p>
-<p><img src="https://img.shields.io/badge/Mosquitto-2.1.2-yellow?style=flat-square&amp;logo=eclipsemosquitto&amp;logoColor=white" alt="Mosquitto" /> <img src="https://img.shields.io/badge/Zigbee2MQTT-2.14.3-yellow?style=flat-square&amp;logo=zigbee2mqtt&amp;logoColor=white" alt="Zigbee2MQTT" /> <img src="https://img.shields.io/badge/ADB-1.0.41-green?style=flat-square&amp;logo=android&amp;logoColor=white" alt="ADB" /> <img src="https://img.shields.io/badge/💬%20yo-0.2.14-black?style=flat" alt="yo" /></p>
+<p><img src="https://img.shields.io/badge/Mosquitto-2.1.2-yellow?style=flat-square&amp;logo=eclipsemosquitto&amp;logoColor=white" alt="Mosquitto" /> <img src="https://img.shields.io/badge/Zigbee2MQTT-2.14.3-yellow?style=flat-square&amp;logo=zigbee2mqtt&amp;logoColor=white" alt="Zigbee2MQTT" /> <img src="https://img.shields.io/badge/ADB-1.0.41-green?style=flat-square&amp;logo=android&amp;logoColor=white" alt="ADB" /> <img src="https://img.shields.io/badge/💬%20yo-0.2.15-black?style=flat" alt="yo" /></p>
 <!-- VERSIONS_END -->
 
   <br>
@@ -1436,40 +1436,61 @@ Example usage (automations written in Nix)
 <thead>
 <tr>
 <th>Language</th>
-<th style="text-align: left;">Progress</th>
+<th style="text-align: right;">Scripts</th>
+<th style="text-align: right;">Voice scripts</th>
+<th style="text-align: left;">Voice script coverage</th>
 <th style="text-align: right;">Patterns</th>
+<th style="text-align: right;">Phrases</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>🇸🇪 Swedish</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">19</td>
 <td style="text-align: left;"><code>████████████████████░</code> 100%</td>
-<td style="text-align: right;">6374</td>
+<td style="text-align: right;">6762</td>
+<td style="text-align: right;">292164797</td>
 </tr>
 <tr>
 <td>🇬🇧 English</td>
-<td style="text-align: left;"><code>████████░░░░░░░░░░░░</code> 42%</td>
-<td style="text-align: right;">2721</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: left;"><code>█████████████████░░░</code> 89%</td>
+<td style="text-align: right;">2565</td>
+<td style="text-align: right;">77536805</td>
 </tr>
 <tr>
 <td>🇩🇪 German</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;"><code>███░░░░░░░░░░░░░░░░░</code> 15%</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">260</td>
 </tr>
 <tr>
 <td>🇪🇸 Spanish</td>
-<td style="text-align: left;">-</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;"><code>██░░░░░░░░░░░░░░░░░░</code> 10%</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr>
 <td>🇫🇷 French</td>
-<td style="text-align: left;">❌ eval error</td>
-<td style="text-align: right;">-</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;"><code>██░░░░░░░░░░░░░░░░░░</code> 10%</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr>
 <td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>19</strong></td>
+<td style="text-align: right;"><strong>43</strong></td>
 <td style="text-align: left;"></td>
-<td style="text-align: right;"><strong>9095</strong> <em>(+1 failed)</em></td>
+<td style="text-align: right;"><strong>9362</strong></td>
+<td style="text-align: right;"><strong>369701862</strong></td>
 </tr>
 </tbody>
 </table>

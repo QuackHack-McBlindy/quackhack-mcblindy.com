@@ -1117,6 +1117,45 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
   tagsToKeywords = tags:
     concatStringsSep &quot;, &quot; (map (t: &quot;\&quot;${t}\&quot;&quot;) tags);
 
+
+  videoFilter = pkgs.writeText &quot;video-filter.lua&quot; &#39;&#39;
+    function escapeHtml(s)
+      return s:gsub(&quot;&amp;&quot;, &quot;&amp;amp;&quot;)
+              :gsub(&#39;&quot;&#39;, &quot;&amp;quot;&quot;)
+              :gsub(&quot;&lt;&quot;, &quot;&amp;lt;&quot;)
+              :gsub(&quot;&gt;&quot;, &quot;&amp;gt;&quot;)
+    end
+
+    function Link(el)
+      local url = el.target
+      local lower = url:lower()
+
+      local isGitHubVideo =
+        url:match(&quot;^https://github.com/user%-attachments/assets/&quot;)
+
+      local isVideo =
+        lower:match(&quot;%.mp4$&quot;) or
+        lower:match(&quot;%.webm$&quot;) or
+        lower:match(&quot;%.ogg$&quot;)
+
+      if isGitHubVideo or isVideo then
+        local safeUrl = escapeHtml(url)
+
+        return pandoc.RawInline(&quot;html&quot;, string.format(
+          &#39;&lt;video controls preload=&quot;metadata&quot; playsinline style=&quot;max-width:100%%;height:auto;border-radius:12px;&quot;&gt;&#39; ..
+          &#39;&lt;source src=&quot;%s&quot;&gt;&#39; ..
+          &#39;Your browser does not support HTML5 video.&#39; ..
+          &#39;&lt;/video&gt;&#39;,
+          safeUrl
+        ))
+      end
+
+      return el
+    end
+  &#39;&#39;;
+
+
+
   renderMarkdown = file:
     pkgs.runCommand &quot;blog-markdown.html&quot; {
       nativeBuildInputs = [ pkgs.pandoc ];
@@ -1125,9 +1164,11 @@ footer { padding: 26px 0 34px; border-top: 1px solid var(--line); }
         --from=gfm \
         --to=html5 \
         --wrap=none \
+        --lua-filter=${videoFilter} \
         ${file} \
         --output=$out
     &#39;&#39;;
+
 
   esc = s: builtins.replaceStrings
     [ &quot;&amp;&quot; &quot;&lt;&quot; &quot;&gt;&quot; &quot;\&quot;&quot; &quot;&#39;&quot; ]
