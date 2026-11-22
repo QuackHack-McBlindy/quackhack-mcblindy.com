@@ -1360,21 +1360,22 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
 
   teamsByLeague = {
     ha = {
-      &quot;AIK&quot;              = { apiName = &quot;AIK&quot;;           aliases = [ &quot;aik&quot; &quot;aiks&quot; ]; };
-      &quot;BIK Karlskoga&quot;    = { apiName = &quot;Karlskoga&quot;;     aliases = [ &quot;karlskoga&quot; &quot;bik&quot; &quot;bofors&quot; ]; };
-      &quot;Kalmar HC&quot;        = { apiName = &quot;Kalmar&quot;;        aliases = [ &quot;kalmar&quot; &quot;kalmars&quot; ]; };
-      &quot;Leksands IF&quot;      = { apiName = &quot;Leksands IF&quot;;   aliases = [ &quot;leksand&quot; &quot;leksands&quot; ]; };
-      &quot;Modo Hockey&quot;      = { apiName = &quot;Modo&quot;;          aliases = [ &quot;modo&quot; &quot;modos&quot; ]; };
-      &quot;Mora IK&quot;          = { apiName = &quot;Mora&quot;;          aliases = [ &quot;mora&quot; ]; };
-      &quot;Nybro Vikings IF&quot; = { apiName = &quot;Nybro&quot;;         aliases = [ &quot;nybro&quot; &quot;nybros&quot; &quot;vikings&quot; ]; };
-      &quot;Södertälje SK&quot;    = { apiName = &quot;Södertälje&quot;;    aliases = [ &quot;södertälje&quot; &quot;sodertalje&quot; ]; };
-      &quot;Västerås IK&quot;      = { apiName = &quot;Västerås&quot;;      aliases = [ &quot;västerås&quot; &quot;vasteras&quot; ]; };
-      &quot;Vimmerby HC&quot;      = { apiName = &quot;Vimmerby&quot;;      aliases = [ &quot;vimmerby&quot; ]; };
-      &quot;Visby/Roma HK&quot;    = { apiName = &quot;Visby/Roma&quot;;    aliases = [ &quot;visby&quot; &quot;roma&quot; &quot;visbyroma&quot; ]; };
-      &quot;IK Oskarshamn&quot;    = { apiName = &quot;Oskarshamn&quot;;    aliases = [ &quot;oskarshamn&quot; ]; };
-      &quot;Almtuna IS&quot;       = { apiName = &quot;Almtuna&quot;;       aliases = [ &quot;almtuna&quot; ]; };
-      &quot;Östersunds IK&quot;    = { apiName = &quot;Östersund&quot;;     aliases = [ &quot;östersund&quot; &quot;ostersund&quot; ]; };
+      &quot;AIK&quot;              = { apiName = &quot;AIK&quot;;        code = &quot;AIK&quot;;  aliases = [ &quot;aik&quot; &quot;aiks&quot; ]; };
+      &quot;BIK Karlskoga&quot;    = { apiName = &quot;Karlskoga&quot;;  code = &quot;BIK&quot;;  aliases = [ &quot;karlskoga&quot; &quot;bik&quot; &quot;bofors&quot; ]; };
+      &quot;Kalmar HC&quot;        = { apiName = &quot;Kalmar&quot;;     code = &quot;KHC&quot;;  aliases = [ &quot;kalmar&quot; &quot;kalmars&quot; ]; };
+      &quot;Leksands IF&quot;      = { apiName = &quot;Leksands IF&quot;; code = &quot;LIF&quot;; aliases = [ &quot;leksand&quot; &quot;leksands&quot; ]; };
+      &quot;Modo Hockey&quot;      = { apiName = &quot;Modo&quot;;       code = &quot;MoDo&quot;; aliases = [ &quot;modo&quot; &quot;modos&quot; ]; };
+      &quot;Mora IK&quot;          = { apiName = &quot;Mora&quot;;       code = &quot;MORA&quot;; aliases = [ &quot;mora&quot; ]; };
+      &quot;Nybro Vikings IF&quot; = { apiName = &quot;Nybro&quot;;      code = &quot;NVIF&quot;; aliases = [ &quot;nybro&quot; &quot;nybros&quot; &quot;vikings&quot; ]; };
+      &quot;Södertälje SK&quot;    = { apiName = &quot;Södertälje&quot;; code = &quot;SSK&quot;;  aliases = [ &quot;södertälje&quot; &quot;sodertalje&quot; ]; };
+      &quot;Västerås IK&quot;      = { apiName = &quot;Västerås&quot;;   code = &quot;VIK&quot;;  aliases = [ &quot;västerås&quot; &quot;vasteras&quot; ]; };
+      &quot;Vimmerby HC&quot;      = { apiName = &quot;Vimmerby&quot;;   code = &quot;VHC&quot;;  aliases = [ &quot;vimmerby&quot; ]; };
+      &quot;Visby/Roma HK&quot;    = { apiName = &quot;Visby/Roma&quot;; code = &quot;VIS&quot;;  aliases = [ &quot;visby&quot; &quot;roma&quot; &quot;visbyroma&quot; ]; };
+      &quot;IK Oskarshamn&quot;    = { apiName = &quot;Oskarshamn&quot;; code = &quot;IKO&quot;;  aliases = [ &quot;oskarshamn&quot; ]; };
+      &quot;Almtuna IS&quot;       = { apiName = &quot;Almtuna&quot;;    code = &quot;AIS&quot;;  aliases = [ &quot;almtuna&quot; ]; };
+      &quot;Östersunds IK&quot;    = { apiName = &quot;Östersund&quot;;  code = &quot;ÖIK&quot;;  aliases = [ &quot;östersund&quot; &quot;ostersund&quot; ]; };
     };
+
     shl = {
       &quot;Djurgårdens IF&quot;  = { apiName = &quot;Djurgårdens IF&quot;; aliases = [ &quot;djurgården&quot; &quot;djurgarden&quot; &quot;djurgårdens&quot; &quot;dif&quot; ]; };
       &quot;Växjö Lakers&quot;    = { apiName = &quot;Växjö Lakers&quot;;   aliases = [ &quot;växjö&quot; &quot;vaxjo&quot; &quot;lakers&quot; ]; };
@@ -1400,7 +1401,8 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
       displayName = &quot;Hockey Allsvenskan (SWE)&quot;;
       title       = &quot;HOCKEYALLSVENSKAN&quot;;
       speakLeague = &quot;allsvenskan&quot;;
-      apiBase     = &quot;https://www.hockeyallsvenskan.se/api&quot;;
+      apiKind     = &quot;nextjs-alltime&quot;;
+      apiBase     = &quot;https://hockeyallsvenskan.se/api&quot;;
       siteHost    = &quot;www.hockeyallsvenskan.se&quot;;
       ssgtUuid    = &quot;uy2zvu6xaa&quot;;
       tableUrl    = &quot;https://sportstatistik.nu/hockey/hockeyallsvenskan/tabell&quot;;
@@ -1408,7 +1410,7 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
       logLevel    = &quot;DEBUG&quot;;
       aliases     = [ &quot;puck-ha&quot; ];
       voicePrefix = &quot;hockey allsvenskan&quot;;
-      # 🦆 says ⮞ game-schedule API identifiers (used by duckPUCK-games)
+      apiSeason = &quot;2026&quot;;
       seasonUuid   = &quot;xs4m9qupsi&quot;;
       seriesUuid   = &quot;qQ9-594cW8OWD&quot;;
       gameTypeUuid = &quot;qQ9-af37Ti40B&quot;;
@@ -1420,6 +1422,7 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
       displayName = &quot;Swedish Hockey League (SHL)&quot;;
       title       = &quot;SHL&quot;;
       speakLeague = &quot;SHL&quot;;
+      apiKind     = &quot;sports-v2&quot;;
       apiBase     = &quot;https://www.shl.se/api&quot;;
       siteHost    = &quot;www.shl.se&quot;;
       ssgtUuid    = &quot;zg0pa4po75&quot;;
@@ -1428,11 +1431,10 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
       logLevel    = &quot;INFO&quot;;
       aliases     = [ &quot;puck&quot; &quot;shl&quot; ];
       voicePrefix = &quot;shl&quot;;
-      # 🦆 says ⮞ game-schedule API identifiers (used by duckPUCK-games)
       seasonUuid   = &quot;ndcf81nlb3&quot;;
       seriesUuid   = &quot;qQ9-bb0bzEWUk&quot;;
       gameTypeUuid = &quot;qQ9-af37Ti40B&quot;;
-      teams       = teamsByLeague.shl;
+      teams        = teamsByLeague.shl;
     };
   };
 
@@ -1464,10 +1466,13 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
     }
   &#39;&#39;;
 
+
   pyEnv = pkgs.python3.withPackages (ps: [ ps.requests ]);
   mkScraper = league:
     let
-      teamMappingJson = builtins.toJSON (lib.mapAttrs (name: team: team.apiName) league.teams);
+      # 🦆 map config-name → API key (HA: code, SHL: apiName)
+      teamMappingJson = builtins.toJSON (lib.mapAttrs (name: team:
+        if team ? code then team.code else team.apiName) league.teams);
     in pkgs.writeScript &quot;hockey-scraper-${league.key}.py&quot; &#39;&#39;
       #!${pyEnv}/bin/python
       import os, re, json, logging, argparse
@@ -1486,44 +1491,92 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
           &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;,
           &quot;Accept-Language&quot;: &quot;en-US,en;q=0.5&quot;,
       }
+      API_KIND  = &quot;${league.apiKind}&quot;
       SSGT_UUID = &quot;${league.ssgtUuid}&quot;
       API_BASE  = &quot;${league.apiBase}&quot;
       TABLE_URL = &quot;${league.tableUrl}&quot;
+      API_SEASON = &quot;${if league ? apiSeason then league.apiSeason else &quot;&quot;}&quot;
 
       TEAM_MAPPING = ${teamMappingJson}
 
       def fetch(url):
-          logger.info(f&quot;Fetching {url}&quot;)
+          logger.info(f&quot;GET {url}&quot;)
           try:
               r = requests.get(url, headers=headers, timeout=15)
               r.raise_for_status()
               return r.text
           except Exception as e:
-              logger.error(f&quot;Failed to fetch {url}: {e}&quot;)
+              logger.error(f&quot;Failed {url}: {e}&quot;)
+              return None
+
+      def post_json(url, body):
+          logger.info(f&quot;POST {url}&quot;)
+          try:
+              r = requests.post(url, json=body, headers=headers, timeout=15)
+              r.raise_for_status()
+              return r.json()
+          except Exception as e:
+              logger.error(f&quot;Failed {url}: {e}&quot;)
               return None
 
       def fetch_powerplay_data():
-          url = f&quot;{API_BASE}/statistics-v2/stats-info/teams_powerplay?count=25&amp;ssgtUuid={SSGT_UUID}&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;
-          html = fetch(url)
+          &quot;&quot;&quot;Returns {team_key: pp_perc_string}&quot;&quot;&quot;
+          if API_KIND == &quot;nextjs-alltime&quot;:
+              data = post_json(
+                  &quot;https://hockeyallsvenskan.se/api/all-time-teams-stats&quot;,
+                  {
+                      &quot;league&quot;: &quot;HA&quot;, &quot;phase&quot;: &quot;HA&quot;, &quot;season&quot;: API_SEASON,
+                      &quot;categories&quot;: &quot;power_play&quot;,
+                      &quot;team_side&quot;: &quot;all&quot;, &quot;team&quot;: &quot;all&quot;, &quot;against_team&quot;: &quot;all&quot;,
+                      &quot;all_results&quot;: &quot;all&quot;, &quot;game_status&quot;: &quot;all&quot;, &quot;decided_in&quot;: &quot;all&quot;,
+                  },
+              )
+              if not data or &quot;data&quot; not in data:
+                  return {}
+              return {
+                  row[&quot;team_code&quot;]: row.get(&quot;PowerPlay&quot;, {}).get(&quot;PP_perc&quot;, &quot;?&quot;)
+                  for row in data[&quot;data&quot;]
+              }
+          # SHL legacy
+          html = fetch(f&quot;{API_BASE}/statistics-v2/stats-info/teams_powerplay?count=25&amp;ssgtUuid={SSGT_UUID}&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;)
           if not html:
               return {}
           try:
               data = json.loads(html)
-              return {t[&#39;info&#39;][&#39;siteDisplayName&#39;]: t.get(&#39;PPPerc&#39;, &#39;?&#39;) for t in data[0][&#39;stats&#39;]}
+              return {t[&quot;info&quot;][&quot;siteDisplayName&quot;]: t.get(&quot;PPPerc&quot;, &quot;?&quot;) for t in data[0][&quot;stats&quot;]}
           except Exception as e:
-              logger.error(f&quot;Failed to parse powerplay: {e}&quot;)
+              logger.error(f&quot;parse pp: {e}&quot;)
               return {}
 
       def fetch_boxplay_data():
-          url = f&quot;{API_BASE}/statistics-v2/stats-info/teams_penaltyKilling?count=25&amp;ssgtUuid={SSGT_UUID}&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;
-          html = fetch(url)
+          &quot;&quot;&quot;Returns {team_key: pk_perc_string}&quot;&quot;&quot;
+          if API_KIND == &quot;nextjs-alltime&quot;:
+              data = post_json(
+                  &quot;https://hockeyallsvenskan.se/api/all-time-teams-stats&quot;,
+                  {
+                      &quot;league&quot;: &quot;HA&quot;, &quot;phase&quot;: &quot;HA&quot;, &quot;season&quot;: API_SEASON,
+                      &quot;categories&quot;: &quot;penalty_kill&quot;,
+                      &quot;team_side&quot;: &quot;all&quot;, &quot;team&quot;: &quot;all&quot;, &quot;against_team&quot;: &quot;all&quot;,
+                      &quot;all_results&quot;: &quot;all&quot;, &quot;game_status&quot;: &quot;all&quot;, &quot;decided_in&quot;: &quot;all&quot;,
+                  },
+              )
+              if not data or &quot;data&quot; not in data:
+                  return {}
+              # 🦆 FILL IN after verifying field path from curl
+              # likely: row.get(&quot;PenaltyKill&quot;, {}).get(&quot;PK_perc&quot;, &quot;?&quot;)
+              return {
+                  row[&quot;team_code&quot;]: row.get(&quot;PenaltyKill&quot;, {}).get(&quot;PK_perc&quot;, &quot;?&quot;)
+                  for row in data[&quot;data&quot;]
+              }
+          # SHL legacy
+          html = fetch(f&quot;{API_BASE}/statistics-v2/stats-info/teams_penaltyKilling?count=25&amp;ssgtUuid={SSGT_UUID}&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;)
           if not html:
               return {}
           try:
               data = json.loads(html)
-              return {t[&#39;info&#39;][&#39;siteDisplayName&#39;]: t.get(&#39;PKPerc&#39;, &#39;?&#39;) for t in data[0][&#39;stats&#39;]}
+              return {t[&quot;info&quot;][&quot;siteDisplayName&quot;]: t.get(&quot;PKPerc&quot;, &quot;?&quot;) for t in data[0][&quot;stats&quot;]}
           except Exception as e:
-              logger.error(f&quot;Failed to parse boxplay: {e}&quot;)
+              logger.error(f&quot;parse bp: {e}&quot;)
               return {}
 
       def scrape_table():
@@ -1569,26 +1622,25 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
           return table_data
 
       def main():
-          logger.info(&quot;🏒 Starting ${league.name} scraper...&quot;)
+          logger.info(f&quot;🏒 Starting ${league.name} scraper...&quot;)
           table_data = scrape_table()
           pp = fetch_powerplay_data()
           bp = fetch_boxplay_data()
           for team in table_data:
-              api_name = TEAM_MAPPING.get(team[&#39;team&#39;], team[&#39;team&#39;])
-              team[&#39;powerplay&#39;] = pp.get(api_name, &#39;?&#39;)
-              team[&#39;boxplay&#39;]   = bp.get(api_name, &#39;?&#39;)
+              key = TEAM_MAPPING.get(team[&quot;team&quot;], team[&quot;team&quot;])
+              team[&quot;powerplay&quot;] = pp.get(key, &quot;?&quot;)
+              team[&quot;boxplay&quot;]   = bp.get(key, &quot;?&quot;)
           if table_data:
-              with open(table_path, &#39;w&#39;) as f:
+              with open(table_path, &quot;w&quot;) as f:
                   json.dump(table_data, f, ensure_ascii=False, indent=2)
               logger.info(f&quot;Saved {len(table_data)} teams to {table_path}&quot;)
           else:
               logger.warning(&quot;No table data to save&quot;)
-          logger.info(&quot;${league.name} scraping completed!&quot;)
+          logger.info(&quot;${league.name} scraping done&quot;)
 
       if __name__ == &quot;__main__&quot;:
           main()
     &#39;&#39;;
-
 
 
   mkFuzzyMatch = league:
@@ -1642,26 +1694,31 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
 
   mkTeamApiMap = league:
     let
-      cases = lib.concatStringsSep &quot;\n&quot;
+      apiCases = lib.concatStringsSep &quot;\n&quot;
         (lib.mapAttrsToList (name: team:
           &quot;          \&quot;${name}\&quot;) echo \&quot;${team.apiName}\&quot; ;;&quot;
+        ) league.teams);
+      codeCases = lib.concatStringsSep &quot;\n&quot;
+        (lib.mapAttrsToList (name: team:
+          &quot;          \&quot;${name}\&quot;) echo \&quot;${if team ? code then team.code else team.apiName}\&quot; ;;&quot;
         ) league.teams);
     in &#39;&#39;
       map_team_to_api() {
         local team=&quot;$1&quot;
         case &quot;$team&quot; in
-      ${cases}
+      ${apiCases}
+          *) echo &quot;$team&quot; ;;
+        esac
+      }
+
+      map_team_to_code() {
+        local team=&quot;$1&quot;
+        case &quot;$team&quot; in
+      ${codeCases}
           *) echo &quot;$team&quot; ;;
         esac
       }
     &#39;&#39;;
-
-
-  mkVoiceTeamValues = league:
-    lib.mapAttrsToList (name: team: {
-      &quot;in&quot;  = &quot;[&quot; + lib.concatStringsSep &quot;|&quot; team.aliases + &quot;]&quot;;
-      out = name;
-    }) league.teams;
 
 
   sharedSentenceBodies = [
@@ -1747,6 +1804,11 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
   mkDuckPUCKGames = args:
     let
       inherit self lib config pkgs cmdHelpers swe;
+
+      gamesVoiceTeam = lib.mapAttrsToList (name: team: {
+        &quot;in&quot;  = &quot;[&quot; + lib.concatStringsSep &quot;|&quot; team.aliases + &quot;]&quot;;
+        out = name;
+      }) (teamsByLeague.ha // teamsByLeague.shl);
 
       # 🦆 says ⮞ single-game result analyzer
       analyzeGame = &#39;&#39;
@@ -2090,29 +2152,23 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
         ${filterLiveGames}
 
         fetch_games() {
-          local cfg_host cfg_season cfg_series cfg_game_type
-          if [ &quot;$league&quot; = &quot;shl&quot; ]; then
-            cfg_host=&quot;https://${leagues.shl.siteHost}&quot;
-            cfg_season=&quot;${leagues.shl.seasonUuid}&quot;
-            cfg_series=&quot;${leagues.shl.seriesUuid}&quot;
-            cfg_game_type=&quot;${leagues.shl.gameTypeUuid}&quot;
-          else
-            cfg_host=&quot;https://${leagues.ha.siteHost}&quot;
-            cfg_season=&quot;${leagues.ha.seasonUuid}&quot;
-            cfg_series=&quot;${leagues.ha.seriesUuid}&quot;
-            cfg_game_type=&quot;${leagues.ha.gameTypeUuid}&quot;
-          fi
-
-          local url=&quot;$cfg_host/api/sports-v2/game-schedule?seasonUuid=$cfg_season&amp;seriesUuid=$cfg_series&amp;gameTypeUuid=$cfg_game_type&amp;gamePlace=all&amp;played=all&quot;
-          dt_debug &quot;Fetching $league $type games from $url&quot;
-
           local state_filter
           case &quot;$type&quot; in
             recent)   state_filter=&quot;post-game&quot; ;;
             upcoming) state_filter=&quot;pre-game&quot;  ;;
             live)     state_filter=&quot;pre-game&quot;  ;;
           esac
+          if [ &quot;&#39;&#39;${league}&quot; = &quot;ha&quot; ]; then
+            fetch_games_ha &quot;$state_filter&quot;
+          else
+            fetch_games_shl &quot;$state_filter&quot;
+          fi
+        }
 
+        fetch_games_shl() {
+          local state_filter=&quot;$1&quot;
+          local url=&quot;https://${leagues.shl.siteHost}/api/sports-v2/game-schedule?seasonUuid=${leagues.shl.seasonUuid}&amp;seriesUuid=${leagues.shl.seriesUuid}&amp;gameTypeUuid=${leagues.shl.gameTypeUuid}&amp;gamePlace=all&amp;played=all&quot;
+          dt_debug &quot;Fetching shl games from $url&quot;
           curl -sL -H &quot;User-Agent: Mozilla/5.0&quot; &quot;$url&quot; | \
           jq --arg state &quot;$state_filter&quot; &#39;
             [.gameInfo[] |
@@ -2134,6 +2190,54 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
             ]
           &#39;
         }
+
+        fetch_games_ha() {
+          local state_filter=&quot;$1&quot;
+          local url=&quot;https://hockeyallsvenskan.se/api/all-time-games-stats&quot;
+          local all=&quot;[]&quot;
+          local page=1
+          local total_pages=1
+          local safety=0
+          while [ &quot;$page&quot; -le &quot;$total_pages&quot; ] &amp;&amp; [ &quot;$safety&quot; -lt 20 ]; do
+            local body
+            body=$(printf &#39;{&quot;phase&quot;:&quot;HA&quot;,&quot;team_side&quot;:&quot;all&quot;,&quot;team&quot;:&quot;all&quot;,&quot;against_team&quot;:&quot;all&quot;,&quot;all_results&quot;:&quot;all&quot;,&quot;game_status&quot;:&quot;all&quot;,&quot;decided_in&quot;:&quot;all&quot;,&quot;page&quot;:%d,&quot;page_size&quot;:100}&#39; &quot;$page&quot;)
+            local chunk
+            chunk=$(curl -sS -X POST &quot;$url&quot; -H &quot;Content-Type: application/json&quot; -d &quot;$body&quot;)
+            total_pages=$(echo &quot;$chunk&quot; | jq -r &#39;.total_pages // 1&#39;)
+            all=$(jq -nc --argjson a &quot;$all&quot; --argjson c &quot;$chunk&quot; &#39;$a + ($c.results // [])&#39;)
+            page=$((page + 1))
+            safety=$((safety + 1))
+          done
+          dt_debug &quot;Fetched $((page - 1)) pages of HA games&quot;
+          echo &quot;$all&quot; | jq --arg state &quot;$state_filter&quot; &#39;
+            def team_name($code):
+              {&quot;AIK&quot;:&quot;AIK&quot;,&quot;AIS&quot;:&quot;Almtuna IS&quot;,&quot;BIK&quot;:&quot;BIK Karlskoga&quot;,&quot;IKO&quot;:&quot;IK Oskarshamn&quot;,
+               &quot;KHC&quot;:&quot;Kalmar HC&quot;,&quot;LIF&quot;:&quot;Leksands IF&quot;,&quot;MoDo&quot;:&quot;Modo Hockey&quot;,&quot;MORA&quot;:&quot;Mora IK&quot;,
+               &quot;NVIF&quot;:&quot;Nybro Vikings IF&quot;,&quot;ÖIK&quot;:&quot;Östersunds IK&quot;,&quot;SSK&quot;:&quot;Södertälje SK&quot;,
+               &quot;VHC&quot;:&quot;Vimmerby HC&quot;,&quot;VIK&quot;:&quot;Västerås IK&quot;,&quot;VIS&quot;:&quot;Visby/Roma HK&quot;}[$code] // $code;
+            [.[] |
+              {
+                date:       .Date,
+                start_time: (.Date + &quot;T&quot; + .Time + &quot;:00&quot;),
+                state:      (if .GameResult.Home == &quot;&quot; then &quot;pre-game&quot; else &quot;post-game&quot; end),
+                home_team:  team_name(.HomeTeam),
+                away_team:  team_name(.AwayTeam),
+                result:     (if .GameResult.Home == &quot;&quot; then &quot;&quot; else &quot;\(.GameResult.Home)-\(.GameResult.Away)&quot; end),
+                overtime:   (if .decided_in == &quot;OT&quot; then &quot;OT&quot;
+                             elif .decided_in == &quot;SO&quot; or .decided_in == &quot;PS&quot; then &quot;SO&quot;
+                             else &quot;&quot; end),
+                home_score: (.GameResult.Home | if type == &quot;number&quot; then . else 0 end),
+                away_score: (.GameResult.Away | if type == &quot;number&quot; then . else 0 end),
+                home_status: (if .GameResult.Home == &quot;&quot; then &quot;&quot;
+                              elif .GameResult.Home &gt; .GameResult.Away then &quot;WIN&quot; else &quot;LOSE&quot; end),
+                away_status: (if .GameResult.Home == &quot;&quot; then &quot;&quot;
+                              elif .GameResult.Away &gt; .GameResult.Home then &quot;WIN&quot; else &quot;LOSE&quot; end),
+                venue:      .Arena
+              }
+            ] | map(select(.state == $state))
+          &#39;
+        }
+
 
         filter_games_by_matchup() {
           local games_data=&quot;$1&quot;
@@ -2312,7 +2416,7 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
           if [ -n &quot;$tts_text&quot; ]; then
             echo &quot;$tts_text&quot; | while IFS= read -r line; do
               if [ -n &quot;$line&quot; ]; then
-                yo say &quot;$line&quot; --blocking &quot;true&quot;
+                yo say --text &quot;$line&quot; --blocking &quot;true&quot;
                 sleep 1
               fi
             done
@@ -2356,84 +2460,9 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
             { &quot;in&quot; = &quot;senaste|förra&quot;;    out = &quot;recent&quot;; }
             { &quot;in&quot; = &quot;just|live|spelar&quot;; out = &quot;live&quot;; }
           ];
-          team.values = [
-            { &quot;in&quot; = &quot;björklöven|björklövens|löven|vi&quot;; out = &quot;IF Björklöven&quot;; }
-            { &quot;in&quot; = &quot;modo|modos&quot;;                      out = &quot;MoDo Hockey&quot;; }
-            { &quot;in&quot; = &quot;karlskoga|bik|bofors&quot;;            out = &quot;BIK Karlskoga&quot;; }
-            { &quot;in&quot; = &quot;nybro|nybros|vikings&quot;;            out = &quot;Nybro Vikings IF&quot;; }
-            { &quot;in&quot; = &quot;kalmar|kalmars&quot;;                  out = &quot;Kalmar HC&quot;; }
-            { &quot;in&quot; = &quot;oskarshamn&quot;;                      out = &quot;IK Oskarshamn&quot;; }
-            { &quot;in&quot; = &quot;almtuna&quot;;                         out = &quot;Almtuna IS&quot;; }
-            { &quot;in&quot; = &quot;aik|aiks&quot;;                        out = &quot;AIK&quot;; }
-            { &quot;in&quot; = &quot;mora&quot;;                            out = &quot;Mora IK&quot;; }
-            { &quot;in&quot; = &quot;södertälje&quot;;                      out = &quot;Södertälje SK&quot;; }
-            { &quot;in&quot; = &quot;östersund&quot;;                       out = &quot;Östersunds IK&quot;; }
-            { &quot;in&quot; = &quot;västerås&quot;;                        out = &quot;Västerås IK&quot;; }
-            { &quot;in&quot; = &quot;vimmerby&quot;;                        out = &quot;Vimmerby HC&quot;; }
-            { &quot;in&quot; = &quot;färjestad|farjestad|fbk&quot;;         out = &quot;Färjestad&quot;; }
-            { &quot;in&quot; = &quot;rögle|rogle&quot;;                     out = &quot;Rögle&quot;; }
-            { &quot;in&quot; = &quot;djurgården|djurgarden|dif&quot;;       out = &quot;Djurgården&quot;; }
-            { &quot;in&quot; = &quot;växjö|vaxjo|lakers&quot;;              out = &quot;Växjö&quot;; }
-            { &quot;in&quot; = &quot;skellefteå|skelleftea|saik&quot;;      out = &quot;Skellefteå&quot;; }
-            { &quot;in&quot; = &quot;örebro|orebro&quot;;                   out = &quot;Örebro&quot;; }
-            { &quot;in&quot; = &quot;luleå|lulea|lhf&quot;;                 out = &quot;Luleå&quot;; }
-            { &quot;in&quot; = &quot;frölunda|frolunda|fhc&quot;;           out = &quot;Frölunda&quot;; }
-            { &quot;in&quot; = &quot;brynäs|brynas&quot;;                   out = &quot;Brynäs&quot;; }
-            { &quot;in&quot; = &quot;linköping|linkoping|lhc&quot;;         out = &quot;Linköping&quot;; }
-            { &quot;in&quot; = &quot;hv71|hv&quot;;                         out = &quot;HV71&quot;; }
-          ];
-          home.values = [
-            { &quot;in&quot; = &quot;björklöven|björklövens|löven|vi&quot;; out = &quot;Björklöven&quot;; }
-            { &quot;in&quot; = &quot;modo|modos&quot;;                      out = &quot;MoDo&quot;; }
-            { &quot;in&quot; = &quot;karlskoga|bik|bofors&quot;;            out = &quot;Karlskoga&quot;; }
-            { &quot;in&quot; = &quot;nybro|nybros|vikings&quot;;            out = &quot;Nybro&quot;; }
-            { &quot;in&quot; = &quot;kalmar|kalmars&quot;;                  out = &quot;Kalmar&quot;; }
-            { &quot;in&quot; = &quot;oskarshamn&quot;;                      out = &quot;Oskarshamn&quot;; }
-            { &quot;in&quot; = &quot;almtuna&quot;;                         out = &quot;Almtuna IS&quot;; }
-            { &quot;in&quot; = &quot;aik|aiks&quot;;                        out = &quot;AIK&quot;; }
-            { &quot;in&quot; = &quot;mora&quot;;                            out = &quot;Mora&quot;; }
-            { &quot;in&quot; = &quot;södertälje&quot;;                      out = &quot;Södertälje&quot;; }
-            { &quot;in&quot; = &quot;östersund&quot;;                       out = &quot;Östersunds&quot;; }
-            { &quot;in&quot; = &quot;västerås&quot;;                        out = &quot;Västerås&quot;; }
-            { &quot;in&quot; = &quot;vimmerby&quot;;                        out = &quot;Vimmerby&quot;; }
-            { &quot;in&quot; = &quot;färjestad|farjestad|fbk&quot;;         out = &quot;Färjestad&quot;; }
-            { &quot;in&quot; = &quot;rögle|rogle&quot;;                     out = &quot;Rögle&quot;; }
-            { &quot;in&quot; = &quot;djurgården|djurgarden|dif&quot;;       out = &quot;Djurgården&quot;; }
-            { &quot;in&quot; = &quot;växjö|vaxjo|lakers&quot;;              out = &quot;Växjö&quot;; }
-            { &quot;in&quot; = &quot;skellefteå|skelleftea|saik&quot;;      out = &quot;Skellefteå&quot;; }
-            { &quot;in&quot; = &quot;örebro|orebro&quot;;                   out = &quot;Örebro&quot;; }
-            { &quot;in&quot; = &quot;luleå|lulea|lhf&quot;;                 out = &quot;Luleå&quot;; }
-            { &quot;in&quot; = &quot;frölunda|frolunda|fhc&quot;;           out = &quot;Frölunda&quot;; }
-            { &quot;in&quot; = &quot;brynäs|brynas&quot;;                   out = &quot;Brynäs&quot;; }
-            { &quot;in&quot; = &quot;linköping|linkoping|lhc&quot;;         out = &quot;Linköping&quot;; }
-            { &quot;in&quot; = &quot;hv71|hv&quot;;                         out = &quot;HV71&quot;; }
-          ];
-          away.values = [
-            { &quot;in&quot; = &quot;björklöven|björklövens|löven|vi&quot;; out = &quot;Björklöven&quot;; }
-            { &quot;in&quot; = &quot;modo|modos&quot;;                      out = &quot;MoDo Hockey&quot;; }
-            { &quot;in&quot; = &quot;karlskoga|bik|bofors&quot;;            out = &quot;Karlskoga&quot;; }
-            { &quot;in&quot; = &quot;nybro|nybros|vikings&quot;;            out = &quot;Nybro&quot;; }
-            { &quot;in&quot; = &quot;kalmar|kalmars&quot;;                  out = &quot;Kalmar&quot;; }
-            { &quot;in&quot; = &quot;oskarshamn&quot;;                      out = &quot;IK Oskarshamn&quot;; }
-            { &quot;in&quot; = &quot;almtuna&quot;;                         out = &quot;Almtuna&quot;; }
-            { &quot;in&quot; = &quot;aik|aiks&quot;;                        out = &quot;AIK&quot;; }
-            { &quot;in&quot; = &quot;mora&quot;;                            out = &quot;Mora&quot;; }
-            { &quot;in&quot; = &quot;södertälje&quot;;                      out = &quot;Södertälje&quot;; }
-            { &quot;in&quot; = &quot;östersund&quot;;                       out = &quot;Östersunds&quot;; }
-            { &quot;in&quot; = &quot;västerås&quot;;                        out = &quot;Västerås&quot;; }
-            { &quot;in&quot; = &quot;vimmerby&quot;;                        out = &quot;Vimmerby&quot;; }
-            { &quot;in&quot; = &quot;färjestad|farjestad|fbk&quot;;         out = &quot;Färjestad&quot;; }
-            { &quot;in&quot; = &quot;rögle|rogle&quot;;                     out = &quot;Rögle&quot;; }
-            { &quot;in&quot; = &quot;djurgården|djurgarden|dif&quot;;       out = &quot;Djurgården&quot;; }
-            { &quot;in&quot; = &quot;växjö|vaxjo|lakers&quot;;              out = &quot;Växjö&quot;; }
-            { &quot;in&quot; = &quot;skellefteå|skelleftea|saik&quot;;      out = &quot;Skellefteå&quot;; }
-            { &quot;in&quot; = &quot;örebro|orebro&quot;;                   out = &quot;Örebro&quot;; }
-            { &quot;in&quot; = &quot;luleå|lulea|lhf&quot;;                 out = &quot;Luleå&quot;; }
-            { &quot;in&quot; = &quot;frölunda|frolunda|fhc&quot;;           out = &quot;Frölunda&quot;; }
-            { &quot;in&quot; = &quot;brynäs|brynas&quot;;                   out = &quot;Brynäs&quot;; }
-            { &quot;in&quot; = &quot;linköping|linkoping|lhc&quot;;         out = &quot;Linköping&quot;; }
-            { &quot;in&quot; = &quot;hv71|hv&quot;;                         out = &quot;HV71&quot;; }
-          ];
+          team.values = gamesVoiceTeam;
+          home.values = gamesVoiceTeam;
+          away.values = gamesVoiceTeam;
         };
       };
     };
@@ -2443,10 +2472,14 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
     let
       inherit self lib config pkgs cmdHelpers swe;
 
+      voiceTeamVals = lib.mapAttrsToList (name: team: {
+        &quot;in&quot;  = &quot;[&quot; + lib.concatStringsSep &quot;|&quot; team.aliases + &quot;]&quot;;
+        out = name;
+      }) (teamsByLeague.ha // teamsByLeague.shl);
+
       scraper       = mkScraper league;
       fuzzyMatch    = mkFuzzyMatch league;
       teamApiMap    = mkTeamApiMap league;
-      voiceTeamVals = mkVoiceTeamValues league;
     in {
       description = &quot;[🏒🦆] - Your Personal Hockey Assistant! - Expert commentary and analyzer specialized on ${league.displayName}. Analyzing games, scraping scoreboards and keeping track of all dates and numbers.&quot;;
       category    = &quot;🧩 Miscellaneous&quot;;
@@ -2596,35 +2629,56 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
           fi
         }
 
+
         get_team_powerplay() {
           local team_name=&quot;$1&quot;
           if [ -z &quot;$team_name&quot; ]; then
-            dt_error &quot;Please specify a team name&quot;
-            return 1
+            dt_error &quot;Please specify a team name&quot;; return 1
           fi
+
+          if [ &quot;${league.apiKind}&quot; = &quot;nextjs-alltime&quot; ]; then
+            local code
+            code=$(map_team_to_code &quot;$team_name&quot;)
+            local response
+            response=$(curl -sS -X POST &quot;https://hockeyallsvenskan.se/api/all-time-teams-stats&quot; \
+              -H &quot;Content-Type: application/json&quot; \
+              -d &quot;{\&quot;league\&quot;:\&quot;HA\&quot;,\&quot;phase\&quot;:\&quot;HA\&quot;,\&quot;season\&quot;:\&quot;&#39;&#39;${league.apiSeason}\&quot;,\&quot;categories\&quot;:\&quot;power_play\&quot;,\&quot;team_side\&quot;:\&quot;all\&quot;,\&quot;team\&quot;:\&quot;all\&quot;,\&quot;against_team\&quot;:\&quot;all\&quot;,\&quot;all_results\&quot;:\&quot;all\&quot;,\&quot;game_status\&quot;:\&quot;all\&quot;,\&quot;decided_in\&quot;:\&quot;all\&quot;}&quot;)
+            if ! echo &quot;$response&quot; | jq -e &#39;.data&#39; &gt;/dev/null 2&gt;&amp;1; then
+              dt_error &quot;Failed to fetch powerplay data&quot;; return 1
+            fi
+            local row
+            row=$(echo &quot;$response&quot; | jq -r --arg c &quot;$code&quot; &#39;
+              .data[] | select(.team_code == $c) |
+              &quot;\(.rank)|\(.GP)|\(.PowerPlay.PPG)|\(.PowerPlay.PP_perc)|\(.PowerPlay.OPP)|\(.PowerPlay.PPSOG)|\(.PowerPlay.TPP)&quot;&#39;)
+            if [ -z &quot;$row&quot; ]; then
+              dt_error &quot;Team &#39;$team_name&#39; (code &#39;$code&#39;) not found&quot;; return 1
+            fi
+            IFS=&#39;|&#39; read -r rank gp ppg efficiency ppopp ppsog pptime &lt;&lt;&lt; &quot;$row&quot;
+            echo &quot;Rank: $rank&quot;
+            echo &quot;Games Played: $gp&quot;
+            echo &quot;Power Play Goals: $ppg&quot;
+            echo &quot;Power Play Opportunities: $ppopp&quot;
+            echo &quot;Power Play Efficiency: $efficiency%&quot;
+            echo &quot;Power Play Shots on Goal: $ppsog&quot;
+            echo &quot;Power Play Time: $pptime&quot;
+            return 0
+          fi
+
+          # SHL
           local endpoint=&quot;$API_BASE/statistics-v2/stats-info/teams_powerplay?count=25&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;
           local response
           response=$(curl -s -L -H &quot;Accept: application/json; charset=utf-8&quot; -H &quot;User-Agent: HockeyStats/1.0&quot; &quot;$endpoint&quot;)
-          if [ $? -ne 0 ]; then
-            dt_error &quot;Failed to fetch powerplay data&quot;
-            return 1
-          fi
-
+          if [ $? -ne 0 ]; then dt_error &quot;Failed to fetch powerplay data&quot;; return 1; fi
           local team_data
           team_data=$(echo &quot;$response&quot; | jq -r --arg team &quot;$team_name&quot; &#39;
-            .[0].stats[] |
-            select(.info.siteDisplayName == $team) |
+            .[0].stats[] | select(.info.siteDisplayName == $team) |
             &quot;\(.info.siteDisplayName)|\(.Rank)|\(.GP)|\(.PPG)|\(.PPPerc)|\(.PPOpp)|\(.PPSOG)|\(.PPTime)&quot;&#39;)
           if [ -z &quot;$team_data&quot; ]; then
             team_data=$(echo &quot;$response&quot; | jq -r --arg team &quot;$team_name&quot; &#39;
-              .[0].stats[] |
-              select(.info.siteDisplayName | test($team; &quot;i&quot;)) |
+              .[0].stats[] | select(.info.siteDisplayName | test($team; &quot;i&quot;)) |
               &quot;\(.info.siteDisplayName)|\(.Rank)|\(.GP)|\(.PPG)|\(.PPPerc)|\(.PPOpp)|\(.PPSOG)|\(.PPTime)&quot;&#39; | head -1)
           fi
-          if [ -z &quot;$team_data&quot; ]; then
-            dt_error &quot;Team &#39;$team_name&#39; not found&quot;
-            return 1
-          fi
+          if [ -z &quot;$team_data&quot; ]; then dt_error &quot;Team &#39;$team_name&#39; not found&quot;; return 1; fi
           IFS=&#39;|&#39; read -r name rank gp ppg efficiency ppopp ppsog pptime &lt;&lt;&lt; &quot;$team_data&quot;
           echo &quot;Rank: $rank&quot;
           echo &quot;Games Played: $gp&quot;
@@ -2635,36 +2689,56 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
           echo &quot;Power Play Time: $pptime&quot;
         }
 
-
         get_team_boxplay() {
           local team_name=&quot;$1&quot;
           if [ -z &quot;$team_name&quot; ]; then
-            dt_error &quot;Please specify a team name&quot;
-            return 1
+            dt_error &quot;Please specify a team name&quot;; return 1
           fi
+
+          if [ &quot;${league.apiKind}&quot; = &quot;nextjs-alltime&quot; ]; then
+            local code
+            code=$(map_team_to_code &quot;$team_name&quot;)
+            local response
+            response=$(curl -sS -X POST &quot;https://hockeyallsvenskan.se/api/all-time-teams-stats&quot; \
+              -H &quot;Content-Type: application/json&quot; \
+              -d &quot;{\&quot;league\&quot;:\&quot;HA\&quot;,\&quot;phase\&quot;:\&quot;HA\&quot;,\&quot;season\&quot;:\&quot;&#39;&#39;${league.apiSeason}\&quot;,\&quot;categories\&quot;:\&quot;penalty_kill\&quot;,\&quot;team_side\&quot;:\&quot;all\&quot;,\&quot;team\&quot;:\&quot;all\&quot;,\&quot;against_team\&quot;:\&quot;all\&quot;,\&quot;all_results\&quot;:\&quot;all\&quot;,\&quot;game_status\&quot;:\&quot;all\&quot;,\&quot;decided_in\&quot;:\&quot;all\&quot;}&quot;)
+            if ! echo &quot;$response&quot; | jq -e &#39;.data&#39; &gt;/dev/null 2&gt;&amp;1; then
+              dt_error &quot;Failed to fetch boxplay data&quot;; return 1
+            fi
+            local row
+            row=$(echo &quot;$response&quot; | jq -r --arg c &quot;$code&quot; &#39;
+              .data[] | select(.team_code == $c) |
+              &quot;\(.rank)|\(.GP)|\(.PenaltyKill.SHGA // &quot;?&quot;)|\(.PenaltyKill.PPGA // &quot;?&quot;)|\(.PenaltyKill.OPP // &quot;?&quot;)|\(.PenaltyKill.PK_perc // &quot;?&quot;)|\(.PenaltyKill.TPP // &quot;?&quot;)&quot;&#39;)
+            if [ -z &quot;$row&quot; ]; then
+              dt_error &quot;Team &#39;$team_name&#39; (code &#39;$code&#39;) not found&quot;; return 1
+            fi
+            IFS=&#39;|&#39; read -r rank gp shg ppga pkopp pkperc pptime &lt;&lt;&lt; &quot;$row&quot;
+            echo &quot;$team_name BoxPlay&quot;
+            echo &quot;Rank: $rank&quot;
+            echo &quot;Games Played: $gp&quot;
+            echo &quot;Short-handed Goals: $shg&quot;
+            echo &quot;Power Play Goals Against: $ppga&quot;
+            echo &quot;Boxplay Opportunities: $pkopp&quot;
+            echo &quot;Boxplay Efficiency: $pkperc%&quot;
+            echo &quot;Boxplay tid: $pptime&quot;
+            return 0
+          fi
+
+          # SHL
           local endpoint=&quot;$API_BASE/statistics-v2/stats-info/teams_penaltyKilling?count=25&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;
           local response
           response=$(curl -s -L -H &quot;Accept: application/json; charset=utf-8&quot; -H &quot;User-Agent: HockeyStats/1.0&quot; &quot;$endpoint&quot;)
-          if [ $? -ne 0 ]; then
-            dt_error &quot;Failed to fetch boxplay data&quot;
-            return 1
-          fi
-
+          if [ $? -ne 0 ]; then dt_error &quot;Failed to fetch boxplay data&quot;; return 1; fi
           local team_data
           team_data=$(echo &quot;$response&quot; | jq -r --arg team &quot;$team_name&quot; &#39;
-            .[0].stats[] |
-            select(.info.siteDisplayName == $team) |
+            .[0].stats[] | select(.info.siteDisplayName == $team) |
             &quot;\(.info.siteDisplayName)|\(.Rank)|\(.GP)|\(.SHG)|\(.PPGA)|\(.PKOpp)|\(.PKPerc)|\(.PPSOGA)|\(.PKTime)&quot;&#39;)
           if [ -z &quot;$team_data&quot; ]; then
             team_data=$(echo &quot;$response&quot; | jq -r --arg team &quot;$team_name&quot; &#39;
-              .[0].stats[] |
-              select(.info.siteDisplayName | test($team; &quot;i&quot;)) |
+              .[0].stats[] | select(.info.siteDisplayName | test($team; &quot;i&quot;)) |
               &quot;\(.info.siteDisplayName)|\(.Rank)|\(.GP)|\(.SHG)|\(.PPGA)|\(.PKOpp)|\(.PKPerc)|\(.PPSOGA)|\(.PKTime)&quot;&#39; | head -1)
           fi
-          if [ -z &quot;$team_data&quot; ]; then
-            dt_error &quot;Team &#39;$team_name&#39; not found&quot;
-            return 1
-          fi
+          if [ -z &quot;$team_data&quot; ]; then dt_error &quot;Team &#39;$team_name&#39; not found&quot;; return 1; fi
           IFS=&#39;|&#39; read -r name rank gp shg ppga pkopp pkperc ppsoga pktime &lt;&lt;&lt; &quot;$team_data&quot;
           echo &quot;$name BoxPlay&quot;
           echo &quot;Rank: $rank&quot;
@@ -2681,9 +2755,25 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
           local query_type=&quot;$1&quot;
           local table_file=&quot;$2&quot;
           if [ ! -f &quot;$table_file&quot; ]; then
-            dt_error &quot;Table file not found: $table_file&quot;
-            return 1
+            dt_error &quot;Table file not found: $table_file&quot;; return 1
           fi
+
+          local stat_key
+          case &quot;$query_type&quot; in
+            *powerplay) stat_key=&quot;powerplay&quot; ;;
+            *boxplay)   stat_key=&quot;boxplay&quot;   ;;
+          esac
+          local available
+          available=$(jq --arg k &quot;$stat_key&quot; \
+            &#39;[.[] | select(.[$k] != &quot;?&quot; and .[$k] != null and .[$k] != &quot;&quot;)] | length&#39; \
+            &quot;$table_file&quot;)
+          if [ &quot;$available&quot; -eq 0 ]; then
+            local label=&quot;Powerplay&quot;
+            [ &quot;$stat_key&quot; = &quot;boxplay&quot; ] &amp;&amp; label=&quot;Boxplay&quot;
+            echo &quot;$label-statistik är inte tillgänglig just nu.&quot;
+            return 0
+          fi
+
           case &quot;$query_type&quot; in
             &quot;best-powerplay&quot;)
               local row
@@ -2727,7 +2817,7 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
             return 1
           fi
           {
-            echo &quot;# 🏆 $LEAGUE_TITLE 25/26&quot;
+            echo &quot;# 🏆 $LEAGUE_TITLE&quot;
             echo &quot;| Pos | Lag | M | V | X | F | ÖV | ÖF | + | - | +/- | P | PP | BP |&quot;
             echo &quot;|-----|-----|---|---|---|---|----|----|----|----|-----|---|-----|-----|&quot;
             jq -r &#39;.[] | &quot;| \(.position) | \(.team) | \(.games_played) | \(.wins) | \(.ties) | \(.losses) | \(.overtime_wins) | \(.overtime_losses) | \(.goals_for) | \(.goals_against) | \(.goal_difference) | \(.points) | \(.powerplay) | \(.boxplay) |&quot;&#39; &quot;$table_file&quot;
@@ -2857,14 +2947,12 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
             &quot;\(.info.fullName)|\(.info.team.name)|\(.SVSPerc)|\(.GP)|\(.GAA)|\(.SO)&quot;&#39;
         }
 
-
         get_most_shorthanded_goals() {
-          local endpoint=&quot;$API_BASE/statistics-v2/stats-info/teams_penaltyKilling?count=25&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;
           local response
-          response=$(curl -s -L -H &quot;Accept: application/json; charset=utf-8&quot; -H &quot;User-Agent: HockeyStats/1.0&quot; &quot;$endpoint&quot;)
-          if [ $? -ne 0 ]; then
-            dt_error &quot;Failed to fetch boxplay data&quot;
-            return 1
+          response=$(curl -s -L -H &quot;Accept: application/json&quot; &quot;$API_BASE/statistics-v2/stats-info/teams_penaltyKilling?count=25&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;)
+          if [ -z &quot;$response&quot; ] || ! echo &quot;$response&quot; | jq -e &#39;.[0].stats&#39; &gt;/dev/null 2&gt;&amp;1; then
+            echo &quot;Boxplay-mål statistik är inte tillgänglig just nu.&quot;
+            return 0
           fi
           echo &quot;$response&quot; | jq -r &#39;
             .[0].stats |
@@ -2878,9 +2966,9 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
           local endpoint=&quot;$API_BASE/statistics-v2/stats-info/teams_penaltyKilling?count=25&amp;ssgtUuid=$SSGT_UUID&amp;provider=statnet&amp;state=active&amp;moduleType=result&quot;
           local response
           response=$(curl -s -L -H &quot;Accept: application/json; charset=utf-8&quot; -H &quot;User-Agent: HockeyStats/1.0&quot; &quot;$endpoint&quot;)
-          if [ $? -ne 0 ]; then
-            dt_error &quot;Failed to fetch boxplay data&quot;
-            return 1
+          if [ -z &quot;$response&quot; ] || ! echo &quot;$response&quot; | jq -e &#39;.[0].stats&#39; &gt;/dev/null 2&gt;&amp;1; then
+            echo &quot;Boxplay-mål statistik är inte tillgänglig just nu.&quot;
+            return 0
           fi
           echo &quot;$response&quot; | jq -r &#39;
             .[0].stats |
@@ -2888,7 +2976,6 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
             .[0:&#39;$count&#39;] |
             &quot;\(.Rank). \(.info.siteDisplayName) - \(.SHG) boxplay mål&quot;&#39;
         }
-
 
         handle_player_stat_query() {
           local stat=&quot;$1&quot;
@@ -2931,7 +3018,7 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
         table_file=&quot;$dataDir/table.json&quot;
 
 
-        if [ -n &quot;$stat&quot; ] &amp;&amp; [ -z &quot;$team&quot; ]; then
+        if [ -n &quot;$stat&quot; ] &amp;&amp; [ -z &quot;$team&quot; ] &amp;&amp; [ &quot;$stat&quot; != &quot;goalkeeper&quot; ]; then
           if { [ &quot;$stat&quot; = &quot;powerplay&quot; ] || [ &quot;$stat&quot; = &quot;boxplay&quot; ] || [ &quot;$stat&quot; = &quot;shorthanded_goals&quot; ]; } \
              &amp;&amp; { [ &quot;$mode&quot; = &quot;best&quot; ] || [ &quot;$mode&quot; = &quot;worst&quot; ]; }; then
             dt_debug &quot;Handling best/worst team stat query - mode: $mode, stat: $stat&quot;
@@ -3098,23 +3185,24 @@ På Torsdag den elva Mars spelar Björklöven hemma match mot Luleå i Visionite
           ];
           team.values = voiceTeamVals;
           stat.values = [
-            { &quot;in&quot; = &quot;power|powerplay|pp|överläge|numerärt överläge&quot;;       out = &quot;powerplay&quot;; }
-            { &quot;in&quot; = &quot;box|boxplay|bp|box play|undertal|numerärt underläge&quot;; out = &quot;boxplay&quot;; }
-            { &quot;in&quot; = &quot;underläge|shorthanded|boxmål|boxplay mål&quot;;            out = &quot;shorthanded_goals&quot;; }
-            { &quot;in&quot; = &quot;målvakt|målvakten|målvakter|goalie|goalkeeper&quot;;       out = &quot;goalkeeper&quot;; }
-            { &quot;in&quot; = &quot;räddningsprocent|räddningar|save percentage&quot;;         out = &quot;save_percentage&quot;; }
-            { &quot;in&quot; = &quot;straff|utvisning|penalty|pim&quot;;                        out = &quot;penalty&quot;; }
-            { &quot;in&quot; = &quot;längd|längst|lång&quot;;                                   out = &quot;tallest&quot;; }
-            { &quot;in&quot; = &quot;kort|kortast&quot;;                                        out = &quot;shortest&quot;; }
-            { &quot;in&quot; = &quot;vikt|tyngst|tung|tjock|tjockast&quot;;                     out = &quot;heaviest&quot;; }
-            { &quot;in&quot; = &quot;lätt|lättast&quot;;                                        out = &quot;lightest&quot;; }
-            { &quot;in&quot; = &quot;mål|skytter&quot;;                                         out = &quot;goals&quot;; }
-            { &quot;in&quot; = &quot;assist|passningar&quot;;                                   out = &quot;assists&quot;; }
-            { &quot;in&quot; = &quot;äldst|äldsta&quot;;                                        out = &quot;oldest&quot;;  }
-            { &quot;in&quot; = &quot;yngst|yngsta&quot;;                                        out = &quot;youngest&quot;; }
-            { &quot;in&quot; = &quot;underläge|shorthanded|boxmål&quot;;                        out = &quot;shorthanded&quot;; }
-            { &quot;in&quot; = &quot;istid|speltid|mest istid&quot;;                            out = &quot;icetime&quot;; }
-            { &quot;in&quot; = &quot;poäng&quot;;                                               out = &quot;points&quot;; }
+            { &quot;in&quot; = &quot;power|powerplay|pp|överläge|numerärt överläge&quot;;              out = &quot;powerplay&quot;; }
+            { &quot;in&quot; = &quot;box|boxplay|bp|box play|undertal|numerärt underläge&quot;;        out = &quot;boxplay&quot;; }
+            { &quot;in&quot; = &quot;underläge|shorthanded|boxmål|boxplay mål&quot;;                   out = &quot;shorthanded_goals&quot;; }
+            { &quot;in&quot; = &quot;målvakt|målvakten|målvakter|goalie|goalkeeper&quot;;              out = &quot;goalkeeper&quot;; }
+            { &quot;in&quot; = &quot;räddningsprocent|räddningar|save percentage&quot;;                out = &quot;save_percentage&quot;; }
+            { &quot;in&quot; = &quot;straff|utvisning|penalty|pim&quot;;                               out = &quot;penalty&quot;; }
+            { &quot;in&quot; = &quot;längd|längst|lång&quot;;                                          out = &quot;tallest&quot;; }
+            { &quot;in&quot; = &quot;kort|kortast&quot;;                                               out = &quot;shortest&quot;; }
+            { &quot;in&quot; = &quot;vikt|tyngst|tung|tjock|tjockast&quot;;                            out = &quot;heaviest&quot;; }
+            { &quot;in&quot; = &quot;lätt|lättast&quot;;                                               out = &quot;lightest&quot;; }
+            { &quot;in&quot; = &quot;mål|skytter&quot;;                                                out = &quot;goals&quot;; }
+            { &quot;in&quot; = &quot;assist|passningar&quot;;                                          out = &quot;assists&quot;; }
+            { &quot;in&quot; = &quot;äldst|äldsta&quot;;                                               out = &quot;oldest&quot;;  }
+            { &quot;in&quot; = &quot;yngst|yngsta&quot;;                                               out = &quot;youngest&quot;; }
+            { &quot;in&quot; = &quot;underläge|shorthanded|boxmål&quot;;                               out = &quot;shorthanded&quot;; }
+            { &quot;in&quot; = &quot;istid|speltid|mest istid&quot;;                                   out = &quot;icetime&quot;; }
+            { &quot;in&quot; = &quot;poäng&quot;;                                                      out = &quot;points&quot;; }
+            { &quot;in&quot; = &quot;straff|utvisning|utvisningar|utvisningsminuter|penalty|pim&quot;; out = &quot;penalty&quot;; }
           ];
           count.values = [
             { &quot;in&quot; = &quot;[1|ett|en|bästa|vem|vilken]&quot;; out = &quot;1&quot;; }
